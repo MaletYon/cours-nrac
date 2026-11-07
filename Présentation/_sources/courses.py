@@ -9,7 +9,7 @@ GCI = {
     "sous_titre": "Gouverner, piloter et servir : la gouvernance des systèmes d'information en contexte africain",
     "master": "Master professionnel en Management des Systèmes d'Information · Semestre 3",
     "annee": "2026-2027",
-    "dossier": COURS + r"\MSN-2S3-MSI03\Présentation",
+    "dossier": COURS + r"\Chaire-Unesco\MSN-2S3-MSI03\Présentation",
     "fil_rouge": "BANQUE SANAGA (Douala), KRIBILOG (Kribi), ANPP (administration), NOUN PAY (fintech)",
     "parties": [
         ("Prologue", "Trois jours sans banque", "P00"),
@@ -47,7 +47,7 @@ ACSI = {
     "sous_titre": "Méthode, normes et pratique de la mission d'audit : du métier à l'auditologie",
     "master": "Master professionnel en Management des Systèmes d'Information · Semestre 3",
     "annee": "2026-2027",
-    "dossier": COURS + r"\MSN-2S3-MSI05\Présentation",
+    "dossier": COURS + r"\Chaire-Unesco\MSN-2S3-MSI05\Présentation",
     "fil_rouge": "LiZbiZ, BANQUE SANAGA, ANPP",
     "parties": [
         ("Prologue", "Quarante-cinq questions", "P00"),
@@ -86,7 +86,7 @@ NRAC = {
     "sous_titre": "Du référentiel à la preuve : piloter, mesurer et auditer la sécurité",
     "master": "Master professionnel en Sécurité des Systèmes Numériques · Semestre 3",
     "annee": "2026-2027",
-    "dossier": COURS + r"\MSN-2S3-SEC08\Présentation",
+    "dossier": COURS + r"\Chaire-Unesco\MSN-2S3-SEC08\Présentation",
     "fil_rouge": "BANQUE SANAGA (Douala), LiZbiZ (logistique), ANPP (administration)",
     "parties": [
         ("Prologue", "Certifiée, et pourtant compromise", "P00"),
