@@ -1,0 +1,769 @@
+% ============================================================================
+% Fichier  : partie2/P02_C07_decomposer_coter_conclure.tex
+% Titre    : Décomposer, Coter, Conclure
+% Auteur   : MINKA MI NGUIDJOÏ Thierry Emmanuel
+% Version  : 1.0 -- novembre 2026
+% Corrigés : corriges/Corr_C07.tex
+% ============================================================================
+% Méthode reprise sans modification du corpus (ACSI, chapitres 7 et 9) :
+% gabarit canonique à huit niveaux (article A0) ; fiche d'assertion à cinq
+% attributs ; règle d'atomicité ; trois conditions (exhaustivité,
+% non-redondance, borne cognitive) ; cote d'un contrôle à plusieurs critères
+% (un NON suffit ; à défaut un NEK ; OUI si tous OUI) ; mesures mu, U, H
+% (article A1) ; quadrant aux seuils du cours (mu 0,5 ; U 0,20) ; règle de
+% décision « U d'abord, mu ensuite, H pour contrôler, les cotes de
+% l'auditeur prévalent » ; conversion en maturité (convention ACSI) ;
+% observation en sept éléments. Domaine D de LiZbiZ : valeurs d'ACSI.
+% Faits du cas (bible) : mission de mars 2028 sur le réseau d'agences, T1 à
+% T8 = 3/3/2. Faits nouveaux : décomposition en six sous-domaines S1 à S6 ;
+% exercice inopiné de Kribi le 14 mars 2028 (2 h 15), contradictoire du
+% 20 mars ; risque R-AG-02 (compromission d'un GAB).
+% ISO/IEC 27002:2022, mesure 5.30 (préparation des TIC pour la continuité
+% d'activité) : citée par son numéro et son intitulé.
+% ============================================================================
+
+\chapter{Décomposer, Coter, Conclure}
+\label{chap:conclure}
+\chaptermark{Décomposer et conclure}
+
+\epigraph{%
+    « Conclure, ce n'est pas compter les \emph{oui}.\\
+    C'est savoir ce qu'ils valent. »%
+}{Principe de la méthode}
+
+\niveauChapitre{Intermédiaire}{%
+    Maîtrise du Chapitre~\ref{chap:audit}%
+}
+
+\begin{boxobjectifs}
+\begin{itemize}
+    \item Décomposer un domaine de sécurité selon le gabarit canonique à
+          huit niveaux, et vérifier la qualité de la décomposition.
+    \item Rédiger une fiche d'assertion à plusieurs critères, en respectant
+          l'atomicité.
+    \item Déduire la cote d'un contrôle de celles de ses critères.
+    \item Calculer $\mu$, $U$ et $H$ par sous-domaine, et localiser
+          l'incertitude.
+    \item Situer un domaine dans le quadrant conformité~$\times$ incertitude
+          et appliquer la règle de décision.
+    \item Rédiger une observation en sept éléments et la conclusion d'un
+          rapport.
+\end{itemize}
+\end{boxobjectifs}
+
+\bigskip
+
+% ============================================================================
+\section*{Avant de commencer : « Alors, c'est sécurisé~? »}
+% ============================================================================
+
+Douala, avril 2028. Mme~EKAMBI présente les résultats de la mission sur le
+réseau d'agences au comité des risques~: huit tests, 3~\OUI{}, 3~\NON{},
+2~\NEK{} (Chapitre~\ref{chap:audit}). Un administrateur l'interrompt~:
+« Trois sur huit, c'est 37~\%. Les agences sont-elles sécurisées, oui ou
+non~? »
+
+La question est légitime, la réponse ne peut pas être un pourcentage. Les
+huit cotes ne portent pas sur la même chose~: trois concernent les
+barrières techniques du scénario R-AG-01, une la capacité à continuer de
+servir, une le personnel, une un prestataire qui a refusé l'accès. Les
+additionner, c'est mélanger un pare-feu et une limitation de l'étendue.
+
+\medskip
+
+Ce chapitre apprend à structurer ce que l'on audite, à coter chaque
+contrôle selon ses critères, puis à conclure, en disant à la fois ce qui va
+mal et ce que l'on ne sait pas. La méthode est celle de l'auditologie,
+commune aux cours du corpus~\cite{minka2026auditologie,minka2026nek}.
+
+\begin{boxalert}
+\textbf{Violation typique.} Résumer un audit par le pourcentage de
+contrôles conformes.
+
+\smallskip
+\textbf{Règle~:} une conclusion se donne par sous-domaine, avec trois
+mesures (conformité, incertitude, dispersion), selon une règle de décision
+écrite à l'avance. Un taux unique cache où sont les défauts et où est
+l'ignorance.
+\end{boxalert}
+
+\separateur
+
+% ============================================================================
+\section{Décomposer}
+\label{sec:c07-decomposer}
+% ============================================================================
+
+\subsection{Pourquoi décomposer}
+
+Un domaine de sécurité compte des dizaines de contrôles. La mémoire de
+travail humaine traite environ sept éléments à la fois~\cite{miller1956}~:
+au-delà, l'auditeur oublie, recouvre ou mélange. La décomposition découpe
+l'objet audité en niveaux emboîtés, chacun de taille maîtrisable. Elle a
+trois usages~: vérifier que rien n'échappe au programme, situer chaque
+cote, et localiser l'incertitude.
+
+\subsection{Le gabarit canonique}
+
+Le programme de l'auditologie propose un \termecle{gabarit
+canonique}\index{gabarit canonique} à huit niveaux~\cite{minka2026auditologie}.
+
+\begin{tableaucours}{cL{2.2cm}L{4.4cm}L{4.6cm}}{%
+    \tableauHeader{N°} &
+    \tableauHeader{Niveau} &
+    \tableauHeader{Question} &
+    \tableauHeader{Exemple (réseau d'agences)}
+}
+1 & Domaine & Que soumet-on à l'audit~? & Sécurité du réseau d'agences \\
+2 & Sous-domaine & Quels grands ensembles le composent~? & Récupération \\
+3 & Processus & Quelles suites d'activités~? & Continuité du service au
+guichet \\
+4 & Activité & Quelles actions élémentaires~? & Servir en mode dégradé \\
+5 & Contrôle & Quel dispositif maîtrise l'activité~? & Procédure de mode
+dégradé, exercée \\
+6 & Test & Comment l'auditeur le vérifie-t-il~? & Exercice inopiné,
+chronométré \\
+7 & Preuve & Quel élément le test produit-il~? & Compte rendu signé,
+chronométrage \\
+8 & Trace & Quel enregistrement l'atteste~? & Journal des opérations en
+mode dégradé \\
+\end{tableaucours}
+\vspace{-0.8em}
+\begin{center}{\small\itshape Tableau~7.1. Le gabarit canonique
+(d'après~\cite{minka2026auditologie})}\end{center}
+
+Les quatre premiers niveaux disent \emph{ce qui est audité}~; les quatre
+derniers, \emph{comment on le vérifie}. Le contrôle fait la charnière~:
+c'est l'objet sur lequel l'auditeur se prononce.
+
+\subsection{Trois conditions de qualité}
+
+\begin{tableaucours}{L{3.0cm}L{5.2cm}L{4.0cm}}{%
+    \tableauHeader{Condition} &
+    \tableauHeader{Sens} &
+    \tableauHeader{Défaut si elle manque}
+}
+Exhaustivité & Les éléments d'un niveau couvrent entièrement leur parent &
+Une partie du domaine n'est pas auditée \\
+Non-redondance & Deux éléments d'un même niveau ne se recouvrent pas~;
+chacun a un seul parent & Double comptage, conclusions contradictoires \\
+Borne cognitive & Aucun élément n'a plus de sept enfants environ & Grille
+illisible, éléments oubliés \\
+\end{tableaucours}
+\vspace{-0.8em}
+\begin{center}{\small\itshape Tableau~7.2. Les trois conditions d'une bonne
+décomposition}\end{center}
+
+\subsection{Le réseau d'agences, décomposé}
+
+\begin{boxscenario}{Opération SANAGA. Six sous-domaines}
+Mme~EKAMBI décompose le domaine « sécurité du réseau d'agences » en six
+sous-domaines. Les quatre premiers suivent les étapes du scénario R-AG-01
+(Chapitre~\ref{chap:risque})~; les deux derniers couvrent ce que le
+scénario ne prévoyait pas.
+
+\medskip
+\begin{tableaucours}{cL{3.4cm}L{4.8cm}c}{%
+    \tableauHeader{Code} &
+    \tableauHeader{Sous-domaine} &
+    \tableauHeader{Contrôles testés} &
+    \tableauHeader{Tests}
+}
+S1 & Entrée (accès, authentification) & Second facteur sur tous les
+comptes & T1 \\
+S2 & Propagation (cloisonnement, privilèges) & Cloisonnement par agence~;
+fin de l'administration locale & T2, T7 \\
+S3 & Détection & Journalisation centralisée & T6 \\
+S4 & Récupération & Sauvegardes hors ligne testées~; mode dégradé & T3,
+T4 \\
+S5 & Facteur humain & Sensibilisation des agents & T5 \\
+S6 & Équipements de tiers & Correctifs des GAB & T8 \\
+\end{tableaucours}
+
+\medskip
+\textbf{Vérification.} Six sous-domaines, sous la borne de sept~;
+chaque test a un seul parent~; l'ensemble couvre le périmètre de la lettre
+de mission. L'exhaustivité appelle une réserve~: d'autres contrôles
+existent dans chaque sous-domaine (par exemple les correctifs des postes en
+S1)~; la mission n'a testé que ceux du plan de traitement. Le rapport doit
+le dire.
+\end{boxscenario}
+
+% ============================================================================
+\section{Coter un Contrôle}
+\label{sec:c07-coter}
+% ============================================================================
+
+\subsection{La fiche d'assertion}
+
+Le gabarit dit \emph{où} se trouve un contrôle. La \termecle{fiche
+d'assertion}\index{fiche d'assertion} dit ce que l'auditeur affirme à son
+sujet, et ce qui arrive si l'affirmation est fausse.
+
+\begin{tableaucours}{L{2.4cm}L{5.0cm}L{4.8cm}}{%
+    \tableauHeader{Attribut} &
+    \tableauHeader{Rôle} &
+    \tableauHeader{Forme}
+}
+Objectif & Ce que le contrôle doit garantir & À l'infinitif~: « S'assurer
+que\ldots » \\
+Critère & La condition vérifiable qui définit la conformité & Au présent~:
+une condition unique, observable \\
+Question & La question posée pour coter & Interrogative~; réponse \OUI{},
+\NON{} ou \NEK{} \\
+Risque & L'état de non-conformité si la réponse est \NON{} & L'antithèse du
+critère \\
+Conséquence & L'effet sur l'organisation si le risque se réalise &
+Financier, opérationnel, réglementaire \\
+\end{tableaucours}
+\vspace{-0.8em}
+\begin{center}{\small\itshape Tableau~7.3. Les attributs de la fiche
+d'assertion}\end{center}
+
+\begin{boxinfo}
+\textbf{Règle d'atomicité.} L'objectif, le critère et la question ne
+contiennent aucun «~et~» ni «~ou~». Toute assertion qui en contient est
+scindée en autant d'assertions qu'il y a de conditions indépendantes. Ainsi
+une réponse \NON{} désigne un seul défaut.
+\end{boxinfo}
+
+\subsection{Un contrôle, trois critères}
+
+\begin{boxscenario}{Opération SANAGA. Fiche d'assertion du contrôle S4.2}
+\textbf{Position~:} domaine «~réseau d'agences~» $\rightarrow$ S4
+(récupération) $\rightarrow$ continuité du service au guichet
+$\rightarrow$ servir en mode dégradé $\rightarrow$ contrôle S4.2.
+
+\medskip
+\textbf{Objectif~:} s'assurer que chaque agence peut servir ses clients
+sans le système d'information habituel.
+
+\medskip
+\textbf{Critère~1~:} la procédure de mode dégradé est disponible sur place,
+sous forme papier. \emph{Question~:} la procédure est-elle présente dans
+l'agence~?
+
+\textbf{Critère~2~:} les codes d'accès au mode dégradé sont connus de la
+personne qui dirige l'agence le jour du test. \emph{Question~:} le
+responsable présent connaît-il les codes~?
+
+\textbf{Critère~3~:} l'agence sert un premier client en moins d'une heure.
+\emph{Question~:} le premier client a-t-il été servi en moins d'une
+heure~?
+
+\medskip
+\textbf{Test, preuve, trace~:} exercice inopiné dans deux agences de
+l'échantillon~; compte rendu signé et chronométrage~; journal des
+opérations en mode dégradé.
+
+\medskip
+\textbf{Risque~:} une agence touchée par un incident reste fermée.
+
+\textbf{Conséquence~:} perte d'exploitation (190~millions pour neuf agences
+en 2026, Chapitre~\ref{chap:fair}), atteinte à la réputation.
+\end{boxscenario}
+
+\subsection{De la cote des critères à celle du contrôle}
+
+Chaque critère reçoit sa propre cote. La cote du contrôle s'en déduit par
+une règle simple~:
+\begin{itemize}
+    \item un seul critère \NON{} suffit pour coter le contrôle \NON{}~;
+    \item à défaut, un seul critère \NEK{} donne \NEK{}~;
+    \item le contrôle n'est coté \OUI{} que si tous ses critères le sont.
+\end{itemize}
+
+À Garoua, les trois critères sont \OUI{}. À Kribi, le critère~1 est \NON{}
+(procédure introuvable), le critère~2 \NON{} (codes inconnus du chef
+d'agence remplaçant), donc le critère~3 aussi (2~h~15). Un contrôle
+d'agence se teste agence par agence~: S4.2 est \NON{} pour l'échantillon,
+puisqu'une agence sur deux ne le satisfait pas.
+
+\begin{boxalert}
+\textbf{Violation typique.} Coter « \OUI{} à 50~\% » un contrôle conforme
+dans une agence et défaillant dans l'autre.
+
+\smallskip
+\textbf{Règle~:} la cote porte sur le critère, qui est binaire. On cote
+\NON{}, et le papier de travail précise où le contrôle fonctionne et où il
+échoue.
+\end{boxalert}
+
+% ============================================================================
+\section{Mesurer et Localiser l'Incertitude}
+\label{sec:c07-mesurer}
+% ============================================================================
+
+\subsection{Trois mesures}
+
+\begin{boxdef}
+Pour un ensemble de cotes, on note $p(\OUI)$, $p(\NON)$ et $p(\NEK)$ les
+parts de chaque réponse~\cite{minka2026nek}.
+
+\medskip
+\termecle{Taux de conformité}\index{taux de conformité}~: $\mu = p(\OUI)$.
+
+\medskip
+\termecle{Taux d'incertitude}\index{taux d'incertitude}~: $U = p(\NEK)$.
+
+\medskip
+\termecle{Entropie}\index{entropie}~: dispersion des réponses, en bits,
+\[
+    H = -\sum_{m \in \{\OUI, \NON, \NEK\}} p(m) \log_2 p(m),
+    \qquad 0 \leq H \leq \log_2 3 \approx 1{,}585,
+\]
+avec la convention $0 \log_2 0 = 0$.
+\end{boxdef}
+
+\begin{tableaucours}{L{4.6cm}cccL{3.4cm}}{%
+    \tableauHeader{Situation} &
+    \tableauHeader{$\mu$} & \tableauHeader{$U$} & \tableauHeader{$H$} &
+    \tableauHeader{Lecture}
+}
+Tout est \OUI{} & 1 & 0 & 0 & Conformité certaine \\
+Tout est \NON{} & 0 & 0 & 0 & Non-conformité certaine \\
+Tout est \NEK{} & 0 & 1 & 0 & \textbf{Ignorance unanime} \\
+Réponses également réparties & $1/3$ & $1/3$ & 1,585 & Dispersion maximale \\
+\end{tableaucours}
+\vspace{-0.8em}
+\begin{center}{\small\itshape Tableau~7.4. Les cas limites des trois
+mesures (d'après~\cite{minka2026nek})}\end{center}
+
+\begin{boxalert}
+\textbf{Violation typique.} Conclure « certitude » parce que l'entropie
+est nulle.
+
+\smallskip
+\textbf{Règle~:} une entropie nulle dit seulement que toutes les cotes sont
+identiques. Si elles sont toutes \NEK{}, on ne sait rien~: $H = 0$ et
+$U = 1$. On ne lit jamais $H$ sans $U$ ni $\mu$.
+\end{boxalert}
+
+\subsection{Par sous-domaine}
+
+\begin{boxlecture}{Le réseau d'agences, sous-domaine par sous-domaine}
+\begin{tableaucours}{cL{3.4cm}cccc}{%
+    \tableauHeader{Code} &
+    \tableauHeader{Sous-domaine} &
+    \tableauHeader{\OUI{}/\NON{}/\NEK{}} &
+    \tableauHeader{$\mu$} & \tableauHeader{$U$} & \tableauHeader{$H$}
+}
+S1 & Entrée & 1 / 0 / 0 & 1,00 & 0,00 & 0,00 \\
+S2 & Propagation & 1 / 1 / 0 & 0,50 & 0,00 & 1,00 \\
+S3 & Détection & 0 / 1 / 0 & 0,00 & 0,00 & 0,00 \\
+S4 & Récupération & 1 / 1 / 0 & 0,50 & 0,00 & 1,00 \\
+S5 & Facteur humain & 0 / 0 / 1 & 0,00 & 1,00 & 0,00 \\
+S6 & Équipements de tiers & 0 / 0 / 1 & 0,00 & 1,00 & 0,00 \\
+\textbf{Domaine} & & \textbf{3 / 3 / 2} & \textbf{0,375} & \textbf{0,25} &
+\textbf{1,56} \\
+\end{tableaucours}
+
+\medskip
+\textbf{Constatation.} Toute l'incertitude du domaine se concentre dans S5
+et S6~: deux cas d'ignorance unanime ($H = 0$, $U = 1$). Les quatre autres
+sous-domaines sont connus ($U = 0$)~: S1 est conforme, S3 non conforme, S2
+et S4 partagés.
+
+\medskip
+\textbf{Analyse} (confiance élevée). Lu d'un bloc, le domaine paraît
+« à 37~\% » et en partie inconnu. Décomposé, il dit trois choses
+distinctes~: les barrières techniques du scénario R-AG-01 tiennent (S1,
+le cloisonnement de S2, les sauvegardes de S4)~; des défauts connus restent
+à corriger (administration locale, journalisation, mode dégradé)~; et la
+banque ignore tout de deux sujets, le personnel et les GAB. Ce ne sont pas
+les mêmes décisions.
+
+\medskip
+\hfill\lecture{0{,}375}{0{,}25}{1{,}56}
+\end{boxlecture}
+
+\begin{boxinfo}
+\textbf{Peu de cotes, mesures fragiles.} S2 et S4 ne comptent que deux
+contrôles chacun~: $\mu = 0{,}50$ y signifie « un sur deux », pas une
+proportion stable. À ce niveau, on conclut contrôle par contrôle~; les
+mesures servent surtout à comparer les sous-domaines et à repérer les
+\NEK{}.
+\end{boxinfo}
+
+% ============================================================================
+\section{Conclure}
+\label{sec:c07-conclure}
+% ============================================================================
+
+\subsection{Le quadrant conformité~$\times$ incertitude}
+
+L'article sur l'incertitude épistémique propose de lire ensemble la
+conformité et l'incertitude, dans un quadrant à quatre
+régions~\cite{minka2026nek}. Le cours retient, par convention, un seuil de
+0,5 pour $\mu$ et de 0,20 pour $U$~; chaque mission peut fixer les siens, à
+condition de les écrire dans le plan d'audit.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[x=6cm, y=4.5cm]
+    \fill[red!15] (0,0) rectangle (0.5,0.2);
+    \fill[green!18] (0.5,0) rectangle (1,0.2);
+    \fill[orange!15] (0,0.2) rectangle (0.5,1);
+    \fill[orange!25] (0.5,0.2) rectangle (1,1);
+    \draw[thick, color=CouleurPrimaire] (0,0) rectangle (1,1);
+    \draw[dashed, color=CouleurPrimaire] (0.5,0) -- (0.5,1);
+    \draw[dashed, color=CouleurPrimaire] (0,0.2) -- (1,0.2);
+    \node[align=center, font=\scriptsize\bfseries] at (0.25,0.1)
+        {Non-conformité claire};
+    \node[align=center, font=\scriptsize\bfseries] at (0.75,0.1)
+        {Conformité claire};
+    \node[align=center, font=\scriptsize\bfseries] at (0.25,0.6)
+        {Non-conformité\\opaque};
+    \node[align=center, font=\scriptsize\bfseries] at (0.75,0.6)
+        {Conformité\\opaque};
+    \fill[CouleurAccent] (0.375,0.25) circle (0.012);
+    \node[font=\scriptsize, anchor=west] at (0.38,0.27) {Domaine};
+    \fill[CouleurPrimaire] (0.02,0.98) circle (0.010);
+    \node[font=\scriptsize, anchor=west] at (0.03,0.94) {S5, S6};
+    \fill[CouleurPrimaire] (0.98,0.02) circle (0.010);
+    \node[font=\scriptsize, anchor=east] at (0.97,0.045) {S1};
+    \node[font=\scriptsize] at (0.5,-0.06) {0,5};
+    \node[font=\scriptsize] at (-0.06,0.2) {0,20};
+    \node[font=\small] at (0.5,-0.16) {Taux de conformité $\mu$};
+    \node[font=\small, rotate=90] at (-0.15,0.5) {Taux d'incertitude $U$};
+\end{tikzpicture}
+\caption{Le quadrant diagnostique (d'après l'article sur l'incertitude
+épistémique~; seuils du cours)}
+\label{fig:c07-quadrant}
+\end{figure}
+
+\begin{tableaucours}{L{3.4cm}L{4.0cm}L{4.8cm}}{%
+    \tableauHeader{Région} &
+    \tableauHeader{Situation} &
+    \tableauHeader{Action}
+}
+Conformité claire & Conformité établie, peu d'inconnu & Validation
+courante \\
+Non-conformité claire & Non-conformité établie, peu d'inconnu &
+Correctifs \\
+\textbf{Conformité opaque} & Beaucoup de \OUI{}, mais une part importante
+de \NEK{} & \textbf{Alerte prioritaire}~: rechercher la preuve avant toute
+conclusion \\
+Non-conformité opaque & Beaucoup de \NON{} et une part importante de
+\NEK{} & Rechercher la preuve et engager des premiers correctifs \\
+\end{tableaucours}
+\vspace{-0.8em}
+\begin{center}{\small\itshape Tableau~7.5. Les quatre régions et leurs
+actions (d'après~\cite{minka2026nek})}\end{center}
+
+La conformité opaque est la région la plus dangereuse~: une grille binaire
+la confond avec la conformité claire. Le rapport de la RSSI de février
+2028 en donne l'exemple~: huit mesures déclarées « en place », soit une
+conformité apparente de 100~\%~; mais ces \OUI{} reposaient sur des
+déclarations, qui ne valaient que des \NEK{} tant qu'on ne les avait pas
+vérifiées.
+
+\subsection{La règle de décision}
+
+\begin{boxprocedure}
+\textbf{Conclure sur un domaine.} L'auditeur ne conclut qu'après avoir
+consigné, pour chaque domaine et chaque sous-domaine~:
+\begin{enumerate}
+    \item \textbf{$U$ d'abord.} Si $U \geq 0{,}20$, l'ensemble est opaque~:
+          aucune conclusion de conformité n'est possible. L'auditeur
+          recherche la preuve, ou conclut \emph{sur l'opacité elle-même}.
+    \item \textbf{$\mu$ ensuite.} Si $U < 0{,}20$, l'ensemble est clair~:
+          conforme si $\mu \geq 0{,}5$, non conforme sinon.
+    \item \textbf{$H$ pour contrôler.} Une entropie élevée avec $U$ faible
+          signale un désaccord entre \OUI{} et \NON{}~: l'ensemble n'est pas
+          homogène. On le décompose avant de conclure.
+    \item \textbf{Les cotes de l'auditeur prévalent.} Les mesures orientent~;
+          la conclusion repose sur les contrôles cotés, preuve à l'appui.
+\end{enumerate}
+\end{boxprocedure}
+
+\begin{boxscenario}{Opération SANAGA. La conclusion de Mme EKAMBI}
+\textbf{Domaine.} $U = 0{,}25 \geq 0{,}20$~: le domaine est opaque, en
+région de non-conformité opaque ($\mu = 0{,}375$). Aucune conclusion de
+conformité d'ensemble n'est possible~; la mission recherche les preuves
+manquantes et engage des premiers correctifs.
+
+\medskip
+\textbf{Sous-domaines.}
+\begin{itemize}
+    \item S1~: clair et conforme.
+    \item S2 et S4~: clairs, $H = 1$~: non homogènes~; conclusion par
+          contrôle~: cloisonnement et sauvegardes efficaces, administration
+          locale et mode dégradé non efficaces.
+    \item S3~: clair, non conforme (corrigé en cours de mission).
+    \item S5 et S6~: ignorance unanime~; l'auditeur conclut sur l'opacité.
+          Pour S6, l'opacité vient d'une limitation de l'étendue, portée au
+          comité.
+\end{itemize}
+
+\textbf{Phrase pour le comité.} « Les barrières techniques qui ont été
+défaillantes en 2026 sont désormais en place et fonctionnent. Trois
+défauts connus restent à corriger. Et la banque ne sait pas, à ce jour, si
+ses agents sont formés ni si ses GAB sont protégés~: sur ces deux points,
+nous ne pouvons pas conclure, et nous en donnons les raisons. »
+\end{boxscenario}
+
+\subsection{Pas de niveau de maturité pour un domaine opaque}
+
+Les directions aiment résumer un domaine par un niveau de 1 à 5. Le corpus
+propose une conversion du taux de conformité en niveau de maturité~:
+moins de 0,35, niveau~1~; de 0,35 à 0,55, niveau~2~; de 0,55 à 0,75,
+niveau~3~; de 0,75 à 0,90, niveau~4~; au-delà, niveau~5. C'est une
+\emph{convention pédagogique déclarée}, non une norme, et elle a une règle~:
+si $U \geq 0{,}20$, le niveau est \emph{indéterminé}. Le réseau d'agences
+n'a donc pas de niveau en 2028~; lui en attribuer un, sur la foi de
+$\mu = 0{,}375$, ferait croire au comité qu'il connaît un état qu'en partie
+il ignore.
+
+% ============================================================================
+\section{Rédiger l'Observation}
+\label{sec:c07-observation}
+% ============================================================================
+
+\subsection{Sept éléments}
+
+Chaque non-conformité significative donne lieu à une observation, de
+structure invariante.
+
+\begin{tableaucours}{cL{3.0cm}L{8.4cm}}{%
+    \tableauHeader{N°} &
+    \tableauHeader{Élément} &
+    \tableauHeader{Contenu}
+}
+1 & Norme & Le critère, et le texte ou le référentiel d'où il vient \\
+2 & Constatation & Le fait établi, chiffré, avec sa preuve et sa cote \\
+3 & Risques & Ce qui peut arriver~: le risque de la fiche d'assertion et sa
+conséquence \\
+4 & Contradictoire & La réponse de l'audité, datée \\
+5 & Analyse & La cause de l'écart et l'interprétation, avec un niveau de
+confiance \\
+6 & Conclusion & La position finale de l'auditeur \\
+7 & Recommandations & Ce qu'il faut faire, en traitant la cause \\
+\end{tableaucours}
+\vspace{-0.8em}
+\begin{center}{\small\itshape Tableau~7.6. Les sept éléments de
+l'observation}\end{center}
+
+\begin{boxscenario}{Opération SANAGA. Observation S4.2 · Mode dégradé}
+\textbf{1. Norme~:} plan de traitement de R-AG-01, action A5 («~procédure
+de guichet en mode dégradé, exercée~»)~; ISO/IEC~27002:2022, mesure~5.30
+(préparation des TIC pour la continuité d'activité)~\cite{iso27002_2022}.
+
+\medskip
+\textbf{2. Constatation~:} exercice inopiné du 14~mars 2028. Garoua sert
+un premier client en 40~minutes. À Kribi, la procédure est introuvable, le
+chef d'agence remplaçant ignore les codes du mode dégradé, et aucun client
+n'est servi pendant 2~h~15 (compte rendu signé, chronométrage). Cote~:
+\NON{}.
+
+\medskip
+\textbf{3. Risques~:} une agence touchée par un incident reste fermée~;
+perte d'exploitation et atteinte à la réputation.
+
+\medskip
+\textbf{4. Contradictoire~:} la direction du réseau d'agences indique, le
+20~mars, que la procédure a été diffusée par courriel en mai~2027 et que le
+chef d'agence titulaire de Kribi était en congé.
+
+\medskip
+\textbf{5. Analyse} (confiance élevée)~: la procédure a été diffusée par
+la messagerie, c'est-à-dire par l'outil qui manquera le jour d'un incident.
+Elle n'a jamais été intégrée au dossier papier de l'agence, et sa
+connaissance repose sur une seule personne.
+
+\medskip
+\textbf{6. Conclusion~:} le contrôle S4.2 n'est pas efficace pour
+l'échantillon~; son efficacité dans les 36 autres agences n'est pas
+établie.
+
+\medskip
+\textbf{7. Recommandations~:} placer la procédure et les codes, sous
+enveloppe scellée, dans le coffre de chaque agence~; former au moins deux
+personnes par agence~; exercer chaque agence une fois par an, avec
+chronométrage~; vérification par l'audit interne lors du suivi.
+\end{boxscenario}
+
+\subsection{Le nouveau risque}
+
+La limitation de l'étendue sur les GAB n'appelle pas d'observation au sens
+strict~: on ne peut pas décrire un écart que l'on n'a pas vu. Elle appelle
+une appréciation de risque, que le rapport demande au gestionnaire des
+risques.
+
+\begin{boxobjet}{R-AG-02 · Compromission d'un GAB}
+\textbf{Valeur métier~:} le retrait d'espèces dans les agences.
+
+\textbf{Biens supports~:} automates de retrait de 14 agences, sous un
+système d'exploitation qui ne reçoit plus de correctifs~; contrat de
+maintenance sans droit d'audit.
+
+\textbf{Événement redouté~:} retraits frauduleux, ou indisponibilité des
+automates.
+
+\textbf{Vraisemblance~:} \NEK{} (configuration non vérifiable).
+
+\textbf{Impact~:} à apprécier (montant des encaisses, nombre de clients
+concernés).
+
+\textbf{Action immédiate~:} négociation d'un avenant de droit d'audit avec
+le prestataire~; à défaut, présentation au comité des risques, comme pour
+DIGICORE (Chapitre~\ref{chap:iso27005}).
+\end{boxobjet}
+
+% ============================================================================
+\section{Ce que la Conclusion demande à chaque Métier}
+\label{sec:c07-metiers}
+% ============================================================================
+
+\begin{boxmetier}{Auditeur en cybersécurité}
+\textbf{Conclure par sous-domaine}
+\begin{enumerate}
+    \item Décomposer le domaine avant le terrain, et faire revoir la
+          décomposition.
+    \item Rédiger une fiche d'assertion atomique pour chaque contrôle.
+    \item Calculer $\mu$, $U$ et $H$ par sous-domaine, et appliquer la règle
+          de décision écrite dans le plan d'audit.
+    \item Conclure sur l'opacité quand $U \geq 0{,}20$, au lieu de la taire.
+    \item Développer chaque non-conformité significative en observation à
+          sept éléments.
+\end{enumerate}
+\end{boxmetier}
+
+\begin{boxmetier}{RSSI}
+\textbf{Lire le rapport par sous-domaine}
+
+La RSSI ne retient pas « 37~\% ». Elle retient que ses barrières
+techniques tiennent, qu'elle a trois défauts à corriger, et que deux
+sujets lui échappent~: le personnel et les GAB. Son prochain rapport au
+comité suivra la même décomposition.
+\end{boxmetier}
+
+\begin{boxmetier}{Responsable GRC}
+\textbf{Une même décomposition partout}
+
+Si le registre des risques, le plan de traitement et le programme d'audit
+emploient la même décomposition (ici, les étapes du scénario plus le
+facteur humain et les tiers), les cotes de l'audit alimentent directement le
+registre. C'est le dispositif unique du Chapitre~\ref{chap:grc-pratique}.
+\end{boxmetier}
+
+\separateur
+
+\begin{boxresume}
+\textbf{Ce qu'il faut retenir de ce chapitre~:}
+\begin{itemize}
+    \item \textbf{Le gabarit canonique} a huit niveaux~: domaine,
+          sous-domaine, processus, activité, contrôle, test, preuve, trace.
+    \item \textbf{Une bonne décomposition} est exhaustive, non redondante et
+          respecte la borne de sept éléments environ.
+    \item \textbf{La fiche d'assertion} donne objectif, critère, question,
+          risque, conséquence~; elle est atomique.
+    \item \textbf{La cote d'un contrôle}~: un \NON{} suffit~; à défaut un
+          \NEK{}~; \OUI{} seulement si tous les critères le sont.
+    \item \textbf{La règle de décision}~: $U$ d'abord, $\mu$ ensuite, $H$
+          pour contrôler, les cotes de l'auditeur prévalent.
+    \item \textbf{Une entropie nulle} n'est pas une certitude si $U = 1$.
+    \item \textbf{L'observation} a sept éléments, dont le contradictoire et
+          une conclusion explicite.
+\end{itemize}
+\end{boxresume}
+
+\begin{boxinfo}
+\textbf{Points de contrôle.} Vous avez compris ce chapitre si vous savez~:
+\begin{itemize}
+    \item placer un élément au bon niveau du gabarit~;
+    \item scinder une assertion qui n'est pas atomique~;
+    \item calculer les trois mesures d'un sous-domaine et le situer dans le
+          quadrant~;
+    \item rédiger une conclusion qui dit ce qui va mal et ce que l'on ne
+          sait pas.
+\end{itemize}
+\end{boxinfo}
+
+% ============================================================================
+\section*{Exercices}
+% ============================================================================
+
+\begin{boxexo}[title={\ding{45}\quad Exercice~7.1. À quel niveau~? \niveaubase}]
+Placez chaque élément au niveau du gabarit canonique qui lui correspond.
+\begin{enumerate}[(a)]
+    \item L'extraction des groupes d'administration locale, avec son
+          empreinte.
+    \item La propagation.
+    \item Le retrait des droits d'administration aux chefs d'agence.
+    \item L'entrée du journal qui enregistre la modification d'un groupe
+          local.
+    \item Comparer les membres des groupes locaux à la liste des
+          administrateurs autorisés.
+    \item La gestion des droits sur les postes de travail.
+    \item Aucun poste d'agence ne compte d'administrateur local autre que
+          le compte central de la DSI.
+\end{enumerate}
+\end{boxexo}
+
+\begin{boxexo}[title={\ding{45}\quad Exercice~7.2. Rendre atomique \niveaumoyen}]
+La première version du programme portait la question suivante~: « Les
+chefs d'agence ont-ils perdu leurs droits d'administration et les postes
+sont-ils gérés par l'outil central ou par un prestataire agréé~? »
+\begin{enumerate}[(a)]
+    \item Expliquez pourquoi cette question n'admet pas de réponse honnête
+          dans une agence où les droits ont été retirés mais où les postes
+          ne sont gérés par personne.
+    \item Scindez-la en questions atomiques.
+    \item Rédigez la fiche d'assertion complète du contrôle «~fin de
+          l'administration locale~» (S2.2), avec deux critères.
+\end{enumerate}
+\end{boxexo}
+
+\begin{boxexo}[title={\ding{45}\quad Exercice~7.3. Le domaine D de LiZbiZ \niveaumoyen}]
+AUDIX CONSEIL a décomposé le domaine~D (contrôle d'accès à l'application
+intégrée de LiZbiZ) en cinq sous-domaines~:
+\begin{itemize}
+    \item D.1, politique et organisation~: 4 / 0 / 0~;
+    \item D.2, cycle de vie des comptes~: 1 / 1 / 2~;
+    \item D.3, authentification~: 4 / 0 / 0~;
+    \item D.4, comptes à privilèges~: 2 / 0 / 2~;
+    \item D.5, journalisation et revue~: 2 / 1 / 1.
+\end{itemize}
+(nombre de \OUI{}, \NON{} et \NEK{}).
+\begin{enumerate}[(a)]
+    \item Calculez $\mu$, $U$ et $H$ pour chaque sous-domaine et pour le
+          domaine.
+    \item Situez chacun dans le quadrant et appliquez la règle de décision.
+    \item Quel niveau de maturité peut-on attribuer au domaine~?
+    \item Où portez-vous les tests du second passage, et pourquoi~?
+\end{enumerate}
+\end{boxexo}
+
+\begin{boxexo}[title={\ding{45}\quad Exercice~7.4. Observation et conclusion \niveauexpert}]
+\begin{enumerate}[(a)]
+    \item Rédigez l'observation à sept éléments du test T6 (journalisation~:
+          31 agences sur 38, corrigée le 22~mars 2028, Chapitre~\ref{chap:audit}).
+    \item Rédigez le paragraphe de conclusion du rapport consacré à S5
+          (facteur humain), en concluant sur l'opacité.
+    \item Un administrateur demande que le rapport «~retire les deux
+          \NEK{}, qui affaiblissent le message~». Répondez-lui en citant
+          les principes de l'audit (Chapitre~\ref{chap:audit}).
+\end{enumerate}
+\end{boxexo}
+
+\bigskip
+
+\begin{boxinfo}
+\textbf{Pour aller plus loin.}
+\begin{itemize}
+    \item L'article \emph{Vers l'auditologie}~\cite{minka2026auditologie},
+          pour le gabarit canonique et l'observabilité partielle.
+    \item L'article sur l'incertitude épistémique~\cite{minka2026nek}, pour
+          les trois mesures et le quadrant.
+    \item Miller~\cite{miller1956}, sur la borne de la mémoire de travail.
+\end{itemize}
+\end{boxinfo}
+
+\begin{boxinfo}
+\textbf{Transition.} La Partie~II est achevée~: on sait apprécier,
+traiter, chiffrer, auditer et conclure. Il reste à connaître les textes
+auxquels se mesurent risques et audits~: la famille des normes ISO/IEC
+27000, les autres référentiels et le droit. C'est l'objet de la
+Partie~III, qui s'ouvre avec le Chapitre~\ref{chap:iso27000}.
+\end{boxinfo}

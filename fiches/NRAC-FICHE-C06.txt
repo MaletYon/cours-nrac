@@ -1,0 +1,233 @@
+NDAP SUKULU · NRAC · fiche NRAC-FICHE-C06
+Chapitre 6 : Conduire un audit de cybersécurité
+
+Version papier, à utiliser en attendant l'ouverture du portail NDAP SUKULU.
+La fiche complète compte 40 questions. Répondez sur la grille en fin de fiche.
+Durée indicative : 60 minutes. Seuil de réussite : 60 %.
+Les corrections figurent dans le livret de correction du cours.
+
+========================================================================
+Questions à choix multiple (une seule bonne réponse)
+========================================================================
+
+ 1. Qu'est-ce qu'un constat d'audit ?
+      a) L'opinion de l'audité
+      b) La recommandation
+      c) Le résultat de l'évaluation des preuves au regard des critères
+      d) La lettre de mission
+
+ 2. Quelle troisième issue le cours ajoute-t-il au constat conforme ou non conforme ?
+      a) Partiellement conforme
+      b) NEK, la preuve n'a pas pu être obtenue ou ne permet pas de trancher
+      c) Non applicable
+      d) À revoir
+
+ 3. Combien de principes l'ISO 19011:2018 pose-t-elle ?
+      a) Sept
+      b) Cinq
+      c) Six
+      d) Dix
+
+ 4. Quel principe oblige à rapporter les obstacles rencontrés ?
+      a) La confidentialité
+      b) L'intégrité
+      c) L'indépendance
+      d) La présentation impartiale
+
+ 5. À quelle famille appartient l'audit de LiZbiZ par PHARMACAM ?
+      a) Interne
+      b) Certification
+      c) Contractuel (seconde partie)
+      d) Réglementaire
+
+ 6. Qu'est-ce qui distingue un test d'intrusion d'un audit ?
+      a) Il cherche un chemin d'attaque sans évaluer l'ensemble des critères
+      b) Il est plus long
+      c) Il est réservé à l'ANTIC
+      d) Il ne produit aucune preuve
+
+ 7. Quelle étape suit le terrain ?
+      a) Le mandat
+      b) Le contradictoire
+      c) La préparation
+      d) Le suivi
+
+ 8. Scénario. Pourquoi la lettre de mission donne-t-elle accès « y compris chez les prestataires » ?
+      a) Pour impressionner
+      b) Pour éviter le contradictoire
+      c) Pour réduire les coûts
+      d) Pour qu'un refus d'accès devienne un constat que le comité doit traiter
+
+ 9. Quelles sont les trois méthodes d'évaluation décrites par le NIST ?
+      a) Examiner, interroger, tester
+      b) Lire, écrire, signer
+      c) Planifier, faire, vérifier
+      d) Identifier, protéger, détecter
+
+10. Quel est le rang de fiabilité d'une capture d'écran remise par l'audité ?
+      a) 1
+      b) 2
+      c) 4
+      d) 5
+
+11. Quel est le rang d'une extraction produite par le système sous les yeux de l'auditeur ?
+      a) 5
+      b) 2
+      c) 4
+      d) 3
+
+12. Scénario. Le DSI déclare que « toutes les agences sont raccordées ». Que vaut cette preuve ?
+      a) Rang 1, elle suffit
+      b) Rang 3
+      c) Rang 2
+      d) Rang 5 : elle oriente un test mais ne suffit pas
+
+13. Pour un contrôle automatisé comme le second facteur, que fait l'auditeur ?
+      a) Il extrait toute la population
+      b) Il prélève 25 comptes
+      c) Il interroge le DSI
+      d) Il ne teste rien
+
+14. Que permet un échantillon raisonné ?
+      a) Extrapoler un taux
+      b) Trouver des défauts là où ils sont probables
+      c) Certifier la conformité de toute la population
+      d) Remplacer le contradictoire
+
+15. Scénario. 3 agences sur 8 gardent l'administration locale. Que conclure ?
+      a) 37,5 % des agences sont concernées
+      b) Environ 14 agences sont concernées
+      c) Le défaut existe et n'est pas isolé ; il faut une vérification exhaustive
+      d) Le défaut est négligeable
+
+16. Mission de mars 2028 : 3 OUI, 3 NON, 2 NEK. Que vaut µ ?
+      a) 0,25
+      b) 0,50
+      c) 0,30
+      d) 0,375
+
+17. Quelle est la nature du NEK sur les GAB ?
+      a) Une limitation de l'étendue
+      b) Une preuve insuffisante
+      c) Un défaut de l'auditeur
+      d) Une non-conformité
+
+18. Quelle est la nature du NEK sur la sensibilisation ?
+      a) Une limitation de l'étendue
+      b) Une preuve insuffisante
+      c) Une fraude
+      d) Une piste de progrès
+
+19. Scénario. Le DSI corrige la journalisation pendant la mission. Que fait le rapport ?
+      a) Il supprime le constat
+      b) Il cote OUI
+      c) Il maintient le constat et ajoute « corrigé en cours de mission »
+      d) Il reporte l'audit
+
+20. Quel article de la loi n° 2010/012 définit l'audit de sécurité ?
+      a) Article 26
+      b) Article 69
+      c) Article 29
+      d) Article 4, point 9
+
+========================================================================
+Vrai ou faux
+========================================================================
+
+21. Une déclaration de l'audité suffit à coter OUI.
+      Vrai / Faux
+
+22. L'approche fondée sur le risque fait partie des principes de l'ISO 19011:2018.
+      Vrai / Faux
+
+23. La certification remplace l'audit réglementaire.
+      Vrai / Faux
+
+24. Un constat qui a survécu au contradictoire est solide.
+      Vrai / Faux
+
+25. Une preuve doit être pertinente, fiable et suffisante.
+      Vrai / Faux
+
+26. Seul un échantillon aléatoire de taille suffisante autorise une estimation statistique.
+      Vrai / Faux
+
+27. On peut retirer du rapport un test que l'on n'a pas pu réaliser.
+      Vrai / Faux
+
+28. Une limitation de l'étendue est un constat, porté au commanditaire.
+      Vrai / Faux
+
+29. Selon l'article 32, l'audit de sécurité est effectué tous les cinq ans.
+      Vrai / Faux
+
+30. Le papier de travail doit permettre à un autre auditeur de refaire le raisonnement.
+      Vrai / Faux
+
+========================================================================
+Textes à trous
+========================================================================
+
+31. La norme qui fixe les lignes directrices de l'audit des systèmes de management est l'ISO ______.
+
+32. L'exigence de référence d'un audit est le ______ d'audit.
+
+33. La présentation des constats à l'audité avant le rapport s'appelle le ______.
+
+34. Le document qui fixe objectifs, périmètre, critères et accès est la lettre de ______.
+
+35. Refaire soi-même un contrôle pour vérifier son résultat s'appelle la ______.
+
+36. Un échantillon choisi selon les risques est dit ______.
+
+37. Un NEK causé par un refus d'accès est une limitation de l'______.
+
+38. L'agence camerounaise qui conduit l'audit de sécurité réglementaire a pour sigle ______.
+
+39. Le document qui trace un test, ses preuves et sa cote est le papier de ______.
+
+40. La norme ISO/IEC qui adapte l'audit aux SMSI porte le numéro ______.
+
+========================================================================
+Grille de réponses   Nom : ............................  Matricule : ............
+========================================================================
+ 1. ............................................
+ 2. ............................................
+ 3. ............................................
+ 4. ............................................
+ 5. ............................................
+ 6. ............................................
+ 7. ............................................
+ 8. ............................................
+ 9. ............................................
+10. ............................................
+11. ............................................
+12. ............................................
+13. ............................................
+14. ............................................
+15. ............................................
+16. ............................................
+17. ............................................
+18. ............................................
+19. ............................................
+20. ............................................
+21. ............................................
+22. ............................................
+23. ............................................
+24. ............................................
+25. ............................................
+26. ............................................
+27. ............................................
+28. ............................................
+29. ............................................
+30. ............................................
+31. ............................................
+32. ............................................
+33. ............................................
+34. ............................................
+35. ............................................
+36. ............................................
+37. ............................................
+38. ............................................
+39. ............................................
+40. ............................................

@@ -1,0 +1,233 @@
+NDAP SUKULU · NRAC · fiche NRAC-FICHE-C04
+Chapitre 4 : EBIOS Risk Manager
+
+Version papier, à utiliser en attendant l'ouverture du portail NDAP SUKULU.
+La fiche complète compte 40 questions. Répondez sur la grille en fin de fiche.
+Durée indicative : 60 minutes. Seuil de réussite : 60 %.
+Les corrections figurent dans le livret de correction du cours.
+
+========================================================================
+Questions à choix multiple (une seule bonne réponse)
+========================================================================
+
+ 1. Quel organisme publie EBIOS Risk Manager ?
+      a) L'ISO
+      b) L'ANTIC
+      c) L'ANSSI
+      d) Le NIST
+
+ 2. Comment l'ANSSI résume-t-elle la logique de la méthode ?
+      a) Une synthèse entre conformité et scénarios
+      b) Un registre exhaustif des menaces
+      c) Une quantification financière
+      d) Un audit de certification
+
+ 3. Sur quelles menaces les scénarios se concentrent-ils ?
+      a) Les pannes électriques
+      b) Les erreurs de saisie
+      c) Les catastrophes naturelles
+      d) Les menaces intentionnelles et ciblées
+
+ 4. Quel est l'atelier 1 ?
+      a) Sources de risque
+      b) Cadrage et socle de sécurité
+      c) Scénarios stratégiques
+      d) Traitement du risque
+
+ 5. Dans quel atelier cartographie-t-on l'écosystème ?
+      a) Atelier 1
+      b) Atelier 2
+      c) Atelier 3
+      d) Atelier 5
+
+ 6. Quel atelier relève surtout des techniciens ?
+      a) L'atelier 4, scénarios opérationnels
+      b) L'atelier 1
+      c) L'atelier 2
+      d) L'atelier 5
+
+ 7. Quelle gravité pour l'indisponibilité du suivi des expéditions plus de trois jours chez LiZbiZ ?
+      a) G1
+      b) G2
+      c) G3
+      d) G4
+
+ 8. Qu'est-ce que le socle de sécurité ?
+      a) La liste des attaquants
+      b) Les mesures d'un référentiel appliquées, avec leurs écarts
+      c) Le budget de sécurité
+      d) Le registre des risques
+
+ 9. Qu'est-ce qu'un couple SR/OV ?
+      a) Une source de risque et un objectif visé
+      b) Un scénario et un risque
+      c) Une valeur et un support
+      d) Une sauvegarde et une restauration
+
+10. Sur quels critères apprécie-t-on un couple SR/OV ?
+      a) Le coût et le délai
+      b) L'impact et la gravité
+      c) Motivation, ressources, activité
+      d) La conformité et la preuve
+
+11. Scénario. Pourquoi SR2 et SR3 sont-ils retenus chez LiZbiZ ?
+      a) Ils sont imposés par la loi
+      b) Ils reprennent des fraudes établies (stock, TRANSLOG)
+      c) Ils sont proposés par PHARMACAM
+      d) Ils sont faciles à traiter
+
+12. Comment le cours calcule-t-il la menace d'une partie prenante ?
+      a) Dépendance × pénétration / (maturité × confiance)
+      b) Maturité × confiance
+      c) Dépendance + pénétration
+      d) Gravité × vraisemblance
+
+13. Scénario. Éditeur : dépendance 4, pénétration 4, maturité 2, confiance 2. Quelle menace ?
+      a) 2,00
+      b) 8,00
+      c) 1,00
+      d) 4,00
+
+14. Pourquoi une maturité cotée sans preuve sous-estime-t-elle probablement la menace ?
+      a) Parce qu'elle est au numérateur
+      b) Parce qu'elle est fixée par la loi
+      c) Parce qu'elle est au dénominateur et fait baisser la menace
+      d) Parce qu'elle est toujours cotée 4
+
+15. Écosystème de LiZbiZ : 13 OUI, 1 NON, 6 NEK sur 20 cotes. Que vaut U ?
+      a) 0,65
+      b) 0,30
+      c) 0,05
+      d) 0,20
+
+16. Quelles sont les quatre phases d'un scénario opérationnel dans le cours ?
+      a) Connaître, rentrer, trouver, exploiter
+      b) Identifier, protéger, détecter, répondre
+      c) Planifier, faire, vérifier, agir
+      d) Évaluer, diriger, surveiller, communiquer
+
+17. Selon la règle de chaîne du cours, quelle vraisemblance pour un scénario V4, V3, V4, V3 ?
+      a) V4
+      b) V2
+      c) V1
+      d) V3
+
+18. Scénario. SO1 obtient V3 et G4. Quelle criticité ?
+      a) 9
+      b) 16
+      c) 12
+      d) 8
+
+19. Quelle méthode est développée par le CLUSIF ?
+      a) EBIOS
+      b) MEHARI
+      c) FAIR
+      d) OCTAVE
+
+20. Scénario. Pourquoi M. BEYALA refuse-t-il d'animer l'étude EBIOS ?
+      a) Son cabinet audite LiZbiZ et l'auditera encore
+      b) Il ne connaît pas la méthode
+      c) PHARMACAM l'interdit
+      d) La loi l'interdit
+
+========================================================================
+Vrai ou faux
+========================================================================
+
+21. EBIOS Risk Manager est une alternative incompatible avec l'ISO/IEC 27005.
+      Vrai / Faux
+
+22. Les menaces courantes se traitent d'abord par le socle de sécurité.
+      Vrai / Faux
+
+23. L'atelier 5 revient à la direction, qui décide.
+      Vrai / Faux
+
+24. La gravité se fixe à l'atelier 4.
+      Vrai / Faux
+
+25. Un même attaquant peut poursuivre plusieurs objectifs, chaque couple se traitant à part.
+      Vrai / Faux
+
+26. Une partie prenante en zone de veille est la plus dangereuse.
+      Vrai / Faux
+
+27. Un prestataire de chambres froides peut constituer une menace cyber.
+      Vrai / Faux
+
+28. Fermer une phase déjà facile (V4) a le plus d'effet selon la règle de chaîne.
+      Vrai / Faux
+
+29. Le NIST SP 800-30 est un guide d'appréciation des risques.
+      Vrai / Faux
+
+30. La loi n° 2010/012 impose EBIOS Risk Manager.
+      Vrai / Faux
+
+========================================================================
+Textes à trous
+========================================================================
+
+31. EBIOS Risk Manager compte ______ ateliers.
+
+32. Ce que la source de risque cherche à obtenir est l'objectif ______.
+
+33. Les partenaires d'une organisation forment son ______.
+
+34. La zone la plus menaçante de la cartographie s'appelle la zone de ______.
+
+35. La phase d'accès initial au système s'appelle « ______ ».
+
+36. Le scénario de haut niveau, sans détail technique, est le scénario ______.
+
+37. La suite d'actions élémentaires est le scénario ______.
+
+38. Le premier client de LiZbiZ, distributeur de médicaments, s'appelle ______.
+
+39. Le critère qui mesure la présence d'une partie prenante dans le système est la ______.
+
+40. L'animatrice de l'étude EBIOS de LiZbiZ est Mme ______.
+
+========================================================================
+Grille de réponses   Nom : ............................  Matricule : ............
+========================================================================
+ 1. ............................................
+ 2. ............................................
+ 3. ............................................
+ 4. ............................................
+ 5. ............................................
+ 6. ............................................
+ 7. ............................................
+ 8. ............................................
+ 9. ............................................
+10. ............................................
+11. ............................................
+12. ............................................
+13. ............................................
+14. ............................................
+15. ............................................
+16. ............................................
+17. ............................................
+18. ............................................
+19. ............................................
+20. ............................................
+21. ............................................
+22. ............................................
+23. ............................................
+24. ............................................
+25. ............................................
+26. ............................................
+27. ............................................
+28. ............................................
+29. ............................................
+30. ............................................
+31. ............................................
+32. ............................................
+33. ............................................
+34. ............................................
+35. ............................................
+36. ............................................
+37. ............................................
+38. ............................................
+39. ............................................
+40. ............................................

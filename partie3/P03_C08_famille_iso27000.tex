@@ -1,0 +1,602 @@
+% ============================================================================
+% Fichier  : partie3/P03_C08_famille_iso27000.tex
+% Titre    : La Famille ISO/IEC 27000
+% Auteur   : MINKA MI NGUIDJOÏ Thierry Emmanuel
+% Version  : 1.0 -- novembre 2026
+% Corrigés : corriges/Corr_C08.tex
+% ============================================================================
+% Vérifié sur iso.org le 06/11/2026 : ISO/IEC 27002:2022, édition 3, publiée
+% en février 2022 (remplace l'édition 2013 et ses rectificatifs) ; ISO/IEC
+% 27001:2022 et son amendement 1:2024 ; ISO/IEC 27000:2018 en vigueur.
+% Textes sous licence : articles et mesures PARAPHRASÉS, jamais cités ;
+% intitulés des mesures traduits par le cours. Le dossier Normes ne contient
+% que l'édition 2013 : écart signalé dans le texte.
+% Structure de l'édition 2022 (93 mesures ; 37/8/14/34 ; 11 mesures
+% nouvelles ; 5 attributs), date de fin de transition (31 octobre 2025),
+% objet de l'amendement 2024 (changement climatique) : d'après des sources
+% publiques concordantes, à confirmer sur le texte par l'auteur.
+% Faits du cas (bible) : certificat de juin 2025 (CERTIQUAL AFRIQUE, 3 ans,
+% centre de données seul) ; périmètre étendu approuvé par le conseil
+% (Ex. 1.4) ; résultats de l'audit de mars 2028 (T1 à T8).
+% Faits nouveaux (reportés dans la bible) : renouvellement du certificat en
+% juin 2028 sur le périmètre étendu ; extrait de la déclaration
+% d'applicabilité (10 lignes) ; exclusion de 8.28 contredite par les
+% interfaces développées par la DSI ; revue croisée 3/3/3.
+% ============================================================================
+
+\chapter{La Famille ISO/IEC 27000}
+\label{chap:iso27000}
+\chaptermark{La famille ISO/IEC 27000}
+
+\epigraph{%
+    « Une norme ne dit pas ce que vous faites.\\
+    Elle dit ce que vous devrez prouver. »%
+}{Principe du cours}
+
+\niveauChapitre{Fondamental}{%
+    Maîtrise du Chapitre~\ref{chap:iso27005}%
+}
+
+\begin{boxobjectifs}
+\begin{itemize}
+    \item Situer les principales normes de la famille ISO/IEC~27000 et leur
+          rôle.
+    \item Présenter les exigences de l'ISO/IEC~27001:2022, articles~4 à~10,
+          et le cycle de certification.
+    \item Utiliser l'ISO/IEC~27002:2022~: 93 mesures, quatre thèmes,
+          attributs, et l'écart avec l'édition de 2013.
+    \item Rédiger une déclaration d'applicabilité et justifier une
+          exclusion.
+    \item Confronter une déclaration d'applicabilité aux preuves d'audit.
+    \item Situer les ISO/IEC~27004, 27006 et 27007.
+\end{itemize}
+\end{boxobjectifs}
+
+\bigskip
+
+% ============================================================================
+\section*{Avant de commencer : le renouvellement}
+% ============================================================================
+
+Douala, avril 2028. Le certificat ISO/IEC~27001 de la BANQUE
+SANAGA\footnote{Comme dans tout le cours, la BANQUE SANAGA, l'organisme
+CERTIQUAL AFRIQUE, les dates et les montants sont fictifs~; les normes
+citées sont exactes et paraphrasées, leur texte étant protégé.}, obtenu en
+juin 2025 pour trois ans, arrive à échéance. Le conseil a approuvé
+l'extension du système de management aux 38 agences~; l'audit de
+renouvellement de CERTIQUAL AFRIQUE portera donc, pour la première fois,
+sur toute la banque.
+
+Mme~ABENA doit remettre à l'organisme certificateur une pièce maîtresse~:
+la \emph{déclaration d'applicabilité}, qui dit, mesure par mesure, ce que
+la banque applique et pourquoi. La version de 2025 tenait en quelques pages,
+sur le seul centre de données. Celle de 2028 doit couvrir les agences, au
+moment même où l'audit interne vient d'y relever trois non-conformités et
+deux inconnues (Chapitre~\ref{chap:conclure}).
+
+\medskip
+
+Ce chapitre ouvre la Partie~III, consacrée au cadre normatif et
+juridique. Il présente la famille de normes la plus utilisée en sécurité
+de l'information, puis la manière de rédiger, et de vérifier, une
+déclaration d'applicabilité.
+
+\begin{boxalert}
+\textbf{Violation typique.} Rédiger la déclaration d'applicabilité en
+cochant « mise en œuvre » pour toutes les mesures, à partir des
+déclarations des services.
+
+\smallskip
+\textbf{Règle~:} la déclaration d'applicabilité est un document
+\emph{opposable}~: l'organisme certificateur et les auditeurs la
+confrontent aux preuves. Chaque « mise en œuvre » doit pouvoir être
+démontrée~; chaque exclusion doit être justifiée par l'appréciation des
+risques.
+\end{boxalert}
+
+\separateur
+
+% ============================================================================
+\section{Une Famille de Normes}
+\label{sec:c08-famille}
+% ============================================================================
+
+La famille ISO/IEC~27000 est publiée par le sous-comité~27 du comité
+technique commun de l'ISO et de la CEI (JTC~1/SC~27). Elle compte des
+dizaines de documents~; une seule norme est certifiable, l'ISO/IEC~27001.
+
+\begin{tableaucours}{L{2.6cm}L{5.4cm}L{4.2cm}}{%
+    \tableauHeader{Norme} &
+    \tableauHeader{Objet} &
+    \tableauHeader{Dans ce cours}
+}
+ISO/IEC~27000 & Vue d'ensemble et vocabulaire~\cite{iso27000_2018} &
+Définitions (propriétaire de risque) \\
+ISO/IEC~27001 & Exigences du SMSI~; seule norme certifiable de la
+famille~\cite{iso27001_2022} & Ce chapitre, Chapitre~\ref{chap:smsi} \\
+ISO/IEC~27002 & Recommandations pour les mesures de
+sécurité~\cite{iso27002_2022} & Ce chapitre \\
+ISO/IEC~27004 & Surveillance, mesure, analyse et évaluation~\cite{iso27004_2016}
+& Chapitre~\ref{chap:smsi} \\
+ISO/IEC~27005 & Gestion des risques~\cite{iso27005_2022} &
+Chapitre~\ref{chap:iso27005} \\
+ISO/IEC~27006 & Exigences pour les organismes qui auditent et certifient
+les SMSI & Ce chapitre \\
+ISO/IEC~27007 & Lignes directrices pour l'audit des SMSI~\cite{iso27007_2020}
+& Chapitres~\ref{chap:audit} et~\ref{chap:smsi} \\
+ISO/IEC~27014 & Gouvernance de la sécurité~\cite{iso27014_2020} &
+Chapitre~\ref{chap:grc} \\
+\end{tableaucours}
+\vspace{-0.8em}
+\begin{center}{\small\itshape Tableau~8.1. Les principales normes de la
+famille ISO/IEC~27000}\end{center}
+
+D'autres normes de la famille déclinent les mesures pour un secteur ou un
+sujet~: les services en nuage, la gestion des incidents, la protection de
+la vie privée. Le Chapitre~\ref{chap:emergents} y revient pour le nuage.
+
+% ============================================================================
+\section{L'ISO/IEC 27001:2022}
+\label{sec:c08-27001}
+% ============================================================================
+
+\subsection{Une structure commune}
+
+L'ISO/IEC~27001 suit la structure commune à toutes les normes de systèmes
+de management de l'ISO (qualité, environnement, continuité)~: dix
+articles, dont les sept derniers contiennent les exigences. Une
+organisation qui a déjà un système de management de la qualité retrouve
+donc le même plan.
+
+\begin{tableaucours}{cL{3.0cm}L{8.4cm}}{%
+    \tableauHeader{Art.} &
+    \tableauHeader{Titre} &
+    \tableauHeader{Ce que la norme exige, en substance}
+}
+4 & Contexte de l'organisation & Comprendre les enjeux internes et
+externes, les parties intéressées et leurs exigences~; fixer le
+périmètre~; établir le SMSI et ses processus \\
+5 & Leadership & Engagement de la direction~; politique de sécurité~;
+rôles, responsabilités et autorités \\
+6 & Planification & Actions face aux risques et opportunités~:
+appréciation et traitement des risques, déclaration d'applicabilité~;
+objectifs de sécurité~; planification des modifications \\
+7 & Support & Ressources~; compétences~; sensibilisation~;
+communication~; informations documentées \\
+8 & Fonctionnement & Planifier et maîtriser les opérations~; réaliser les
+appréciations et les traitements des risques prévus \\
+9 & Évaluation des performances & Surveillance et mesure~; audit
+interne~; revue de direction \\
+10 & Amélioration & Amélioration continue~; non-conformités et actions
+correctives \\
+\end{tableaucours}
+\vspace{-0.8em}
+\begin{center}{\small\itshape Tableau~8.2. Les articles~4 à~10 de
+l'ISO/IEC~27001:2022 (paraphrasés)}\end{center}
+
+Les Chapitres~\ref{chap:grc} à~\ref{chap:conclure} ont déjà parcouru
+l'essentiel de ces exigences sans les nommer~: le périmètre et les parties
+intéressées (article~4), le rôle de la direction (article~5),
+l'appréciation et le traitement des risques (articles~6 et~8), l'audit
+interne (article~9). La norme ne prescrit pas \emph{comment} faire~; elle
+dit ce que l'organisation doit faire et pouvoir prouver.
+
+\subsection{Ce qui a changé en 2022}
+
+L'édition de 2022 remplace celle de 2013. Les principaux changements~:
+\begin{itemize}
+    \item l'annexe~A, liste des mesures de référence, est alignée sur la
+          nouvelle ISO/IEC~27002:2022 (93 mesures au lieu de 114)~;
+    \item une exigence nouvelle impose de planifier les modifications du
+          SMSI (article~6.3)~;
+    \item le SMSI doit identifier ses processus et leurs interactions
+          (article~4.4).
+\end{itemize}
+Un amendement publié en 2024 demande en outre à l'organisation de
+déterminer si le changement climatique est un enjeu pertinent pour son
+système de management. Les certificats délivrés sur l'édition de 2013
+devaient avoir migré au plus tard le 31~octobre 2025. Le certificat de la
+BANQUE SANAGA, délivré en juin 2025 sur l'édition de 2022, n'était pas
+concerné.
+
+\begin{boxinfo}
+\textbf{Le dossier du cours et l'édition 2013.} Les normes archivées dans
+les ressources du cours sont celles de 2013. Le cours enseigne l'édition
+de 2022~; les numéros de mesures cités ici sont ceux de 2022. Un étudiant
+qui consulte un document de 2013 trouvera d'autres numéros (de A.5 à A.18)
+et quatorze domaines au lieu de quatre thèmes.
+\end{boxinfo}
+
+\subsection{Le cycle de certification}
+
+\begin{tableaucours}{L{3.4cm}L{8.8cm}}{%
+    \tableauHeader{Étape} &
+    \tableauHeader{Contenu}
+}
+Audit initial, étape~1 & Revue documentaire et de l'état de préparation~:
+périmètre, politique, appréciation des risques, déclaration
+d'applicabilité \\
+Audit initial, étape~2 & Évaluation de la mise en œuvre et de
+l'efficacité du SMSI sur le terrain~; décision de certification \\
+Audits de surveillance & Au moins un par an, pendant les trois ans du
+certificat, sur une partie du SMSI \\
+Audit de renouvellement & Avant l'échéance des trois ans, sur l'ensemble
+du SMSI \\
+\end{tableaucours}
+\vspace{-0.8em}
+\begin{center}{\small\itshape Tableau~8.3. Le cycle de certification}\end{center}
+
+L'organisme certificateur doit lui-même satisfaire aux exigences de
+l'ISO/IEC~27006, et être accrédité par un organisme d'accréditation. La
+certification est volontaire~: elle ne remplace ni l'audit interne, ni
+l'audit de sécurité réglementaire (Chapitre~\ref{chap:audit}).
+
+% ============================================================================
+\section{L'ISO/IEC 27002:2022}
+\label{sec:c08-27002}
+% ============================================================================
+
+\subsection{93 mesures, quatre thèmes}
+
+L'ISO/IEC~27002 n'est pas certifiable~: elle donne, pour chaque mesure, un
+objectif et des recommandations de mise en œuvre~\cite{iso27002_2022}.
+L'édition de 2022 réorganise les mesures en quatre thèmes.
+
+\begin{tableaucours}{L{3.4cm}cL{7.0cm}}{%
+    \tableauHeader{Thème} &
+    \tableauHeader{Mesures} &
+    \tableauHeader{Exemples (intitulés traduits par le cours)}
+}
+Organisationnelles (5.1 à 5.37) & 37 & Politiques, rôles, renseignement
+sur les menaces (5.7), relations avec les fournisseurs (5.19, 5.20),
+préparation des TIC pour la continuité (5.30) \\
+Liées aux personnes (6.1 à 6.8) & 8 & Sélection, sensibilisation et
+formation (6.3), signalement des événements \\
+Physiques (7.1 à 7.14) & 14 & Périmètres, surveillance de la sécurité
+physique (7.4), matériels \\
+Technologiques (8.1 à 8.34) & 34 & Droits d'accès privilégiés (8.2),
+authentification sécurisée (8.5), vulnérabilités techniques (8.8),
+sauvegarde (8.13), journalisation (8.15), cloisonnement des réseaux
+(8.22), codage sécurisé (8.28) \\
+\end{tableaucours}
+\vspace{-0.8em}
+\begin{center}{\small\itshape Tableau~8.4. Les quatre thèmes de
+l'ISO/IEC~27002:2022}\end{center}
+
+Onze mesures sont nouvelles, dont le renseignement sur les menaces (5.7),
+la sécurité des services en nuage (5.23), la préparation des TIC pour la
+continuité (5.30), la surveillance de la sécurité physique (7.4), la gestion
+de la configuration (8.9), la prévention des fuites de données (8.12), les
+activités de surveillance (8.16), le filtrage web (8.23) et le codage
+sécurisé (8.28). Les autres mesures de 2013 ont été regroupées ou
+reformulées.
+
+\subsection{Les attributs}
+
+L'édition de 2022 associe à chaque mesure des \termecle{attributs}\index{attributs
+de mesure}, qui permettent de trier les mesures selon plusieurs vues~:
+\begin{itemize}
+    \item le \emph{type de mesure}~: préventive, détective, corrective~;
+    \item les \emph{propriétés de sécurité}~: confidentialité, intégrité,
+          disponibilité~;
+    \item les \emph{concepts de cybersécurité}~: identifier, protéger,
+          détecter, répondre, rétablir (les fonctions historiques du cadre
+          du NIST, Chapitre~\ref{chap:grc})~;
+    \item les \emph{capacités opérationnelles} (gestion des identités,
+          continuité, gestion des fournisseurs, etc.)~;
+    \item les \emph{domaines de sécurité}~: gouvernance et écosystème,
+          protection, défense, résilience.
+\end{itemize}
+
+\begin{boxinfo}
+\textbf{À quoi servent les attributs~?} À vérifier l'équilibre d'un
+dispositif. Les mesures de la BANQUE SANAGA en 2025 étaient presque toutes
+\emph{préventives}~; les mesures \emph{détectives} (journalisation,
+surveillance) et \emph{correctives} (sauvegardes, mode dégradé) manquaient
+en agence. Trier la déclaration d'applicabilité par type de mesure l'aurait
+montré. C'est aussi ce que faisaient apparaître les étapes du scénario
+(Chapitre~\ref{chap:risque}).
+\end{boxinfo}
+
+% ============================================================================
+\section{La Déclaration d'Applicabilité}
+\label{sec:c08-dda}
+% ============================================================================
+
+\subsection{Ce qu'elle contient}
+
+\begin{boxdef}
+\termecle{Déclaration d'applicabilité}\index{déclaration d'applicabilité}
+(DdA)~: document exigé par l'ISO/IEC~27001 (article~6.1.3) qui recense les
+mesures nécessaires au traitement des risques, justifie leur inclusion,
+indique si elles sont mises en œuvre, et justifie l'exclusion de toute
+mesure de l'annexe~A~\cite{iso27001_2022}.
+\end{boxdef}
+
+La déclaration fait le pont entre l'appréciation des risques
+(Chapitre~\ref{chap:iso27005}) et la liste des mesures. Une mesure y figure
+parce qu'un risque l'exige, ou parce qu'une obligation légale ou
+contractuelle l'impose. Une mesure en est exclue parce qu'aucun risque ni
+aucune obligation ne la rend nécessaire, et non parce qu'elle est difficile.
+
+\subsection{Un extrait}
+
+\begin{boxscenario}{Opération SANAGA. La déclaration d'applicabilité de 2028 (extrait)}
+\begin{tableaucours}{cL{3.6cm}cL{4.4cm}c}{%
+    \tableauHeader{Mesure} &
+    \tableauHeader{Intitulé (traduit)} &
+    \tableauHeader{Incl.} &
+    \tableauHeader{Justification} &
+    \tableauHeader{Mise en œuvre}
+}
+5.20 & Sécurité dans les accords avec les fournisseurs & Oui & R-DC-02,
+R-AG-02 & Oui \\
+5.30 & Préparation des TIC pour la continuité & Oui & R-AG-01, récupération
+& Oui \\
+6.3 & Sensibilisation et formation & Oui & R-AG-01, entrée & Oui \\
+8.2 & Droits d'accès privilégiés & Oui & R-AG-01, propagation & Oui \\
+8.5 & Authentification sécurisée & Oui & R-AG-01, entrée & Oui \\
+8.8 & Gestion des vulnérabilités techniques & Oui & R-AG-01, R-AG-02 & Oui \\
+8.13 & Sauvegarde des informations & Oui & R-AG-01, récupération & Oui \\
+8.15 & Journalisation & Oui & R-DC-03, loi n°~2010/012, art.~29 & Oui \\
+8.22 & Cloisonnement des réseaux & Oui & R-AG-01, propagation & Oui \\
+8.28 & Codage sécurisé & Non & « Pas de développement interne~: le
+système central est un progiciel » & -- \\
+\end{tableaucours}
+
+\smallskip
+{\small La première version remise par les directions, en avril 2028,
+porte « Oui » dans la colonne « mise en œuvre » pour les neuf mesures
+incluses.}
+\end{boxscenario}
+
+\subsection{Confronter la déclaration aux preuves}
+
+La RSSI a appris la leçon de février~: avant d'envoyer la déclaration,
+elle la confronte aux résultats de l'audit de mars~2028
+(Chapitres~\ref{chap:audit} et~\ref{chap:conclure}).
+
+\begin{boxlecture}{Les neuf « mise en œuvre » face aux preuves}
+\textbf{Constatation.}
+\begin{itemize}
+    \item \OUI{}~: 8.5 (second facteur, T1), 8.13 (sauvegardes, T3), 8.22
+          (cloisonnement, T2)~;
+    \item \NON{}~: 5.30 (mode dégradé, T4), 8.2 (administration locale,
+          T7), 8.15 (journalisation incomplète pendant la période, T6)~;
+    \item \NEK{}~: 6.3 (sensibilisation, T5), 5.20 (le contrat des GAB n'a
+          pas de droit d'audit, T8), 8.8 (vulnérabilités~: GAB non vérifiés,
+          postes non testés).
+\end{itemize}
+3~\OUI{}, 3~\NON{}, 3~\NEK{}~:
+\[
+\mu = U = \tfrac{1}{3}~;\quad
+H = \log_2 3 \approx 1{,}585~\text{bit}.
+\]
+
+\textbf{Analyse} (confiance élevée). La déclaration affirmait neuf mesures
+sur neuf~; les preuves en confirment trois. La dispersion est maximale~:
+tout ce que l'on peut dire de cette déclaration, c'est qu'elle ne
+renseigne pas sur l'état réel. La version envoyée à CERTIQUAL AFRIQUE est
+corrigée~: « partielle » pour 5.30, 8.2 et 8.15, avec le plan d'actions~;
+« à vérifier » pour 6.3, 5.20 et 8.8, avec la date de la vérification
+prévue.
+
+\medskip
+\hfill\lecture{0{,}33}{0{,}33}{1{,}58}
+\end{boxlecture}
+
+\subsection{L'exclusion de 8.28}
+
+L'exclusion du codage sécurisé paraît solide~: la banque n'écrit pas son
+système central. Mais la DSI développe, depuis 2026, les interfaces entre
+le système central, l'application de paiement et le portail en ligne.
+L'exclusion est donc contredite par un fait~: sa base est \NON{}. La mesure
+est réintégrée, limitée aux développements d'interfaces.
+
+\begin{boxprocedure}
+\textbf{Vérifier une exclusion.} Le papier de travail qui examine une
+exclusion de la déclaration d'applicabilité vérifie~:
+\begin{itemize}
+    \item que la justification renvoie à l'appréciation des risques (aucun
+          risque ne rend la mesure nécessaire), et non à une difficulté de
+          mise en œuvre~;
+    \item qu'aucune obligation légale ou contractuelle n'impose la
+          mesure~;
+    \item que les faits invoqués sont exacts (ici~: existe-t-il vraiment
+          aucun développement interne~?)~;
+    \item que l'exclusion est approuvée par la direction, et datée.
+\end{itemize}
+\end{boxprocedure}
+
+% ============================================================================
+\section{Mesurer et Auditer le SMSI}
+\label{sec:c08-autres}
+% ============================================================================
+
+Deux normes de la famille accompagnent le fonctionnement du SMSI.
+L'ISO/IEC~27004 aide à construire des indicateurs qui répondent à
+l'exigence de surveillance et de mesure de l'article~9.1~\cite{iso27004_2016}.
+L'ISO/IEC~27007 adapte à l'audit d'un SMSI les lignes directrices générales
+de l'ISO~19011~\cite{iso27007_2020}. Le Chapitre~\ref{chap:smsi} met en
+œuvre l'une et l'autre~: les indicateurs de la RSSI, puis l'audit interne du
+SMSI élargi et la préparation de la revue de direction.
+
+\begin{boxinfo}
+\textbf{La norme et la loi.} L'article~26 de la loi n°~2010/012 impose aux
+exploitants des systèmes d'information de se doter de « systèmes
+normalisés » de gestion des risques (Chapitre~\ref{chap:iso27005})~\cite{loi2010012}.
+Un SMSI conforme à l'ISO/IEC~27001 en est une forme reconnue
+internationalement~; la loi n'en fait pas une obligation, et le certificat
+ne dispense pas de l'audit de sécurité réglementaire des articles~13 et~32.
+Le Chapitre~\ref{chap:droit} précise l'articulation.
+\end{boxinfo}
+
+% ============================================================================
+\section{Ce que la Norme demande à chaque Métier}
+\label{sec:c08-metiers}
+% ============================================================================
+
+\begin{boxmetier}{Consultant en mise en œuvre de SMSI}
+\textbf{Une déclaration défendable}
+\begin{enumerate}
+    \item Partir de l'appréciation des risques, pas de la liste de
+          l'annexe~A.
+    \item Pour chaque mesure incluse, citer le risque ou l'obligation qui
+          l'exige.
+    \item Pour chaque « mise en œuvre », désigner la preuve qui le
+          démontre.
+    \item Justifier chaque exclusion par le risque, et en vérifier les
+          faits.
+\end{enumerate}
+\end{boxmetier}
+
+\begin{boxmetier}{Auditeur en cybersécurité}
+\textbf{Lire la déclaration comme un ensemble d'assertions}
+
+Chaque ligne « mise en œuvre » est une assertion de l'audité~; l'auditeur
+de certification la teste, comme Mme~EKAMBI a testé le plan de traitement.
+Il prélève en priorité les mesures nouvelles de 2022, les exclusions, et
+les mesures qui portent les risques les plus élevés.
+\end{boxmetier}
+
+\begin{boxmetier}{RSSI}
+\textbf{Ne rien déclarer que l'on ne peut prouver}
+
+La RSSI préfère une déclaration honnête, avec des « partielle » et des
+« à vérifier », à une déclaration parfaite qui ne résisterait pas à
+l'étape~2 de l'audit. Un organisme certificateur pardonne une mesure en
+cours~; il ne pardonne pas une déclaration fausse.
+\end{boxmetier}
+
+\begin{boxmetier}{Responsable GRC}
+\textbf{Relier la déclaration au registre}
+
+La colonne « justification » de la déclaration renvoie aux références du
+registre des risques (R-AG-01, R-DC-02\ldots). Le responsable GRC vérifie
+que tout risque intolérable a ses mesures dans la déclaration, et que toute
+mesure de la déclaration a un risque ou une obligation.
+\end{boxmetier}
+
+\separateur
+
+\begin{boxresume}
+\textbf{Ce qu'il faut retenir de ce chapitre~:}
+\begin{itemize}
+    \item \textbf{La famille ISO/IEC~27000} compte une seule norme
+          certifiable, l'ISO/IEC~27001~; les autres l'outillent.
+    \item \textbf{L'ISO/IEC~27001:2022} suit la structure commune des
+          systèmes de management~: articles~4 à~10, du contexte à
+          l'amélioration.
+    \item \textbf{L'ISO/IEC~27002:2022} compte 93 mesures en quatre thèmes
+          (37 organisationnelles, 8 liées aux personnes, 14 physiques, 34
+          technologiques), avec des attributs.
+    \item \textbf{La déclaration d'applicabilité} relie les risques aux
+          mesures~; chaque « mise en œuvre » se prouve, chaque exclusion se
+          justifie par le risque.
+    \item \textbf{Confrontée aux preuves}, la déclaration de la BANQUE
+          SANAGA passe de 9 sur 9 à 3 \OUI{}, 3 \NON{}, 3 \NEK{}.
+    \item \textbf{La certification} est volontaire et triennale~; elle ne
+          remplace ni l'audit interne, ni l'audit réglementaire.
+\end{itemize}
+\end{boxresume}
+
+\begin{boxinfo}
+\textbf{Points de contrôle.} Vous avez compris ce chapitre si vous savez~:
+\begin{itemize}
+    \item dire dans quel article de l'ISO/IEC~27001 se trouve une exigence~;
+    \item placer une mesure dans son thème et lui associer des attributs~;
+    \item rédiger une ligne de déclaration d'applicabilité avec sa
+          justification~;
+    \item contester une exclusion par les faits.
+\end{itemize}
+\end{boxinfo}
+
+% ============================================================================
+\section*{Exercices}
+% ============================================================================
+
+\begin{boxexo}[title={\ding{45}\quad Exercice~8.1. Quel article~? \niveaubase}]
+Indiquez l'article de l'ISO/IEC~27001:2022 (4 à 10) dont relève chacune des
+activités suivantes.
+\begin{enumerate}[(a)]
+    \item Le conseil approuve l'extension du périmètre aux agences.
+    \item La RSSI rédige la déclaration d'applicabilité.
+    \item L'audit interne conduit la mission de mars 2028.
+    \item La DSI planifie le remplacement du collecteur de journaux sans
+          interrompre la journalisation.
+    \item La direction du réseau d'agences corrige le mode dégradé de Kribi
+          après l'observation S4.2.
+    \item La RSSI organise la formation de deux personnes par agence.
+\end{enumerate}
+\end{boxexo}
+
+\begin{boxexo}[title={\ding{45}\quad Exercice~8.2. Thèmes et attributs \niveaumoyen}]
+Pour chacune des mesures suivantes, donnez son thème et son type
+(préventive, détective, corrective), puis dites à quelle étape du scénario
+R-AG-01 elle se rattache.
+\begin{enumerate}[(a)]
+    \item 8.5, authentification sécurisée.
+    \item 8.15, journalisation.
+    \item 8.13, sauvegarde des informations.
+    \item 6.3, sensibilisation et formation.
+    \item 8.22, cloisonnement des réseaux.
+    \item 5.30, préparation des TIC pour la continuité.
+\end{enumerate}
+Que montre la répartition par type de mesure~?
+\end{boxexo}
+
+\begin{boxexo}[title={\ding{45}\quad Exercice~8.3. Quatre exclusions \niveaumoyen}]
+Une banque de la sous-région exclut de sa déclaration d'applicabilité les
+mesures suivantes. Pour chacune, dites si l'exclusion est recevable, et
+justifiez.
+\begin{enumerate}[(a)]
+    \item 5.23 (services en nuage)~: « Nous n'utilisons aucun service en
+          nuage. » La messagerie est hébergée chez un fournisseur en nuage.
+    \item 7.4 (surveillance de la sécurité physique)~: « Trop coûteux pour
+          les petites agences. »
+    \item 8.28 (codage sécurisé)~: « Aucun développement~; tous les logiciels
+          sont des progiciels, paramétrés par l'éditeur. » L'inventaire le
+          confirme.
+    \item 8.12 (prévention des fuites de données)~: « Mesure couverte par la
+          politique de classification. »
+\end{enumerate}
+\end{boxexo}
+
+\begin{boxexo}[title={\ding{45}\quad Exercice~8.4. La déclaration de LiZbiZ \niveauexpert}]
+LiZbiZ veut s'engager vers la certification ISO/IEC~27001 pour rassurer
+PHARMACAM (Chapitres~\ref{chap:ebios} à~\ref{chap:audit}).
+\begin{enumerate}[(a)]
+    \item Proposez un périmètre défendable, en tenant compte des
+          dépendances (éditeur, transporteurs, centres de données).
+    \item Rédigez six lignes de déclaration d'applicabilité pour les mesures
+          qui traitent le scénario SO1, avec leur justification.
+    \item L'audit contractuel de PHARMACAM a donné~: comptes par défaut
+          supprimés (\OUI{}), services chiffrés (\OUI{}), filtrage entre
+          centres (\NON{}), second facteur de l'éditeur (\NEK{}, accès
+          refusé), restauration observée (\OUI{}), plan de réponse
+          (\NON{}). Remplissez la colonne «~mise en œuvre~», calculez $\mu$,
+          $U$ et $H$, et dites si LiZbiZ peut demander l'audit initial.
+    \item Quelle mesure de l'ISO/IEC~27002 traite la cause du \NEK{}, et que
+          doit faire LiZbiZ avant l'étape~2~?
+\end{enumerate}
+\end{boxexo}
+
+\bigskip
+
+\begin{boxinfo}
+\textbf{Pour aller plus loin.}
+\begin{itemize}
+    \item L'ISO/IEC~27001:2022~\cite{iso27001_2022}, articles~4 à~10 et
+          annexe~A.
+    \item L'ISO/IEC~27002:2022~\cite{iso27002_2022}, pour les recommandations
+          de mise en œuvre de chaque mesure.
+    \item L'ISO/IEC~27000~\cite{iso27000_2018}, pour le vocabulaire.
+\end{itemize}
+\end{boxinfo}
+
+\begin{boxinfo}
+\textbf{Transition.} L'ISO/IEC~27001 n'est pas le seul référentiel. La
+banque doit aussi répondre au superviseur, et ses partenaires parlent
+parfois NIST ou CIS. Comment passer d'un référentiel à l'autre sans tout
+refaire~? C'est l'objet du Chapitre~\ref{chap:referentiels}.
+\end{boxinfo}

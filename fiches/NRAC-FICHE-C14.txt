@@ -1,0 +1,233 @@
+NDAP SUKULU · NRAC · fiche NRAC-FICHE-C14
+Chapitre 14 : Études de cas intégratrices
+
+Version papier, à utiliser en attendant l'ouverture du portail NDAP SUKULU.
+La fiche complète compte 40 questions. Répondez sur la grille en fin de fiche.
+Durée indicative : 60 minutes. Seuil de réussite : 60 %.
+Les corrections figurent dans le livret de correction du cours.
+
+========================================================================
+Questions à choix multiple (une seule bonne réponse)
+========================================================================
+
+ 1. Combien de questions structurent toute mission dans la méthode du cours ?
+      a) Cinq
+      b) Sept
+      c) Dix
+      d) Douze
+
+ 2. Quelle est la première question de la méthode ?
+      a) Qui décide, qui répond, qui vérifie ?
+      b) Combien cela coûterait-il ?
+      c) Que peut-on conclure ?
+      d) Quels textes s'imposent ?
+
+ 3. À quelle question de la méthode répond la quantification FAIR ?
+      a) Qui décide ?
+      b) Combien cela coûterait-il ?
+      c) Quel est le périmètre ?
+      d) Le système se corrige-t-il seul ?
+
+ 4. Comment évolue la criticité résiduelle de R-AG-01 entre 2025 et 2027 ?
+      a) 16, 12, 9
+      b) 9, 12, 16
+      c) 12, 12, 12
+      d) 12, 9, 6
+
+ 5. Selon le cours, que devient l'incertitude de la banque pendant que le risque technique baisse ?
+      a) Elle disparaît
+      b) Elle se déplace des agences vers le personnel, les prestataires et les textes
+      c) Elle double
+      d) Elle reste dans les agences
+
+ 6. Quelle forme commune ont les échecs de 2025 et de 2028 ?
+      a) Une panne électrique
+      b) Un vol de matériel
+      c) Un risque connu ou connaissable laissé sans appréciation sur une partie du périmètre
+      d) Un défaut de sauvegarde
+
+ 7. Scénario. Qui signe la réponse à la COBAC ?
+      a) Le directeur général, après approbation du comité des risques du conseil
+      b) Le RSSI seul
+      c) Le DSI
+      d) L'auditeur externe
+
+ 8. Selon le cours, qui joue un rôle de régulateur de fait pour LiZbiZ ?
+      a) L'ANTIC
+      b) La COBAC
+      c) Le commissaire aux comptes
+      d) Le client PHARMACAM
+
+ 9. Quel défaut a survécu à tous les plans chez LiZbiZ ?
+      a) Les sauvegardes non testées
+      b) La règle « temporaire » de maintenance de Garoua
+      c) Les comptes par défaut
+      d) Les services en clair
+
+10. Quelle échéance le cours recommande-t-il pour l'audit initial de certification de LiZbiZ ?
+      a) Immédiatement
+      b) Jamais
+      c) Fin 2029 ou début 2030, après un cycle complet
+      d) 2035
+
+11. Que montrent EBIOS et les fraudes de LiZbiZ ?
+      a) Fraude interne et attaque externe exploitent les mêmes faiblesses
+      b) La fraude est sans lien avec la sécurité
+      c) Seuls les attaquants externes comptent
+      d) EBIOS ignore les fraudes
+
+12. Paiements contrôlés de l'ANPP : 29 OUI, 6 NON, 5 NEK. Que vaut U ?
+      a) 0,725
+      b) 0,15
+      c) 0,25
+      d) 0,125
+
+13. Combien de rapports, et de destinataires, le défaut d'accès de l'ANPP touche-t-il ?
+      a) Un
+      b) Trois
+      c) Cinq
+      d) Aucun
+
+14. Scénario. Pour l'ANTIC, que signifie le défaut de désactivation des comptes ?
+      a) Un paiement irrégulier
+      b) Une faiblesse PR.AA
+      c) Une obligation de surveillance des accès (art. 29, al. 2) non satisfaite
+      d) Une fraude
+
+15. Quelle est la racine commune des dix erreurs typiques ?
+      a) Confondre ce que l'on sait et ce que l'on suppose
+      b) Le manque de budget
+      c) L'absence d'outil
+      d) La méconnaissance des normes
+
+16. Quelle erreur consiste à présenter « 143,5 M » au conseil ?
+      a) Coter une déclaration
+      b) Taire une limitation
+      c) Reporter par un lien partiel
+      d) Présenter un chiffre unique au lieu d'une distribution
+
+17. Quelle erreur consiste à résumer un audit par « 37 % » ?
+      a) Lire un risque absent comme faible
+      b) Résumer un audit par un pourcentage
+      c) Coter une vraisemblance sur un silence
+      d) Réduire par une mesure non testée
+
+18. Que faut-il séparer dans chaque réponse à une étude de cas ?
+      a) Le fond et la forme
+      b) La question et la réponse
+      c) La constatation et l'analyse
+      d) Le calcul et le résultat
+
+19. Que faut-il faire en conclusion d'une réponse ?
+      a) Donner une décision et dire qui la prend
+      b) Recopier la question
+      c) Citer tous les textes
+      d) Donner un pourcentage
+
+20. Quel outil principal le cours attribue-t-il au responsable GRC ?
+      a) Un logiciel
+      b) Un tableur
+      c) Une certification
+      d) Les liens entre risques, obligations, contrôles et preuves
+
+========================================================================
+Vrai ou faux
+========================================================================
+
+21. Le chapitre 14 introduit des notions nouvelles.
+      Vrai / Faux
+
+22. Les barrières techniques de R-AG-01 ont été posées et prouvées en dix-huit mois environ.
+      Vrai / Faux
+
+23. La banque a cessé d'ignorer quoi que ce soit en 2029.
+      Vrai / Faux
+
+24. Une petite organisation sans RSSI compense par la séparation des rôles qu'elle peut tenir.
+      Vrai / Faux
+
+25. Un même défaut d'accès appelle trois corrections différentes, une par destinataire.
+      Vrai / Faux
+
+26. Sécurité et régularité financière se rejoignent dans les contrôles d'accès.
+      Vrai / Faux
+
+27. Taire une limitation de l'étendue fait partie des erreurs typiques.
+      Vrai / Faux
+
+28. On peut inventer un numéro d'article si l'on n'est pas sûr.
+      Vrai / Faux
+
+29. Les cas fictifs du cours peuvent servir de données à un mémoire de recherche.
+      Vrai / Faux
+
+30. L'auditeur maintient le constat sous la pression et consigne la pression.
+      Vrai / Faux
+
+========================================================================
+Textes à trous
+========================================================================
+
+31. Le prologue s'ouvrait sur un ______ accroché au mur.
+
+32. La ville du centre où se trouvait la règle « tout vers tout » est ______.
+
+33. L'organisme public de paiement du cours a pour sigle ______.
+
+34. L'autorité de supervision bancaire qui écrit à la banque en 2029 est la ______.
+
+35. Le scénario principal de rançongiciel de LiZbiZ a pour référence ______.
+
+36. Le cours recense ______ erreurs typiques.
+
+37. La directrice de l'audit interne de la banque est Mme ______.
+
+38. La RSSI de la banque est Mme ______.
+
+39. Le directeur général de LiZbiZ est M. ______.
+
+40. La juridiction qui contrôle les comptes de l'ANPP est la Chambre des ______.
+
+========================================================================
+Grille de réponses   Nom : ............................  Matricule : ............
+========================================================================
+ 1. ............................................
+ 2. ............................................
+ 3. ............................................
+ 4. ............................................
+ 5. ............................................
+ 6. ............................................
+ 7. ............................................
+ 8. ............................................
+ 9. ............................................
+10. ............................................
+11. ............................................
+12. ............................................
+13. ............................................
+14. ............................................
+15. ............................................
+16. ............................................
+17. ............................................
+18. ............................................
+19. ............................................
+20. ............................................
+21. ............................................
+22. ............................................
+23. ............................................
+24. ............................................
+25. ............................................
+26. ............................................
+27. ............................................
+28. ............................................
+29. ............................................
+30. ............................................
+31. ............................................
+32. ............................................
+33. ............................................
+34. ............................................
+35. ............................................
+36. ............................................
+37. ............................................
+38. ............................................
+39. ............................................
+40. ............................................

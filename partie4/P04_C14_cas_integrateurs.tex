@@ -1,0 +1,464 @@
+% ============================================================================
+% Fichier  : partie4/P04_C14_cas_integrateurs.tex
+% Titre    : Études de Cas Intégratrices
+% Auteur   : MINKA MI NGUIDJOÏ Thierry Emmanuel
+% Version  : 1.0 -- novembre 2026
+% Corrigés : corriges/Corr_C14.tex
+% ============================================================================
+% Chapitre de synthèse : aucun fait nouveau majeur ; reprise des faits de la
+% bible (P00 à C13) pour la BANQUE SANAGA, LiZbiZ et l'ANPP. Faits du
+% corpus pour l'ANPP : 40 paiements contrôlés par la Chambre des comptes,
+% 29 OUI, 6 NON, 5 NEK (4 agents payés après leur départ ; pièces « aux
+% archives »). Faits nouveaux mineurs (reportés dans la bible) : lettre de
+% la COBAC de janvier 2029 demandant l'état des mesures ; demande de
+% PHARMACAM d'un dossier de renouvellement pour janvier 2030 ; audit de
+% l'ANTIC à l'ANPP programmé en septembre 2028 (Chapitre 10).
+% ============================================================================
+
+\chapter{Études de Cas Intégratrices}
+\label{chap:cas-integrateurs}
+\chaptermark{Cas intégrateurs}
+
+\epigraph{%
+    « Une méthode se juge à la fin d'une histoire,\\
+    pas au début d'un chapitre. »%
+}{Principe du cours}
+
+\niveauChapitre{Expert}{%
+    Maîtrise du Chapitre~\ref{chap:audit-technique}, du Chapitre~\ref{chap:grc-pratique}%
+}
+
+\begin{boxobjectifs}
+\begin{itemize}
+    \item Retracer, pour chacun des trois cas, le chemin de l'incident ou du
+          constat initial jusqu'au rapport final.
+    \item Relier gouvernance, appréciation et quantification des risques,
+          audit, référentiels et droit dans une même mission.
+    \item Lire l'évolution d'un dispositif dans le temps par les trois
+          mesures $\mu$, $U$ et $H$.
+    \item Reconnaître et éviter les erreurs typiques de l'auditeur et du
+          gestionnaire des risques.
+    \item Préparer l'épreuve de synthèse du cours.
+\end{itemize}
+\end{boxobjectifs}
+
+\bigskip
+
+% ============================================================================
+\section*{Avant de commencer : trois histoires, une méthode}
+% ============================================================================
+
+Les treize chapitres précédents ont suivi trois organisations, chapitre
+après chapitre\footnote{Comme dans tout le cours, les organisations, les
+personnes, les dates et les montants sont fictifs~; les méthodes, les
+normes et les textes cités sont exacts.}. La BANQUE SANAGA a été compromise
+malgré son certificat, puis a reconstruit sa sécurité et sa gouvernance.
+LiZbiZ a découvert des fraudes, puis a dû convaincre un client exigeant.
+L'ANPP, organisme public, a dû répondre à la fois à un bailleur, à la
+Chambre des comptes et à l'ANTIC.
+
+\medskip
+
+Ce chapitre ne présente aucune notion nouvelle. Il rassemble chaque
+histoire en un seul fil, montre ce que chaque méthode y a apporté, en tire
+les erreurs à ne pas commettre, puis propose trois études de cas complètes.
+C'est le chapitre à relire avant l'épreuve de synthèse.
+
+\separateur
+
+% ============================================================================
+\section{Une Méthode en Dix Questions}
+\label{sec:c14-methode}
+% ============================================================================
+
+Toutes les missions du cours, quel que soit leur objet, répondent aux mêmes
+dix questions, dans cet ordre.
+
+\begin{tableaucours}{cL{6.2cm}L{3.4cm}c}{%
+    \tableauHeader{N°} &
+    \tableauHeader{Question} &
+    \tableauHeader{Outil} &
+    \tableauHeader{Chap.}
+}
+1 & Qui décide, qui répond, qui vérifie~? & RACI, trois lignes & \ref{chap:grc} \\
+2 & Quel est le périmètre, et qu'en exclut-on~? & Périmètre défendable &
+\ref{chap:smsi} \\
+3 & Quels scénarios, avec quelle base de preuve~? & Fiche de risque, EBIOS &
+\ref{chap:risque}, \ref{chap:ebios} \\
+4 & Combien cela coûterait-il~? & FAIR, Monte-Carlo & \ref{chap:fair} \\
+5 & Que décide-t-on, et qui accepte le reste~? & Plan, critères
+d'acceptation & \ref{chap:iso27005} \\
+6 & Quels textes s'imposent, lesquels sont choisis~? & Registre des
+obligations & \ref{chap:referentiels}, \ref{chap:droit} \\
+7 & Les mesures sont-elles en place et efficaces~? & Audit, exports figés &
+\ref{chap:audit}, \ref{chap:audit-technique} \\
+8 & Que peut-on conclure, et que ne sait-on pas~? & Décomposition, $\mu$,
+$U$, $H$ & \ref{chap:conclure} \\
+9 & Le système se corrige-t-il seul~? & Audit interne, revue de direction &
+\ref{chap:smsi} \\
+10 & Une seule vue pour la gouvernance~? & Matrice, tableau de bord &
+\ref{chap:grc-pratique} \\
+\end{tableaucours}
+\vspace{-0.8em}
+\begin{center}{\small\itshape Tableau~14.1. La méthode du cours en dix
+questions}\end{center}
+
+% ============================================================================
+\section{BANQUE SANAGA : du Rançongiciel au Certificat}
+\label{sec:c14-sanaga}
+% ============================================================================
+
+\subsection{Le fil}
+
+\begin{tableaucours}{L{2.2cm}L{6.6cm}c}{%
+    \tableauHeader{Date} &
+    \tableauHeader{Événement} &
+    \tableauHeader{Chap.}
+}
+Juin 2025 & Certificat sur le seul centre de données & \ref{chap:prologue} \\
+Sept. 2026 & Rançongiciel par l'agence de Ngaoundéré~: 180 postes, 9
+agences, 410~M FCFA & \ref{chap:prologue} \\
+Oct. 2026 & « Qui a décidé du périmètre~? »~: gouvernance 2/4/2 &
+\ref{chap:grc} \\
+Nov. 2026 & R-AG-01 coté 16 puis 12~; registre 2025 revu~: 6/2/4 &
+\ref{chap:risque} \\
+Déc. 2026 & Critères d'acceptation, plan A1--A8 (193~M) & \ref{chap:iso27005} \\
+Mars 2027 & Quantification~: 165~M par an, puis 19 après traitement &
+\ref{chap:fair} \\
+Sept. 2027 & Suivi du plan~: 5/2/3 & \ref{chap:iso27005} \\
+Mars 2028 & Audit des agences~: 3/3/2~; Kribi, GAB & \ref{chap:audit},
+\ref{chap:conclure} \\
+Avr. 2028 & Déclaration d'applicabilité confrontée aux preuves~: 3/3/3 &
+\ref{chap:iso27000} \\
+Juin 2028 & Étape~2~: une majeure (GAB non appréciés) & \ref{chap:smsi} \\
+Sept. 2028 & Certificat renouvelé sur toute la banque & \ref{chap:smsi} \\
+Avr. 2029 & Page GRC du comité~: obligations 7/2/3 & \ref{chap:grc-pratique} \\
+\end{tableaucours}
+\vspace{-0.8em}
+\begin{center}{\small\itshape Tableau~14.2. La BANQUE SANAGA, de 2025 à
+2029}\end{center}
+
+\subsection{Ce que les mesures racontent}
+
+\begin{boxlecture}{Le risque R-AG-01 et la connaissance qu'on en a}
+\textbf{Constatation.} La criticité résiduelle de R-AG-01 passe de 12
+(2025) à 9 (mars 2027), puis à 6 (septembre 2027), confirmé par l'audit de
+mars 2028. Sur la même période, les évaluations successives donnent~:
+\begin{itemize}
+    \item agences, prologue~: $\mu = 0{,}20$, $U = 0{,}40$~;
+    \item agences, audit de mars 2028~: $\mu = 0{,}375$, $U = 0{,}25$~;
+    \item obligations, avril 2029~: $\mu \approx 0{,}58$, $U = 0{,}25$.
+\end{itemize}
+
+\textbf{Analyse} (confiance moyenne~: les ensembles mesurés ne sont pas
+identiques). Le risque technique a baissé plus vite que l'incertitude. Les
+barrières techniques ont été posées et prouvées en dix-huit mois~; la part
+d'inconnu, elle, est restée autour d'un quart, parce qu'elle s'est déplacée~:
+des agences vers le personnel, puis vers les prestataires et les textes. La
+banque n'a pas cessé d'ignorer~; elle a appris \emph{où} elle ignorait.
+\end{boxlecture}
+
+\subsection{Ce que le cas enseigne}
+
+\begin{itemize}
+    \item Un certificat ne protège que son périmètre~; le périmètre est une
+          décision du conseil.
+    \item Les défaillances de 2025 et de 2028 ont la même forme~: un risque
+          connu, ou connaissable, laissé sans appréciation sur une partie du
+          périmètre.
+    \item Les mesures techniques se corrigent vite~; les mesures humaines et
+          les relations avec les prestataires, lentement.
+\end{itemize}
+
+% ============================================================================
+\section{LiZbiZ : de la Fraude au Client Exigeant}
+\label{sec:c14-lizbiz}
+% ============================================================================
+
+\subsection{Le fil}
+
+\begin{tableaucours}{L{2.2cm}L{6.6cm}c}{%
+    \tableauHeader{Date} &
+    \tableauHeader{Événement} &
+    \tableauHeader{Chap.}
+}
+2026 & Écart de stock de 186~M FCFA~; fraude TRANSLOG (112,7~M)~; registre
+R1--R8 (cours ACSI) & \ref{chap:risque} \\
+2026 & Audit des quatre centres~: 8/9/3 & \ref{chap:audit-technique} \\
+2026--2027 & Base de preuve du registre~: 4/1/3~; R8 recoté à 12 &
+\ref{chap:risque} \\
+Janv. 2027 & PHARMACAM exige une analyse~; étude EBIOS animée par
+Mme~NKENG~; SO1 à 12 & \ref{chap:ebios} \\
+2027 & Quantification simple de SO1~: 100~M par an & \ref{chap:fair} \\
+2028 & Audit contractuel de PHARMACAM~; déclaration d'applicabilité 3/2/1 &
+\ref{chap:audit}, \ref{chap:iso27000} \\
+Oct. 2028 & Second passage technique~: 14/4/2~; règle de maintenance de
+Garoua & \ref{chap:audit-technique} \\
+2029 & Engagement d'un SMSI, certification visée fin 2029 & \ref{chap:smsi} \\
+\end{tableaucours}
+\vspace{-0.8em}
+\begin{center}{\small\itshape Tableau~14.3. LiZbiZ, de 2026 à 2029}\end{center}
+
+\subsection{Ce que le cas enseigne}
+
+\begin{itemize}
+    \item Une petite organisation n'a ni RSSI ni audit interne~: elle
+          compense par la séparation des rôles qu'elle peut tenir
+          (contrôleuse interne, auditeur externe indépendant) et par une
+          hygiène de base vérifiable.
+    \item Les fraudes internes et les attaques externes exploitent les
+          mêmes faiblesses~; EBIOS les met sur le même plan.
+    \item Le client est un régulateur de fait~: ses clauses (analyse,
+          droit d'audit) font avancer la sécurité plus vite que la loi.
+    \item Le défaut qui ouvre le scénario principal peut survivre à tous les
+          plans s'il est «~temporaire~»~: la règle de Garoua l'a montré.
+\end{itemize}
+
+% ============================================================================
+\section{ANPP : un Organisme Public sous Trois Regards}
+\label{sec:c14-anpp}
+% ============================================================================
+
+\subsection{Le fil}
+
+\begin{tableaucours}{L{2.2cm}L{6.6cm}c}{%
+    \tableauHeader{Date} &
+    \tableauHeader{Événement} &
+    \tableauHeader{Chap.}
+}
+2026 & Chambre des comptes~: 40 paiements contrôlés, 29~\OUI{}, 6~\NON{},
+5~\NEK{}~; quatre agents payés après leur départ (cours ACSI) &
+\ref{chap:referentiels} \\
+Mars 2027 & Un bailleur exige un profil NIST CSF~; base commune B1--B10~:
+4/3/3 & \ref{chap:referentiels} \\
+2028 & L'ANTIC annonce un audit de sécurité~; obligations légales~: 0/3/2 &
+\ref{chap:droit} \\
+2028--2029 & Tableau de bord GRC pour le conseil d'administration &
+\ref{chap:grc-pratique} \\
+\end{tableaucours}
+\vspace{-0.8em}
+\begin{center}{\small\itshape Tableau~14.4. L'ANPP, de 2026 à 2029}\end{center}
+
+\begin{boxlecture}{Les paiements de l'ANPP}
+\textbf{Constatation.} 29~\OUI{}, 6~\NON{}, 5~\NEK{} sur 40 paiements~:
+$\mu \approx 0{,}73$~; $U = 0{,}125$~;
+\[
+H = -(0{,}725\log_2 0{,}725 + 0{,}15\log_2 0{,}15 + 0{,}125\log_2 0{,}125)
+  \approx 0{,}336 + 0{,}411 + 0{,}375 \approx 1{,}12~\text{bit}.
+\]
+
+\textbf{Analyse} (confiance moyenne). Lu seul, le contrôle des paiements
+paraît plutôt conforme. Rapproché de la base commune (B2~: comptes des
+partants actifs, \NON{}) et des obligations légales (0/3/2), il change de
+sens~: les quatre agents payés après leur départ sont le symptôme
+financier d'un défaut de sécurité. Le même défaut apparaît dans trois
+rapports, à trois destinataires~; il n'appelle qu'une correction.
+
+\medskip
+\hfill\lecture{0{,}725}{0{,}125}{1{,}12}
+\end{boxlecture}
+
+\subsection{Ce que le cas enseigne}
+
+\begin{itemize}
+    \item Un organisme public répond à plusieurs autorités, avec des textes
+          parfois ambigus~; l'auditeur signale l'ambiguïté au lieu de la
+          trancher.
+    \item Une base commune de contrôles, testée une fois, évite trois
+          chantiers et révèle les défauts communs.
+    \item La sécurité et la régularité financière se rejoignent dans les
+          contrôles d'accès.
+\end{itemize}
+
+% ============================================================================
+\section{Dix Erreurs à ne pas Commettre}
+\label{sec:c14-erreurs}
+% ============================================================================
+
+\begin{tableaucours}{cL{6.0cm}L{3.8cm}c}{%
+    \tableauHeader{N°} &
+    \tableauHeader{Erreur} &
+    \tableauHeader{Où le cours l'a montrée} &
+    \tableauHeader{Chap.}
+}
+1 & Prendre un certificat pour une preuve de sécurité & Hall de la BANQUE
+SANAGA & \ref{chap:prologue} \\
+2 & Lire un risque absent du registre comme un risque faible & Registre
+2025 & \ref{chap:prologue} \\
+3 & Laisser une décision de risque sous l'instance qui en répond &
+Périmètre signé par le seul DG & \ref{chap:grc} \\
+4 & Coter une vraisemblance sur un silence non surveillé & « Jamais
+attaqués » & \ref{chap:risque} \\
+5 & Réduire un risque par une mesure non testée & Cloisonnement de mars
+2027 & \ref{chap:risque} \\
+6 & Présenter un chiffre unique au lieu d'une distribution & 143,5~M &
+\ref{chap:fair} \\
+7 & Coter \OUI{} sur une déclaration & Rapport « tout est en place » &
+\ref{chap:audit} \\
+8 & Taire une limitation de l'étendue & GAB, prestataire & \ref{chap:audit} \\
+9 & Résumer un audit par un pourcentage & « 37~\% » & \ref{chap:conclure} \\
+10 & Reporter une conformité par un lien partiel & « Conforme ISO, donc
+NIST » & \ref{chap:referentiels} \\
+\end{tableaucours}
+\vspace{-0.8em}
+\begin{center}{\small\itshape Tableau~14.5. Les dix erreurs typiques}\end{center}
+
+Toutes ont la même racine~: confondre ce que l'on sait et ce que l'on
+suppose. Le cours n'a enseigné qu'une seule discipline, sous plusieurs
+noms~: dire, à chaque étape, ce qui est établi, ce qui est contredit, et ce
+que l'on ignore.
+
+% ============================================================================
+\section{Préparer l'Épreuve de Synthèse}
+\label{sec:c14-epreuve}
+% ============================================================================
+
+L'épreuve de synthèse prend la forme d'une étude de cas, sur le modèle des
+trois études ci-dessous~: un dossier (faits, extraits de documents,
+résultats de tests) et des questions qui suivent la méthode en dix
+questions. Le barème détaillé, la durée et les documents autorisés sont
+fixés par l'enseignant et communiqués avec le calendrier de l'UE.
+
+\begin{boxprocedure}
+\textbf{Répondre à une étude de cas.}
+\begin{itemize}
+    \item Lire tout le dossier avant de répondre~; repérer les acteurs, le
+          périmètre et ce qui est demandé.
+    \item Séparer, pour chaque réponse, la constatation (le fait, la preuve)
+          de l'analyse (l'interprétation, avec un niveau de confiance).
+    \item Poser les calculs~: cotes, criticités, $\mu$, $U$ et $H$, avec les
+          valeurs intermédiaires.
+    \item Nommer ce que l'on ne sait pas, et dire comment le savoir.
+    \item Citer les normes et les textes avec leur degré de vérification~;
+          ne jamais inventer un numéro d'article.
+    \item Conclure par une décision, et dire qui la prend.
+\end{itemize}
+\end{boxprocedure}
+
+% ============================================================================
+\section{Le Parcours de chaque Métier}
+\label{sec:c14-metiers}
+% ============================================================================
+
+\begin{boxmetier}{RSSI}
+\textbf{De Mme ABENA en 2026 à Mme ABENA en 2029}
+
+Elle a obtenu le droit d'être entendue par le comité, cessé d'administrer ce
+qu'elle surveille, remplacé ses déclarations par des preuves, et présenté
+un indicateur défavorable (11~\% de clics) sans l'enjoliver.
+\end{boxmetier}
+
+\begin{boxmetier}{Auditeur en cybersécurité}
+\textbf{Mme EKAMBI, M. BEYALA, CERTIQUAL AFRIQUE}
+
+Trois auditeurs, trois postures, une même règle~: la preuve que l'on
+obtient soi-même, la limitation que l'on déclare, le constat que l'on
+maintient sous la pression, l'indépendance que l'on protège.
+\end{boxmetier}
+
+\begin{boxmetier}{Gestionnaire des risques cyber}
+\textbf{Du registre au scénario}
+
+Il est passé d'une liste cotée sans preuve à des scénarios décomposés,
+reliés aux attaquants et à l'écosystème, chiffrés en francs CFA, avec une
+base de preuve pour chaque cote.
+\end{boxmetier}
+
+\begin{boxmetier}{Responsable GRC}
+\textbf{M. ATANGANA}
+
+Il a relié quatre rapports en une page, et fait apparaître ce que le comité
+ignorait. Son outil principal n'est pas un logiciel~: ce sont les liens
+entre risques, obligations, contrôles et preuves.
+\end{boxmetier}
+
+\begin{boxmetier}{Consultant en mise en œuvre de SMSI}
+\textbf{Le consultant de 2025, et celui de LiZbiZ}
+
+Le premier a livré un certificat sur un périmètre commode~; celui que
+LiZbiZ retiendra devra livrer un processus qui fonctionne sans lui, et un
+périmètre qui inclut ses interfaces.
+\end{boxmetier}
+
+\separateur
+
+\begin{boxresume}
+\textbf{Ce qu'il faut retenir de ce chapitre~:}
+\begin{itemize}
+    \item \textbf{Dix questions} structurent toute mission~: rôles,
+          périmètre, scénarios, chiffrage, décisions, textes, preuves,
+          conclusion, amélioration, vue d'ensemble.
+    \item \textbf{BANQUE SANAGA}~: le risque baisse vite, l'inconnu se
+          déplace~; les échecs de 2025 et de 2028 ont la même forme.
+    \item \textbf{LiZbiZ}~: fraude et attaque exploitent les mêmes
+          faiblesses~; le client fait avancer la sécurité.
+    \item \textbf{ANPP}~: un même défaut d'accès apparaît dans trois
+          rapports~; une base commune le corrige une fois.
+    \item \textbf{Dix erreurs}, une racine~: confondre ce que l'on sait et
+          ce que l'on suppose.
+\end{itemize}
+\end{boxresume}
+
+% ============================================================================
+\section*{Exercices}
+% ============================================================================
+
+\begin{boxexo}[title={\ding{45}\quad Étude de cas~14.1. La réponse à la COBAC \niveauexpert}]
+En janvier 2029, la COBAC demande à la BANQUE SANAGA «~l'état des mesures
+prises depuis l'incident de septembre 2026~».
+\begin{enumerate}[(a)]
+    \item Identifiez le cadre de la demande et le degré de vérification du
+          texte (Chapitre~\ref{chap:droit}).
+    \item Rédigez le plan de la réponse, en suivant la méthode en dix
+          questions.
+    \item Rédigez la partie «~risque~» de la réponse~: évolution de la
+          criticité de R-AG-01, avec la base de preuve de chaque étape, et
+          la quantification avant et après traitement.
+    \item Rédigez la partie «~ce que la banque ne sait pas encore~», et le
+          calendrier pour le savoir.
+    \item Qui signe la réponse, et pourquoi~?
+\end{enumerate}
+\end{boxexo}
+
+\begin{boxexo}[title={\ding{45}\quad Étude de cas~14.2. Le dossier de renouvellement de PHARMACAM \niveauexpert}]
+PHARMACAM demande à LiZbiZ, pour le renouvellement de janvier 2030, un
+dossier de sécurité.
+\begin{enumerate}[(a)]
+    \item Listez les pièces du dossier, en distinguant ce qui est prouvé et
+          ce qui est déclaré.
+    \item Retracez l'évolution du scénario SO1 de 2027 à 2028 (criticité,
+          phases couvertes, preuves).
+    \item Comparez les deux passages de l'audit technique (8/9/3 et 14/4/2)
+          centre par centre, et rédigez le paragraphe qui les présente à
+          PHARMACAM sans moyenne trompeuse.
+    \item Quelle décision recommandez-vous à M.~ETEME sur la certification
+          ISO/IEC~27001, et à quelle échéance~?
+\end{enumerate}
+\end{boxexo}
+
+\begin{boxexo}[title={\ding{45}\quad Étude de cas~14.3. Un défaut, trois rapports \niveauexpert}]
+À l'ANPP, le défaut de désactivation des comptes des agents partis apparaît
+dans trois travaux~: le contrôle des paiements de la Chambre des comptes,
+la base commune (B2), et les obligations légales (article~29, alinéa~2).
+\begin{enumerate}[(a)]
+    \item Montrez, pour chacun des trois destinataires (M.~NJOYA, le
+          bailleur, l'ANTIC), ce que le défaut signifie dans sa langue.
+    \item Rédigez une seule recommandation, avec sa preuve de mise en œuvre,
+          qui réponde aux trois.
+    \item Proposez le test automatique qui permettra de vérifier chaque
+          nuit que le défaut ne revient pas, et dites comment l'audit le
+          validera.
+    \item Recalculez $\mu$, $U$ et $H$ de la base commune si B2 devient \OUI{}
+          et si B4 et B6 sont établis (\OUI{} et \NON{}).
+\end{enumerate}
+\end{boxexo}
+
+\bigskip
+
+\begin{boxinfo}
+\textbf{Transition.} Les trois cas reposent sur des systèmes que leurs
+propriétaires détiennent. Les risques qui viennent sont ailleurs~: chez les
+prestataires et dans le nuage, dans l'intelligence artificielle, dans
+l'audit qui devient continu. La Partie~V les aborde au
+Chapitre~\ref{chap:emergents}.
+\end{boxinfo}

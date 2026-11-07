@@ -1,0 +1,739 @@
+% ============================================================================
+% Fichier  : partie2/P02_C04_ebios_risk_manager.tex
+% Titre    : EBIOS Risk Manager
+% Auteur   : MINKA MI NGUIDJOÏ Thierry Emmanuel
+% Version  : 1.0 -- novembre 2026
+% Corrigés : corriges/Corr_C04.tex
+% ============================================================================
+% Vérifié sur cyber.gouv.fr (consulté le 05/11/2026) : noms des cinq
+% ateliers ; synthèse « conformité » et « scénarios » ; socle de sécurité ;
+% scénarios centrés sur les menaces intentionnelles et ciblées ; guide
+% publié le 9 octobre 2018 avec le Club EBIOS. Version 1.5 de mars 2024
+% signalée par Wikipédia (lien vers le guide) : à confirmer sur le guide.
+% NON RELU dans le guide (PDF non téléchargé) et signalé à l'auteur : la
+% formule du niveau de menace d'une partie prenante (dépendance ×
+% pénétration / maturité × confiance), la séquence « connaître, rentrer,
+% trouver, exploiter », le nom « plan d'amélioration continue de la
+% sécurité », les deux cycles. Les échelles de gravité et de vraisemblance
+% du guide ne sont pas citées : le chapitre emploie l'échelle du cours.
+% Faits du cas (bible) : LiZbiZ, quatre centres de données (Douala,
+% Yaoundé, Garoua, Bafoussam), douze agences, application intégrée ;
+% M. ETEME, Mme NKENG, M. KOUNOU, M. BEYALA (AUDIX CONSEIL) ; TRANSLOG
+% (112,7 M FCFA, OWONA) ; ajustements de stock de FOUDA à Douala ; écart de
+% 186 M FCFA ; registre R1 à R8 ; constats de l'audit des quatre centres.
+% Faits nouveaux (reportés dans la bible) : demande du client PHARMACAM
+% (fictif), étude EBIOS RM de janvier à mars 2027 animée par Mme NKENG ;
+% ER1 à ER4 ; SR1 à SR5 ; parties prenantes P1 à P5 et leurs cotes ; base
+% de preuve des 20 cotes de l'écosystème : 13 OUI / 1 NON / 6 NEK.
+% ============================================================================
+
+\chapter{EBIOS Risk Manager}
+\label{chap:ebios}
+\chaptermark{EBIOS Risk Manager}
+
+\epigraph{%
+    « On ne se protège pas d'une menace\\
+    que l'on n'a pas pris la peine d'imaginer. »%
+}{Principe du cours}
+
+\niveauChapitre{Intermédiaire}{%
+    Maîtrise du Chapitre~\ref{chap:iso27005}%
+}
+
+\begin{boxobjectifs}
+\begin{itemize}
+    \item Situer EBIOS Risk Manager~: son origine, sa logique « conformité
+          et scénarios », ses cinq ateliers.
+    \item Cadrer une étude~: valeurs métier, biens supports, événements
+          redoutés, gravité, socle de sécurité.
+    \item Identifier et retenir des couples source de risque et objectif
+          visé.
+    \item Cartographier l'écosystème et construire des scénarios
+          stratégiques.
+    \item Détailler un scénario opérationnel et en coter la vraisemblance.
+    \item Coter la base de preuve d'une étude EBIOS, et en tirer les
+          priorités de connaissance.
+    \item Situer MEHARI et le NIST SP~800-30 par rapport à EBIOS.
+\end{itemize}
+\end{boxobjectifs}
+
+\bigskip
+
+% ============================================================================
+\section*{Avant de commencer : le client demande une preuve}
+% ============================================================================
+
+Douala, janvier 2027. PHARMACAM\footnote{LiZbiZ, PHARMACAM, leurs
+dirigeants, les dates et les montants sont fictifs~; la méthode et les
+textes cités sont exacts.}, distributeur de médicaments et premier client
+de LiZbiZ, prépare le renouvellement de son contrat de transport. Sa
+direction des achats a ajouté une clause~: le prestataire devra remettre
+« une analyse des risques de cybersécurité conduite selon une méthode
+reconnue ». Les médicaments voyagent sous chaîne du froid~; un arrêt du
+suivi des expéditions de plusieurs jours, et ce sont des lots entiers
+qu'il faut détruire.
+
+M.~ETEME, directeur général de LiZbiZ, appelle d'abord M.~BEYALA, d'AUDIX
+CONSEIL, qui connaît l'entreprise. Celui-ci refuse d'animer l'étude~: son
+cabinet a audité LiZbiZ et l'auditera encore~; il ne peut pas auditer
+demain une analyse qu'il aurait conduite aujourd'hui. Il conseille de
+confier l'animation à Mme~NKENG, contrôleuse interne, et de choisir EBIOS
+Risk Manager.
+
+\medskip
+
+Ce chapitre présente cette méthode et la déroule sur LiZbiZ, atelier par
+atelier. Les rançongiciels, la fraude au stock et les faux fournisseurs,
+que le registre R1 à R8 décrivait séparément, y deviennent des scénarios
+reliés à des attaquants, à leurs objectifs et à l'écosystème de
+l'entreprise.
+
+\begin{boxalert}
+\textbf{Violation typique.} Faire animer l'analyse des risques par le
+cabinet qui en auditera ensuite les résultats.
+
+\smallskip
+\textbf{Règle~:} on n'audite pas son propre travail. Un auditeur peut
+conseiller sur la méthode~; il ne construit pas l'analyse qu'il devra
+évaluer. Le Chapitre~\ref{chap:droit} revient sur ces règles
+d'indépendance.
+\end{boxalert}
+
+\separateur
+
+% ============================================================================
+\section{La Méthode}
+\label{sec:c04-methode}
+% ============================================================================
+
+\subsection{Origine et logique}
+
+EBIOS Risk Manager est la méthode d'appréciation et de traitement du risque
+numérique publiée en 2018 par l'Agence nationale de la sécurité des
+systèmes d'information (\sigle{ANSSI}, France), avec le soutien du Club
+EBIOS~\cite{anssi2018ebios}. Elle succède aux versions d'EBIOS de 1995,
+2004 et 2010. Elle est compatible avec l'ISO~31000 et l'ISO/IEC~27005~:
+elle en est une mise en œuvre, pas une alternative.
+
+Sa logique tient en une phrase, que l'ANSSI formule comme une
+\emph{synthèse entre conformité et scénarios}~:
+\begin{itemize}
+    \item la \textbf{conformité} construit un \emph{socle de sécurité}~:
+          l'organisation applique les mesures d'un référentiel (hygiène
+          informatique, ISO/IEC~27002) et mesure ses écarts~;
+    \item les \textbf{scénarios} mettent ce socle à l'épreuve de menaces
+          \emph{intentionnelles et ciblées}~: un attaquant précis, avec un
+          objectif précis, qui passe éventuellement par l'écosystème de
+          l'organisation.
+\end{itemize}
+
+\begin{boxinfo}
+\textbf{Pourquoi cette division du travail~?} Les menaces courantes
+(maliciel opportuniste, erreur, panne) se traitent par le socle~: il serait
+inutile de construire un scénario pour chacune. L'effort d'imagination est
+réservé aux attaques qui visent l'organisation et peuvent contourner le
+socle. C'est l'inverse d'un registre qui énumère cent menaces au même
+niveau de détail.
+\end{boxinfo}
+
+\subsection{Cinq ateliers}
+
+\begin{tableaucours}{L{3.4cm}L{4.4cm}L{4.4cm}}{%
+    \tableauHeader{Atelier} &
+    \tableauHeader{Question} &
+    \tableauHeader{Principaux livrables}
+}
+1. Cadrage et socle de sécurité & Que protège-t-on, de quoi a-t-on peur,
+où en est-on de la conformité~? & Périmètre, valeurs métier, biens
+supports, événements redoutés et gravité, écarts au socle \\
+2. Sources de risque & Qui pourrait nous attaquer, et pour quoi faire~? &
+Couples source de risque et objectif visé, retenus ou écartés \\
+3. Scénarios stratégiques & Par où passerait l'attaquant, y compris par
+nos partenaires~? & Cartographie de l'écosystème, scénarios stratégiques,
+mesures sur l'écosystème \\
+4. Scénarios opérationnels & Comment s'y prendrait-il, techniquement~? &
+Modes opératoires, vraisemblance \\
+5. Traitement du risque & Que décide-t-on, et comment le suit-on~? &
+Stratégie de traitement, mesures, risques résiduels, cadre de suivi \\
+\end{tableaucours}
+\vspace{-0.8em}
+\begin{center}{\small\itshape Tableau~4.1. Les cinq ateliers d'EBIOS Risk
+Manager}\end{center}
+
+Les ateliers~1 à~3 relèvent de la direction et des métiers~: ils
+raisonnent en enjeux et en attaquants. L'atelier~4 relève des
+techniciens~: il raisonne en vulnérabilités et en chemins d'attaque.
+L'atelier~5 revient à la direction, qui décide. Les ateliers stratégiques se
+revoient rarement, les ateliers opérationnels plus souvent, au rythme des
+systèmes et des menaces.
+
+\begin{boxinfo}
+\textbf{Échelles.} Le guide propose des échelles de gravité et de
+vraisemblance que chaque organisation adapte. Le cours emploie la sienne
+(Chapitre~\ref{chap:risque}, Tableau~2.3), en appelant \emph{gravité}
+l'impact d'un événement redouté, comme le fait la méthode. On note G1 à G4
+et V1 à V4 les niveaux de cette échelle.
+\end{boxinfo}
+
+% ============================================================================
+\section{Atelier 1 : Cadrage et Socle de Sécurité}
+\label{sec:c04-atelier1}
+% ============================================================================
+
+\subsection{Périmètre, valeurs métier, biens supports}
+
+Mme~NKENG réunit M.~ETEME, le directeur des opérations, le directeur
+financier, M.~KOUNOU et un chef d'agence. Le périmètre retenu est le
+système d'information logistique~: les quatre centres de données de Douala,
+Yaoundé, Garoua et Bafoussam, les douze agences et l'application intégrée.
+L'atelier retient trois valeurs métier~: le \emph{suivi des expéditions},
+la \emph{facturation} et la \emph{gestion des stocks}, et une quatrième,
+ajoutée à la demande de PHARMACAM~: les \emph{données des clients}.
+
+\subsection{Événements redoutés et gravité}
+
+\begin{tableaucours}{cL{5.6cm}L{4.2cm}c}{%
+    \tableauHeader{Réf.} &
+    \tableauHeader{Événement redouté} &
+    \tableauHeader{Conséquences} &
+    \tableauHeader{Grav.}
+}
+ER1 & Indisponibilité du suivi des expéditions pendant plus de trois jours
+& Lots sous chaîne du froid perdus, pénalités, perte du client & G4 \\
+ER2 & Altération des données de stock par des ajustements non autorisés &
+Écarts de stock, réserve du commissaire aux comptes & G3 \\
+ER3 & Paiement de factures à un fournisseur fictif & Perte financière
+directe & G3 \\
+ER4 & Divulgation des données des clients & Rupture de contrat,
+sanction de l'autorité de protection & G3 \\
+\end{tableaucours}
+\vspace{-0.8em}
+\begin{center}{\small\itshape Tableau~4.2. Événements redoutés de LiZbiZ}\end{center}
+
+Les gravités s'appuient sur des faits~: l'écart de stock de 186~millions
+FCFA (ER2) et la fraude TRANSLOG de 112,7~millions (ER3) se situent au
+niveau majeur de l'échelle~; pour ER1, PHARMACAM a chiffré la valeur d'un
+seul camion de vaccins à plus de 500~millions.
+
+\subsection{Le socle de sécurité}
+
+L'atelier compare ensuite l'existant à un référentiel. Faute de mieux,
+LiZbiZ reprend les constats de l'audit de ses quatre centres~: des comptes
+par défaut actifs, des services d'administration en clair, des flux non
+autorisés entre centres. Ces écarts ne sont pas des scénarios~; ils
+constituent un socle troué, que les scénarios des ateliers suivants vont
+exploiter. Un écart au socle se corrige, en principe, sans attendre la fin
+de l'étude.
+
+% ============================================================================
+\section{Atelier 2 : Sources de Risque}
+\label{sec:c04-atelier2}
+% ============================================================================
+
+\subsection{Des couples, pas des menaces}
+
+\begin{boxdef}
+\termecle{Couple SR/OV}\index{couple SR/OV}~: association d'une source de
+risque (qui~?) et d'un objectif visé (pour quoi faire~?). Un même
+attaquant peut poursuivre plusieurs objectifs~; chaque couple se traite à
+part.
+\end{boxdef}
+
+L'atelier recense les couples plausibles, puis les apprécie selon la
+\emph{motivation} de la source à atteindre l'objectif, ses
+\emph{ressources}, et son \emph{activité} connue dans le secteur. Il en
+retient quelques-uns, jugés pertinents.
+
+\begin{tableaucours}{cL{3.0cm}L{2.8cm}L{4.0cm}c}{%
+    \tableauHeader{Réf.} &
+    \tableauHeader{Source de risque} &
+    \tableauHeader{Objectif visé} &
+    \tableauHeader{Appréciation} &
+    \tableauHeader{Retenu}
+}
+SR1 & Groupe cybercriminel & Extorsion par rançongiciel & Très motivé,
+outillé, très actif contre les entreprises de transport & Oui \\
+SR2 & Employé malveillant, seul ou avec un complice & Détourner du stock
+et masquer l'écart & Précédent connu (ajustements de Douala) & Oui \\
+SR3 & Fournisseur indélicat ou faux fournisseur & Se faire payer des
+factures fictives & Précédent connu (TRANSLOG) & Oui \\
+SR4 & Concurrent & Obtenir les tarifs et la liste des clients & Motivé,
+mais peu d'activité connue & Non \\
+SR5 & Militant & Nuire à l'image & Peu motivé par une entreprise de
+logistique & Non \\
+\end{tableaucours}
+\vspace{-0.8em}
+\begin{center}{\small\itshape Tableau~4.3. Couples source de risque et
+objectif visé}\end{center}
+
+\begin{boxscenario}{Opération LIZBIZ. Deux fraudes devenues des sources de risque}
+\textbf{Constatation.} Les couples SR2 et SR3 ne sont pas imaginés~: ils
+reprennent les deux fraudes établies par AUDIX CONSEIL, les ajustements de
+stock de FOUDA et le fournisseur fictif TRANSLOG (112,7~millions FCFA).
+
+\medskip
+\textbf{Analyse} (confiance élevée). Le registre de 2026 traitait ces
+fraudes comme des risques de contrôle interne (R1, R2), et le rançongiciel
+comme un risque informatique (R8). EBIOS les met sur le même plan~: trois
+attaquants, trois objectifs, qui exploitent souvent les mêmes faiblesses.
+Les droits illimités de M.~KOUNOU servent aussi bien un fraudeur interne
+qu'un cybercriminel qui aurait volé son compte.
+\end{boxscenario}
+
+% ============================================================================
+\section{Atelier 3 : Scénarios Stratégiques}
+\label{sec:c04-atelier3}
+% ============================================================================
+
+\subsection{L'écosystème}
+
+Un attaquant ciblé passe souvent par un partenaire, moins protégé que sa
+cible. L'atelier~3 cartographie donc les \emph{parties prenantes}~:
+prestataires, sous-traitants, fournisseurs, clients reliés au système. Le
+guide de l'ANSSI les évalue selon quatre critères~: la \emph{dépendance}
+de l'organisation envers la partie prenante, la \emph{pénétration} de
+celle-ci dans le système, sa \emph{maturité} en cybersécurité, et la
+\emph{confiance} qu'on peut lui accorder. Il en déduit un niveau de
+menace, d'autant plus élevé que la partie prenante est indispensable et
+présente dans le système, et d'autant plus faible qu'elle est mûre et
+fiable~:
+\[
+\text{Menace} = \frac{\text{Dépendance} \times \text{Pénétration}}
+                     {\text{Maturité} \times \text{Confiance}}
+\]
+Chaque critère se cote de 1 à 4. L'atelier fixe lui-même les seuils~: une
+menace de 3 ou plus place la partie prenante en zone de \emph{danger}, de
+1 à 3 en zone de \emph{contrôle}, sous 1 en zone de \emph{veille}.
+
+\begin{tableaucours}{cL{4.2cm}ccccc}{%
+    \tableauHeader{Réf.} &
+    \tableauHeader{Partie prenante} &
+    \tableauHeader{Dép.} &
+    \tableauHeader{Pén.} &
+    \tableauHeader{Mat.} &
+    \tableauHeader{Conf.} &
+    \tableauHeader{Menace}
+}
+P1 & Éditeur de l'application intégrée (maintenance à distance) & 4 & 4 & 2
+& 2 & 4,00 \\
+P2 & Transporteurs sous-traitants (portail de suivi) & 3 & 2 & 1 & 2 &
+3,00 \\
+P3 & Opérateur de télécommunications & 4 & 1 & 3 & 3 & 0,44 \\
+P4 & Cabinet comptable externe & 2 & 2 & 2 & 3 & 0,67 \\
+P5 & Fournisseurs (portail de dépôt des factures) & 2 & 1 & 1 & 1 & 2,00 \\
+\end{tableaucours}
+\vspace{-0.8em}
+\begin{center}{\small\itshape Tableau~4.4. Les parties prenantes de
+LiZbiZ}\end{center}
+
+L'éditeur de l'application (P1) et les transporteurs (P2) sont en zone de
+danger~; les fournisseurs (P5) en zone de contrôle~; l'opérateur et le
+cabinet comptable en zone de veille.
+
+\subsection{Trois scénarios stratégiques}
+
+\begin{boxdef}
+\termecle{Scénario stratégique}\index{scénario stratégique}~: chemin
+d'attaque de haut niveau, qui relie un couple SR/OV à un événement redouté,
+en passant éventuellement par une ou plusieurs parties prenantes. Il se
+décrit sans détail technique et prend la gravité de l'événement redouté.
+\end{boxdef}
+
+\begin{tableaucours}{cL{8.4cm}cc}{%
+    \tableauHeader{Réf.} &
+    \tableauHeader{Chemin d'attaque} &
+    \tableauHeader{ER} &
+    \tableauHeader{Grav.}
+}
+SS1 & SR1 compromet l'accès de maintenance de l'éditeur (P1), atteint les
+centres de données et chiffre l'application et ses sauvegardes & ER1 & G4 \\
+SS2 & SR2, magasinier de Douala, obtient l'aide d'un détenteur de droits
+d'administration et passe des ajustements de stock sans contrôle & ER2 &
+G3 \\
+SS3 & SR3 s'enregistre comme fournisseur sur le portail (P5) et fait
+valider des factures fictives par un complice interne & ER3 & G3 \\
+\end{tableaucours}
+\vspace{-0.8em}
+\begin{center}{\small\itshape Tableau~4.5. Scénarios stratégiques de
+LiZbiZ}\end{center}
+
+L'atelier propose aussi des mesures sur l'écosystème, qui ne dépendent pas
+du détail technique~: imposer à l'éditeur un second facteur et une
+journalisation de ses connexions de maintenance~; limiter l'accès des
+transporteurs aux seules expéditions qui les concernent~; vérifier
+l'existence de tout nouveau fournisseur avant son premier paiement.
+
+\subsection{Ce que valent les cotes de l'écosystème}
+
+Les vingt cotes du Tableau~4.4 n'ont pas toutes la même solidité. La
+dépendance et la pénétration se lisent dans les contrats et dans les
+droits d'accès~; la maturité et la confiance se devinent.
+
+\begin{boxlecture}{Base de preuve des cotes de l'écosystème}
+\textbf{Constatation.} Mme~NKENG cote la base de chacune des vingt
+cotes~:
+\begin{itemize}
+    \item dépendance~: 5~\OUI{} (contrats, chiffre d'affaires
+          concerné)~;
+    \item pénétration~: 4~\OUI{} et 1~\NON{}~: P2 était coté 2, mais les
+          droits du portail montrent que chaque transporteur voit toutes
+          les expéditions~;
+    \item maturité~: 1~\OUI{} (l'opérateur est certifié ISO/IEC~27001), 4~\NEK{}~;
+    \item confiance~: 3~\OUI{} (historique de la relation), 2~\NEK{} (P1, P2).
+\end{itemize}
+Sur vingt cotes~: 13~\OUI{}, 1~\NON{}, 6~\NEK{}~:
+\[
+\mu = 0{,}65~;\quad U = 0{,}30~;\quad
+H = -(0{,}65\log_2 0{,}65 + 0{,}05\log_2 0{,}05 + 0{,}30\log_2 0{,}30)
+  \approx 0{,}404 + 0{,}216 + 0{,}521 \approx 1{,}14~\text{bit}.
+\]
+
+\textbf{Analyse} (confiance élevée sur le calcul, moyenne sur la lecture).
+L'incertitude se concentre au dénominateur de la formule~: la maturité et
+la confiance. Or ce sont elles qui font baisser la menace. Une maturité
+cotée 2 sans preuve peut cacher un 1, ce qui doublerait la menace de P1. Les
+zones de danger sont donc probablement sous-estimées, et non surestimées.
+Pour P2, le \NON{} se corrige tout de suite~: avec une pénétration de 3, sa
+menace passe de 3,00 à 4,50.
+
+\medskip
+\hfill\lecture{0{,}65}{0{,}30}{1{,}14}
+\end{boxlecture}
+
+\begin{boxprocedure}
+\textbf{Réduire l'incertitude sur l'écosystème.} Pour chaque partie
+prenante en zone de danger ou de contrôle, le papier de travail prévoit~:
+\begin{itemize}
+    \item un questionnaire de maturité, signé par la partie prenante, et
+          les attestations qu'elle peut fournir (certification, rapport
+          d'assurance)~;
+    \item l'extraction des droits d'accès dont elle dispose réellement~;
+    \item une clause contractuelle de droit d'audit et de notification des
+          incidents~;
+    \item la date de la dernière revue, et la cote de base de chaque
+          critère.
+\end{itemize}
+\end{boxprocedure}
+
+% ============================================================================
+\section{Atelier 4 : Scénarios Opérationnels}
+\label{sec:c04-atelier4}
+% ============================================================================
+
+\subsection{Du chemin au mode opératoire}
+
+\begin{boxdef}
+\termecle{Scénario opérationnel}\index{scénario opérationnel}~: suite
+d'actions élémentaires, sur les biens supports, par lesquelles une source
+de risque réalise un scénario stratégique. On le décompose en quatre
+phases~: \emph{connaître} la cible, y \emph{rentrer}, y \emph{trouver} ce
+qui permet d'atteindre l'objectif, puis l'\emph{exploiter}.
+\end{boxdef}
+
+\subsection{Le mode opératoire de SS1}
+
+M.~KOUNOU et deux techniciens de l'éditeur détaillent SS1. Pour chaque
+phase, ils cotent la vraisemblance que l'attaquant y réussisse, au vu des
+constats de l'audit.
+
+\begin{tableaucours}{L{1.8cm}L{6.2cm}cL{2.6cm}}{%
+    \tableauHeader{Phase} &
+    \tableauHeader{Action élémentaire} &
+    \tableauHeader{V} &
+    \tableauHeader{Base}
+}
+Connaître & Repérer sur Internet l'éditeur et son outil de maintenance à
+distance & V4 & Sources publiques \\
+Rentrer & Voler l'identifiant d'un technicien de l'éditeur par
+hameçonnage, ou utiliser un compte par défaut du serveur de maintenance &
+V3 & Constat d'audit (comptes par défaut) \\
+Trouver & Se déplacer d'un centre à l'autre par les flux non autorisés,
+capter des mots de passe sur les services en clair & V4 & Constats
+d'audit \\
+Exploiter & Chiffrer l'application dans les quatre centres et effacer les
+sauvegardes accessibles & V3 & Sauvegardes en ligne, jamais restaurées \\
+\end{tableaucours}
+\vspace{-0.8em}
+\begin{center}{\small\itshape Tableau~4.6. Le scénario opérationnel SO1}\end{center}
+
+\begin{boxinfo}
+\textbf{Une règle de chaîne.} Un mode opératoire ne réussit que si toutes
+ses phases réussissent. Le cours retient donc, pour vraisemblance du
+scénario, celle de la phase la plus difficile pour l'attaquant~: ici V3.
+C'est une convention prudente~; le guide décrit aussi des manières plus
+fines de combiner les actions élémentaires.
+\end{boxinfo}
+
+SO1 obtient une vraisemblance V3 et hérite de la gravité G4 de ER1~:
+criticité $3 \times 4 = 12$, intolérable. On retrouve la cote de R8 après
+sa révision (Exercice~2.4)~: EBIOS ne la contredit pas, il l'explique. Et
+il montre où agir~: la phase «~rentrer~» est la seule cotée V3 au lieu de
+V4~; la fermer (second facteur pour l'éditeur, suppression des comptes par
+défaut) ferait tomber la vraisemblance de tout le scénario.
+
+% ============================================================================
+\section{Atelier 5 : Traitement du Risque}
+\label{sec:c04-atelier5}
+% ============================================================================
+
+L'atelier~5 rejoint le processus du Chapitre~\ref{chap:iso27005}~: options
+de traitement, plan, risques résiduels, acceptation. EBIOS y ajoute deux
+apports~: les mesures se rattachent aux \emph{phases} des scénarios et aux
+\emph{parties prenantes}, et le plan s'inscrit dans un cadre de suivi qui
+fait revenir l'étude à intervalles réguliers. Le guide parle d'un plan
+d'amélioration continue de la sécurité.
+
+\begin{tableaucours}{cL{5.6cm}L{2.4cm}c}{%
+    \tableauHeader{Scénario} &
+    \tableauHeader{Mesures principales} &
+    \tableauHeader{Phase ou partie prenante} &
+    \tableauHeader{Résiduel visé}
+}
+SO1 (SS1) & Second facteur et journalisation pour l'éditeur~; suppression
+des comptes par défaut~; filtrage entre centres~; sauvegardes hors ligne
+testées & Rentrer, trouver, exploiter~; P1 & $2 \times 3 = 6$ \\
+SS2 & Séparation des tâches de réception et d'ajustement~; revue des
+ajustements par la contrôleuse interne~; comptes d'administration
+nominatifs & Exploiter & $2 \times 3 = 6$ \\
+SS3 & Vérification de tout nouveau fournisseur avant paiement~; double
+validation des factures & P5 & $1 \times 3 = 3$ \\
+\end{tableaucours}
+\vspace{-0.8em}
+\begin{center}{\small\itshape Tableau~4.7. Synthèse du traitement}\end{center}
+
+\begin{boxobjet}{SO1 · Rançongiciel par l'accès de maintenance}
+\textbf{Valeur métier~:} suivi des expéditions.
+
+\textbf{Événement redouté~:} ER1, indisponibilité de plus de trois jours
+(G4).
+
+\textbf{Source de risque et objectif visé~:} SR1, groupe cybercriminel,
+extorsion.
+
+\textbf{Partie prenante~:} P1, éditeur de l'application (menace 4,00,
+maturité et confiance \NEK{}).
+
+\textbf{Mode opératoire~:} connaître (V4), rentrer (V3), trouver (V4),
+exploiter (V3)~; vraisemblance retenue V3.
+
+\textbf{Criticité~:} 12, intolérable. Base~: constats de l'audit des quatre
+centres (\OUI{}) pour les phases rentrer, trouver et exploiter.
+
+\textbf{Traitement~:} réduire (Tableau~4.7), puis envisager une assurance.
+
+\textbf{Propriétaire~:} le directeur des opérations.
+
+\textbf{Revue~:} après le test des sauvegardes et la signature de
+l'avenant avec l'éditeur, et au plus tard dans un an.
+\end{boxobjet}
+
+% ============================================================================
+\section{Situer EBIOS parmi les Méthodes}
+\label{sec:c04-methodes}
+% ============================================================================
+
+EBIOS Risk Manager n'est pas la seule méthode. Deux autres sont souvent
+citées~: MEHARI, développée par le CLUSIF, l'association française des
+professionnels de la sécurité, et le guide d'appréciation des risques du
+NIST, la publication spéciale 800-30~\cite{nist2012sp80030}.
+
+\begin{tableaucours}{L{2.4cm}L{3.3cm}L{3.3cm}L{3.3cm}}{%
+    \tableauHeader{} &
+    \tableauHeader{EBIOS RM} &
+    \tableauHeader{MEHARI} &
+    \tableauHeader{NIST SP~800-30}
+}
+Origine & ANSSI, 2018 & CLUSIF & NIST, révision~1 de 2012 \\
+Point de départ & Sources de risque, objectifs, écosystème & Bases de
+connaissances, diagnostic des services de sécurité & Sources de menace,
+événements de menace, vulnérabilités \\
+Force & Scénarios lisibles par la direction~; écosystème & Questionnaires
+détaillés, utiles à l'audit & Démarche à trois niveaux (organisation,
+mission, système) \\
+Limite & Demande des animateurs formés & Lourde sans outil & Pensée pour
+l'administration américaine~; à adapter \\
+\end{tableaucours}
+\vspace{-0.8em}
+\begin{center}{\small\itshape Tableau~4.8. Trois méthodes d'appréciation
+des risques}\end{center}
+
+Pour une organisation camerounaise, le choix n'est pas dicté par la loi~:
+l'article~26 de la loi n°~2010/012 exige des « systèmes normalisés »
+d'identification et d'évaluation des risques (Chapitre~\ref{chap:iso27005}),
+sans désigner de méthode~\cite{loi2010012}. EBIOS a l'avantage d'être
+gratuite, publiée en français et compatible avec l'ISO/IEC~27005~; elle
+reste une méthode étrangère, que l'on adapte aux échelles, au droit et aux
+menaces du pays.
+
+% ============================================================================
+\section{Ce que la Méthode demande à chaque Métier}
+\label{sec:c04-metiers}
+% ============================================================================
+
+\begin{boxmetier}{Gestionnaire des risques cyber}
+\textbf{Animer, pas rédiger seul}
+\begin{enumerate}
+    \item Réunir les bons participants à chaque atelier~: la direction et
+          les métiers pour les ateliers~1 à~3, les techniciens pour le~4.
+    \item Partir des faits connus (fraudes, incidents, constats d'audit)
+          pour les couples SR/OV.
+    \item Coter la base de preuve des critères de l'écosystème, et
+          programmer les questionnaires et les extractions qui manquent.
+    \item Relier chaque mesure à une phase ou à une partie prenante.
+\end{enumerate}
+\end{boxmetier}
+
+\begin{boxmetier}{Auditeur en cybersécurité}
+\textbf{Rester de l'autre côté}
+
+M.~BEYALA a eu raison de refuser l'animation. L'auditeur peut évaluer une
+étude EBIOS~: il vérifie que les couples écartés l'ont été pour de bonnes
+raisons, que les cotes de l'écosystème ont une base, et que les mesures
+annoncées existent. Il ne l'écrit pas.
+\end{boxmetier}
+
+\begin{boxmetier}{Responsable GRC}
+\textbf{Ramener l'étude dans le registre}
+
+Une étude EBIOS produit des scénarios~; le registre doit les recevoir. Le
+responsable GRC remplace les lignes R1, R2 et R8 par les scénarios SS2,
+SS3 et SO1, avec leurs propriétaires, et veille à ce que l'étude soit
+revue quand un nouveau partenaire entre dans l'écosystème.
+\end{boxmetier}
+
+\begin{boxmetier}{Consultant en mise en œuvre de SMSI}
+\textbf{Transmettre la méthode}
+
+Quand un consultant anime l'étude, il forme en même temps un animateur
+interne. La demande de PHARMACAM se répétera chaque année~; LiZbiZ doit
+pouvoir refaire l'étude sans lui.
+\end{boxmetier}
+
+\separateur
+
+\begin{boxresume}
+\textbf{Ce qu'il faut retenir de ce chapitre~:}
+\begin{itemize}
+    \item \textbf{EBIOS Risk Manager} (ANSSI, 2018) réalise une synthèse
+          entre conformité (un socle de sécurité) et scénarios (des menaces
+          intentionnelles et ciblées).
+    \item \textbf{Cinq ateliers}~: cadrage et socle, sources de risque,
+          scénarios stratégiques, scénarios opérationnels, traitement.
+    \item \textbf{Un couple SR/OV} relie un attaquant à un objectif~; on
+          part des faits connus pour les retenir.
+    \item \textbf{L'écosystème} se cote par la dépendance, la pénétration,
+          la maturité et la confiance~; les deux derniers critères sont
+          souvent \NEK{}, et ce sont eux qui font baisser la menace.
+    \item \textbf{Un scénario opérationnel} se décompose en connaître,
+          rentrer, trouver, exploiter~; sa vraisemblance est celle de la
+          phase la plus difficile.
+    \item \textbf{Indépendance}~: celui qui auditera l'étude ne l'anime pas.
+\end{itemize}
+\end{boxresume}
+
+\begin{boxinfo}
+\textbf{Points de contrôle.} Vous avez compris ce chapitre si vous savez~:
+\begin{itemize}
+    \item dire à quel atelier appartient un livrable donné~;
+    \item calculer le niveau de menace d'une partie prenante et la placer
+          dans une zone~;
+    \item décomposer un scénario opérationnel en quatre phases et en coter
+          la vraisemblance~;
+    \item expliquer pourquoi une maturité cotée sans preuve sous-estime
+          probablement la menace.
+\end{itemize}
+\end{boxinfo}
+
+% ============================================================================
+\section*{Exercices}
+% ============================================================================
+
+\begin{boxexo}[title={\ding{45}\quad Exercice~4.1. À quel atelier~? \niveaubase}]
+Indiquez l'atelier d'EBIOS Risk Manager auquel appartient chacun des
+éléments suivants.
+\begin{enumerate}[(a)]
+    \item La liste des écarts de LiZbiZ au guide d'hygiène informatique.
+    \item Le couple « concurrent, obtenir la liste des clients », écarté.
+    \item La cote de pénétration du cabinet comptable.
+    \item L'action « capter des mots de passe sur les services en clair ».
+    \item La gravité G4 de l'indisponibilité du suivi des expéditions.
+    \item La décision de faire signer un avenant à l'éditeur.
+    \item Le chemin « faux fournisseur, portail, complice interne ».
+\end{enumerate}
+\end{boxexo}
+
+\begin{boxexo}[title={\ding{45}\quad Exercice~4.2. Trois nouvelles parties prenantes \niveaumoyen}]
+LiZbiZ envisage trois nouveaux partenaires~:
+\begin{itemize}
+    \item Q1, un hébergeur en nuage pour le portail de suivi~:
+          dépendance~4, pénétration~3, maturité~3, confiance~2~;
+    \item Q2, une société de maintenance des chambres froides, reliée au
+          réseau pour la télésurveillance~: dépendance~3, pénétration~2,
+          maturité~1, confiance~2~;
+    \item Q3, un prestataire de paie~: dépendance~2, pénétration~1,
+          maturité~2, confiance~3.
+\end{itemize}
+\begin{enumerate}[(a)]
+    \item Calculez leur niveau de menace et placez-les dans les zones du
+          chapitre.
+    \item Les maturités ont été cotées sur la base d'une plaquette
+          commerciale. Quelle cote de base leur donnez-vous~? Recalculez la
+          menace de Q1 si sa maturité réelle est de~2.
+    \item Proposez, pour Q2, deux mesures sur l'écosystème et la preuve
+          qui permettrait de relever sa confiance.
+\end{enumerate}
+\end{boxexo}
+
+\begin{boxexo}[title={\ding{45}\quad Exercice~4.3. Le mode opératoire de SS2 \niveaumoyen}]
+Détaillez SS2 (le magasinier de Douala et son complice) en scénario
+opérationnel.
+\begin{enumerate}[(a)]
+    \item Décrivez une action élémentaire pour chacune des quatre phases.
+    \item Cotez la vraisemblance de chaque phase et justifiez par un fait du
+          cas. Déduisez la vraisemblance du scénario selon la règle de
+          chaîne.
+    \item Quelle phase faut-il fermer en priorité~? Montrez l'effet sur la
+          criticité.
+\end{enumerate}
+\end{boxexo}
+
+\begin{boxexo}[title={\ding{45}\quad Exercice~4.4. EBIOS à la BANQUE SANAGA \niveauexpert}]
+L'atelier de décembre 2026 de la BANQUE SANAGA a retenu le scénario
+« fraude au virement par compromission d'un poste du siège »
+(Chapitre~\ref{chap:iso27005}).
+\begin{enumerate}[(a)]
+    \item Atelier~1~: nommez la valeur métier, deux biens supports et
+          l'événement redouté, et cotez sa gravité avec l'échelle du cours.
+    \item Atelier~2~: proposez deux couples SR/OV, dont un que vous
+          écarterez, en justifiant par la motivation, les ressources et
+          l'activité.
+    \item Atelier~3~: identifiez une partie prenante qui pourrait servir de
+          point d'entrée, cotez ses quatre critères, et indiquez pour chacun
+          la base de preuve dont vous disposez.
+    \item Atelier~4~: rédigez le mode opératoire en quatre phases et
+          déduisez la vraisemblance.
+    \item Comparez la démarche avec la fiche R-AG-01~: qu'apporte EBIOS que
+          la fiche de risque ne donnait pas~?
+\end{enumerate}
+\end{boxexo}
+
+\bigskip
+
+\begin{boxinfo}
+\textbf{Pour aller plus loin.}
+\begin{itemize}
+    \item Le guide EBIOS Risk Manager de l'ANSSI~\cite{anssi2018ebios} et ses
+          fiches méthodes, sur le site de l'ANSSI.
+    \item Le guide NIST SP~800-30, révision~1~\cite{nist2012sp80030}.
+    \item L'ISO/IEC~27005:2022~\cite{iso27005_2022}, pour l'articulation
+          avec le processus.
+\end{itemize}
+\end{boxinfo}
+
+\begin{boxinfo}
+\textbf{Transition.} EBIOS a coté SO1 à 12~: intolérable. Mais combien
+LiZbiZ ou la BANQUE SANAGA perdraient-elles, en francs CFA, si le scénario
+se réalisait~? Et combien faut-il dépenser pour le traiter~? Les échelles
+qualitatives ne répondent pas à ces questions. Le Chapitre~\ref{chap:fair}
+apprend à quantifier.
+\end{boxinfo}

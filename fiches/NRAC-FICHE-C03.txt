@@ -1,0 +1,233 @@
+NDAP SUKULU · NRAC · fiche NRAC-FICHE-C03
+Chapitre 3 : Gérer les risques : ISO 31000 et ISO/IEC 27005
+
+Version papier, à utiliser en attendant l'ouverture du portail NDAP SUKULU.
+La fiche complète compte 40 questions. Répondez sur la grille en fin de fiche.
+Durée indicative : 60 minutes. Seuil de réussite : 60 %.
+Les corrections figurent dans le livret de correction du cours.
+
+========================================================================
+Questions à choix multiple (une seule bonne réponse)
+========================================================================
+
+ 1. L'ISO 31000 est-elle certifiable ?
+      a) Oui, par un organisme accrédité
+      b) Non, ce sont des lignes directrices
+      c) Oui, par l'ANTIC
+      d) Oui, pour les banques seulement
+
+ 2. Quels sont les trois ensembles de l'ISO 31000 ?
+      a) Principes, cadre, processus
+      b) Politique, procédure, preuve
+      c) Identifier, protéger, détecter
+      d) Plan, budget, rapport
+
+ 3. Quelles activités encadrent tout le processus ?
+      a) Le traitement et l'acceptation
+      b) L'identification et l'analyse
+      c) Le contexte et les critères
+      d) La communication et consultation, le suivi et revue
+
+ 4. Quelle étape compare les cotes aux critères ?
+      a) L'identification
+      b) L'analyse
+      c) L'évaluation
+      d) Le traitement
+
+ 5. Quelles sont les deux familles de critères à établir selon l'ISO/IEC 27005 ?
+      a) Pour apprécier et pour accepter
+      b) Pour acheter et pour installer
+      c) Pour auditer et pour certifier
+      d) Pour former et pour sanctionner
+
+ 6. Selon les critères de la SANAGA, qui peut accepter un résiduel de 5 à 8 ?
+      a) Le RSSI
+      b) Le comité de sécurité, sur proposition du propriétaire
+      c) Le DSI
+      d) Personne
+
+ 7. Selon les critères de la SANAGA, qui peut accepter un résiduel de 9 ou plus ?
+      a) Le propriétaire
+      b) Le comité de sécurité
+      c) Le RSSI
+      d) Seul le comité des risques du conseil, à titre temporaire
+
+ 8. Scénario. La base de la vraisemblance d'un risque est NEK. Que permettent les critères ?
+      a) Une acceptation ordinaire
+      b) Rien, le risque est ignoré
+      c) Une acceptation « en l'état des connaissances » avec une date de revue
+      d) Une acceptation par le DSI
+
+ 9. Qu'a apporté l'approche par les actifs à la SANAGA ?
+      a) Les GAB sans correctifs et les droits d'administration locale des chefs d'agence
+      b) Le scénario de rançongiciel
+      c) Le coût de l'incident
+      d) La liste des parties intéressées
+
+10. Quelle est la faiblesse de l'approche par les événements ?
+      a) Elle est trop lente
+      b) Elle peut oublier un composant que personne n'a imaginé
+      c) Elle est interdite par la norme
+      d) Elle ignore la direction
+
+11. Combien d'options de traitement l'ISO 31000 énumère-t-elle ?
+      a) Quatre
+      b) Cinq
+      c) Six
+      d) Sept
+
+12. Que ne transfère pas une assurance cyber ?
+      a) Une partie des pertes financières
+      b) La franchise
+      c) La responsabilité et l'atteinte à la réputation
+      d) Le plafond
+
+13. Scénario. Pour R-AG-01, quelle combinaison de traitement est retenue ?
+      a) Maintenir seulement
+      b) Réduire, éviter en partie, puis partager
+      c) Éviter totalement
+      d) Partager seulement
+
+14. Pourquoi l'action A3 (test d'intrusion interne) est-elle au plan ?
+      a) Elle produit la preuve sans laquelle le cloisonnement n'abaisserait rien
+      b) Elle remplace le cloisonnement
+      c) Elle est exigée par la COBAC
+      d) Elle réduit l'impact
+
+15. Que doit contenir chaque ligne d'un plan de traitement, en plus du responsable et de l'échéance ?
+      a) Le nom du fournisseur
+      b) La couleur du risque
+      c) L'avis du consultant
+      d) Le coût et la preuve attendue
+
+16. Quel est le coût total du plan de R-AG-01 ?
+      a) 60 millions FCFA
+      b) 410 millions FCFA
+      c) 193 millions FCFA
+      d) 35 millions FCFA
+
+17. Qui signe l'acceptation d'un risque ?
+      a) Le RSSI, qui connaît le sujet
+      b) Celui qui a l'autorité et supporte les conséquences, selon les critères
+      c) Le DSI
+      d) L'auditeur
+
+18. Scénario. DIGICORE refuse l'avenant de droit d'audit. Que prévoit la décision de janvier 2027 ?
+      a) La présentation de R-DC-02 au comité des risques du conseil
+      b) La résiliation immédiate
+      c) L'acceptation définitive
+      d) Rien
+
+19. Programme 2027 : 5 OUI, 2 NON, 3 NEK sur 10 actions. Que vaut U ?
+      a) 0,50
+      b) 0,20
+      c) 0,10
+      d) 0,30
+
+20. Comment une action est-elle cotée si elle est déclarée réalisée sans la preuve attendue ?
+      a) OUI
+      b) NON
+      c) NEK
+      d) Partielle
+
+========================================================================
+Vrai ou faux
+========================================================================
+
+21. L'ISO 31000 prescrit une méthode d'appréciation précise.
+      Vrai / Faux
+
+22. Les critères d'acceptation se fixent avant l'appréciation.
+      Vrai / Faux
+
+23. On choisit entre l'approche par les actifs et l'approche par les événements.
+      Vrai / Faux
+
+24. L'assurance vient après la réduction, pas à sa place.
+      Vrai / Faux
+
+25. Un risque qui reste au registre sans décision est accepté de fait.
+      Vrai / Faux
+
+26. Le RSSI peut signer à la place du propriétaire.
+      Vrai / Faux
+
+27. Une appréciation se revoit seulement à date anniversaire.
+      Vrai / Faux
+
+28. Les quatre verbes de l'article 26 recouvrent les étapes du processus de l'ISO 31000.
+      Vrai / Faux
+
+29. L'article 29 de la loi n° 2010/012 impose de conserver dix ans les données de connexion et de trafic.
+      Vrai / Faux
+
+30. L'action de journalisation A8 abaisse la cote selon la convention.
+      Vrai / Faux
+
+========================================================================
+Textes à trous
+========================================================================
+
+31. La norme générale de management du risque est l'ISO ______.
+
+32. Transférer une partie des conséquences financières, c'est ______ le risque.
+
+33. Renoncer à l'activité qui crée le risque, c'est ______ le risque.
+
+34. Décider de ne pas traiter davantage un résiduel, c'est son ______.
+
+35. Les règles qui disent qui peut accepter quoi sont les critères d'______.
+
+36. Le document exigé par l'ISO/IEC 27001 qui recense les mesures est la déclaration d'______.
+
+37. Le prestataire d'hébergement de la SANAGA s'appelle ______.
+
+38. La norme ISO/IEC appliquant le processus à la sécurité de l'information est l'ISO/IEC ______.
+
+39. L'article de la loi n° 2010/012 qui fixe la conservation des données de connexion est l'article ______.
+
+40. Le résiduel visé pour R-AG-01 vaut ______.
+
+========================================================================
+Grille de réponses   Nom : ............................  Matricule : ............
+========================================================================
+ 1. ............................................
+ 2. ............................................
+ 3. ............................................
+ 4. ............................................
+ 5. ............................................
+ 6. ............................................
+ 7. ............................................
+ 8. ............................................
+ 9. ............................................
+10. ............................................
+11. ............................................
+12. ............................................
+13. ............................................
+14. ............................................
+15. ............................................
+16. ............................................
+17. ............................................
+18. ............................................
+19. ............................................
+20. ............................................
+21. ............................................
+22. ............................................
+23. ............................................
+24. ............................................
+25. ............................................
+26. ............................................
+27. ............................................
+28. ............................................
+29. ............................................
+30. ............................................
+31. ............................................
+32. ............................................
+33. ............................................
+34. ............................................
+35. ............................................
+36. ............................................
+37. ............................................
+38. ............................................
+39. ............................................
+40. ............................................

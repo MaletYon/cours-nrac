@@ -1,0 +1,233 @@
+NDAP SUKULU · NRAC · fiche NRAC-FICHE-C02
+Chapitre 2 : Le risque cyber : notions, mesure, incertitude
+
+Version papier, à utiliser en attendant l'ouverture du portail NDAP SUKULU.
+La fiche complète compte 40 questions. Répondez sur la grille en fin de fiche.
+Durée indicative : 60 minutes. Seuil de réussite : 60 %.
+Les corrections figurent dans le livret de correction du cours.
+
+========================================================================
+Questions à choix multiple (une seule bonne réponse)
+========================================================================
+
+ 1. Comment l'ISO 31000 définit-elle le risque ?
+      a) La probabilité d'une attaque
+      b) Une vulnérabilité exploitée
+      c) L'effet de l'incertitude sur les objectifs
+      d) Une perte financière
+
+ 2. Quelles sont les deux approches d'identification de l'ISO/IEC 27005:2022 ?
+      a) Par les actifs et par les événements
+      b) Par les coûts et par les délais
+      c) Par les normes et par les lois
+      d) Par les sites et par les personnes
+
+ 3. Dans R-AG-01, qu'est-ce que le service au guichet ?
+      a) Un bien support
+      b) Une menace
+      c) Une vulnérabilité
+      d) Une valeur métier
+
+ 4. Dans R-AG-01, qu'est-ce que le partage de fichiers ouvert à toutes les agences ?
+      a) Une source de risque
+      b) Une vulnérabilité
+      c) Un objectif visé
+      d) Un événement redouté
+
+ 5. Qu'est-ce qu'un rançongiciel, dans le vocabulaire du cours ?
+      a) Une menace
+      b) Une source de risque
+      c) Une valeur métier
+      d) Un objectif visé
+
+ 6. Qu'est-ce que l'objectif visé ?
+      a) Le bien attaqué
+      b) La mesure de sécurité
+      c) Ce que la source de risque cherche à obtenir
+      d) La cote d'impact
+
+ 7. Pourquoi une fréquence passée prédit-elle mal la fréquence future d'une attaque ?
+      a) Parce que les attaques sont aléatoires
+      b) Parce que l'adversaire s'adapte à la défense
+      c) Parce que les journaux sont effacés
+      d) Parce que la loi change
+
+ 8. Comment coter l'impact d'un scénario qui touche neuf agences d'un coup ?
+      a) Par agence, puis en moyenne
+      b) Sur l'agence la plus petite
+      c) Selon le budget
+      d) Sur le scénario entier
+
+ 9. Quelle borne de fréquence correspond au niveau 3 de vraisemblance ?
+      a) Moins d'une fois en 10 ans
+      b) Une fois en 3 à 10 ans
+      c) Une fois en 1 à 3 ans
+      d) Au moins une fois par an
+
+10. Quel niveau d'impact pour une perte de 410 millions FCFA et 3 jours d'interruption ?
+      a) 1
+      b) 2
+      c) 4
+      d) 3
+
+11. Scénario. Risque A : V4 × I1. Risque B : V1 × I4. Que dit la criticité ?
+      a) Ils ont la même criticité, 4, pour des profils opposés
+      b) A est plus grave
+      c) B est plus grave
+      d) Ils sont inférieurs à 1
+
+12. Quelle règle d'appétence corrige le principal défaut des matrices ?
+      a) Tout risque de criticité 1 est ignoré
+      b) Tout risque d'impact 4 est présenté au comité
+      c) Tout risque est accepté sous 9
+      d) Les risques rares sont exclus
+
+13. Qu'est-ce que le risque résiduel ?
+      a) Le risque avant toute mesure
+      b) Le risque accepté par le RSSI
+      c) Le risque qui subsiste compte tenu des mesures en place et dont l'efficacité est établie
+      d) Le risque transféré à l'assureur
+
+14. Selon la convention du cours, quand une étape du scénario abaisse-t-elle la cote d'un niveau ?
+      a) Quand une mesure y est déclarée
+      b) Quand un budget y est voté
+      c) Quand plusieurs mesures s'y empilent
+      d) Quand au moins une mesure testée et efficace la couvre
+
+15. Scénario. R-AG-01 : inhérent 4 × 4 ; seule l'entrée est couverte par des mesures testées. Quel résiduel ?
+      a) 3 × 4 = 12
+      b) 4 × 4 = 16
+      c) 2 × 4 = 8
+      d) 3 × 3 = 9
+
+16. Quelle incertitude se réduit en collectant des preuves ?
+      a) L'aléatoire
+      b) L'épistémique
+      c) La statistique
+      d) La financière
+
+17. Comment coter la base de preuve d'une vraisemblance fondée sur « jamais attaqués », journaux non lus ?
+      a) OUI
+      b) NON
+      c) NEK
+      d) Faible
+
+18. DC-04 était coté 1 alors que 7 incidents liés aux changements étaient recensés en 2025. Quelle cote de base ?
+      a) OUI
+      b) NEK
+      c) Moyen
+      d) NON
+
+19. Registre 2025 de la SANAGA : 6 OUI, 2 NON, 4 NEK sur 12 cotes. Que vaut U ?
+      a) 0,33
+      b) 0,50
+      c) 0,17
+      d) 0,25
+
+20. Une fréquence estimée entre 0,2 et 0,6 par an chevauche quels niveaux ?
+      a) 1 et 2
+      b) 2 et 3
+      c) 3 et 4
+      d) 1 et 4
+
+========================================================================
+Vrai ou faux
+========================================================================
+
+21. L'absence d'incident connu prouve l'absence d'attaque, même sans surveillance.
+      Vrai / Faux
+
+22. La criticité classe les risques, elle ne décide pas.
+      Vrai / Faux
+
+23. Le niveau 4 de vraisemblance est exactement deux fois le niveau 2.
+      Vrai / Faux
+
+24. Une mesure non testée n'abaisse rien.
+      Vrai / Faux
+
+25. Une étape du scénario couverte par trois mesures compte trois fois.
+      Vrai / Faux
+
+26. L'incertitude aléatoire se réduit par des preuves.
+      Vrai / Faux
+
+27. Un avis d'expert motivé et écrit peut être coté OUI, en le signalant.
+      Vrai / Faux
+
+28. Choisir silencieusement le niveau favorable d'un intervalle est légitime.
+      Vrai / Faux
+
+29. EBIOS Risk Manager distingue la valeur métier des biens supports.
+      Vrai / Faux
+
+30. La loi n° 2010/012 dit précisément comment coter un risque.
+      Vrai / Faux
+
+========================================================================
+Textes à trous
+========================================================================
+
+31. Le produit vraisemblance × impact s'appelle la ______.
+
+32. La faiblesse qu'une menace peut exploiter est une ______.
+
+33. Le composant sur lequel repose une valeur métier est un bien ______.
+
+34. L'atteinte à une valeur métier est l'événement ______.
+
+35. L'incertitude qui tient à ce que l'on ne sait pas est dite ______.
+
+36. L'incertitude qui tient au hasard est dite ______.
+
+37. Le risque avant toute mesure est le risque ______.
+
+38. Ce sur quoi repose une cote s'appelle sa base de ______.
+
+39. L'auteur qui a montré les défauts des matrices de risque s'appelle ______.
+
+40. La criticité maximale sur l'échelle du cours vaut ______.
+
+========================================================================
+Grille de réponses   Nom : ............................  Matricule : ............
+========================================================================
+ 1. ............................................
+ 2. ............................................
+ 3. ............................................
+ 4. ............................................
+ 5. ............................................
+ 6. ............................................
+ 7. ............................................
+ 8. ............................................
+ 9. ............................................
+10. ............................................
+11. ............................................
+12. ............................................
+13. ............................................
+14. ............................................
+15. ............................................
+16. ............................................
+17. ............................................
+18. ............................................
+19. ............................................
+20. ............................................
+21. ............................................
+22. ............................................
+23. ............................................
+24. ............................................
+25. ............................................
+26. ............................................
+27. ............................................
+28. ............................................
+29. ............................................
+30. ............................................
+31. ............................................
+32. ............................................
+33. ............................................
+34. ............................................
+35. ............................................
+36. ............................................
+37. ............................................
+38. ............................................
+39. ............................................
+40. ............................................

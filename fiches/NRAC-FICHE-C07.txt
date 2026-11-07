@@ -1,0 +1,233 @@
+NDAP SUKULU · NRAC · fiche NRAC-FICHE-C07
+Chapitre 7 : Décomposer, coter, conclure
+
+Version papier, à utiliser en attendant l'ouverture du portail NDAP SUKULU.
+La fiche complète compte 40 questions. Répondez sur la grille en fin de fiche.
+Durée indicative : 60 minutes. Seuil de réussite : 60 %.
+Les corrections figurent dans le livret de correction du cours.
+
+========================================================================
+Questions à choix multiple (une seule bonne réponse)
+========================================================================
+
+ 1. Pourquoi décomposer un domaine d'audit ?
+      a) Pour allonger le rapport
+      b) Parce que la mémoire de travail traite environ sept éléments à la fois
+      c) Parce que la norme l'impose
+      d) Pour réduire le nombre de tests
+
+ 2. Combien de niveaux compte le gabarit canonique ?
+      a) Cinq
+      b) Six
+      c) Huit
+      d) Dix
+
+ 3. Quel niveau fait la charnière entre ce qui est audité et comment on le vérifie ?
+      a) Le contrôle
+      b) Le processus
+      c) La preuve
+      d) La trace
+
+ 4. Quel est le niveau situé juste sous le test ?
+      a) L'activité
+      b) Le contrôle
+      c) La trace
+      d) La preuve
+
+ 5. Quelle condition de qualité interdit qu'un élément ait deux parents ?
+      a) L'exhaustivité
+      b) La non-redondance
+      c) La borne cognitive
+      d) L'atomicité
+
+ 6. Scénario. Le réseau d'agences est décomposé en six sous-domaines. Quels sont les deux derniers ?
+      a) Entrée et propagation
+      b) Détection et récupération
+      c) Facteur humain et équipements de tiers
+      d) Politique et organisation
+
+ 7. Combien d'attributs compte la fiche d'assertion ?
+      a) Cinq
+      b) Trois
+      c) Sept
+      d) Huit
+
+ 8. Quel attribut décrit l'état de non-conformité si la réponse est NON ?
+      a) L'objectif
+      b) Le critère
+      c) La question
+      d) Le risque
+
+ 9. Scénario. « Les mots de passe sont-ils robustes et changés régulièrement ? » Quel défaut ?
+      a) Elle n'a pas de critère
+      b) Elle n'est pas atomique
+      c) Elle est trop courte
+      d) Elle est au mauvais niveau
+
+10. Un contrôle a trois critères : OUI, NEK, NON. Quelle cote ?
+      a) OUI
+      b) NEK
+      c) NON
+      d) Partielle
+
+11. Un contrôle a trois critères : OUI, NEK, OUI. Quelle cote ?
+      a) NEK
+      b) OUI
+      c) NON
+      d) Un tiers
+
+12. Scénario. Mode dégradé : Garoua sert en 40 min, Kribi pas avant 2 h 15. Cote du contrôle ?
+      a) OUI à 50 %
+      b) OUI
+      c) NEK
+      d) NON
+
+13. Que signifie H = 0 avec U = 1 ?
+      a) Une conformité certaine
+      b) Une ignorance unanime
+      c) Une non-conformité certaine
+      d) Une dispersion maximale
+
+14. Scénario. S2 : 1 OUI, 1 NON, 0 NEK. Que vaut H ?
+      a) 0
+      b) 0,5 bit
+      c) 1 bit
+      d) 1,585 bit
+
+15. Quels sont les seuils du quadrant retenus par le cours ?
+      a) µ 0,5 et U 0,20
+      b) µ 0,8 et U 0,10
+      c) µ 0,25 et U 0,50
+      d) µ 0,6 et U 0,30
+
+16. Quelle est la première étape de la règle de décision ?
+      a) µ d'abord
+      b) H d'abord
+      c) La maturité d'abord
+      d) U d'abord
+
+17. Quelle région du quadrant est la plus dangereuse ?
+      a) La conformité claire
+      b) La conformité opaque
+      c) La non-conformité claire
+      d) La non-conformité opaque
+
+18. Scénario. Domaine des agences : µ 0,375, U 0,25. Quelle région ?
+      a) Conformité claire
+      b) Conformité opaque
+      c) Non-conformité opaque
+      d) Non-conformité claire
+
+19. Quel niveau de maturité attribuer à un domaine où U ≥ 0,20 ?
+      a) Indéterminé
+      b) 1
+      c) 2
+      d) 3
+
+20. Combien d'éléments compte une observation ?
+      a) Cinq
+      b) Trois
+      c) Huit
+      d) Sept
+
+========================================================================
+Vrai ou faux
+========================================================================
+
+21. Chaque élément du gabarit se place à un seul niveau.
+      Vrai / Faux
+
+22. Une décomposition peut avoir douze sous-domaines sous un même domaine.
+      Vrai / Faux
+
+23. Une réponse NON à une question atomique désigne un seul défaut.
+      Vrai / Faux
+
+24. Un seul critère NON suffit à coter le contrôle NON.
+      Vrai / Faux
+
+25. On peut lire H sans U ni µ.
+      Vrai / Faux
+
+26. Avec deux contrôles seulement, µ = 0,50 est une proportion stable.
+      Vrai / Faux
+
+27. Quand U ≥ 0,20, aucune conclusion de conformité n'est possible.
+      Vrai / Faux
+
+28. Les mesures des répondants prévalent sur les cotes de l'auditeur.
+      Vrai / Faux
+
+29. Le contradictoire fait partie de l'observation.
+      Vrai / Faux
+
+30. Une limitation de l'étendue appelle une observation décrivant l'écart non vu.
+      Vrai / Faux
+
+========================================================================
+Textes à trous
+========================================================================
+
+31. Le gabarit à huit niveaux est le gabarit ______.
+
+32. Le dernier niveau du gabarit est la ______.
+
+33. La règle qui interdit « et » et « ou » dans une assertion est la règle d'______.
+
+34. Le document qui décrit un contrôle par cinq attributs est la fiche d'______.
+
+35. H = 0 avec U = 1 décrit une ignorance ______.
+
+36. Le tableau à quatre régions croisant µ et U s'appelle le ______.
+
+37. Le seuil de U au-delà duquel un domaine est opaque vaut ______ (écrire 0,20).
+
+38. La mesure 5.30 de l'ISO/IEC 27002 porte sur la préparation des TIC pour la ______ d'activité.
+
+39. L'agence qui a échoué à l'exercice de mode dégradé est celle de ______.
+
+40. La borne de la mémoire de travail est d'environ ______ éléments.
+
+========================================================================
+Grille de réponses   Nom : ............................  Matricule : ............
+========================================================================
+ 1. ............................................
+ 2. ............................................
+ 3. ............................................
+ 4. ............................................
+ 5. ............................................
+ 6. ............................................
+ 7. ............................................
+ 8. ............................................
+ 9. ............................................
+10. ............................................
+11. ............................................
+12. ............................................
+13. ............................................
+14. ............................................
+15. ............................................
+16. ............................................
+17. ............................................
+18. ............................................
+19. ............................................
+20. ............................................
+21. ............................................
+22. ............................................
+23. ............................................
+24. ............................................
+25. ............................................
+26. ............................................
+27. ............................................
+28. ............................................
+29. ............................................
+30. ............................................
+31. ............................................
+32. ............................................
+33. ............................................
+34. ............................................
+35. ............................................
+36. ............................................
+37. ............................................
+38. ............................................
+39. ............................................
+40. ............................................

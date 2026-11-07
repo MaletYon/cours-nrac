@@ -1,0 +1,70 @@
+% ============================================================================
+% Fichier  : annexes/Ann_B_outils.tex
+% Titre    : Référentiel des Outils
+% Version  : 1.0 -- novembre 2026
+% ============================================================================
+% Outils cités à titre d'exemples courants, sans recommandation commerciale ;
+% versions et licences à vérifier avant usage. Tout outil de test technique
+% ne s'emploie qu'avec une autorisation écrite (Chapitre 12, loi n° 2010/012,
+% art. 69).
+% ============================================================================
+
+\chapter{Référentiel des Outils}
+\label{ann:outils}
+
+Les outils ci-dessous sont des exemples courants, cités pour situer les
+tâches du cours. Aucun n'est imposé~; aucun ne remplace la méthode. Les
+versions et les licences sont à vérifier avant usage.
+
+\begin{boxalert}
+\textbf{Règle.} Tout outil qui interroge un réseau ou un système (scan,
+test d'accès, test d'intrusion) ne s'emploie qu'avec une autorisation écrite
+du responsable du système, et de l'hébergeur s'il y a lieu
+(Chapitre~\ref{chap:audit-technique}, loi n°~2010/012, article~69).
+\end{boxalert}
+
+\section*{Gestion et quantification des risques}
+
+\begin{tableaucours}{L{3.6cm}L{5.0cm}c}{%
+    \tableauHeader{Tâche} &
+    \tableauHeader{Outils} &
+    \tableauHeader{Chap.}
+}
+Registre, matrice, critères & Tableur partagé, à défaut d'un outil GRC &
+\ref{chap:risque}, \ref{chap:grc-pratique} \\
+Étude EBIOS Risk Manager & Modèle de tableur mis à disposition par
+l'ANSSI~; outils labellisés par l'ANSSI & \ref{chap:ebios} \\
+Simulation de Monte-Carlo & Python (bibliothèque numpy) ou tableur~; le
+générateur \texttt{fair\_sanaga\_C05.py} de NDAP SUKULU & \ref{chap:fair} \\
+Mesures $\mu$, $U$, $H$, $D_{\mathrm{KL}}$ & Tableur, Python &
+\ref{chap:conclure}, \ref{chap:auditologie} \\
+\end{tableaucours}
+
+\section*{Audit et audit technique}
+
+\begin{tableaucours}{L{3.6cm}L{5.0cm}c}{%
+    \tableauHeader{Tâche} &
+    \tableauHeader{Outils} &
+    \tableauHeader{Chap.}
+}
+Sceller un export & Calcul d'empreinte SHA-256 (\texttt{sha256sum},
+\texttt{Get-FileHash}) & \ref{chap:audit-technique} \\
+Comparer à une référence & Guides CIS Benchmarks et outil d'évaluation
+associé~; scripts de comparaison & \ref{chap:audit-technique} \\
+Inventaire des services & Scanner de ports (par exemple Nmap) &
+\ref{chap:audit-technique} \\
+Vulnérabilités & Scanner authentifié (par exemple Greenbone OpenVAS)~;
+calculateur CVSS du FIRST & \ref{chap:audit-technique} \\
+Comptes et journaux & Extractions de l'annuaire et du collecteur de
+journaux~; tableur pour les rapprochements & \ref{chap:audit},
+\ref{chap:audit-technique} \\
+Audit continu & Scripts de rapprochement planifiés, détenus par l'audit &
+\ref{chap:emergents} \\
+\end{tableaucours}
+
+\section*{NDAP SUKULU}
+
+Les fiches d'auto-évaluation et les ateliers du cours sont accessibles sur
+NDAP SUKULU, sous le code \codeUE{}. Ils s'appuient sur des pièces et des
+exports figés fictifs, générés pour le cours~: aucun test n'y porte sur un
+système réel.

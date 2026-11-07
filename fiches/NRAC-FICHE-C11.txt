@@ -1,0 +1,233 @@
+NDAP SUKULU · NRAC · fiche NRAC-FICHE-C11
+Chapitre 11 : Mettre en œuvre et auditer un SMSI
+
+Version papier, à utiliser en attendant l'ouverture du portail NDAP SUKULU.
+La fiche complète compte 40 questions. Répondez sur la grille en fin de fiche.
+Durée indicative : 60 minutes. Seuil de réussite : 60 %.
+Les corrections figurent dans le livret de correction du cours.
+
+========================================================================
+Questions à choix multiple (une seule bonne réponse)
+========================================================================
+
+ 1. Par quoi commence la mise en œuvre d'un SMSI ?
+      a) La documentation
+      b) La décision de la direction et les moyens
+      c) L'audit interne
+      d) L'achat d'un outil
+
+ 2. Que faut-il laisser avant l'audit de certification ?
+      a) Un cycle complet : audit interne, revue de direction, actions
+      b) Six mois de silence
+      c) Un rapport du consultant
+      d) Rien
+
+ 3. Scénario. La monétique est exclue du SMSI 2028. Pourquoi l'exclusion est-elle défendable ?
+      a) Elle est petite
+      b) Elle coûte cher
+      c) Elle est couverte par PCI DSS, ses interfaces sont incluses et le conseil l'a approuvée
+      d) Le consultant l'a proposée
+
+ 4. Lequel de ces documents est expressément exigé par l'ISO/IEC 27001 ?
+      a) Une charte de messagerie
+      b) Un schéma réseau
+      c) Un organigramme
+      d) Les résultats de la revue de direction
+
+ 5. Quel article laisse à l'organisation le jugement sur la documentation nécessaire ?
+      a) 7.5
+      b) 4.3
+      c) 9.3
+      d) 10.2
+
+ 6. Quelles sont les deux familles de mesures de l'ISO/IEC 27004 ?
+      a) Coût et délai
+      b) Mise en œuvre et efficacité
+      c) Risque et appétence
+      d) Interne et externe
+
+ 7. Lequel est un indicateur d'efficacité ?
+      a) Part des comptes avec second facteur
+      b) Part des agences cloisonnées
+      c) Part des agents qui cliquent lors d'une campagne simulée
+      d) Nombre de contrats signés
+
+ 8. Scénario. I5 (mode dégradé) repose sur les déclarations des agences. Quelle cote de fiabilité ?
+      a) OUI
+      b) NON
+      c) NEK
+      d) Excellent
+
+ 9. Scénario. I2 (correctifs) ne couvre que les serveurs alors que sa définition vise tous les systèmes. Cote ?
+      a) NON
+      b) OUI
+      c) NEK
+      d) Partiel
+
+10. Tableau de bord : 4 OUI, 1 NON, 1 NEK. Que vaut U ?
+      a) 0,67
+      b) 0,33
+      c) 0,25
+      d) 0,17
+
+11. Sur quels deux objets porte l'audit interne du SMSI ?
+      a) Le budget et le personnel
+      b) Le système de management et les mesures
+      c) La documentation et les logiciels
+      d) Le conseil et la direction
+
+12. Scénario. Quel constat principal l'audit interne de mai 2028 fait-il ?
+      a) Le second facteur est absent
+      b) Les sauvegardes échouent
+      c) Le risque des GAB n'a pas été apprécié
+      d) Le périmètre est trop large
+
+13. Quel article de l'ISO/IEC 27001 porte sur la revue de direction ?
+      a) 9.3
+      b) 9.2
+      c) 6.2
+      d) 5.3
+
+14. Quel élément manquait au dossier de la revue de direction du 30 mai 2028 ?
+      a) Le tableau de bord
+      b) L'ordre du jour
+      c) La présence du DG
+      d) Le rapport de l'audit interne du SMSI
+
+15. Qu'est-ce qu'une non-conformité majeure ?
+      a) Un défaut ponctuel isolé
+      b) Une non-conformité qui affecte la capacité du système à atteindre ses résultats
+      c) Un défaut de forme
+      d) Une piste de progrès
+
+16. Quelle norme définit les non-conformités majeures et mineures pour les organismes de certification ?
+      a) ISO 19011
+      b) ISO/IEC 27004
+      c) ISO/IEC 17021-1
+      d) ISO 31000
+
+17. Que provoque une non-conformité majeure à l'audit de renouvellement ?
+      a) Elle suspend la décision de certification jusqu'à la correction vérifiée
+      b) Rien
+      c) Une amende
+      d) Un simple plan d'actions
+
+18. Scénario. Pourquoi le constat sur les GAB est-il qualifié de majeur ?
+      a) Parce que les GAB sont coûteux
+      b) Parce que quatorze agences sont concernées
+      c) Parce que le prestataire est étranger
+      d) Parce qu'il montre que le processus d'appréciation des risques ne fonctionne pas
+
+19. Combien de temps la SANAGA est-elle restée sans certificat en 2028 ?
+      a) Un an
+      b) Trois mois
+      c) Dix jours
+      d) Aucun
+
+20. Scénario. Aucun audit interne du SMSI depuis la certification initiale. Qualification ?
+      a) Mineure
+      b) Piste de progrès
+      c) Majeure
+      d) Observation
+
+========================================================================
+Vrai ou faux
+========================================================================
+
+21. Après la mise en œuvre, les étapes du SMSI se répètent chaque année.
+      Vrai / Faux
+
+22. L'exclusion des agences en 2025 avait été décidée par le conseil.
+      Vrai / Faux
+
+23. Tout doit être écrit, même ce qui n'est pas nécessaire.
+      Vrai / Faux
+
+24. Un indicateur vaut ce que vaut sa source.
+      Vrai / Faux
+
+25. Un tableau de bord fait seulement de mesures de mise en œuvre dit si l'on est protégé.
+      Vrai / Faux
+
+26. La mission de mars 2028 sur les agences portait sur les mesures, pas sur le système de management.
+      Vrai / Faux
+
+27. Une non-conformité mineure donne lieu à un plan d'actions vérifié au prochain audit.
+      Vrai / Faux
+
+28. La qualification dépend surtout de l'objet impressionnant du constat.
+      Vrai / Faux
+
+29. L'organisme certificateur évalue un système qui fonctionne, par ses traces.
+      Vrai / Faux
+
+30. La revue de direction et l'audit interne du SMSI répondent à l'article 30 de la loi n° 2010/012.
+      Vrai / Faux
+
+========================================================================
+Textes à trous
+========================================================================
+
+31. La norme qui fixe les exigences du SMSI est l'ISO/IEC ______.
+
+32. La norme ISO/IEC sur les indicateurs du SMSI porte le numéro ______.
+
+33. Une non-conformité qui n'affecte pas la capacité du système est dite ______.
+
+34. Un constat qui n'est pas une non-conformité mais une occasion d'améliorer est une piste de ______.
+
+35. L'article de l'ISO/IEC 27001 consacré à l'audit interne est l'article ______.
+
+36. L'activité exclue du SMSI 2028, couverte par PCI DSS, est la ______.
+
+37. La revue de direction 2028 était présidée par M. ______.
+
+38. Le risque des GAB a pour référence R-AG-______.
+
+39. Le taux de clic à la campagne d'hameçonnage simulé était de ______ %.
+
+40. Le certificat a été renouvelé en ______ 2028.
+
+========================================================================
+Grille de réponses   Nom : ............................  Matricule : ............
+========================================================================
+ 1. ............................................
+ 2. ............................................
+ 3. ............................................
+ 4. ............................................
+ 5. ............................................
+ 6. ............................................
+ 7. ............................................
+ 8. ............................................
+ 9. ............................................
+10. ............................................
+11. ............................................
+12. ............................................
+13. ............................................
+14. ............................................
+15. ............................................
+16. ............................................
+17. ............................................
+18. ............................................
+19. ............................................
+20. ............................................
+21. ............................................
+22. ............................................
+23. ............................................
+24. ............................................
+25. ............................................
+26. ............................................
+27. ............................................
+28. ............................................
+29. ............................................
+30. ............................................
+31. ............................................
+32. ............................................
+33. ............................................
+34. ............................................
+35. ............................................
+36. ............................................
+37. ............................................
+38. ............................................
+39. ............................................
+40. ............................................

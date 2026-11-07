@@ -1,0 +1,734 @@
+% ============================================================================
+% Fichier  : partie2/P02_C05_quantifier_fair.tex
+% Titre    : Quantifier le Risque Cyber : FAIR
+% Auteur   : MINKA MI NGUIDJOÏ Thierry Emmanuel
+% Version  : 1.0 -- novembre 2026
+% Corrigés : corriges/Corr_C05.tex
+% ============================================================================
+% Sources : Open FAIR (The Open Group), O-RT 3.0.1 et O-RA 2.0.1 (versions
+% vérifiées sur opengroup.org le 05/11/2026) ; taxonomie présentée d'après
+% Freund et Jones (2015). Le renommage « vulnérabilité » → « susceptibilité »
+% dans O-RT 3 est signalé à l'auteur comme À VÉRIFIER. Estimations calibrées
+% : Hubbard et Seiersen (2016).
+% Faits du cas (bible) : R-AG-01, fréquence 0,2 à 0,6, ampleur 150 à 900 M
+% FCFA ; incident réel 410 M ; plan A1 à A8 = 193 M ; assurance (prime
+% 35 M, franchise 100 M, plafond 1 Md).
+% Faits nouveaux (reportés dans la bible) : valeurs les plus probables
+% 0,35 et 410 M ; ventilation des 410 M (productivité 190, réponse 140,
+% remplacement 80) ; après traitement : fréquence PERT(0,05 ; 0,10 ; 0,20),
+% ampleur PERT(50 ; 150 ; 400) ; coût récurrent du plan 30 M par an.
+% CHIFFRES CALCULÉS par simulation (scratchpad fair_sanaga.py, numpy,
+% graine 2027, 100 000 itérations, fréquence PERT tirée à chaque itération,
+% nombre d'événements de Poisson, ampleur PERT par événement) :
+%   actuel : moyenne 164,6 ; P(L>0) 0,305 ; P50 0 ; P90 579,3 ; P95 733,6 ;
+%   P99 1 169,8 ; P(L>500) 0,143 ; P(lambda>1/3) 0,640 ; P(k>=2) 0,054 ;
+%   dépassements 100:0,305 250:0,288 500:0,143 750:0,047 1000:0,021.
+%   après : moyenne 18,6 ; P(L>0) 0,101 ; P90 60,0 ; P95 174,4 ; P99 283,2 ;
+%   P(L>500) 0,0006 ; dépassements 100:0,089 250:0,018 500:0,0006.
+%   assurance : remboursement moyen 126,6 (actuel), 8,2 (après).
+%   sensibilité, max 1 500 : moyenne 200,9 ; P99 1 507,0 ; P(L>500) 0,184.
+%   table des 10 années : graine 7.
+% ============================================================================
+
+\chapter{Quantifier le Risque Cyber : FAIR}
+\label{chap:fair}
+\chaptermark{Quantifier le risque}
+
+\epigraph{%
+    « Un conseil ne vote pas une couleur.\\
+    Il vote un budget. »%
+}{Principe du cours}
+
+\niveauChapitre{Intermédiaire}{%
+    Maîtrise du Chapitre~\ref{chap:iso27005}%
+}
+
+\begin{boxobjectifs}
+\begin{itemize}
+    \item Expliquer pourquoi et quand quantifier un risque cyber.
+    \item Décomposer un risque selon la taxonomie FAIR~: fréquence des
+          événements de perte et ampleur des pertes.
+    \item Produire des estimations calibrées (minimum, plus probable,
+          maximum) et en coter la base de preuve.
+    \item Conduire une simulation de Monte-Carlo pas à pas.
+    \item Interpréter une distribution de pertes annuelles~: moyenne,
+          quantiles, probabilité de dépassement.
+    \item Comparer des traitements en francs CFA, y compris une assurance.
+    \item Dire ce que la quantification apporte et ce qu'elle masque.
+\end{itemize}
+\end{boxobjectifs}
+
+\bigskip
+
+% ============================================================================
+\section*{Avant de commencer : 193 millions, est-ce trop~?}
+% ============================================================================
+
+Douala, janvier 2027. Le comité des risques du conseil de la BANQUE
+SANAGA\footnote{Comme dans tout le cours, la BANQUE SANAGA, ses
+dirigeants, les dates et les montants sont fictifs~; la méthode et les
+normes citées sont exactes.} examine le plan de traitement de R-AG-01~:
+huit actions, 193~millions FCFA (Chapitre~\ref{chap:iso27005}). Le
+directeur financier pose la question que les échelles ne savent pas
+traiter~: « Vous me dites que le risque est coté 12. Combien nous
+coûte-t-il~? Et combien nous coûtera-t-il après ces 193~millions~? »
+
+La RSSI n'a pas de réponse en francs CFA. La cote~12 classe le risque
+parmi les intolérables~; elle ne dit pas si 193~millions sont une bonne
+affaire, une dépense insuffisante ou un luxe. Le comité lui demande de
+revenir en mars avec une quantification.
+
+\medskip
+
+Ce chapitre présente la méthode qu'elle emploie, FAIR, et la déroule sur
+R-AG-01. Tous les résultats numériques ont été obtenus par une simulation
+réelle de 100\,000 années, dont le chapitre explique chaque étape.
+
+\begin{boxalert}
+\textbf{Violation typique.} Présenter au conseil une perte « attendue » de
+143,5~millions, obtenue en multipliant une fréquence par une perte, comme
+si c'était ce qui allait arriver.
+
+\smallskip
+\textbf{Règle~:} une quantification se présente comme une distribution~:
+la plupart des années ne coûtent rien, quelques-unes coûtent très cher. On
+donne au moins la moyenne, la probabilité d'une perte et un quantile élevé,
+avec les hypothèses et leur base de preuve.
+\end{boxalert}
+
+\separateur
+
+% ============================================================================
+\section{Pourquoi Quantifier}
+\label{sec:c05-pourquoi}
+% ============================================================================
+
+Les échelles qualitatives ont deux mérites~: elles sont rapides, et
+chacun les comprend. Le Chapitre~\ref{chap:risque} en a montré les
+limites~: niveaux ordinaux, produit qui écrase les écarts, frontières
+arbitraires. Ces limites deviennent bloquantes dans trois situations~:
+\begin{itemize}
+    \item \textbf{comparer un risque à une dépense}~: un plan de
+          193~millions, une prime d'assurance, un recrutement~;
+    \item \textbf{comparer des risques de nature différente}~: un risque
+          cyber et un risque de crédit, que le conseil arbitre avec le même
+          budget~;
+    \item \textbf{une cote qui chevauche un seuil}~: la fréquence de
+          R-AG-01, estimée entre 0,2 et 0,6 par an, traverse les niveaux~2
+          et~3 de l'échelle, donc la frontière entre «~à traiter dans
+          l'année~» et «~intolérable~» (Chapitre~\ref{chap:risque}).
+\end{itemize}
+
+On ne quantifie pas tout. La quantification coûte du temps et des
+compétences~; on la réserve aux risques qui pèsent sur une décision
+importante, typiquement ceux d'impact critique ou dont la cote traverse un
+seuil.
+
+% ============================================================================
+\section{La Taxonomie FAIR}
+\label{sec:c05-taxonomie}
+% ============================================================================
+
+\subsection{Une décomposition}
+
+FAIR (\emph{Factor Analysis of Information Risk}) est un modèle de
+quantification du risque d'information. Il est normalisé par The Open
+Group sous le nom d'Open FAIR, en deux normes~: la taxonomie du risque
+(O-RT, version~3.0.1) et l'analyse du risque (O-RA,
+version~2.0.1)~\cite{opengroup2026openfair}. Le cours présente la
+taxonomie d'après l'ouvrage de référence de Freund et
+Jones~\cite{freund2015fair}.
+
+\begin{boxdef}
+\termecle{Risque (au sens de FAIR)}\index{FAIR}~: fréquence et ampleur
+probables des pertes futures. Il se décompose en deux branches~:
+\begin{itemize}
+    \item la \textbf{fréquence des événements de perte}~: combien de fois
+          par an un événement de menace aboutit à une perte~;
+    \item l'\textbf{ampleur des pertes}~: combien coûte chaque événement.
+\end{itemize}
+\end{boxdef}
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[
+    noeud/.style={draw=CouleurPrimaire, thick, rounded corners,
+                  fill=CouleurPrimaire!8, text width=2.3cm,
+                  minimum height=0.9cm, align=center, font=\scriptsize},
+    racine/.style={noeud, fill=CouleurAccent!15, draw=CouleurAccent},
+    lien/.style={thick, CouleurSecondaire}]
+    \node[racine] (R) at (0,0) {\textbf{Risque}};
+    \node[noeud] (F) at (-3.4,-1.5) {Fréquence des événements de perte};
+    \node[noeud] (A) at (3.4,-1.5) {Ampleur des pertes};
+    \node[noeud] (T) at (-5.2,-3.1) {Fréquence des événements de menace};
+    \node[noeud] (V) at (-1.8,-3.1) {Vulnérabilité};
+    \node[noeud] (C) at (-6.0,-4.7) {Fréquence de contact};
+    \node[noeud] (P) at (-3.4,-4.7) {Probabilité d'action};
+    \node[noeud] (Cap) at (-1.0,-4.7) {Capacité de la menace};
+    \node[noeud] (Res) at (1.4,-4.7) {Force de résistance};
+    \node[noeud] (PP) at (2.0,-3.1) {Pertes primaires};
+    \node[noeud] (PS) at (4.8,-3.1) {Pertes secondaires};
+    \draw[lien] (R) -- (F); \draw[lien] (R) -- (A);
+    \draw[lien] (F) -- (T); \draw[lien] (F) -- (V);
+    \draw[lien] (T) -- (C); \draw[lien] (T) -- (P);
+    \draw[lien] (V) -- (Cap); \draw[lien] (V) -- (Res);
+    \draw[lien] (A) -- (PP); \draw[lien] (A) -- (PS);
+\end{tikzpicture}
+\caption{La taxonomie FAIR (d'après Freund et Jones, 2015)}
+\label{fig:c05-taxonomie}
+\end{figure}
+
+\begin{tableaucours}{L{3.6cm}L{8.6cm}}{%
+    \tableauHeader{Facteur} &
+    \tableauHeader{Définition}
+}
+Fréquence des événements de menace & Nombre de fois par an où une source
+de menace agit contre l'actif~: produit de la fréquence de contact et de
+la probabilité qu'elle passe à l'action \\
+Vulnérabilité & Probabilité qu'un événement de menace devienne un
+événement de perte~: elle dépend de la capacité de la menace comparée à la
+force de résistance des mesures \\
+Pertes primaires & Pertes subies directement par l'organisation du fait de
+l'événement \\
+Pertes secondaires & Pertes qui viennent des réactions de tiers~: clients,
+régulateur, tribunaux, presse~; elles ont leur propre fréquence et leur
+propre ampleur \\
+\end{tableaucours}
+\vspace{-0.8em}
+\begin{center}{\small\itshape Tableau~5.1. Les facteurs de la taxonomie}\end{center}
+
+\begin{boxinfo}
+\textbf{À vérifier dans la norme.} La version~3 de la taxonomie Open FAIR
+a révisé certains termes~; on y lit notamment \emph{susceptibilité} là où
+les textes antérieurs parlent de \emph{vulnérabilité}. Le cours garde le
+vocabulaire de Freund et Jones, plus répandu, et signale l'écart.
+\end{boxinfo}
+
+\subsection{Six formes de pertes}
+
+FAIR ventile l'ampleur en six formes de pertes~: la \emph{productivité}
+(activité perdue), la \emph{réponse} (gestion de l'incident,
+communication, conseils), le \emph{remplacement} (actifs à reconstruire
+ou racheter), les \emph{amendes et jugements}, l'\emph{avantage
+concurrentiel} perdu, et la \emph{réputation}~\cite{freund2015fair}.
+
+\begin{boxscenario}{Opération SANAGA. Les 410 millions, ventilés}
+\textbf{Constatation.} La direction financière ventile le coût de
+l'incident de septembre 2026~:
+\begin{itemize}
+    \item productivité~: 190~millions (neuf agences fermées trois jours,
+          opérations perdues ou reportées)~;
+    \item réponse~: 140~millions (prestataire de réponse à incident,
+          cellule de crise, communication auprès de la clientèle)~;
+    \item remplacement~: 80~millions (reconstruction de 180 postes)~;
+    \item amendes et jugements, avantage concurrentiel~: néant~;
+    \item réputation~: non chiffrée.
+\end{itemize}
+
+\textbf{Analyse} (confiance élevée sur les pertes primaires, faible sur
+les secondaires). Les 410~millions sont presque entièrement des pertes
+primaires. La perte de clients qui ont changé de banque n'est pas mesurée~:
+elle est \NEK{}. Le coût réel de l'incident est donc d'au moins
+410~millions, pas de 410~millions.
+\end{boxscenario}
+
+% ============================================================================
+\section{Estimer}
+\label{sec:c05-estimer}
+% ============================================================================
+
+\subsection{Des estimations calibrées}
+
+FAIR ne demande pas des valeurs exactes, que personne n'a, mais des
+\termecle{estimations calibrées}\index{estimation calibrée}~: pour chaque
+facteur, un minimum, une valeur la plus probable et un maximum, choisis de
+sorte que l'expert soit confiant, à 90~\% environ, que la vraie valeur se
+trouve entre le minimum et le maximum. Hubbard et Seiersen montrent que
+cette confiance s'apprend, par des exercices de calibrage, et que la
+plupart des experts non entraînés donnent des intervalles trop
+étroits~\cite{hubbard2016measure}.
+
+\subsection{Les estimations de R-AG-01}
+
+En février 2027, la RSSI anime un atelier avec la direction financière, la
+direction du réseau d'agences et le prestataire de réponse à incident.
+
+\begin{tableaucours}{L{3.0cm}ccc L{4.4cm}}{%
+    \tableauHeader{Facteur} &
+    \tableauHeader{Min.} &
+    \tableauHeader{Plus prob.} &
+    \tableauHeader{Max.} &
+    \tableauHeader{Justification}
+}
+Fréquence des événements de perte (par an) & 0,2 & 0,35 & 0,6 & Un
+incident réussi en 2026~; tentatives fréquentes dans le secteur~; défenses
+de 2025 \\
+Ampleur par événement (M FCFA) & 150 & 410 & 900 & Minimum~: trois agences
+touchées~; plus probable~: l'incident vécu~; maximum~: propagation à tout
+le réseau et pertes secondaires \\
+\end{tableaucours}
+\vspace{-0.8em}
+\begin{center}{\small\itshape Tableau~5.2. Estimations calibrées pour
+R-AG-01 (défenses de 2025)}\end{center}
+
+Pour la fréquence, l'atelier estime directement la fréquence des
+événements de perte, sans descendre jusqu'à la fréquence de contact et à la
+vulnérabilité~: la taxonomie permet de s'arrêter au niveau où l'on dispose
+de la meilleure information.
+
+\subsection{La base de preuve des estimations}
+
+\begin{boxlecture}{Base de preuve des six valeurs}
+\textbf{Constatation.} La RSSI cote la base de chacune des six valeurs
+du Tableau~5.2~:
+\begin{itemize}
+    \item fréquence~: minimum \NEK{} (avis non motivé), plus probable
+          \OUI{} (incident de 2026, données sectorielles d'un assureur),
+          maximum \NEK{}~;
+    \item ampleur~: minimum \OUI{} (devis de reconstruction pour trois
+          agences), plus probable \OUI{} (coût de l'incident), maximum
+          \NEK{} (pertes secondaires non chiffrées).
+\end{itemize}
+3~\OUI{}, 0~\NON{}, 3~\NEK{}~: $\mu = 0{,}50$~; $U = 0{,}50$~;
+$H = -(2 \times 0{,}5\log_2 0{,}5) = 1{,}00$~bit.
+
+\medskip
+\textbf{Analyse} (confiance élevée). La quantification est solide en son
+centre et incertaine dans ses queues. Or ce sont les queues qui
+intéressent le conseil~: le maximum d'ampleur décide du quantile à
+99~\%, et le maximum de fréquence de la probabilité d'avoir deux incidents
+la même année. La Section~\ref{sec:c05-masque} mesure ce que pèse cette
+incertitude.
+
+\medskip
+\hfill\lecture{0{,}50}{0{,}50}{1{,}00}
+\end{boxlecture}
+
+% ============================================================================
+\section{La Simulation de Monte-Carlo}
+\label{sec:c05-montecarlo}
+% ============================================================================
+
+\subsection{Le principe}
+
+Multiplier la fréquence la plus probable par l'ampleur la plus probable
+donne $0{,}35 \times 410 = 143{,}5$~millions. Ce chiffre n'est ni ce qui
+arrivera une année donnée (le plus souvent, rien), ni même la moyenne,
+parce qu'il ignore la forme des distributions. La \termecle{simulation de
+Monte-Carlo}\index{simulation de Monte-Carlo} remplace ce calcul par un
+grand nombre d'années tirées au hasard, selon les estimations.
+
+\begin{boxprocedure}
+\textbf{Simuler une année.}
+\begin{enumerate}
+    \item Tirer une fréquence $\lambda$ dans la distribution de fréquence
+          (ici une loi PERT, qui suit le minimum, le plus probable et le
+          maximum).
+    \item Tirer un nombre d'événements dans l'année, selon une loi de
+          Poisson de paramètre $\lambda$~: le plus souvent 0, parfois 1,
+          rarement 2 ou plus.
+    \item Pour chaque événement, tirer une ampleur dans la distribution
+          d'ampleur (loi PERT).
+    \item La perte de l'année est la somme des ampleurs.
+\end{enumerate}
+On répète l'opération un grand nombre de fois (ici 100\,000), puis on lit
+la distribution des pertes annuelles obtenues. Le papier de travail
+conserve le programme, la graine du générateur aléatoire et les
+estimations, pour que le résultat puisse être reproduit.
+\end{boxprocedure}
+
+\begin{boxinfo}
+\textbf{La loi PERT.} Elle se construit à partir d'un minimum $a$, d'une
+valeur la plus probable $m$ et d'un maximum $b$. Sa moyenne vaut
+$\frac{a + 4m + b}{6}$~: pour la fréquence,
+$\frac{0{,}2 + 1{,}4 + 0{,}6}{6} \approx 0{,}367$~; pour l'ampleur,
+$\frac{150 + 1\,640 + 900}{6} \approx 448$~millions. La moyenne de
+l'ampleur dépasse la valeur la plus probable, parce que le maximum est plus
+éloigné du mode que le minimum.
+\end{boxinfo}
+
+\subsection{Dix années, à la main}
+
+Pour comprendre la mécanique, voici les dix premières années d'une
+simulation.
+
+\begin{tableaucours}{cccL{3.4cm}r}{%
+    \tableauHeader{Année} &
+    \tableauHeader{$\lambda$ tirée} &
+    \tableauHeader{Événements} &
+    \tableauHeader{Ampleurs (M FCFA)} &
+    \tableauHeader{Perte}
+}
+1 & 0,38 & 0 & -- & 0 \\
+2 & 0,26 & 0 & -- & 0 \\
+3 & 0,39 & 0 & -- & 0 \\
+4 & 0,43 & 1 & 385 & 385 \\
+5 & 0,38 & 0 & -- & 0 \\
+6 & 0,26 & 0 & -- & 0 \\
+7 & 0,43 & 0 & -- & 0 \\
+8 & 0,35 & 0 & -- & 0 \\
+9 & 0,40 & 1 & 521 & 521 \\
+10 & 0,35 & 0 & -- & 0 \\
+\textbf{Moyenne} & & & & \textbf{90,6} \\
+\end{tableaucours}
+\vspace{-0.8em}
+\begin{center}{\small\itshape Tableau~5.3. Dix années simulées}\end{center}
+
+Huit années sur dix ne coûtent rien~; deux coûtent 385 et 521~millions.
+La moyenne de ces dix années, 90,6~millions, est loin de la moyenne
+obtenue sur 100\,000 années (164,6~millions)~: dix tirages ne suffisent
+pas. C'est la leçon de la simulation, et aussi celle de l'expérience~: une
+banque qui n'a pas eu d'incident pendant huit ans n'en déduit rien sur la
+neuvième.
+
+\subsection{Cent mille années}
+
+\begin{tableaucours}{L{6.6cm}rr}{%
+    \tableauHeader{Indicateur (M FCFA, par an)} &
+    \tableauHeader{Défenses 2025} &
+    \tableauHeader{Après traitement}
+}
+Perte annuelle moyenne & 164,6 & 18,6 \\
+Probabilité d'une perte dans l'année & 30,5~\% & 10,1~\% \\
+Médiane (une année sur deux) & 0 & 0 \\
+Quantile à 90~\% (une année sur dix au-delà) & 579 & 60 \\
+Quantile à 95~\% (une année sur vingt) & 734 & 174 \\
+Quantile à 99~\% (une année sur cent) & 1\,170 & 283 \\
+Probabilité d'une perte supérieure à 500~M & 14,3~\% & 0,06~\% \\
+\end{tableaucours}
+\vspace{-0.8em}
+\begin{center}{\small\itshape Tableau~5.4. Distribution des pertes annuelles
+dues à R-AG-01 (100\,000 années simulées)}\end{center}
+
+La colonne «~après traitement~» reprend la simulation avec les estimations
+de l'atelier pour la situation visée par le plan~: fréquence entre 0,05 et
+0,20 (plus probable 0,10), grâce au second facteur et au cloisonnement~;
+ampleur entre 50 et 400~millions (plus probable 150), grâce aux
+sauvegardes testées et au mode dégradé.
+
+\begin{tableaucours}{cccccc}{%
+    \tableauHeader{Perte supérieure à (M)} &
+    \tableauHeader{0} &
+    \tableauHeader{250} &
+    \tableauHeader{500} &
+    \tableauHeader{750} &
+    \tableauHeader{1\,000}
+}
+Défenses 2025 & 30,5~\% & 28,8~\% & 14,3~\% & 4,7~\% & 2,1~\% \\
+Après traitement & 10,1~\% & 1,8~\% & 0,06~\% & 0~\% & 0~\% \\
+\end{tableaucours}
+\vspace{-0.8em}
+\begin{center}{\small\itshape Tableau~5.5. Probabilités de dépassement
+(courbe de dépassement, en points)}\end{center}
+
+% ============================================================================
+\section{Interpréter et Décider}
+\label{sec:c05-decider}
+% ============================================================================
+
+\subsection{Lire la distribution}
+
+\begin{boxlecture}{Ce que la RSSI présente au comité, en mars 2027}
+\textbf{Constatation.}
+\begin{itemize}
+    \item Avec les défenses de 2025, une année sur trois environ connaît
+          un incident~; la perte moyenne est de 165~millions par an, et une
+          année sur sept dépasse 500~millions.
+    \item Après traitement, une année sur dix connaît un incident~; la
+          perte moyenne tombe à 19~millions, et une perte de plus de
+          500~millions devient exceptionnelle (moins d'une année sur mille).
+\end{itemize}
+
+\textbf{Analyse} (confiance moyenne~: voir la base de preuve des
+estimations). Le plan réduit la perte moyenne d'environ 146~millions par
+an. Il coûte 193~millions la première année, puis environ 30~millions par
+an (licences, tests trimestriels, exercices). Le gain net annuel, de
+l'ordre de 116~millions, rembourse l'investissement en moins de deux ans.
+Sur ce seul risque, 193~millions ne sont pas un luxe.
+\end{boxlecture}
+
+\subsection{L'appétence en francs CFA}
+
+La quantification permet aussi d'exprimer l'appétence autrement qu'en
+couleurs. La RSSI propose au comité une formulation~: « la probabilité
+qu'un même risque cyber cause, une année donnée, une perte supérieure à
+500~millions FCFA ne dépasse pas 5~\% ». Avec les défenses de 2025,
+R-AG-01 la viole largement (14,3~\%)~; après traitement, il la respecte
+(0,06~\%).
+
+La simulation tranche aussi la question laissée ouverte au
+Chapitre~\ref{chap:risque}~: la fréquence tirée dépasse 1/3 par an dans
+64~\% des années simulées. Le niveau~3 de vraisemblance est donc plus
+probable que le niveau~2~; la cote prudente de 12 était justifiée.
+
+\subsection{L'assurance, chiffrée}
+
+L'offre du courtier (prime de 35~millions par an, franchise de
+100~millions par événement, plafond de 1~milliard) se juge maintenant sur
+les mêmes simulations.
+
+\begin{tableaucours}{L{6.4cm}rr}{%
+    \tableauHeader{M FCFA par an} &
+    \tableauHeader{Défenses 2025} &
+    \tableauHeader{Après traitement}
+}
+Perte moyenne sans assurance & 164,6 & 18,6 \\
+Remboursement moyen de l'assureur & 126,6 & 8,2 \\
+Coût moyen avec assurance (perte $-$ remboursement $+$ prime) & 73,0 &
+45,4 \\
+\end{tableaucours}
+\vspace{-0.8em}
+\begin{center}{\small\itshape Tableau~5.6. L'assurance, avant et après
+traitement}\end{center}
+
+Avant traitement, l'assurance divise le coût moyen par plus de deux. Après
+traitement, elle coûte en moyenne plus qu'elle ne rapporte (45,4 contre
+18,6). Deux conclusions~: l'assurance est utile comme protection
+temporaire, pendant la mise en œuvre du plan~; ensuite, elle ne se justifie
+que si la prime baisse, ou pour protéger la banque contre les années
+extrêmes que la simulation estime mal. Et l'on ne pourra pas l'obtenir sans
+les mesures, que les assureurs exigent~: la réduction vient d'abord.
+
+% ============================================================================
+\section{Ce que la Quantification Masque}
+\label{sec:c05-masque}
+% ============================================================================
+
+\subsection{Des chiffres faits d'opinions}
+
+Une simulation transforme des estimations en distribution~; elle ne les
+rend pas plus vraies. Trois des six valeurs d'entrée sont \NEK{}. Pour
+mesurer ce que cela pèse, la RSSI relance la simulation en portant le
+maximum d'ampleur de 900 à 1\,500~millions, pour tenir compte des pertes
+secondaires non chiffrées.
+
+\begin{tableaucours}{L{6.6cm}rr}{%
+    \tableauHeader{Indicateur (M FCFA)} &
+    \tableauHeader{Max. 900} &
+    \tableauHeader{Max. 1\,500}
+}
+Perte annuelle moyenne & 164,6 & 200,9 \\
+Quantile à 99~\% & 1\,170 & 1\,507 \\
+Probabilité d'une perte supérieure à 500~M & 14,3~\% & 18,4~\% \\
+\end{tableaucours}
+\vspace{-0.8em}
+\begin{center}{\small\itshape Tableau~5.7. Sensibilité au maximum
+d'ampleur}\end{center}
+
+Une seule valeur \NEK{}, modifiée, déplace la moyenne de 22~\% et le
+quantile à 99~\% de 29~\%. La décision de traiter ne change pas~; mais le
+montant de couverture d'assurance, lui, en dépend. C'est le rôle de
+l'analyse de sensibilité~: identifier les \NEK{} dont la décision dépend,
+et y consacrer l'effort de collecte de preuves.
+
+\subsection{Cinq angles morts}
+
+\begin{itemize}
+    \item \textbf{Le scénario absent.} On ne simule que ce que l'on a
+          imaginé. En 2025, R-AG-01 n'existait pas dans le registre~:
+          aucune simulation ne l'aurait chiffré.
+    \item \textbf{La fausse précision.} « 164,6~millions » suggère une
+          exactitude que les estimations n'ont pas. On présente des ordres
+          de grandeur arrondis («~environ 165~millions~»).
+    \item \textbf{L'indépendance supposée.} Le modèle tire les événements
+          indépendamment. Une même faiblesse peut provoquer plusieurs
+          incidents corrélés, et une crise du secteur toucher plusieurs
+          banques à la fois.
+    \item \textbf{L'adversaire qui s'adapte.} Les estimations décrivent la
+          menace de 2027~; un attaquant qui change de méthode les rend
+          caduques (Chapitre~\ref{chap:risque}, Tableau~2.2).
+    \item \textbf{L'incertitude de connaissance.} La distribution mêle
+          l'aléa (l'attaque aura-t-elle lieu~?) et l'ignorance (la vraie
+          fréquence)~; elle ne dit pas quelle part vient de chacun. La cote
+          de la base de preuve des estimations le dit.
+\end{itemize}
+
+\begin{boxinfo}
+\textbf{La quantification et l'auditologie.} Le cours tient les deux
+ensemble~: la simulation décrit l'incertitude \emph{aléatoire} sur les
+pertes, sous des hypothèses~; la cote \OUI{}~/ \NON{}~/ \NEK{} des
+hypothèses décrit l'incertitude \emph{épistémique} sur ces hypothèses. Une
+quantification présentée sans la seconde est incomplète~; le
+Chapitre~\ref{chap:auditologie} montre comment les combiner.
+\end{boxinfo}
+
+\begin{boxinfo}
+\textbf{Et le cadre juridique~?} Aucun texte camerounais n'impose de
+quantifier les risques cyber. L'article~26 de la loi n°~2010/012 demande
+de les \emph{évaluer} (Chapitre~\ref{chap:iso27005})~\cite{loi2010012}~;
+la quantification est une manière de le faire, que le conseil, le
+superviseur et l'assureur comprennent, parce qu'elle parle leur langue~:
+l'argent.
+\end{boxinfo}
+
+% ============================================================================
+\section{Ce que la Quantification demande à chaque Métier}
+\label{sec:c05-metiers}
+% ============================================================================
+
+\begin{boxmetier}{Gestionnaire des risques cyber}
+\textbf{Quantifier ce qui décide}
+\begin{enumerate}
+    \item Réserver la quantification aux risques dont dépend une décision
+          importante.
+    \item Faire produire des estimations calibrées, par des experts
+          entraînés, et coter leur base de preuve.
+    \item Présenter une distribution (moyenne, probabilité, quantile élevé),
+          jamais un seul chiffre.
+    \item Tester la sensibilité aux valeurs \NEK{}.
+\end{enumerate}
+\end{boxmetier}
+
+\begin{boxmetier}{RSSI}
+\textbf{Défendre un budget}
+
+La RSSI ne demande plus 193~millions pour « réduire un risque coté 12 ».
+Elle montre une réduction de perte moyenne de l'ordre de 146~millions par
+an, et le passage de la probabilité d'une année à plus de 500~millions de
+14~\% à moins de 0,1~\%. Le conseil vote un budget, avec ses hypothèses.
+\end{boxmetier}
+
+\begin{boxmetier}{Auditeur en cybersécurité}
+\textbf{Auditer les entrées, pas le logiciel}
+
+L'auditeur ne refait pas les 100\,000 tirages~; il vérifie que le programme
+et la graine sont conservés, que chaque estimation a une justification
+écrite, que les auteurs ont été calibrés, et que la sensibilité aux
+valeurs non fondées a été testée.
+\end{boxmetier}
+
+\begin{boxmetier}{Responsable GRC}
+\textbf{Une même monnaie}
+
+Le responsable GRC propose au conseil une appétence exprimée en francs
+CFA, applicable à tous les risques quantifiés, cyber ou non. Les risques
+deviennent comparables, et les arbitrages budgétaires, explicables.
+\end{boxmetier}
+
+\separateur
+
+\begin{boxresume}
+\textbf{Ce qu'il faut retenir de ce chapitre~:}
+\begin{itemize}
+    \item \textbf{Quantifier} sert à comparer un risque à une dépense, des
+          risques entre eux, ou à trancher une cote qui chevauche un seuil.
+    \item \textbf{FAIR} décompose le risque en fréquence des événements de
+          perte et ampleur des pertes~; l'ampleur se ventile en six formes
+          de pertes, primaires et secondaires.
+    \item \textbf{Des estimations calibrées} (minimum, plus probable,
+          maximum) remplacent les valeurs exactes que personne n'a~; leur
+          base de preuve se cote.
+    \item \textbf{La simulation de Monte-Carlo} tire des années~; on lit la
+          moyenne, la probabilité d'une perte et les quantiles élevés.
+    \item \textbf{R-AG-01}~: environ 165~millions de perte moyenne par an
+          avant traitement, 19 après~; le plan de 193~millions se rembourse
+          en moins de deux ans.
+    \item \textbf{La quantification masque} le scénario absent, la fausse
+          précision, les corrélations, l'adversaire qui s'adapte, et
+          l'incertitude de connaissance.
+\end{itemize}
+\end{boxresume}
+
+\begin{boxinfo}
+\textbf{Points de contrôle.} Vous avez compris ce chapitre si vous savez~:
+\begin{itemize}
+    \item placer un facteur dans la taxonomie FAIR~;
+    \item ventiler un coût d'incident en formes de pertes~;
+    \item simuler quelques années à la main et dire pourquoi elles ne
+          suffisent pas~;
+    \item lire une distribution et en tirer une décision de traitement ou
+          d'assurance.
+\end{itemize}
+\end{boxinfo}
+
+% ============================================================================
+\section*{Exercices}
+% ============================================================================
+
+\begin{boxexo}[title={\ding{45}\quad Exercice~5.1. Six formes de pertes \niveaubase}]
+Classez chacun des coûts suivants dans l'une des six formes de pertes de
+FAIR, et dites s'il s'agit d'une perte primaire ou secondaire.
+\begin{enumerate}[(a)]
+    \item Les heures supplémentaires des agents pour ressaisir les
+          opérations.
+    \item Le rachat de vingt postes de travail.
+    \item L'amende infligée par le superviseur pour notification tardive.
+    \item Les honoraires du prestataire de réponse à incident.
+    \item Les clients qui ferment leur compte après l'incident.
+    \item Le contrat d'une grande entreprise remporté par une banque
+          concurrente pendant la fermeture des guichets.
+\end{enumerate}
+\end{boxexo}
+
+\begin{boxexo}[title={\ding{45}\quad Exercice~5.2. Le chiffre trompeur \niveaumoyen}]
+\begin{enumerate}[(a)]
+    \item Calculez les moyennes PERT de la fréquence et de l'ampleur pour la
+          situation après traitement (Section~\ref{sec:c05-montecarlo}), et
+          leur produit. Comparez au résultat de la simulation (18,6).
+    \item Pourquoi la médiane de la perte annuelle est-elle nulle, avant
+          comme après traitement~?
+    \item Un administrateur propose de provisionner chaque année
+          165~millions «~pour couvrir le risque~». Expliquez ce que cette
+          provision couvre et ce qu'elle ne couvre pas, à l'aide du
+          Tableau~5.4.
+\end{enumerate}
+\end{boxexo}
+
+\begin{boxexo}[title={\ding{45}\quad Exercice~5.3. Une autre offre d'assurance \niveaumoyen}]
+Un second assureur propose, après traitement, une prime de 12~millions par
+an, une franchise de 200~millions par événement et un plafond de
+500~millions. On admet qu'après traitement il rembourserait en moyenne
+1,5~million par an.
+\begin{enumerate}[(a)]
+    \item Calculez le coût moyen annuel avec cette assurance et comparez-le
+          à l'absence d'assurance et à la première offre.
+    \item À l'aide du Tableau~5.5, dites dans quelles années cette
+          assurance joue, et ce qu'elle protège réellement.
+    \item Recommandez une décision au comité, en deux phrases.
+\end{enumerate}
+\end{boxexo}
+
+\begin{boxexo}[title={\ding{45}\quad Exercice~5.4. Quantifier SO1 pour PHARMACAM \niveauexpert}]
+LiZbiZ veut présenter à PHARMACAM une quantification simple du scénario
+SO1 (Chapitre~\ref{chap:ebios}). L'atelier retient~: un événement au plus
+par an, avec une probabilité de 0,25~; une ampleur triangulaire de minimum
+100, plus probable 300, maximum 800~millions FCFA (moyenne~: le tiers de la
+somme des trois valeurs).
+\begin{enumerate}[(a)]
+    \item Calculez la perte annuelle moyenne.
+    \item Simulez dix années à la main avec les nombres aléatoires suivants
+          (un événement survient si le nombre est inférieur à 0,25)~: 0,81~;
+          0,12~; 0,55~; 0,37~; 0,09~; 0,66~; 0,93~; 0,21~; 0,48~; 0,70.
+          Les ampleurs tirées pour les événements sont, dans l'ordre, 320,
+          610 et 180~millions. Calculez la moyenne des dix années et
+          commentez.
+    \item Cotez la base de preuve des quatre valeurs d'entrée, sachant que
+          LiZbiZ n'a jamais subi de rançongiciel et que l'ampleur
+          maximale correspond à l'estimation de PHARMACAM pour un camion de
+          vaccins perdu.
+    \item Rédigez le paragraphe destiné à PHARMACAM~: ce que la
+          quantification dit, ce qu'elle suppose, ce qu'elle ne dit pas.
+\end{enumerate}
+\end{boxexo}
+
+\bigskip
+
+\begin{boxinfo}
+\textbf{Pour aller plus loin.}
+\begin{itemize}
+    \item Freund et Jones, \emph{Measuring and Managing Information
+          Risk}~\cite{freund2015fair}, l'exposé de référence de FAIR.
+    \item Les normes Open FAIR de The Open Group~\cite{opengroup2026openfair}.
+    \item Hubbard et Seiersen, \emph{How to Measure Anything in
+          Cybersecurity Risk}~\cite{hubbard2016measure}, sur le calibrage
+          des experts.
+\end{itemize}
+\end{boxinfo}
+
+\begin{boxinfo}
+\textbf{Transition.} La Partie~II a jusqu'ici appris à apprécier, traiter
+et chiffrer les risques. Reste à vérifier que les mesures annoncées
+existent et fonctionnent~: c'est le travail de l'auditeur. Le
+Chapitre~\ref{chap:audit} présente la conduite d'un audit de
+cybersécurité, du mandat au rapport.
+\end{boxinfo}

@@ -1,0 +1,233 @@
+NDAP SUKULU · NRAC · fiche NRAC-FICHE-C01
+Chapitre 1 : Gouverner la cybersécurité : du contrôle à la GRC
+
+Version papier, à utiliser en attendant l'ouverture du portail NDAP SUKULU.
+La fiche complète compte 40 questions. Répondez sur la grille en fin de fiche.
+Durée indicative : 60 minutes. Seuil de réussite : 60 %.
+Les corrections figurent dans le livret de correction du cours.
+
+========================================================================
+Questions à choix multiple (une seule bonne réponse)
+========================================================================
+
+ 1. À quel « âge » de la sécurité la BANQUE SANAGA était-elle en 2025 ?
+      a) L'âge technique
+      b) L'âge du contrôle
+      c) L'âge de la gouvernance
+      d) L'âge de la quantification
+
+ 2. Quelle question pose la gouvernance ?
+      a) Quels outils installer ?
+      b) Les contrôles prévus sont-ils appliqués ?
+      c) Quels risques accepte-t-on, qui en répond, comment le sait-on ?
+      d) Quel antivirus choisir ?
+
+ 3. Que fait l'audit par rapport à la GRC ?
+      a) Il en est la quatrième lettre
+      b) Il remplace la conformité
+      c) Il fixe l'appétence
+      d) Il donne une assurance indépendante sur les trois
+
+ 4. Quels sont les processus de gouvernance de la sécurité selon l'ISO/IEC 27014 ?
+      a) Évaluer, diriger, surveiller, communiquer
+      b) Planifier, faire, vérifier, agir
+      c) Identifier, protéger, détecter, répondre
+      d) Acheter, installer, exploiter, retirer
+
+ 5. Comment COBIT appelle-t-il son domaine de gouvernance ?
+      a) APO
+      b) EDM
+      c) DSS
+      d) MEA
+
+ 6. Quelle fonction la version 2.0 du cadre NIST a-t-elle ajoutée ?
+      a) Identifier
+      b) Rétablir
+      c) Détecter
+      d) Gouverner
+
+ 7. Qu'exige l'article 6.1.2 de l'ISO/IEC 27001, en substance ?
+      a) Que chaque risque ait un propriétaire
+      b) Que le conseil approuve le périmètre
+      c) Un audit annuel par l'ANTIC
+      d) Un second facteur partout
+
+ 8. Scénario. Le périmètre du SMSI a été signé par le seul DG, sans passer par le conseil. Quel est le défaut principal ?
+      a) Un défaut technique
+      b) Un défaut de conformité à l'ISO/IEC 27001 seulement
+      c) Un défaut de gouvernance
+      d) Aucun défaut
+
+ 9. Dans quelle ligne se trouve la DSI qui exploite les postes ?
+      a) Première ligne
+      b) Deuxième ligne
+      c) Troisième ligne
+      d) Organe de gouvernance
+
+10. Qui fournit une assurance indépendante à l'organe de gouvernance ?
+      a) La DSI
+      b) Le RSSI
+      c) La direction des risques
+      d) L'audit interne
+
+11. Pourquoi le mot « défense » a-t-il disparu du modèle de 2020 ?
+      a) Parce que la sécurité ne compte plus
+      b) Parce que la gestion des risques sert aussi à saisir des opportunités et que les lignes doivent coopérer
+      c) Parce que la COBAC l'a interdit
+      d) Par simplification de traduction
+
+12. Scénario. Le RSSI administre le pare-feu et rédige le rapport qui dit qu'il fonctionne. Quel principe est violé ?
+      a) La confidentialité
+      b) L'appétence
+      c) Celui qui exploite une mesure n'en atteste pas l'efficacité
+      d) La proportionnalité
+
+13. Qui est en général le propriétaire d'un risque ?
+      a) Le RSSI
+      b) Le directeur dont l'activité est exposée
+      c) L'auditeur interne
+      d) Le consultant
+
+14. Qui fixe l'appétence au risque ?
+      a) L'organe de direction
+      b) Le DSI
+      c) Le RSSI
+      d) L'organisme certificateur
+
+15. Quel critère compte le plus dans le rattachement du RSSI ?
+      a) Son grade
+      b) Son ancienneté
+      c) Le nombre de ses collaborateurs
+      d) Son droit d'être entendu par l'instance qui décide
+
+16. Pourquoi ne pas confondre le RSSI et le DPD ?
+      a) Ils ont le même rôle
+      b) Le DPD veille aux droits des personnes, le RSSI protège l'information de l'organisation
+      c) Le DPD est un technicien
+      d) La loi interdit au RSSI de parler au DPD
+
+17. Que signifie la lettre A ?
+      a) Assiste
+      b) Accepte
+      c) Répond du résultat (Accountable)
+      d) Audite
+
+18. Combien de A par activité ?
+      a) Un seul
+      b) Deux
+      c) Autant que de directions
+      d) Aucun
+
+19. Scénario. Ligne « Fixer le périmètre du SMSI » : A pour le DG et A pour le DSI. Quelle règle est violée ?
+      a) Au moins un R
+      b) Un seul A par activité
+      c) Pas de C sans I
+      d) La preuve
+
+20. Évaluation 2025 de la gouvernance : 2 OUI, 4 NON, 2 NEK. Que vaut H ?
+      a) 1,00 bit
+      b) 0,50 bit
+      c) 1,585 bit
+      d) 1,50 bit
+
+========================================================================
+Vrai ou faux
+========================================================================
+
+21. L'ISO/IEC 27001 exige que le conseil d'administration approuve le périmètre.
+      Vrai / Faux
+
+22. Une même direction peut tenir des rôles de première et de deuxième ligne pour des activités différentes.
+      Vrai / Faux
+
+23. Le modèle des trois lignes garantit que tout l'univers des risques est couvert.
+      Vrai / Faux
+
+24. Un outil GRC remplace la décision du conseil sur l'appétence.
+      Vrai / Faux
+
+25. Une colonne sans aucun A désigne un acteur qui ne répond de rien.
+      Vrai / Faux
+
+26. L'audit interne peut être R et A pour l'audit du dispositif de sécurité.
+      Vrai / Faux
+
+27. Un NEK sur la surveillance est neutre pour la gouvernance.
+      Vrai / Faux
+
+28. L'article 26 de la loi n° 2010/012 vise les services offerts directement ou indirectement.
+      Vrai / Faux
+
+29. Le règlement COBAC R-2016/04 ne concerne pas les systèmes d'information.
+      Vrai / Faux
+
+30. À la BANQUE SANAGA, la RSSI est rattachée au directeur des risques.
+      Vrai / Faux
+
+========================================================================
+Textes à trous
+========================================================================
+
+31. Gouvernance, risque et conformité ont pour sigle ______.
+
+32. Le modèle des trois lignes a été publié par l'______ en 2020.
+
+33. La matrice qui répartit réalise, répond, consulté, informé s'appelle la matrice ______.
+
+34. Le niveau de risque qu'une organisation accepte s'appelle l'______ au risque.
+
+35. La personne qui a l'autorité de gérer un risque est son ______.
+
+36. La norme ISO/IEC consacrée à la gouvernance de la sécurité porte le numéro ______.
+
+37. L'article 5 de l'ISO/IEC 27001 porte sur le ______.
+
+38. L'audit interne est la ______ ligne.
+
+39. Évaluation 2025 : 2 OUI sur 8 questions ; µ vaut ______ (écrire 0,25).
+
+40. Le délégué à la protection des données a pour sigle ______.
+
+========================================================================
+Grille de réponses   Nom : ............................  Matricule : ............
+========================================================================
+ 1. ............................................
+ 2. ............................................
+ 3. ............................................
+ 4. ............................................
+ 5. ............................................
+ 6. ............................................
+ 7. ............................................
+ 8. ............................................
+ 9. ............................................
+10. ............................................
+11. ............................................
+12. ............................................
+13. ............................................
+14. ............................................
+15. ............................................
+16. ............................................
+17. ............................................
+18. ............................................
+19. ............................................
+20. ............................................
+21. ............................................
+22. ............................................
+23. ............................................
+24. ............................................
+25. ............................................
+26. ............................................
+27. ............................................
+28. ............................................
+29. ............................................
+30. ............................................
+31. ............................................
+32. ............................................
+33. ............................................
+34. ............................................
+35. ............................................
+36. ............................................
+37. ............................................
+38. ............................................
+39. ............................................
+40. ............................................

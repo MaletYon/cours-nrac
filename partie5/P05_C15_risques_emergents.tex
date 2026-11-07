@@ -1,0 +1,559 @@
+% ============================================================================
+% Fichier  : partie5/P05_C15_risques_emergents.tex
+% Titre    : Risques Émergents et Nouveaux Objets d'Audit
+% Auteur   : MINKA MI NGUIDJOÏ Thierry Emmanuel
+% Version  : 1.0 -- novembre 2026
+% Corrigés : corriges/Corr_C15.tex
+% ============================================================================
+% Sources : ISO/IEC 27002:2022 (mesures 5.19 à 5.23, intitulés traduits) ;
+% ISO/IEC 27017:2015 et 27018:2019 ; ISO/IEC 42001:2023 (système de
+% management de l'IA, certifiable) ; NIST AI RMF 1.0 (2023 : fonctions
+% Gouverner, Cartographier, Mesurer, Gérer ; caractéristiques de
+% confiance) ; ISAE 3402 / SOC 2 (Chapitre 9). Loi n° 2010/012, art. 26
+% al. 1 (cité au Chapitre 3) ; loi n° 2024/017 à vérifier.
+% Faits du corpus : ANPP (quatre agents payés après leur départ) ; LiZbiZ
+% (148 M FCFA d'ajustements de stock, dont 71 % en fin de mois, sous le
+% compte de M. FOUDA ; cours ACSI).
+% Faits nouveaux (reportés dans la bible) : en 2029, la SANAGA migre sa
+% messagerie vers un service en nuage (NUAGEPRO, fictif) ; registre des
+% 9 prestataires critiques (4/1/4) ; modèle de détection de fraude aux
+% virements acheté à un éditeur (FRAUDSCAN, fictif) ; usage d'un assistant
+% d'IA générative public par des agents (copie de données de clients) ;
+% audit continu des paiements de l'ANPP : 37 exceptions en juin 2029
+% (29 justifiées, 6 indues, 2 inconnues).
+% ============================================================================
+
+\chapter{Risques Émergents et Nouveaux Objets d'Audit}
+\label{chap:emergents}
+\chaptermark{Risques émergents}
+
+\epigraph{%
+    « On peut externaliser un service.\\
+    On n'externalise jamais la responsabilité. »%
+}{Principe du cours}
+
+\niveauChapitre{Expert}{%
+    Maîtrise du Chapitre~\ref{chap:cas-integrateurs}%
+}
+
+\begin{boxobjectifs}
+\begin{itemize}
+    \item Gérer et auditer les risques liés aux tiers et à la chaîne
+          d'approvisionnement.
+    \item Auditer un service en nuage selon le partage des responsabilités.
+    \item Situer les risques des systèmes d'intelligence artificielle, et les
+          cadres qui les encadrent (ISO/IEC~42001, NIST AI RMF).
+    \item Concevoir un dispositif d'audit continu, et en connaître les
+          limites.
+    \item Appliquer à ces nouveaux objets la cote \OUI{}~/ \NON{}~/ \NEK{} et
+          les trois mesures.
+\end{itemize}
+\end{boxobjectifs}
+
+\bigskip
+
+% ============================================================================
+\section*{Avant de commencer : la sécurité qui n'est plus chez soi}
+% ============================================================================
+
+Douala, 2029. La BANQUE SANAGA\footnote{Comme dans tout le cours, les
+organisations, les prestataires (DIGICORE, NUAGEPRO, FRAUDSCAN), les
+personnes, les dates et les montants sont fictifs~; les normes et les
+cadres cités sont exacts.} a reconstruit sa sécurité sur ce qu'elle
+détient~: ses postes, ses réseaux, ses agences. Mais une part croissante de
+son système d'information n'est plus chez elle. Le centre de données est
+hébergé par DIGICORE~; la messagerie migre en 2029 vers un service en nuage,
+NUAGEPRO~; un modèle d'intelligence artificielle, acheté à l'éditeur
+FRAUDSCAN, analyse désormais chaque virement. Et des agents ont pris
+l'habitude de coller des extraits de dossiers de clients dans un assistant
+d'IA générative public, «~pour rédiger plus vite~».
+
+La RSSI résume la situation au comité~: «~Nous savons auditer nos systèmes.
+Nous ne savons pas encore auditer ceux des autres, ni ceux qui
+apprennent.~»
+
+\medskip
+
+Ce chapitre ouvre la Partie~V. Il présente trois objets d'audit qui
+transforment le métier~: les tiers et le nuage, l'intelligence
+artificielle, et l'audit lui-même, qui devient continu.
+
+\begin{boxalert}
+\textbf{Violation typique.} Considérer qu'un risque confié à un prestataire
+sort du registre de l'organisation.
+
+\smallskip
+\textbf{Règle~:} le risque reste celui de l'organisation~; seule
+l'exécution de certaines mesures change de main. Le registre porte le
+risque, le contrat porte les obligations du prestataire, et la preuve doit
+revenir à l'organisation.
+\end{boxalert}
+
+\separateur
+
+% ============================================================================
+\section{Les Tiers et la Chaîne d'Approvisionnement}
+\label{sec:c15-tiers}
+% ============================================================================
+
+\subsection{Un risque qui vient de l'extérieur}
+
+Le Chapitre~\ref{chap:ebios} a montré qu'un attaquant ciblé passe souvent
+par un partenaire moins protégé. Les tiers posent trois questions
+distinctes~: un prestataire peut \emph{servir de porte d'entrée} (l'accès de
+maintenance de LiZbiZ)~; il peut \emph{défaillir} (DIGICORE)~; et il peut
+lui-même dépendre d'autres prestataires, que l'organisation ne connaît pas
+(les sous-traitants de rang deux).
+
+L'ISO/IEC~27002:2022 consacre cinq mesures à ces sujets~: la politique de
+sécurité dans les relations avec les fournisseurs (5.19), la sécurité dans
+les accords (5.20), la chaîne d'approvisionnement des TIC (5.21), la
+surveillance et la revue des services des fournisseurs (5.22), et la
+sécurité des services en nuage (5.23)~\cite{iso27002_2022}.
+
+\subsection{Le cycle de vie d'un tiers}
+
+\begin{tableaucours}{L{2.6cm}L{9.6cm}}{%
+    \tableauHeader{Étape} &
+    \tableauHeader{Ce que l'organisation fait, et ce qu'elle garde comme preuve}
+}
+Sélection & Classe le tiers selon sa criticité (dépendance, pénétration~:
+Chapitre~\ref{chap:ebios})~; évalue sa maturité par un questionnaire et des
+attestations \\
+Contrat & Inscrit les exigences de sécurité, la notification des
+incidents, le droit d'audit ou le rapport d'assurance, la réversibilité,
+l'accord préalable sur la sous-traitance \\
+Exploitation & Suit les indicateurs de service et de sécurité, reçoit les
+rapports d'assurance, exerce son droit d'audit~; met à jour la criticité \\
+Sortie & Récupère les données, révoque les accès, obtient la preuve de
+destruction \\
+\end{tableaucours}
+\vspace{-0.8em}
+\begin{center}{\small\itshape Tableau~15.1. Le cycle de vie d'un tiers}\end{center}
+
+\begin{boxlecture}{Les neuf prestataires critiques de la BANQUE SANAGA}
+\textbf{Constatation.} En mars 2029, M.~ATANGANA cote, pour chacun des neuf
+prestataires classés critiques, l'existence d'une preuve récente que ses
+mesures fonctionnent (rapport d'assurance de type~2, audit exercé, ou
+certification couvrant le service)~:
+\begin{itemize}
+    \item \OUI{}~: le prestataire des GAB (audit exercé grâce à
+          l'avenant), le fournisseur d'accès (test de la protection contre
+          le déni de service), l'éditeur du système central (rapport de
+          type~2), NUAGEPRO (certification ISO/IEC~27001 et rapport de
+          type~2 couvrant la messagerie)~;
+    \item \NON{}~: DIGICORE (rapport annuel non remis)~;
+    \item \NEK{}~: FRAUDSCAN, le prestataire de la monétique, l'imprimeur
+          des chéquiers et le transporteur de fonds (aucune preuve demandée
+          à ce jour).
+\end{itemize}
+4~\OUI{}, 1~\NON{}, 4~\NEK{}~:
+\[
+\mu = U \approx 0{,}44~;\quad
+H = -\left(2 \times \tfrac{4}{9}\log_2\tfrac{4}{9} + \tfrac{1}{9}\log_2\tfrac{1}{9}\right)
+  \approx 1{,}040 + 0{,}352 \approx 1{,}39~\text{bit}.
+\]
+
+\textbf{Analyse} (confiance élevée). La banque connaît bien ses prestataires
+«~historiques~», ceux de l'incident de 2026 et de l'audit de 2028. Les
+quatre \NEK{} sont des prestataires que personne n'a regardés sous l'angle
+de la sécurité, parce qu'ils ne sont pas «~informatiques~». Le transporteur
+de fonds et l'imprimeur des chéquiers ont pourtant accès à des
+informations sensibles. C'est le périmètre de complaisance du prologue,
+déplacé vers l'écosystème.
+
+\medskip
+\hfill\lecture{0{,}44}{0{,}44}{1{,}39}
+\end{boxlecture}
+
+% ============================================================================
+\section{Auditer un Service en Nuage}
+\label{sec:c15-nuage}
+% ============================================================================
+
+\subsection{La responsabilité partagée}
+
+Dans un service en nuage, les mesures de sécurité se répartissent entre le
+fournisseur et le client, selon le modèle de service. Le fournisseur répond
+de ce qu'il exploite~; le client, de ce qu'il configure et de ce qu'il y
+met.
+
+\begin{tableaucours}{L{4.0cm}ccc}{%
+    \tableauHeader{Couche} &
+    \tableauHeader{Infrastructure (IaaS)} &
+    \tableauHeader{Plateforme (PaaS)} &
+    \tableauHeader{Logiciel (SaaS)}
+}
+Centre de données, matériel & Fournisseur & Fournisseur & Fournisseur \\
+Système d'exploitation & Client & Fournisseur & Fournisseur \\
+Application & Client & Client & Fournisseur \\
+Configuration du service & Client & Client & Client \\
+Identités et accès des utilisateurs & Client & Client & Client \\
+Données & Client & Client & Client \\
+\end{tableaucours}
+\vspace{-0.8em}
+\begin{center}{\small\itshape Tableau~15.2. Le partage des responsabilités
+(schéma général~; chaque contrat le précise)}\end{center}
+
+Deux lignes restent toujours au client~: les identités et les données. Une
+messagerie en nuage parfaitement sécurisée par son fournisseur reste
+vulnérable si les comptes des agents n'ont pas de second facteur, ou si un
+agent partage un dossier de clients avec tout Internet.
+
+\subsection{Les référentiels du nuage}
+
+L'ISO/IEC~27017 complète l'ISO/IEC~27002 par des recommandations propres
+aux services en nuage, pour le fournisseur comme pour le
+client~\cite{iso27017_2015}~; l'ISO/IEC~27018 traite de la protection des
+données personnelles dans le nuage public~\cite{iso27018_2019}. Pour
+l'auditeur, la preuve vient le plus souvent des rapports d'assurance du
+fournisseur (type~2) et de ses certifications~: il vérifie qu'ils couvrent
+bien le service utilisé, la période, et le centre de données qui héberge
+les données.
+
+\begin{boxscenario}{Opération SANAGA. La messagerie dans le nuage}
+\textbf{Faits.} La messagerie migre vers NUAGEPRO en mai 2029. NUAGEPRO
+fournit une certification ISO/IEC~27001 et un rapport de type~2.
+
+\medskip
+\textbf{Analyse} (confiance moyenne). Ces pièces couvrent la part du
+fournisseur. La part de la banque se vérifie autrement~: second facteur sur
+tous les comptes (une extraction de la console d'administration du
+service)~; règles de partage externe désactivées~; journaux d'accès
+récupérés dans le collecteur de la banque~; localisation des données et
+conditions de leur transfert, à examiner au regard de la loi
+n°~2024/017 (à vérifier). Le «~rapport du fournisseur~» ne remplace aucune de
+ces quatre preuves.
+\end{boxscenario}
+
+\begin{boxinfo}
+\textbf{La loi et les tiers.} L'article~26, alinéa~1, de la loi
+n°~2010/012 vise les risques liés aux services offerts « directement ou
+indirectement » (Chapitre~\ref{chap:iso27005})~\cite{loi2010012}.
+Analyse (lecture du cours)~: confier un service à un prestataire ne fait
+pas sortir ses risques du champ de l'obligation de l'exploitant.
+\end{boxinfo}
+
+% ============================================================================
+\section{L'Intelligence Artificielle}
+\label{sec:c15-ia}
+% ============================================================================
+
+\subsection{Des risques nouveaux}
+
+Un système d'intelligence artificielle est un logiciel dont le comportement
+est appris à partir de données plutôt qu'entièrement programmé. Il ajoute
+aux risques classiques des risques propres~:
+\begin{itemize}
+    \item \textbf{la fuite de données}~: ce que l'on confie à un assistant
+          public peut être conservé, réutilisé, ou exposé~;
+    \item \textbf{la manipulation}~: des données d'entraînement empoisonnées,
+          ou des instructions cachées dans un document soumis à un
+          assistant, peuvent détourner le système~;
+    \item \textbf{l'erreur opaque}~: un modèle peut se tromper sans que l'on
+          sache pourquoi, et ses performances peuvent se dégrader quand les
+          données changent~;
+    \item \textbf{le biais}~: un modèle peut traiter différemment des
+          catégories de personnes, ce qui pose des questions de droit et de
+          réputation.
+\end{itemize}
+
+\subsection{Deux cadres}
+
+\begin{tableaucours}{L{2.6cm}L{4.8cm}L{4.8cm}}{%
+    \tableauHeader{} &
+    \tableauHeader{ISO/IEC~42001:2023} &
+    \tableauHeader{NIST AI RMF~1.0 (2023)}
+}
+Nature & Système de management de l'IA, certifiable~\cite{iso42001_2023} &
+Cadre volontaire de gestion des risques~\cite{nist2023airmf} \\
+Structure & Même structure que l'ISO/IEC~27001 (articles~4 à~10), avec une
+annexe de mesures & Quatre fonctions~: gouverner, cartographier, mesurer,
+gérer \\
+Apport & S'intègre au SMSI existant & Décrit les caractéristiques d'une IA
+digne de confiance~: valide et fiable, sûre, sécurisée et résiliente,
+responsable et transparente, explicable, respectueuse de la vie privée,
+équitable \\
+\end{tableaucours}
+\vspace{-0.8em}
+\begin{center}{\small\itshape Tableau~15.3. Deux cadres pour l'IA}\end{center}
+
+\subsection{Deux usages à la BANQUE SANAGA}
+
+\begin{boxscenario}{Opération SANAGA. Un modèle acheté, un assistant toléré}
+\textbf{Le modèle de FRAUDSCAN.} Il attribue à chaque virement un score de
+risque~; au-delà d'un seuil, le virement est bloqué pour vérification.
+Questions de l'auditeur~: sur quelles données le modèle a-t-il été
+entraîné~? Qui a validé le seuil, et sur quels essais~? Comment la banque
+sait-elle, mois après mois, que le taux de fraudes manquées ne se dégrade
+pas~? Que peut-elle expliquer à un client dont le virement est bloqué, ou
+au superviseur~? À ce jour, la banque ne peut répondre qu'à la deuxième
+question~: les trois autres sont \NEK{}.
+
+\medskip
+\textbf{L'assistant public.} Une revue des journaux de navigation montre
+que 47 agents ont soumis des textes à un assistant d'IA générative public
+en un mois, dont certains contenaient des noms et des numéros de compte de
+clients. Aucune règle ne l'interdisait, aucune ne l'encadrait.
+
+\medskip
+\textbf{Analyse} (confiance élevée). Le premier usage est un risque de
+\emph{tiers} et de \emph{modèle}~: il relève à la fois du cycle de vie des
+prestataires et d'une surveillance des performances. Le second est un
+risque de \emph{fuite}, créé par un usage non déclaré~: il appelle une
+règle d'usage, une solution autorisée, et une sensibilisation. Ni l'un ni
+l'autre ne figurait au registre.
+\end{boxscenario}
+
+\begin{boxobjet}{R-IA-01 · Fuite de données de clients par un assistant public}
+\textbf{Valeur métier~:} la confidentialité des données des clients.
+
+\textbf{Bien support~:} navigateurs des agents, assistant public non
+contractualisé.
+
+\textbf{Événement redouté~:} divulgation de données de clients à un tiers
+sans contrat~; manquement possible aux obligations de protection des
+données (loi n°~2024/017, à vérifier).
+
+\textbf{Vraisemblance~:} 4 (usage constaté, 47 agents en un mois). Base~:
+journaux de navigation (\OUI{}).
+
+\textbf{Impact~:} 3 (atteinte à la confidentialité, réputation, risque
+réglementaire). Base~: appréciation du DPD (\OUI{}).
+
+\textbf{Traitement~:} règle d'usage de l'IA approuvée par le comité de
+sécurité~; blocage de l'assistant public~; mise à disposition d'un assistant
+contractualisé, sans conservation des données~; sensibilisation ciblée.
+
+\textbf{Propriétaire~:} le directeur des opérations, avec le DPD.
+\end{boxobjet}
+
+% ============================================================================
+\section{L'Audit Continu}
+\label{sec:c15-continu}
+% ============================================================================
+
+\subsection{De l'échantillon à la population}
+
+Le Chapitre~\ref{chap:grc-pratique} a présenté le contrôle continu de la
+\emph{conformité}~: des tests automatiques sur les contrôles. L'\termecle{audit
+continu}\index{audit continu} va plus loin~: il analyse les \emph{données}
+et les \emph{transactions} elles-mêmes, sur toute la population et de
+manière répétée, pour y détecter les anomalies. Là où la Chambre des
+comptes examinait 40 paiements de l'ANPP, l'audit continu les examine tous,
+chaque mois.
+
+\begin{boxscenario}{Opération ANPP. Tous les paiements, chaque mois}
+\textbf{Le test.} Chaque mois, un programme rapproche les paiements du
+fichier des agents en activité et signale tout paiement à une personne
+absente de ce fichier à la date du paiement. Le programme appartient à
+l'audit interne de l'ANPP, qui le fait tourner sur une copie des données.
+
+\medskip
+\textbf{Juin 2029.} Le test signale 37 exceptions. Après examen~: 29 sont
+justifiées (départs enregistrés avec retard, rappels de salaire dus), 6 sont
+des paiements indus, et 2 restent sans explication, les dossiers n'ayant pas
+été retrouvés.
+\end{boxscenario}
+
+\begin{boxlecture}{Les 37 exceptions de juin 2029}
+\textbf{Constatation.} 29 justifiées (\OUI{}), 6 indues (\NON{}), 2 sans
+explication (\NEK{})~:
+\[
+\mu \approx 0{,}78~;\quad U \approx 0{,}05~;\quad
+H \approx 0{,}276 + 0{,}426 + 0{,}228 \approx 0{,}93~\text{bit}.
+\]
+
+\textbf{Analyse} (confiance moyenne). La plupart des exceptions sont des
+faux positifs, et c'est normal~: un test exhaustif signale tout ce qui
+s'écarte de la règle, y compris ce qui s'explique. Les six paiements indus
+sont des constats établis sur toute la population, plus solides que ceux
+qu'un échantillon de 40 aurait pu fournir. Les deux \NEK{} sont l'objet
+même de l'audit~: ce sont les cas où l'explication manque.
+
+\medskip
+\hfill\lecture{0{,}78}{0{,}05}{0{,}93}
+\end{boxlecture}
+
+\subsection{Les conditions et les limites}
+
+\begin{boxprocedure}
+\textbf{Mettre en place un test d'audit continu.} Le papier de travail
+décrit~:
+\begin{itemize}
+    \item la règle testée et son critère (texte, procédure)~;
+    \item les sources de données, leur exhaustivité et leur qualité (le
+          fichier des agents est-il à jour~? les paiements sont-ils tous
+          extraits~?)~;
+    \item le programme, sa version, et sa validation (essai sur des cas
+          connus)~;
+    \item la fréquence, le seuil d'exception et le circuit de traitement
+          des exceptions~;
+    \item qui détient le programme~: l'audit interne, et non la direction
+          auditée, pour préserver l'indépendance.
+\end{itemize}
+\end{boxprocedure}
+
+\begin{boxalert}
+\textbf{Violation typique.} Confier le test d'audit continu à la direction
+qui exécute les paiements, puis lire l'absence d'exception comme une preuve.
+
+\smallskip
+\textbf{Règle~:} un test d'audit continu ne vaut que par l'exhaustivité de
+ses données et l'indépendance de celui qui le fait tourner. Le même
+programme, géré par la direction, est un contrôle de premier ou de deuxième
+niveau (Chapitre~\ref{chap:grc}), utile, mais qui ne remplace pas l'audit.
+Et trop d'exceptions non traitées finissent par ne plus être lues.
+\end{boxalert}
+
+% ============================================================================
+\section{Ce que les Nouveaux Objets demandent à chaque Métier}
+\label{sec:c15-metiers}
+% ============================================================================
+
+\begin{boxmetier}{Responsable GRC}
+\textbf{Un registre des tiers}
+
+Tenir la liste des prestataires critiques, leur criticité, la preuve
+attendue de chacun et son statut. Y faire entrer ceux qui ne sont pas
+«~informatiques~», mais touchent à l'information.
+\end{boxmetier}
+
+\begin{boxmetier}{Auditeur en cybersécurité}
+\textbf{Lire un rapport d'assurance}
+
+Vérifier que le rapport de type~2 couvre le service utilisé, la période et
+le lieu des données~; repérer les mesures que le fournisseur attend du
+client (souvent listées dans le rapport) et les tester chez le client.
+Pour l'IA, demander les preuves d'entraînement, de validation et de
+surveillance du modèle.
+\end{boxmetier}
+
+\begin{boxmetier}{RSSI}
+\textbf{Encadrer les usages avant de les interdire}
+
+Un usage non déclaré de l'IA révèle un besoin. La RSSI propose une règle
+d'usage, une solution autorisée et une sensibilisation~; le blocage seul
+déplace l'usage ailleurs.
+\end{boxmetier}
+
+\begin{boxmetier}{Gestionnaire des risques cyber}
+\textbf{Faire entrer l'IA dans le registre}
+
+Chaque système d'IA en usage est inventorié, avec son propriétaire, ses
+données, son fournisseur et ses scénarios de risque~: fuite, manipulation,
+erreur, biais.
+\end{boxmetier}
+
+\separateur
+
+\begin{boxresume}
+\textbf{Ce qu'il faut retenir de ce chapitre~:}
+\begin{itemize}
+    \item \textbf{Les tiers} sont une porte d'entrée, un risque de
+          défaillance et une chaîne~; le risque reste celui de
+          l'organisation.
+    \item \textbf{Le cycle de vie d'un tiers}~: sélection, contrat,
+          exploitation, sortie, avec une preuve à chaque étape.
+    \item \textbf{Dans le nuage}, les identités et les données restent
+          toujours au client~; le rapport du fournisseur ne couvre que sa
+          part.
+    \item \textbf{L'IA} ajoute fuite, manipulation, erreur opaque et biais~;
+          ISO/IEC~42001 et le NIST AI RMF l'encadrent.
+    \item \textbf{L'audit continu} examine toute la population~; il vaut par
+          l'exhaustivité des données et l'indépendance de son exploitant.
+\end{itemize}
+\end{boxresume}
+
+\begin{boxinfo}
+\textbf{Points de contrôle.} Vous avez compris ce chapitre si vous savez~:
+\begin{itemize}
+    \item répartir une mesure entre fournisseur et client pour un service
+          donné~;
+    \item dire ce qu'un rapport d'assurance prouve et ce qu'il laisse au
+          client~;
+    \item apprécier un usage de l'IA sous forme de fiche de risque~;
+    \item concevoir un test d'audit continu et ses conditions de validité.
+\end{itemize}
+\end{boxinfo}
+
+% ============================================================================
+\section*{Exercices}
+% ============================================================================
+
+\begin{boxexo}[title={\ding{45}\quad Exercice~15.1. Qui en répond~? \niveaubase}]
+La messagerie de la BANQUE SANAGA est un service en nuage de type logiciel
+(SaaS). Pour chacune des tâches suivantes, dites si elle revient à NUAGEPRO
+ou à la banque.
+\begin{enumerate}[(a)]
+    \item Appliquer les correctifs du système d'exploitation des serveurs.
+    \item Activer le second facteur pour les agents.
+    \item Désactiver le partage externe des documents.
+    \item Protéger physiquement le centre de données.
+    \item Désactiver le compte d'un agent parti.
+    \item Conserver les journaux d'accès selon la loi.
+\end{enumerate}
+\end{boxexo}
+
+\begin{boxexo}[title={\ding{45}\quad Exercice~15.2. Le contrat de FRAUDSCAN \niveaumoyen}]
+\begin{enumerate}[(a)]
+    \item Rédigez cinq clauses de sécurité pour le contrat du modèle de
+          détection de fraude, en couvrant les quatre étapes du cycle de vie
+          d'un tiers.
+    \item Ajoutez deux clauses propres à l'IA (données d'entraînement,
+          surveillance des performances).
+    \item Quelles preuves la banque devra-t-elle obtenir chaque année pour
+          lever les trois \NEK{} du modèle~?
+\end{enumerate}
+\end{boxexo}
+
+\begin{boxexo}[title={\ding{45}\quad Exercice~15.3. L'IA chez LiZbiZ \niveaumoyen}]
+LiZbiZ envisage un modèle qui optimise les tournées de livraison à partir
+des données de suivi des expéditions et des adresses des clients.
+\begin{enumerate}[(a)]
+    \item Identifiez deux scénarios de risque propres à l'IA, et rédigez la
+          fiche de l'un d'eux.
+    \item Placez les actions de LiZbiZ dans les quatre fonctions du NIST AI
+          RMF.
+    \item PHARMACAM demande si ce modèle « est conforme à
+          l'ISO/IEC~42001 ». Que répondez-vous~?
+\end{enumerate}
+\end{boxexo}
+
+\begin{boxexo}[title={\ding{45}\quad Exercice~15.4. Un audit continu des ajustements de stock \niveauexpert}]
+Le cours ACSI a établi que 148~millions FCFA d'ajustements de stock, dont
+71~\% en fin de mois, avaient été enregistrés sous le compte de M.~FOUDA à
+Douala.
+\begin{enumerate}[(a)]
+    \item Concevez un test d'audit continu qui aurait signalé ces
+          ajustements~: règle, données, seuils, fréquence.
+    \item Rédigez le papier de travail de mise en place (exhaustivité,
+          validation, indépendance).
+    \item Lors du premier mois, le test signale 120 exceptions. Comment
+          éviter que les exceptions ne soient plus lues, sans perdre les
+          vraies anomalies~?
+    \item Un mois, 80 exceptions sont justifiées, 15 confirmées comme
+          anormales, 5 sans explication. Calculez $\mu$, $U$ et $H$, et dites
+          ce que chaque catégorie appelle.
+\end{enumerate}
+\end{boxexo}
+
+\bigskip
+
+\begin{boxinfo}
+\textbf{Pour aller plus loin.}
+\begin{itemize}
+    \item L'ISO/IEC~27002:2022~\cite{iso27002_2022}, mesures 5.19 à 5.23.
+    \item L'ISO/IEC~27017~\cite{iso27017_2015} et l'ISO/IEC~27018~\cite{iso27018_2019}.
+    \item L'ISO/IEC~42001:2023~\cite{iso42001_2023} et le NIST AI
+          RMF~\cite{nist2023airmf}.
+\end{itemize}
+\end{boxinfo}
+
+\begin{boxinfo}
+\textbf{Transition.} Tiers opaques, modèles qui apprennent, populations
+entières analysées~: à chaque fois, la question de l'auditeur est la même~:
+que sait-on, et que ne sait-on pas~? La Partie~VI, consacrée à la
+recherche, montre comment l'auditologie fait de cette question un objet de
+mesure. C'est le Chapitre~\ref{chap:auditologie}.
+\end{boxinfo}

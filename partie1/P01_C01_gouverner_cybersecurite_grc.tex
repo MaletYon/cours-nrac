@@ -1,0 +1,889 @@
+% ============================================================================
+% Fichier  : partie1/P01_C01_gouverner_cybersecurite_grc.tex
+% Titre    : Gouverner la Cybersécurité : du Contrôle à la GRC
+% Auteur   : MINKA MI NGUIDJOÏ Thierry Emmanuel
+% Version  : 1.0 -- novembre 2026
+% Corrigés : corriges/Corr_C01.tex
+% ============================================================================
+% Faits du cas (bible des cas) : BANQUE SANAGA, 38 agences, DG M. FOTSO,
+% RSSI Mme ABENA rattachée au directeur des risques, audit interne dirigé par
+% Mme EKAMBI ; certificat ISO/IEC 27001:2022 sur le seul centre de données ;
+% rançongiciel du 14/09/2026. Faits nouveaux introduits ici (reportés dans
+% la bible) : le périmètre du SMSI a été proposé par le consultant, accepté
+% par le DSI et signé par le DG sans passer par le conseil ; comité de
+% sécurité sans procès-verbaux ; évaluation de gouvernance 2025 : 2/4/2.
+% Sources : modèle des trois lignes (IIA, 2020) ; ISO/IEC 27001:2022, art. 5
+% et 6.1.2 (paraphrasés) ; ISO/IEC 27014:2020 (processus de gouvernance,
+% paraphrasés, à vérifier sur le texte) ; NIST CSF 2.0, fonction GOVERN ;
+% COBIT 2019 (domaine EDM) ; loi n° 2010/012, art. 26 al. 1 (texte français
+% officiel, Ann. D d'ACSI) ; COBAC R-2016/04 (paraphrasé, sans numéro
+% d'article).
+% ============================================================================
+
+\chapter{Gouverner la Cybersécurité : du Contrôle à la GRC}
+\label{chap:grc}
+\chaptermark{Gouverner la cybersécurité}
+
+\epigraph{%
+    « La sécurité se décide au conseil,\\
+    elle s'exécute dans les services,\\
+    elle se vérifie ailleurs. »%
+}{Principe du cours}
+
+\niveauChapitre{Fondamental}{%
+    Maîtrise du Chapitre~\ref{chap:prologue}%
+}
+
+\begin{boxobjectifs}
+\begin{itemize}
+    \item Définir gouvernance, gestion des risques et conformité, et leur
+          articulation.
+    \item Distinguer la gouvernance de la sécurité de sa gestion
+          opérationnelle.
+    \item Appliquer le modèle des trois lignes à la sécurité.
+    \item Situer les rôles du conseil, de la direction, du comité de
+          sécurité, du RSSI, du propriétaire de risque et du délégué à la
+          protection des données.
+    \item Choisir et justifier le rattachement d'un RSSI.
+    \item Construire et vérifier une matrice RACI de la sécurité.
+    \item Évaluer un dispositif de gouvernance par $\mu$, $U$ et $H$.
+\end{itemize}
+\end{boxobjectifs}
+
+\bigskip
+
+% ============================================================================
+\section*{Avant de commencer : qui a décidé du périmètre~?}
+% ============================================================================
+
+Douala, 6~octobre 2026. Trois semaines après le rançongiciel, le comité
+des risques du conseil d'administration de la BANQUE SANAGA\footnote{Comme
+dans tout le cours, la BANQUE SANAGA, ses dirigeants, les dates et les
+montants sont fictifs~; les normes et les textes cités sont exacts.} se
+réunit en séance extraordinaire. Le président du comité ne demande pas
+comment l'attaque s'est produite~: la RSSI l'a déjà expliqué. Il pose une
+autre question~: « Qui a décidé que les agences resteraient hors du
+périmètre du certificat~? »
+
+Personne ne répond tout de suite. On reconstitue~: en 2024, le consultant qui a
+accompagné la certification a proposé le centre de données seul~; le
+directeur des systèmes d'information l'a accepté, parce que le calendrier
+était serré~; le directeur général a signé la déclaration de périmètre, au
+milieu d'autres documents. Le conseil d'administration ne l'a jamais vue.
+Une décision qui engageait la sécurité de trente-huit agences a été prise
+sans que l'organe qui répond des risques de la banque en soit informé.
+
+\medskip
+
+Ce chapitre explique ce qu'est gouverner la cybersécurité, qui en porte la
+responsabilité et comment on le vérifie. Il pose le cinquième réflexe du
+prologue~: relier norme, risque et audit au lieu de les mener comme trois
+exercices séparés.
+
+\begin{boxalert}
+\textbf{Violation typique.} Traiter une décision de sécurité structurante
+(périmètre, acceptation d'un risque, budget) comme une décision technique,
+prise et signée sans que l'instance qui répond des risques en soit saisie.
+
+\smallskip
+\textbf{Règle~:} toute décision qui fixe le niveau de risque accepté par
+l'organisation remonte à l'instance qui en répond. Le technicien propose,
+la direction arbitre, le conseil approuve et surveille.
+\end{boxalert}
+
+\separateur
+
+% ============================================================================
+\section{Du Contrôle à la GRC}
+\label{sec:c01-grc}
+% ============================================================================
+
+\subsection{Trois âges de la sécurité}
+
+La sécurité des systèmes d'information n'a pas toujours été une affaire de
+gouvernance. On peut distinguer trois âges, qui coexistent encore dans
+beaucoup d'organisations.
+
+\begin{tableaucours}{L{2.6cm}L{4.6cm}L{5.0cm}}{%
+    \tableauHeader{Âge} &
+    \tableauHeader{Question posée} &
+    \tableauHeader{Limite}
+}
+Technique & Quels outils installer (pare-feu, antivirus, sauvegardes)~? &
+Personne ne dit quels risques ces outils traitent, ni lesquels ils
+laissent \\
+Contrôle & Les contrôles prévus sont-ils appliqués~? & On vérifie ce qui
+est prévu, pas ce qui manque \\
+Gouvernance & Quels risques l'organisation accepte-t-elle, qui en répond,
+et comment le sait-on~? & Exige que la direction s'en saisisse
+réellement \\
+\end{tableaucours}
+\vspace{-0.8em}
+\begin{center}{\small\itshape Tableau~1.1. Trois âges de la sécurité des
+systèmes d'information}\end{center}
+
+La BANQUE SANAGA était à l'âge du contrôle~: ses contrôles du centre de
+données étaient documentés et appliqués, et l'audit de certification l'a
+confirmé. Elle n'était pas à l'âge de la gouvernance~: personne, au niveau
+du conseil, n'avait décidé quels risques la banque acceptait de laisser
+hors du périmètre.
+
+\subsection{Gouvernance, risque, conformité}
+
+\begin{boxdef}
+\termecle{Gouvernance de la sécurité}\index{gouvernance de la sécurité}~:
+ensemble des responsabilités et des pratiques par lesquelles l'organe de
+direction fixe les objectifs de sécurité de l'organisation, décide du
+niveau de risque acceptable, attribue les rôles et surveille les
+résultats~\cite{iso27014_2020}.
+
+\medskip
+\termecle{Gestion des risques}\index{gestion des risques}~: activités
+coordonnées pour identifier, analyser, évaluer et traiter les risques, puis
+en suivre l'évolution. Le Chapitre~\ref{chap:risque} en définit le
+vocabulaire.
+
+\medskip
+\textbf{Conformité}~: au sens du prologue, satisfaction prouvée d'une
+exigence~; appliquée ici à l'ensemble des obligations qui s'imposent à
+l'organisation (lois, règlements, contrats, normes auxquelles elle
+s'engage) et à ses propres politiques.
+
+\medskip
+\termecle{Gouvernance, risque et conformité}\index{GRC} (\sigle{GRC})~:
+approche qui pilote la
+gouvernance, la gestion des risques et la conformité comme un seul
+dispositif, avec un référentiel commun d'objectifs, de risques, de
+contrôles et de preuves.
+\end{boxdef}
+
+Les trois termes ne désignent pas trois services. Ils désignent trois
+questions, qui se posent sur le même objet~:
+\begin{itemize}
+    \item la \textbf{gouvernance} répond à «~que voulons-nous, et jusqu'où
+          acceptons-nous le risque~?~»~;
+    \item la \textbf{gestion des risques} répond à «~qu'est-ce qui peut nous
+          empêcher d'y parvenir, et que faisons-nous~?~»~;
+    \item la \textbf{conformité} répond à «~respectons-nous ce qui nous est
+          imposé et ce que nous nous sommes imposé~?~».
+\end{itemize}
+
+L'\textbf{audit} n'est pas une quatrième lettre~: il donne une assurance
+indépendante sur les trois. C'est pourquoi le cours l'étudie à part
+(Chapitre~\ref{chap:audit}).
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[
+    bloc/.style={draw=CouleurPrimaire, thick, rounded corners,
+                 fill=CouleurPrimaire!8, minimum width=3.4cm,
+                 minimum height=1.3cm, align=center, font=\small},
+    audit/.style={draw=CouleurAccent, thick, rounded corners,
+                  fill=CouleurAccent!12, minimum width=11.6cm,
+                  minimum height=0.9cm, align=center, font=\small},
+    fleche/.style={->, thick, CouleurSecondaire}]
+    \node[bloc] (G) at (0,0) {\textbf{Gouvernance}\\objectifs, appétence,\\rôles};
+    \node[bloc] (R) at (4.1,0) {\textbf{Risque}\\apprécier,\\traiter, suivre};
+    \node[bloc] (C) at (8.2,0) {\textbf{Conformité}\\obligations,\\preuves};
+    \draw[fleche] (G) -- node[above, font=\scriptsize]{fixe le seuil} (R);
+    \draw[fleche] (R) -- node[above, font=\scriptsize]{choisit les mesures} (C);
+    \draw[fleche] (C.south) to[bend left=25]
+        node[below, font=\scriptsize]{rend compte} (G.south);
+    \node[audit] (A) at (4.1,-2.6) {\textbf{Audit}~: assurance indépendante
+        sur les trois};
+\end{tikzpicture}
+\caption{L'articulation de la gouvernance, du risque et de la conformité}
+\label{fig:c01-grc}
+\end{figure}
+
+\begin{boxinfo}
+\textbf{GRC n'est pas un logiciel.} Le marché vend des « outils GRC ». Ils
+peuvent aider à tenir les registres, mais un outil ne remplace ni une
+décision du conseil sur l'appétence, ni un propriétaire de risque qui
+signe. Une organisation qui achète l'outil sans définir les rôles obtient
+des registres mieux présentés, et aussi incomplets. Le
+Chapitre~\ref{chap:grc-pratique} montre comment faire vivre la GRC au
+quotidien.
+\end{boxinfo}
+
+% ============================================================================
+\section{Gouverner n'est pas Gérer}
+\label{sec:c01-gouverner}
+% ============================================================================
+
+\subsection{Deux niveaux de décision}
+
+La distinction entre gouvernance et gestion vient de la gouvernance des
+entreprises~; les référentiels du numérique l'ont reprise. COBIT sépare
+ainsi les objectifs de gouvernance, réunis dans le domaine
+\emph{évaluer, diriger, surveiller}, des objectifs de gestion, qui
+planifient, construisent, exploitent et contrôlent~\cite{isaca2018cobitintro}.
+L'ISO/IEC~27014 applique la même logique à la sécurité de l'information~:
+l'organe de direction \emph{évalue} la situation et les risques,
+\emph{dirige} en fixant objectifs et politiques, \emph{surveille} les
+résultats, et \emph{communique} avec les parties
+prenantes~\cite{iso27014_2020}.
+
+\begin{tableaucours}{L{3.0cm}L{4.6cm}L{4.6cm}}{%
+    \tableauHeader{Processus} &
+    \tableauHeader{Ce que fait l'organe de direction} &
+    \tableauHeader{À la BANQUE SANAGA, avant l'incident}
+}
+Évaluer & Apprécie la situation de sécurité et les risques au regard de la
+stratégie & Le conseil ne recevait aucun rapport de sécurité \\
+Diriger & Fixe les objectifs, l'appétence, les politiques et les moyens &
+La politique existait~; l'appétence au risque cyber n'était pas fixée \\
+Surveiller & Vérifie que les objectifs sont atteints, par des indicateurs
+et par l'audit & Le seul retour était le certificat \\
+Communiquer & Rend compte aux actionnaires, au régulateur, aux clients &
+Communication de crise improvisée en septembre 2026 \\
+\end{tableaucours}
+\vspace{-0.8em}
+\begin{center}{\small\itshape Tableau~1.2. Les processus de gouvernance de
+la sécurité (d'après l'ISO/IEC~27014)}\end{center}
+
+\begin{boxdef}
+\termecle{Organe de direction}\index{organe de direction}~: personne ou
+groupe qui répond, en dernier ressort, de la performance et de la
+conformité de l'organisation~: le conseil d'administration dans une
+société anonyme, le conseil d'administration ou l'autorité de tutelle dans
+un établissement public.
+
+\medskip
+\termecle{Direction}\index{direction} (ou management)~: personnes qui
+dirigent l'organisation au quotidien, sous l'autorité de l'organe de
+direction~: le directeur général et ses directeurs.
+\end{boxdef}
+
+\subsection{Ce que la norme attend de la direction}
+
+L'ISO/IEC~27001 consacre son article~5 au \emph{leadership}. En substance,
+la direction doit démontrer qu'elle s'implique dans le système de
+management~: elle établit une politique de sécurité compatible avec la
+stratégie, intègre ses exigences dans les processus de l'organisation,
+fournit les ressources, et attribue les responsabilités et les autorités
+des rôles de sécurité~\cite{iso27001_2022}. L'article~6.1.2 ajoute que
+chaque risque identifié doit avoir un \emph{propriétaire}.
+
+La norme n'exige pas que le conseil d'administration approuve le
+périmètre. Elle exige que la direction s'implique~; elle ne dit pas
+comment l'organe de direction la surveille. C'est là que la gouvernance
+d'entreprise prend le relais~: pour une banque, le règlement COBAC
+R-2016/04 confie à l'organe délibérant la responsabilité du dispositif de
+contrôle interne et de maîtrise des risques, et à l'organe exécutif sa mise
+en œuvre~\cite{cobac2016r04}. Le Chapitre~\ref{chap:droit} précisera ces
+obligations.
+
+\subsection{Le cadre NIST~: gouverner d'abord}
+
+Dans sa version~2.0, publiée en 2024, le cadre de cybersécurité du NIST a
+ajouté une sixième fonction, \emph{Gouverner}, aux cinq fonctions
+historiques (identifier, protéger, détecter, répondre,
+rétablir)~\cite{nist2024csf}. Elle couvre six catégories~: le contexte de
+l'organisation~; la stratégie de gestion des risques~; les rôles, les
+responsabilités et les autorités~; la politique~; la supervision~; la
+gestion des risques de la chaîne d'approvisionnement. Le cadre la place au
+centre des cinq autres~: sans elle, elles n'ont pas d'objectif. Le
+Chapitre~\ref{chap:referentiels} étudie ce cadre et ses correspondances
+avec l'ISO/IEC~27001.
+
+\begin{boxscenario}{Opération SANAGA. Une décision orpheline}
+\textbf{Constatations.}
+\begin{itemize}
+    \item La déclaration de périmètre du SMSI porte la seule signature du
+          directeur général.
+    \item Les procès-verbaux du conseil et de son comité des risques de 2024
+          et 2025 ne mentionnent ni le périmètre ni le certificat, sauf pour
+          annoncer son obtention.
+    \item Aucun document ne fixe l'appétence de la banque au risque cyber.
+\end{itemize}
+
+\textbf{Analyse} (confiance élevée). La direction a satisfait l'exigence
+de la norme~: elle s'est impliquée et a signé. Mais l'organe de direction
+n'a ni évalué, ni dirigé, ni surveillé cette décision. On peut discuter,
+comme le prologue, de la prise en compte des interfaces et des dépendances
+du périmètre~; mais le défaut premier n'est pas de conformité à
+l'ISO/IEC~27001, il est de gouvernance. Un audit de certification pouvait
+contester le périmètre~; il ne pouvait pas corriger le silence du conseil,
+puisqu'il ne porte pas sur son fonctionnement.
+\end{boxscenario}
+
+% ============================================================================
+\section{Le Modèle des Trois Lignes appliqué à la Sécurité}
+\label{sec:c01-trois-lignes}
+% ============================================================================
+
+\subsection{Le modèle}
+
+L'Institut des auditeurs internes (\sigle{IIA}) a publié en 2020 le
+\termecle{modèle des trois lignes}\index{modèle des trois
+lignes}~\cite{iia2020troislignes}. Il remplace l'ancien modèle des
+« trois lignes de défense »~: le mot \emph{défense} a disparu, parce que
+la gestion des risques sert aussi à saisir des opportunités, et parce que
+les lignes doivent coopérer, pas seulement se protéger les unes des autres.
+Le modèle distingue des \emph{rôles}, pas des services~: une même
+direction peut tenir un rôle de première ligne pour une activité et de
+deuxième ligne pour une autre.
+
+\begin{tableaucours}{L{2.7cm}L{4.5cm}L{5.0cm}}{%
+    \tableauHeader{Rôle} &
+    \tableauHeader{Ce qu'il fait en sécurité} &
+    \tableauHeader{À la BANQUE SANAGA}
+}
+Organe de gouvernance & Fixe l'appétence, approuve la stratégie de
+sécurité, surveille & Conseil d'administration, comité des risques du
+conseil \\
+Première ligne & Exploite les systèmes et applique les mesures de sécurité
+au quotidien & DSI (exploitation, réseau, postes), directeurs métier,
+chefs d'agence \\
+Deuxième ligne & Fixe le cadre, conseille, surveille et remet en cause la
+première ligne & RSSI, direction des risques, conformité, DPD \\
+Troisième ligne & Donne une assurance indépendante à l'organe de
+gouvernance & Direction de l'audit interne (Mme~EKAMBI) \\
+Prestataires d'assurance externes & Assurance complémentaire &
+CERTIQUAL AFRIQUE, commissaires aux comptes \\
+\end{tableaucours}
+\vspace{-0.8em}
+\begin{center}{\small\itshape Tableau~1.3. Le modèle des trois lignes
+appliqué à la sécurité de la BANQUE SANAGA}\end{center}
+
+Le superviseur, la COBAC, n'apparaît pas dans le tableau~: il n'est pas
+un prestataire au service de la banque, mais une autorité extérieure qui
+contrôle l'ensemble du dispositif, les trois lignes comprises.
+
+\subsection{Où placer le RSSI~?}
+
+Le RSSI est l'acteur le plus difficile à placer, parce qu'on lui confie
+souvent des tâches des deux premières lignes à la fois. S'il fixe la
+politique, surveille les indicateurs et rend compte à la direction, il
+tient un rôle de deuxième ligne. S'il administre lui-même le pare-feu, il
+tient un rôle de première ligne. S'il fait les deux, il surveille son
+propre travail.
+
+\begin{boxalert}
+\textbf{Violation typique.} Le RSSI administre les équipements de
+sécurité, puis rédige le rapport qui dit au comité qu'ils fonctionnent.
+
+\smallskip
+\textbf{Règle~:} celui qui exploite une mesure n'en atteste pas
+l'efficacité. Si l'organisation est trop petite pour séparer les rôles,
+elle compense par une revue indépendante (audit interne, auditeur
+externe) et le dit dans son rapport.
+\end{boxalert}
+
+\subsection{Ce que le modèle ne dit pas}
+
+Le modèle des trois lignes est un modèle de rôles. Il ne dit pas si les
+lignes couvrent tout l'univers des risques. À la BANQUE SANAGA, les trois
+lignes existaient et fonctionnaient~; mais aucune ne regardait les agences
+sous l'angle de la cybersécurité~: la DSI les exploitait sans appréciation
+des risques, la RSSI concentrait ses efforts sur le périmètre certifié, et
+l'audit interne n'avait pas inscrit la sécurité des agences à son
+programme. Trois lignes bien rangées peuvent laisser le même trou. C'est
+ce que mesure l'évaluation de la Section~\ref{sec:c01-mesurer}.
+
+% ============================================================================
+\section{Les Acteurs et leurs Responsabilités}
+\label{sec:c01-acteurs}
+% ============================================================================
+
+\subsection{Huit acteurs}
+
+\begin{tableaucours}{L{3.2cm}L{9.0cm}}{%
+    \tableauHeader{Acteur} &
+    \tableauHeader{Responsabilité principale}
+}
+Conseil et comité des risques & Fixe l'appétence au risque cyber, approuve
+la stratégie et les décisions structurantes (périmètre, risques acceptés
+au-delà d'un seuil), reçoit les rapports du RSSI et de l'audit interne \\
+Direction générale & Met en œuvre la stratégie, fournit les ressources,
+arbitre entre les directions, signe la politique de sécurité \\
+Comité de sécurité & Instance de direction qui réunit les directeurs
+métier, la DSI, le RSSI et les risques~; suit les projets de sécurité, les
+incidents et les indicateurs, et prépare les décisions \\
+RSSI & Propose la politique, coordonne l'appréciation des risques,
+surveille les mesures, conseille, rend compte \\
+DSI & Exploite les systèmes et les mesures techniques, applique la
+politique dans les projets et l'exploitation \\
+Propriétaire de risque & Directeur qui a l'autorité et les moyens de
+traiter un risque~; décide du traitement et accepte le risque résiduel
+dans la limite de l'appétence \\
+Audit interne & Évalue le dispositif de façon indépendante et rend compte
+au conseil \\
+DPD & Veille à la conformité des traitements de données personnelles,
+conseille, sert de point de contact avec l'autorité de protection \\
+\end{tableaucours}
+\vspace{-0.8em}
+\begin{center}{\small\itshape Tableau~1.4. Les acteurs de la gouvernance
+de la sécurité}\end{center}
+
+\begin{boxdef}
+\termecle{Propriétaire de risque}\index{propriétaire de risque}~:
+personne qui a la responsabilité et l'autorité de gérer un
+risque~\cite{iso27000_2018}. Ce n'est pas le RSSI~: c'est en général le
+directeur dont l'activité est exposée, parce que c'est lui qui peut
+dégager les moyens de traitement et qui supporte les conséquences.
+
+\medskip
+\termecle{Appétence au risque}\index{appétence au risque}~: niveau de
+risque qu'une organisation est prête à accepter pour atteindre ses
+objectifs. Elle est fixée par l'organe de direction~\cite{coso2017erm}~; le
+Chapitre~\ref{chap:risque} montre comment l'exprimer.
+\end{boxdef}
+
+\subsection{Le propriétaire du risque R-AG-01}
+
+La fiche du prologue décrivait le risque. Il lui manquait les rubriques de
+gouvernance~: qui en répond, qui peut l'accepter, qui le surveille.
+
+\begin{boxobjet}{R-AG-01 · Rubriques de gouvernance}
+\textbf{Propriétaire du risque~:} le directeur du réseau d'agences. C'est
+lui qui dirige les agences, arbitre leur budget et supporte la fermeture
+des guichets.
+
+\textbf{Contributeurs~:} DSI (postes, messagerie, partage de fichiers),
+RSSI (analyse et mesures), direction de la communication (crise).
+
+\textbf{Instance d'acceptation~:} le comité des risques du conseil. Tant
+que le conseil n'a pas fixé l'appétence, aucun directeur ne peut accepter
+seul un risque de cette ampleur~; une fois l'appétence fixée, le comité
+reste compétent pour tout résiduel qui la dépasse.
+
+\textbf{Surveillance~:} la RSSI suit trois indicateurs (part des comptes
+d'agence avec second facteur, délai d'application des correctifs, succès
+des tests de restauration) et les présente chaque trimestre au comité de
+sécurité.
+
+\textbf{Assurance~:} la direction de l'audit interne inscrit le réseau
+d'agences à son programme 2027.
+\end{boxobjet}
+
+\subsection{Rattacher le RSSI}
+
+Le rattachement du RSSI n'est pas un détail d'organigramme~: il détermine
+ce qu'il peut dire, et à qui. Aucune norme n'impose un rattachement
+unique~; chaque option a ses forces et ses risques.
+
+\begin{tableaucours}{L{3.0cm}L{4.6cm}L{4.6cm}}{%
+    \tableauHeader{Rattachement} &
+    \tableauHeader{Force} &
+    \tableauHeader{Risque}
+}
+DSI & Proximité technique, mise en œuvre rapide & Le RSSI surveille son
+propre supérieur~; la sécurité passe après les délais des projets \\
+Direction des risques & Intégration au dispositif de maîtrise des risques~;
+deuxième ligne naturelle & Distance avec la technique~; risque d'une
+sécurité réduite à des registres \\
+Direction générale & Autorité, accès direct aux arbitrages & Charge de la
+direction générale~; peut isoler le RSSI des autres directions \\
+Conformité & Lien avec les obligations légales & Une sécurité réduite à la
+conformité, aveugle aux menaces non réglementées \\
+\end{tableaucours}
+\vspace{-0.8em}
+\begin{center}{\small\itshape Tableau~1.5. Les options de rattachement du
+RSSI}\end{center}
+
+À la BANQUE SANAGA, la RSSI est rattachée au directeur des risques. C'est
+un choix défendable~: il place la sécurité en deuxième ligne, à distance
+de la DSI. Mais ce rattachement ne valait rien sans un accès au comité des
+risques du conseil~: les rapports de la RSSI s'arrêtaient au directeur des
+risques. Le critère décisif n'est pas l'organigramme, c'est le
+\emph{droit d'être entendu} par l'instance qui décide.
+
+\begin{boxinfo}
+\textbf{Le délégué à la protection des données.} Le DPD et le RSSI
+travaillent sur des objets voisins~: les données personnelles sont aussi
+des informations à protéger. Leurs missions diffèrent pourtant~: le RSSI
+protège l'information de l'organisation contre les menaces~; le DPD veille
+aux droits des personnes dont les données sont traitées. Confondre les
+deux fonctions crée un conflit d'intérêts, car le RSSI peut avoir à
+défendre un traitement que le DPD devrait contester. La place du DPD dans
+la loi n°~2024/017 relative à la protection des données à caractère
+personnel est étudiée dans l'UE MSN-2S3-JUR01~; le cours n'y revient que
+pour situer les rôles.
+\end{boxinfo}
+
+% ============================================================================
+\section{La Matrice RACI de la Sécurité}
+\label{sec:c01-raci}
+% ============================================================================
+
+\subsection{Quatre lettres}
+
+\begin{boxdef}
+\termecle{Matrice RACI}\index{matrice RACI}~: tableau qui croise des
+activités et des acteurs, et indique pour chaque case le rôle de l'acteur~:
+\begin{itemize}
+    \item \textbf{R} (\emph{Responsible}, réalise)~: exécute l'activité~;
+    \item \textbf{A} (\emph{Accountable}, répond)~: rend compte du résultat,
+          approuve, et ne peut pas déléguer cette responsabilité~;
+    \item \textbf{C} (\emph{Consulted}, consulté)~: donne un avis avant la
+          décision~;
+    \item \textbf{I} (\emph{Informed}, informé)~: est tenu au courant après.
+\end{itemize}
+\end{boxdef}
+
+\begin{boxprocedure}
+\textbf{Vérifier une matrice RACI.} Le papier de travail qui examine une
+matrice contrôle, ligne par ligne~:
+\begin{itemize}
+    \item \textbf{un seul A} par activité~: deux personnes qui répondent,
+          c'est personne~;
+    \item \textbf{au moins un R}~: une activité sans exécutant n'est pas
+          faite~;
+    \item \textbf{un A qui a l'autorité}~: celui qui répond doit pouvoir
+          décider et dégager les moyens~;
+    \item \textbf{pas de R et de A d'attestation sur la même tête}~: celui
+          qui exécute une mesure n'atteste pas son efficacité~;
+    \item \textbf{les décisions de risque au bon niveau}~: l'acceptation
+          d'un risque au-delà de l'appétence remonte à l'organe de
+          gouvernance~;
+    \item \textbf{la preuve}~: pour chaque A, un document signé (procès-verbal,
+          décision, rapport) montre que le rôle a été tenu.
+\end{itemize}
+\end{boxprocedure}
+
+\subsection{La matrice de la BANQUE SANAGA, après l'incident}
+
+La RSSI propose au comité de sécurité la matrice du Tableau~1.6. Les
+colonnes sont~: CA (conseil d'administration et son comité des risques),
+DG, CS (comité de sécurité), RSSI, DSI, PR (propriétaire de risque, ici le
+directeur métier concerné), AI (audit interne) et DPD.
+
+\begin{tableaucours}{L{4.6cm}cccccccc}{%
+    \tableauHeader{Activité} &
+    \tableauHeader{CA} & \tableauHeader{DG} & \tableauHeader{CS} &
+    \tableauHeader{RSSI} & \tableauHeader{DSI} & \tableauHeader{PR} &
+    \tableauHeader{AI} & \tableauHeader{DPD}
+}
+Fixer l'appétence au risque cyber & A & R & C & C & -- & C & I & -- \\
+Approuver la politique de sécurité & I & A & C & R & C & C & I & C \\
+Fixer le périmètre du SMSI & A & R & C & R & C & C & I & I \\
+Apprécier les risques d'une activité & -- & I & I & R & C & A & I & C \\
+Accepter un risque résiduel sous le seuil & -- & I & I & C & -- & A/R & I & -- \\
+Accepter un risque résiduel au-delà du seuil & A & R & C & C & -- & C & I & -- \\
+Exploiter les mesures techniques & -- & -- & I & C & A/R & -- & -- & -- \\
+Surveiller l'efficacité des mesures & I & I & I & A/R & C & I & -- & -- \\
+Notifier un incident majeur au régulateur & I & A & I & R & C & C & I & C \\
+Auditer le dispositif de sécurité & I & I & I & C & C & C & A/R & -- \\
+\end{tableaucours}
+\vspace{-0.8em}
+\begin{center}{\small\itshape Tableau~1.6. Matrice RACI de la sécurité de
+la BANQUE SANAGA (proposition de la RSSI)}\end{center}
+
+Deux lignes demandent une explication. Pour « fixer le périmètre du
+SMSI », le DG et la RSSI réalisent (R) et le conseil répond (A)~: c'est
+précisément la décision qui avait échappé au conseil. Pour « auditer le
+dispositif », l'audit interne répond seul~; la RSSI n'est que consultée,
+parce qu'elle ne peut pas auditer ce qu'elle surveille. La mention
+«~A/R~» signale un acteur qui répond de l'activité et la réalise par ses
+propres équipes~: elle est normale pour l'exploitation (DSI) ou l'audit
+(audit interne), à condition que l'attestation d'efficacité vienne d'un
+autre acteur.
+
+\begin{boxinfo}
+\textbf{Une matrice se lit aussi par colonne.} Une colonne sans aucun A
+désigne un acteur qui ne répond de rien~; une colonne chargée de A désigne
+un goulet d'étranglement. Dans le Tableau~1.6, la colonne CA porte trois A,
+tous sur des décisions de niveau de risque~: c'est le signe que le conseil
+gouverne. Un conseil sans A en sécurité ne gouverne pas la sécurité.
+\end{boxinfo}
+
+% ============================================================================
+\section{Mesurer la Gouvernance}
+\label{sec:c01-mesurer}
+% ============================================================================
+
+\subsection{Huit questions}
+
+Une gouvernance se décrit dans des documents~; elle se vérifie dans leur
+usage. Après l'incident, Mme~EKAMBI évalue la gouvernance de la sécurité
+telle qu'elle fonctionnait en 2025, par huit questions. Chaque réponse est
+cotée \OUI{} (prouvé), \NON{} (absent ou contredit par les pièces) ou
+\NEK{} (impossible à établir faute de pièce).
+
+\begin{tableaucours}{cL{6.6cm}cL{3.4cm}}{%
+    \tableauHeader{N°} &
+    \tableauHeader{Question} &
+    \tableauHeader{Cote} &
+    \tableauHeader{Pièce}
+}
+G1 & Une politique de sécurité est-elle approuvée par la direction
+générale~? & \OUI{} & Politique signée, 2024 \\
+G2 & Le périmètre du SMSI a-t-il été approuvé par le conseil ou son comité
+des risques~? & \NON{} & Procès-verbaux 2024--2025 \\
+G3 & L'appétence au risque cyber est-elle fixée par le conseil~? & \NON{} &
+Aucun document \\
+G4 & Chaque risque du registre a-t-il un propriétaire désigné~? & \NON{} &
+Registre 2025, sans colonne propriétaire \\
+G5 & Le RSSI est-il indépendant de la DSI~? & \OUI{} & Organigramme,
+fiche de poste \\
+G6 & Le comité de sécurité s'est-il réuni au moins deux fois en 2025~? &
+\NEK{} & Aucun procès-verbal retrouvé \\
+G7 & Un rapport de sécurité a-t-il été présenté au comité des risques du
+conseil en 2025~? & \NEK{} & Ordre du jour sans annexe \\
+G8 & L'audit interne a-t-il couvert la sécurité dans son programme
+2024--2025~? & \NON{} & Programmes d'audit \\
+\end{tableaucours}
+\vspace{-0.8em}
+\begin{center}{\small\itshape Tableau~1.7. Évaluation de la gouvernance de
+la sécurité en 2025}\end{center}
+
+\begin{boxlecture}{Gouvernance de la sécurité de la BANQUE SANAGA en 2025}
+\textbf{Constatation.} 2~\OUI{}, 4~\NON{}, 2~\NEK{} sur 8 questions~:
+\[
+\mu = \tfrac{2}{8} = 0{,}25~;\quad U = \tfrac{2}{8} = 0{,}25~;\quad
+H = -\left(2 \times 0{,}25\log_2 0{,}25 + 0{,}5\log_2 0{,}5\right)
+  = 0{,}5 + 0{,}5 + 0{,}5 = 1{,}50~\text{bit}.
+\]
+
+\textbf{Analyse} (confiance élevée sur le calcul et sur les \NON{},
+moyenne sur la lecture des \NEK{}). La gouvernance existait sur le papier
+(politique, RSSI indépendant) et manquait dans les décisions~: périmètre,
+appétence, propriétaires, assurance. Les deux \NEK{} portent sur la
+\emph{surveillance}~: rien ne prouve que l'organe de direction ait été
+informé. Un \NEK{} sur la surveillance n'est pas neutre~: un conseil qui
+ne peut pas prouver qu'il a été informé ne peut pas prouver qu'il a
+gouverné.
+
+\medskip
+\hfill\lecture{0{,}25}{0{,}25}{1{,}50}
+\end{boxlecture}
+
+\subsection{Ce que la mesure ajoute}
+
+Dans l'évaluation des dix contrôles clés, le centre de données certifié
+obtenait une conformité de 0,80 (prologue, Tableau~P.3). La gouvernance
+qui l'encadrait obtient 0,25.
+Les deux chiffres ne se contredisent pas~: ils ne mesurent pas le même
+objet. Le premier dit que les contrôles du périmètre sont appliqués~; le
+second dit que personne, au niveau qui décide, n'a choisi ce périmètre en
+connaissance de cause. Le cinquième réflexe du cours, relier norme, risque
+et audit, consiste à lire ces deux niveaux ensemble.
+
+% ============================================================================
+\section{Le Cadre Camerounais}
+\label{sec:c01-cadre}
+% ============================================================================
+
+Deux textes donnent à la gouvernance de la sécurité une assise juridique
+au Cameroun. Le Chapitre~\ref{chap:droit} les étudie en détail.
+
+\begin{boxjuris}
+\textbf{\loicam{n°~2010/012}, article~26, alinéa~1}~\cite{loi2010012}~:
+
+\medskip
+\textit{« Les exploitants des systèmes d'information prennent toutes les
+mesures techniques et administratives afin de garantir la sécurité des
+services offerts. A cet effet, ils se dotent de systèmes normalisés leur
+permettant d'identifier, d'évaluer, de traiter et de gérer continûment les
+risques liés à la sécurité des systèmes d'information dans le cadre des
+services offerts directement ou indirectement. »}
+
+\medskip
+\textbf{Portée pour la gouvernance.} La loi impose aux exploitants de
+systèmes d'information un dispositif \emph{normalisé} et \emph{permanent}
+de gestion des risques de sécurité, pour les services fournis
+« directement ou indirectement ».
+
+\medskip
+\textbf{Analyse} (lecture du cours, confiance moyenne en l'absence de
+jurisprudence connue). Le texte ne prévoit pas de restreindre ce
+dispositif à une partie des services. Un dispositif qui n'apprécie les
+risques que sur le centre de données répond donc mal à cette obligation,
+quel que soit le certificat.
+\end{boxjuris}
+
+Pour les établissements de crédit, le règlement COBAC R-2016/04 organise
+le contrôle interne et la maîtrise des risques, y compris les risques liés
+aux systèmes d'information, et en répartit la responsabilité entre
+l'organe délibérant et l'organe exécutif~\cite{cobac2016r04}. Le défaut de
+gouvernance de la BANQUE SANAGA n'est donc pas seulement une faiblesse de
+bonne pratique~: il expose la banque à une observation du superviseur.
+
+% ============================================================================
+\section{Ce que la Gouvernance demande à chaque Métier}
+\label{sec:c01-metiers}
+% ============================================================================
+
+\begin{boxmetier}{RSSI}
+\textbf{Obtenir le droit d'être entendu}
+\begin{enumerate}
+    \item Demander un point permanent à l'ordre du jour du comité des
+          risques du conseil, au moins deux fois par an.
+    \item Présenter peu d'indicateurs, reliés aux risques et à l'appétence,
+          et dire ce qu'on ignore (les \NEK{}) autant que ce qu'on sait.
+    \item Se dégager de l'exploitation des outils de sécurité, ou faire
+          revoir par un tiers ce qu'on exploite soi-même.
+\end{enumerate}
+\end{boxmetier}
+
+\begin{boxmetier}{Responsable GRC}
+\textbf{Un seul référentiel}
+\begin{enumerate}
+    \item Tenir à jour la matrice RACI et la faire approuver par le comité
+          de sécurité.
+    \item Vérifier que chaque risque du registre a un propriétaire, et que
+          chaque acceptation au-delà du seuil porte la décision de
+          l'instance compétente.
+    \item Relier registre des risques, déclaration d'applicabilité et
+          programme d'audit, pour qu'aucun pan de l'activité n'échappe aux
+          trois (Chapitre~\ref{chap:grc-pratique}).
+\end{enumerate}
+\end{boxmetier}
+
+\begin{boxmetier}{Auditeur en cybersécurité}
+\textbf{Auditer la gouvernance, pas seulement les contrôles}
+
+L'auditeur ne s'arrête pas aux mesures techniques. Il demande qui a décidé
+du périmètre, qui a accepté chaque risque résiduel, et quelle pièce le
+prouve. Une décision structurante sans instance compétente est une
+constatation d'audit, même si chaque contrôle est en place.
+\end{boxmetier}
+
+\begin{boxmetier}{Gestionnaire des risques cyber}
+\textbf{Faire signer les propriétaires}
+
+Le gestionnaire des risques anime l'appréciation, mais ne possède pas les
+risques. Il obtient de chaque directeur concerné qu'il reconnaisse son
+risque, choisisse un traitement et signe l'acceptation du résiduel. Un
+risque que personne n'a signé reste, en pratique, à la charge du RSSI, qui
+n'a pas les moyens de le traiter.
+\end{boxmetier}
+
+\separateur
+
+\begin{boxresume}
+\textbf{Ce qu'il faut retenir de ce chapitre~:}
+\begin{itemize}
+    \item \textbf{GRC}~: trois questions sur un même objet~: ce que l'on
+          veut et jusqu'où l'on accepte le risque, ce qui peut l'empêcher,
+          ce que l'on doit respecter. L'audit donne une assurance
+          indépendante sur les trois.
+    \item \textbf{Gouverner n'est pas gérer}~: l'organe de direction évalue,
+          dirige, surveille et communique~; la direction met en œuvre.
+    \item \textbf{Trois lignes}~: l'exploitation, la surveillance et
+          l'assurance indépendante sont des rôles distincts~; celui qui
+          exploite une mesure n'en atteste pas l'efficacité.
+    \item \textbf{Le propriétaire de risque} est le directeur qui a
+          l'autorité de le traiter, pas le RSSI.
+    \item \textbf{Le rattachement du RSSI} compte moins que son droit
+          d'être entendu par l'instance qui décide.
+    \item \textbf{RACI}~: un seul A par activité, des décisions de risque au
+          bon niveau, une preuve pour chaque A.
+    \item \textbf{La gouvernance se mesure}~: à la BANQUE SANAGA, 0,25 de
+          conformité et 0,25 d'incertitude en 2025, alors que les
+          contrôles du périmètre certifié obtenaient 0,80.
+\end{itemize}
+\end{boxresume}
+
+\begin{boxinfo}
+\textbf{Points de contrôle.} Vous avez compris ce chapitre si vous savez~:
+\begin{itemize}
+    \item dire, sur un exemple, ce qui relève de la gouvernance, de la
+          gestion des risques et de la conformité~;
+    \item placer les acteurs de la sécurité d'une organisation dans le
+          modèle des trois lignes~;
+    \item repérer les défauts d'une matrice RACI~;
+    \item expliquer pourquoi un défaut de gouvernance échappe à un audit de
+          certification.
+\end{itemize}
+\end{boxinfo}
+
+% ============================================================================
+\section*{Exercices}
+% ============================================================================
+
+\begin{boxexo}[title={\ding{45}\quad Exercice~1.1. Gouvernance, risque ou conformité~? \niveaubase}]
+Classez chacune des activités suivantes dans la gouvernance, la gestion des
+risques ou la conformité, et indiquez l'acteur qui en répond à la BANQUE
+SANAGA.
+\begin{enumerate}[(a)]
+    \item Le conseil décide qu'aucune agence ne doit rester fermée plus de
+          24~heures pour une cause informatique.
+    \item La RSSI anime un atelier qui identifie les scénarios de
+          rançongiciel sur le réseau des agences.
+    \item La direction juridique vérifie que la banque a bien transmis à la
+          COBAC le rapport demandé après la bascule de mars 2026.
+    \item Le directeur du réseau d'agences choisit de cloisonner le partage
+          de fichiers plutôt que d'accepter le risque.
+    \item Le comité des risques du conseil reçoit le rapport trimestriel
+          de sécurité.
+\end{enumerate}
+\end{boxexo}
+
+\begin{boxexo}[title={\ding{45}\quad Exercice~1.2. Les trois lignes de LiZbiZ \niveaumoyen}]
+Chez LiZbiZ, M.~KOUNOU, responsable informatique, détient tous les droits
+de l'application intégrée~; il administre aussi le pare-feu et rédige
+chaque année le rapport de sécurité présenté au directeur général,
+M.~ETEME. Mme~NKENG est contrôleuse interne. Il n'y a pas d'audit interne.
+\begin{enumerate}[(a)]
+    \item Placez chaque acteur dans le modèle des trois lignes, en
+          distinguant les rôles qu'il tient effectivement.
+    \item Identifiez les deux conflits de rôles les plus graves et
+          expliquez le risque que chacun fait courir.
+    \item Proposez une organisation réaliste pour une entreprise de cette
+          taille, sans créer de direction de l'audit interne.
+\end{enumerate}
+\end{boxexo}
+
+\begin{boxexo}[title={\ding{45}\quad Exercice~1.3. Corriger une matrice RACI \niveaumoyen}]
+Une première version de la matrice de la BANQUE SANAGA contenait les lignes
+suivantes (colonnes~: CA, DG, CS, RSSI, DSI, PR, AI)~:
+\begin{itemize}
+    \item Fixer le périmètre du SMSI~: --, A, --, R, A, --, --~;
+    \item Accepter un risque résiduel au-delà du seuil~: --, I, --, A, --,
+          C, --~;
+    \item Exploiter les mesures techniques~: --, --, --, R, R, --, --~;
+    \item Surveiller l'efficacité des mesures~: --, --, I, A, R, --, --~;
+    \item Auditer le dispositif de sécurité~: --, I, --, A, --, --, R.
+\end{itemize}
+\begin{enumerate}[(a)]
+    \item Pour chaque ligne, relevez les règles de vérification violées.
+    \item Proposez une version corrigée de chaque ligne.
+    \item Quelle ligne, si elle était restée en l'état, aurait reproduit le
+          défaut à l'origine de l'incident de septembre~2026~?
+\end{enumerate}
+\end{boxexo}
+
+\begin{boxexo}[title={\ding{45}\quad Exercice~1.4. Un an après \niveauexpert}]
+En octobre 2027, Mme~EKAMBI reprend les huit questions du Tableau~1.7. Le
+conseil a approuvé un périmètre étendu aux agences et fixé une appétence~;
+le registre a une colonne propriétaire, mais trois risques sur
+vingt n'ont pas de propriétaire désigné~; le comité de sécurité s'est
+réuni trois fois, procès-verbaux à l'appui~; deux rapports ont été
+présentés au comité des risques~; l'audit interne a programmé une mission
+sur les agences pour 2028. La politique et le rattachement du RSSI n'ont
+pas changé.
+\begin{enumerate}[(a)]
+    \item Cotez les huit questions et justifiez chaque cote.
+    \item Calculez $\mu$, $U$ et $H$, et comparez avec 2025.
+    \item La question G4 est-elle bien posée~? Proposez une formulation qui
+          permette une cote plus informative, et dites ce qu'elle changerait.
+    \item Rédigez, en une demi-page, le mandat du comité de sécurité~:
+          composition, fréquence, attributions, ce qu'il décide et ce qu'il
+          remonte au conseil.
+\end{enumerate}
+\end{boxexo}
+
+\bigskip
+
+\begin{boxinfo}
+\textbf{Pour aller plus loin.}
+\begin{itemize}
+    \item Le modèle des trois lignes de l'IIA~\cite{iia2020troislignes}.
+    \item L'ISO/IEC~27014:2020~\cite{iso27014_2020}, sur la gouvernance de
+          la sécurité de l'information.
+    \item Le cadre de cybersécurité du NIST, version~2.0~\cite{nist2024csf},
+          et sa fonction \emph{Gouverner}.
+    \item L'ISO/IEC~27001:2022~\cite{iso27001_2022}, article~5
+          (leadership).
+\end{itemize}
+\end{boxinfo}
+
+\begin{boxinfo}
+\textbf{Transition.} Gouverner, c'est décider du niveau de risque que l'on
+accepte. Encore faut-il savoir ce qu'est un risque cyber, comment on le
+décrit et comment on le cote, et reconnaître quand une cote n'est qu'une
+opinion. C'est l'objet du Chapitre~\ref{chap:risque}.
+\end{boxinfo}

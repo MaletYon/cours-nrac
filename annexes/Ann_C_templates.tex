@@ -1,0 +1,137 @@
+% ============================================================================
+% Fichier  : annexes/Ann_C_templates.tex
+% Titre    : Modèles de Documents Opérationnels
+% Version  : 1.0 -- novembre 2026
+% ============================================================================
+% Rubriques reprises des encadrés « Fiche de risque » et « Papier de
+% travail » des chapitres ; chaque modèle renvoie au chapitre qui l'explique.
+% ============================================================================
+
+\chapter{Modèles de Documents Opérationnels}
+\label{ann:templates}
+
+Cette annexe rassemble les rubriques des documents que le cours a
+construits. Chaque modèle renvoie au chapitre où il est expliqué et
+illustré.
+
+\section*{Vue d'ensemble}
+
+\begin{tableaucours}{cL{4.2cm}L{5.4cm}c}{%
+    \tableauHeader{N°} &
+    \tableauHeader{Document} &
+    \tableauHeader{Usage} &
+    \tableauHeader{Chap.}
+}
+M1 & Fiche de risque & Décrire, coter et décider un risque &
+\ref{chap:risque} \\
+M2 & Décision d'acceptation & Accepter un résiduel selon les critères &
+\ref{chap:iso27005} \\
+M3 & Ligne de plan de traitement & Planifier une action et sa preuve &
+\ref{chap:iso27005} \\
+M4 & Ligne de déclaration d'applicabilité & Justifier une mesure &
+\ref{chap:iso27000} \\
+M5 & Lettre de mission & Fixer objectifs, périmètre, critères, accès &
+\ref{chap:audit} \\
+M6 & Note d'autorisation de test & Encadrer un test technique &
+\ref{chap:audit-technique} \\
+M7 & Papier de travail d'un test & Rendre un test refaisable &
+\ref{chap:audit} \\
+M8 & Fiche d'assertion & Définir un contrôle et sa cote &
+\ref{chap:conclure} \\
+M9 & Observation en sept éléments & Rédiger une non-conformité &
+\ref{chap:conclure} \\
+M10 & Fiche d'indicateur & Définir un indicateur et sa fiabilité &
+\ref{chap:smsi} \\
+M11 & Page GRC de la gouvernance & Une page pour décider &
+\ref{chap:grc-pratique} \\
+\end{tableaucours}
+
+\section*{M1. Fiche de risque}
+
+\begin{tableaucours}{L{3.6cm}L{8.6cm}}{%
+    \tableauHeader{Rubrique} &
+    \tableauHeader{Contenu attendu}
+}
+Référence et intitulé & Code unique (R-XX-nn), scénario en une ligne \\
+Valeur métier, biens supports & Ce que l'on protège, ce par quoi on est
+attaqué \\
+Source de risque, objectif visé & Qui, pour quoi faire \\
+Événement redouté & L'atteinte, du point de vue de l'organisation \\
+Vraisemblance et impact & Cotes de 1 à 4, avec la base de preuve de chacune
+(\OUI{}, \NON{}, \NEK{}) \\
+Mesures existantes & Par étape du scénario, avec la preuve de leur test \\
+Résiduel & Criticité selon la convention de réduction \\
+Propriétaire, décision, revue & Qui répond, ce qui est décidé, quand on
+revoit \\
+\end{tableaucours}
+
+\section*{M2 et M3. Décision d'acceptation, plan de traitement}
+
+\begin{tableaucours}{L{3.6cm}L{8.6cm}}{%
+    \tableauHeader{Rubrique} &
+    \tableauHeader{Contenu attendu}
+}
+Décision d'acceptation & Risque, propriétaire, résiduel et base de preuve,
+mesures en place, décision («~accepté~» ou «~accepté en l'état des
+connaissances~»), conditions, durée, date de revue, signatures \\
+Ligne de plan & Action, risque et étape visés, responsable nommé, échéance,
+coût, preuve attendue, effet attendu sur la cote \\
+\end{tableaucours}
+
+\section*{M4. Ligne de déclaration d'applicabilité}
+
+Mesure (numéro et intitulé de l'ISO/IEC~27002:2022)~; incluse ou exclue~;
+justification (risque du registre ou obligation)~; mise en œuvre (oui,
+partielle, à vérifier) avec la référence de la preuve~; pour une exclusion,
+les faits vérifiés et l'approbation datée.
+
+\section*{M5 et M6. Lettre de mission, note d'autorisation}
+
+\begin{tableaucours}{L{3.6cm}L{8.6cm}}{%
+    \tableauHeader{Document} &
+    \tableauHeader{Rubriques}
+}
+Lettre de mission & Commanditaire~; objectif~; périmètre et période~;
+critères~; équipe et indépendance~; accès aux systèmes, documents,
+personnes et prestataires~; destinataires du rapport \\
+Note d'autorisation & Signataire habilité et accord de l'hébergeur~;
+périmètre inclus et exclu~; méthodes permises et interdites~; fenêtres~;
+contact et procédure d'arrêt~; confidentialité et destruction des
+résultats \\
+\end{tableaucours}
+
+\section*{M7. Papier de travail d'un test}
+
+Référence du test et critère~; population, échantillon et méthode de
+sélection~; technique et date~; preuves obtenues, rang de fiabilité et lieu
+de conservation (avec empreinte pour un export)~; résultat et cote, avec,
+pour un \NEK{}, sa nature (preuve insuffisante ou limitation de
+l'étendue)~; auteur et réviseur.
+
+\section*{M8 et M9. Fiche d'assertion, observation}
+
+\begin{tableaucours}{L{3.6cm}L{8.6cm}}{%
+    \tableauHeader{Document} &
+    \tableauHeader{Rubriques}
+}
+Fiche d'assertion & Position dans le gabarit~; objectif~; un critère et une
+question par condition (atomicité)~; test, preuve, trace~; risque~;
+conséquence \\
+Observation & 1.~Norme~; 2.~Constatation chiffrée, preuve et cote~;
+3.~Risques~; 4.~Contradictoire daté~; 5.~Analyse et confiance~;
+6.~Conclusion~; 7.~Recommandations qui traitent la cause \\
+\end{tableaucours}
+
+\section*{M10 et M11. Indicateur, page GRC}
+
+\begin{tableaucours}{L{3.6cm}L{8.6cm}}{%
+    \tableauHeader{Document} &
+    \tableauHeader{Rubriques}
+}
+Fiche d'indicateur & Objectif servi~; famille (mise en œuvre, efficacité,
+risque)~; définition et formule~; source et collecte~; fréquence~; cible et
+seuils~; responsable~; cote de fiabilité de la source \\
+Page GRC & 1.~Risques au-delà de l'appétence~; 2.~Obligations~;
+3.~Contrôles clés~; 4.~Indicateurs de risque~; 5.~Ce que nous ne savons
+pas~; 6.~Décisions demandées \\
+\end{tableaucours}

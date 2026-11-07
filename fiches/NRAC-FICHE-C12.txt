@@ -1,0 +1,233 @@
+NDAP SUKULU · NRAC · fiche NRAC-FICHE-C12
+Chapitre 12 : L'audit technique de sécurité
+
+Version papier, à utiliser en attendant l'ouverture du portail NDAP SUKULU.
+La fiche complète compte 40 questions. Répondez sur la grille en fin de fiche.
+Durée indicative : 60 minutes. Seuil de réussite : 60 %.
+Les corrections figurent dans le livret de correction du cours.
+
+========================================================================
+Questions à choix multiple (une seule bonne réponse)
+========================================================================
+
+ 1. Quelle activité cherche un chemin vers un objectif et conclut sur son existence ?
+      a) L'audit de configuration
+      b) Le scan de vulnérabilités
+      c) Le test d'intrusion
+      d) La revue documentaire
+
+ 2. Quelle activité compare les équipements à une référence écrite ?
+      a) L'audit de configuration
+      b) Le test d'intrusion
+      c) Le test de charge
+      d) L'entretien
+
+ 3. Quel article de la loi n° 2010/012 punit l'accès sans droit à un système d'information ?
+      a) Article 26
+      b) Article 69
+      c) Article 29
+      d) Article 14
+
+ 4. Quel test est exclu sauf autorisation expresse et environnement dédié ?
+      a) La lecture d'un export
+      b) L'extraction des comptes
+      c) Le scan authentifié
+      d) Le test de charge ou de déni de service
+
+ 5. Scénario. Le centre de Garoua est hébergé par un prestataire. Qui doit autoriser le test ?
+      a) LiZbiZ seule
+      b) L'auditeur
+      c) LiZbiZ et l'hébergeur, par écrit
+      d) Personne
+
+ 6. Pourquoi travailler sur des exports figés ?
+      a) Pour la sécurité, la reproductibilité et l'opposabilité
+      b) Pour aller plus vite
+      c) Pour éviter le contradictoire
+      d) Pour réduire la taille des fichiers
+
+ 7. Comment l'auditeur garantit-il l'intégrité d'un export ?
+      a) Par une signature manuscrite
+      b) Par une empreinte cryptographique comme SHA-256
+      c) Par une photographie
+      d) Par un mot de passe
+
+ 8. Scénario. 61 exports remis pour 64 équipements à l'inventaire. Comment coter les trois manquants ?
+      a) OUI
+      b) NON
+      c) Les ignorer
+      d) NEK
+
+ 9. Quels sont les deux profils des CIS Benchmarks ?
+      a) Niveau 1 et niveau 2
+      b) Base et avancé
+      c) Interne et externe
+      d) Rouge et vert
+
+10. Quelle référence est le critère opposable ?
+      a) Le CIS Benchmark
+      b) L'avis de l'éditeur
+      c) La configuration de référence interne rendue obligatoire par la politique
+      d) Le manuel du fabricant
+
+11. Scénario. Ligne « snmp-server community public RO ». Quel constat ?
+      a) Journalisation absente
+      b) Communauté SNMP par défaut : sous-domaine IN.2, NON
+      c) Telnet actif
+      d) Horloge non synchronisée
+
+12. Pourquoi vérifier la synchronisation des horloges (NTP) ?
+      a) Pour le confort des agents
+      b) Pour réduire la facture
+      c) C'est exigé par PCI DSS seulement
+      d) Des journaux mal datés ne permettent pas de reconstituer un incident
+
+13. Comment vérifie-t-on la segmentation ?
+      a) En interrogeant le DSI
+      b) En comparant les flux autorisés et les flux observés
+      c) En lisant la politique
+      d) En comptant les pare-feu
+
+14. Scénario. Quelle règle a été trouvée à Garoua ?
+      a) Tout trafic depuis l'adresse de maintenance de l'éditeur vers toutes les zones et les autres centres
+      b) Un port web fermé
+      c) Une règle de sauvegarde
+      d) Un VPN chiffré
+
+15. Qu'est-ce qu'un compte orphelin ?
+      a) Un compte sans connexion depuis longtemps
+      b) Un compte partagé
+      c) Un compte sans titulaire
+      d) Un compte de service
+
+16. Que voit un scan authentifié ?
+      a) Seulement les ports ouverts
+      b) Les mots de passe
+      c) Le trafic réseau
+      d) Les versions réellement installées
+
+17. Quelle est l'échelle du score CVSS ?
+      a) De 1 à 4
+      b) De 0 à 10
+      c) De 0 à 100
+      d) De A à F
+
+18. Scénario. Imprimantes CVSS 9,8 non exploitées ; serveur de maintenance 8,1 exploité activement. Lequel en premier ?
+      a) Le serveur de maintenance
+      b) Les imprimantes
+      c) Les deux en même temps
+      d) Aucun
+
+19. LiZbiZ 2028 : 14 OUI, 4 NON, 2 NEK. Que vaut µ ?
+      a) 0,40
+      b) 0,10
+      c) 0,70
+      d) 0,20
+
+20. Quel centre régresse sur les correctifs entre 2026 et 2028 ?
+      a) Douala
+      b) Garoua
+      c) Bafoussam
+      d) Yaoundé
+
+========================================================================
+Vrai ou faux
+========================================================================
+
+21. Un test d'intrusion qui ne trouve aucun chemin prouve l'absence de faille.
+      Vrai / Faux
+
+22. Un scan lancé la veille de la signature de l'autorisation est acceptable.
+      Vrai / Faux
+
+23. L'auditeur recalcule l'empreinte avant chaque analyse.
+      Vrai / Faux
+
+24. Un export figé dit aussi ce qui manque.
+      Vrai / Faux
+
+25. Telnet accepté pour l'administration est une non-conformité au sous-domaine des protocoles.
+      Vrai / Faux
+
+26. Une règle « temporaire » sans date d'expiration est en pratique permanente.
+      Vrai / Faux
+
+27. Les comptes de service méritent une attention particulière.
+      Vrai / Faux
+
+28. Des journaux collectés et jamais lus détectent les attaques.
+      Vrai / Faux
+
+29. Le score CVSS suffit à prioriser les corrections.
+      Vrai / Faux
+
+30. On conclut centre par centre avant toute agrégation.
+      Vrai / Faux
+
+========================================================================
+Textes à trous
+========================================================================
+
+31. L'article qui punit l'attaque par saturation est l'article ______.
+
+32. L'algorithme d'empreinte cité dans le chapitre est SHA-______.
+
+33. Les guides de configuration consensuels du CIS sont les CIS ______.
+
+34. Le protocole d'administration en clair à proscrire est ______.
+
+35. Le système de cotation des vulnérabilités a pour sigle ______.
+
+36. Un compte sans connexion depuis longtemps est dit ______.
+
+37. Le protocole de synchronisation des horloges a pour sigle ______.
+
+38. La règle trouvée à Garoua autorisait tout vers ______.
+
+39. Le cabinet qui conduit l'audit technique de LiZbiZ est AUDIX ______.
+
+40. Le test d'intrusion est enseigné dans l'UE MSN-2S3-SEC______.
+
+========================================================================
+Grille de réponses   Nom : ............................  Matricule : ............
+========================================================================
+ 1. ............................................
+ 2. ............................................
+ 3. ............................................
+ 4. ............................................
+ 5. ............................................
+ 6. ............................................
+ 7. ............................................
+ 8. ............................................
+ 9. ............................................
+10. ............................................
+11. ............................................
+12. ............................................
+13. ............................................
+14. ............................................
+15. ............................................
+16. ............................................
+17. ............................................
+18. ............................................
+19. ............................................
+20. ............................................
+21. ............................................
+22. ............................................
+23. ............................................
+24. ............................................
+25. ............................................
+26. ............................................
+27. ............................................
+28. ............................................
+29. ............................................
+30. ............................................
+31. ............................................
+32. ............................................
+33. ............................................
+34. ............................................
+35. ............................................
+36. ............................................
+37. ............................................
+38. ............................................
+39. ............................................
+40. ............................................

@@ -1,0 +1,233 @@
+NDAP SUKULU · NRAC · fiche NRAC-FICHE-C09
+Chapitre 9 : Les autres référentiels et leurs correspondances
+
+Version papier, à utiliser en attendant l'ouverture du portail NDAP SUKULU.
+La fiche complète compte 40 questions. Répondez sur la grille en fin de fiche.
+Durée indicative : 60 minutes. Seuil de réussite : 60 %.
+Les corrections figurent dans le livret de correction du cours.
+
+========================================================================
+Questions à choix multiple (une seule bonne réponse)
+========================================================================
+
+ 1. Combien de fonctions compte le NIST CSF 2.0 ?
+      a) Cinq
+      b) Six
+      c) Quatre
+      d) Sept
+
+ 2. Combien de catégories compte le NIST CSF 2.0 ?
+      a) 22
+      b) 18
+      c) 93
+      d) 106
+
+ 3. Dans quelle fonction du CSF 2.0 se trouve la gestion des risques de la chaîne d'approvisionnement ?
+      a) Identifier
+      b) Protéger
+      c) Gouverner
+      d) Répondre
+
+ 4. Que décrivent les niveaux de mise en œuvre du CSF ?
+      a) Un pourcentage de mesures appliquées
+      b) Le nombre de serveurs
+      c) La rigueur de la gestion des risques
+      d) Le budget
+
+ 5. Comment s'appellent les deux descriptions qu'une organisation établit avec le CSF ?
+      a) Plan et budget
+      b) Registre et matrice
+      c) Inventaire et cartographie
+      d) Profil actuel et profil cible
+
+ 6. Combien de contrôles comptent les CIS Controls version 8 ?
+      a) 18
+      b) 20
+      c) 93
+      d) 14
+
+ 7. Que réunit le groupe IG1 des CIS Controls ?
+      a) Les mesures pour l'administration américaine
+      b) L'hygiène de base que toute organisation devrait appliquer
+      c) Les mesures de l'IA
+      d) Les mesures physiques
+
+ 8. Qui impose PCI DSS ?
+      a) L'ANTIC
+      b) La COBAC
+      c) Les réseaux de cartes de paiement
+      d) L'ISO
+
+ 9. Le catalogue NIST SP 800-53 révision 5 est réparti en combien de familles ?
+      a) Six
+      b) Vingt
+      c) Quatre
+      d) Dix-huit
+
+10. Que dit un rapport d'assurance de type 2 que ne dit pas le type 1 ?
+      a) La conception des contrôles
+      b) Le nom de l'auditeur
+      c) L'efficacité des contrôles pendant une période
+      d) Le coût des contrôles
+
+11. Scénario. DIGICORE refuse le droit d'audit. Quelle alternative le cours propose-t-il ?
+      a) Exiger chaque année un rapport d'assurance de type 2
+      b) Résilier sans préavis
+      c) Accepter le risque définitivement
+      d) Auditer sans autorisation
+
+12. COBIT 2019 compte combien d'objectifs ?
+      a) 93
+      b) 22
+      c) 40
+      d) 18
+
+13. Que dit une correspondance entre deux référentiels ?
+      a) Que deux exigences portent sur le même sujet
+      b) Que deux exigences ont le même contenu
+      c) Que la conformité à l'un vaut l'autre
+      d) Que l'un remplace l'autre
+
+14. Par quel lien un OUI peut-il se reporter d'un référentiel à l'autre ?
+      a) Partiel
+      b) Fournisseur
+      c) Ancien
+      d) Complet
+
+15. Scénario. B10 (test d'intrusion) est OUI, avec un lien partiel vers l'ISO/IEC 27002. Quelle cote reporter ?
+      a) OUI
+      b) NON
+      c) Au mieux NEK
+      d) Rien n'est jamais reporté
+
+16. Base commune de l'ANPP : 4 OUI, 3 NON, 3 NEK. Que vaut µ ?
+      a) 0,30
+      b) 0,40
+      c) 0,70
+      d) 0,60
+
+17. Scénario. Projetée sur le CSF, quelle fonction de l'ANPP est en non-conformité claire ?
+      a) Gouverner
+      b) Détecter
+      c) Répondre
+      d) Protéger
+
+18. Quel contrôle de la base rejoint le constat des agents payés après leur départ ?
+      a) B2, désactivation des comptes au départ
+      b) B5, sauvegardes
+      c) B9, réponse aux incidents
+      d) B1, inventaire
+
+19. Quel référentiel le cours recommande-t-il d'abord à LiZbiZ ?
+      a) PCI DSS
+      b) NIST SP 800-53
+      c) Le groupe IG1 des CIS Controls
+      d) COBIT 2019
+
+20. Quel critère de choix porte sur le coût de démonstration de la conformité ?
+      a) Le langage
+      b) Le coût de la preuve
+      c) La reconnaissance
+      d) L'obligation
+
+========================================================================
+Vrai ou faux
+========================================================================
+
+21. Le CSF fixe des exigences certifiables.
+      Vrai / Faux
+
+22. Un profil CSF ne vaut que par les preuves qui l'appuient.
+      Vrai / Faux
+
+23. PCI DSS concerne l'ANPP, qui paie par virement.
+      Vrai / Faux
+
+24. Le SP 800-53A décrit la manière d'évaluer chaque mesure.
+      Vrai / Faux
+
+25. Un rapport de type 1 dit si les contrôles ont fonctionné pendant une période.
+      Vrai / Faux
+
+26. Une table ISO/IEC 27002:2013 vaut pour l'édition 2022.
+      Vrai / Faux
+
+27. Une exigence peut correspondre à plusieurs autres.
+      Vrai / Faux
+
+28. Tester une fois et rendre compte trois fois évite des chantiers séparés.
+      Vrai / Faux
+
+29. La base commune de l'ANPP couvre toutes les catégories du CSF.
+      Vrai / Faux
+
+30. La loi peut imposer un référentiel, comme un contrat ou un bailleur.
+      Vrai / Faux
+
+========================================================================
+Textes à trous
+========================================================================
+
+31. Le cadre de cybersécurité du NIST a pour sigle ______.
+
+32. La fonction du CSF qui couvre la surveillance continue est « ______ ».
+
+33. Les guides de configuration du CIS s'appellent les CIS ______.
+
+34. La norme des données de cartes de paiement est PCI ______.
+
+35. La norme internationale d'assurance sur les prestataires est l'ISAE ______.
+
+36. Le rapport d'assurance fondé sur les critères de l'AICPA est le SOC ______.
+
+37. Le tableau qui relie les exigences de deux référentiels est une table de ______.
+
+38. Le directeur général de l'ANPP s'appelle M. ______.
+
+39. Le magistrat vérificateur de la Chambre des comptes s'appelle M. ______.
+
+40. Le groupe de mise en œuvre de base des CIS Controls s'appelle ______.
+
+========================================================================
+Grille de réponses   Nom : ............................  Matricule : ............
+========================================================================
+ 1. ............................................
+ 2. ............................................
+ 3. ............................................
+ 4. ............................................
+ 5. ............................................
+ 6. ............................................
+ 7. ............................................
+ 8. ............................................
+ 9. ............................................
+10. ............................................
+11. ............................................
+12. ............................................
+13. ............................................
+14. ............................................
+15. ............................................
+16. ............................................
+17. ............................................
+18. ............................................
+19. ............................................
+20. ............................................
+21. ............................................
+22. ............................................
+23. ............................................
+24. ............................................
+25. ............................................
+26. ............................................
+27. ............................................
+28. ............................................
+29. ............................................
+30. ............................................
+31. ............................................
+32. ............................................
+33. ............................................
+34. ............................................
+35. ............................................
+36. ............................................
+37. ............................................
+38. ............................................
+39. ............................................
+40. ............................................

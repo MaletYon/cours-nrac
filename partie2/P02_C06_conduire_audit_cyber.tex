@@ -1,0 +1,751 @@
+% ============================================================================
+% Fichier  : partie2/P02_C06_conduire_audit_cyber.tex
+% Titre    : Conduire un Audit de Cybersécurité
+% Auteur   : MINKA MI NGUIDJOÏ Thierry Emmanuel
+% Version  : 1.0 -- novembre 2026
+% Corrigés : corriges/Corr_C06.tex
+% ============================================================================
+% Sources : ISO 19011:2018 (sept principes, programme et conduite d'audit :
+% paraphrasés) ; ISO/IEC 27007:2020 ; IIA, normes mondiales d'audit interne
+% (2024) ; ITAF 4e éd. (2020) ; NIST SP 800-53A rév. 5 (méthodes examiner,
+% interroger, tester) ; loi n° 2010/012, art. 4 point 9, art. 13 al. 1,
+% art. 32 al. 1 et 2 (texte français officiel, Ann. D d'ACSI).
+% Faits du cas (bible) : BANQUE SANAGA, Mme EKAMBI (audit interne), plan
+% A1 à A8, état de septembre 2027 (5/2/3), mission sur les agences
+% programmée pour 2028 (Ex. 1.4), GAB de 14 agences sous un système sans
+% correctifs, droits d'administration locale des chefs d'agence dans 31
+% agences (C03).
+% Faits nouveaux (reportés dans la bible) : mission « sécurité du réseau
+% d'agences », février à avril 2028 ; échantillon de 8 agences sur 38 ;
+% 1 240 comptes ; 8 tests T1 à T8 : 3 OUI / 3 NON / 2 NEK ; Kribi échoue à
+% l'exercice de mode dégradé ; 31 agences sur 38 journalisées ; 3 agences
+% sur 8 gardent l'administration locale ; le prestataire des GAB refuse
+% l'accès ; contestation de la DSI à la réunion de clôture.
+% ============================================================================
+
+\chapter{Conduire un Audit de Cybersécurité}
+\label{chap:audit}
+\chaptermark{Conduire un audit}
+
+\epigraph{%
+    « L'auditeur ne croit pas.\\
+    Il vérifie, ou il dit qu'il n'a pas pu. »%
+}{Principe du cours}
+
+\niveauChapitre{Fondamental}{%
+    Maîtrise du Chapitre~\ref{chap:grc}%
+}
+
+\begin{boxobjectifs}
+\begin{itemize}
+    \item Définir l'audit, ses critères, ses preuves, ses constats et ses
+          conclusions.
+    \item Appliquer les sept principes de l'ISO~19011 et situer
+          l'ISO/IEC~27007.
+    \item Distinguer audit interne, audit de certification, audit
+          contractuel et audit réglementaire.
+    \item Décrire le cycle d'une mission, du mandat au suivi, et organiser
+          le contradictoire.
+    \item Choisir une technique de collecte et apprécier la fiabilité d'une
+          preuve.
+    \item Échantillonner, et dire ce qu'un échantillon permet de conclure.
+    \item Coter un test \OUI{}, \NON{} ou \NEK{}, et traiter une limitation
+          de l'étendue.
+\end{itemize}
+\end{boxobjectifs}
+
+\bigskip
+
+% ============================================================================
+\section*{Avant de commencer : « Les actions sont faites »}
+% ============================================================================
+
+Douala, février 2028. Le plan de traitement de R-AG-01 est déclaré achevé.
+Le rapport de la RSSI au comité des risques l'affirme~: second facteur,
+cloisonnement, sauvegardes, mode dégradé, sensibilisation, journalisation,
+tout est en place\footnote{Comme dans tout le cours, la BANQUE SANAGA, ses
+dirigeants, ses prestataires, les dates et les montants sont fictifs~; les
+normes et les textes cités sont exacts.}. Le comité ne doute pas de la
+bonne foi de Mme~ABENA. Mais il a appris, en 2026, ce que vaut une
+assurance qu'on ne vérifie pas. Il confirme donc la mission inscrite au
+programme de l'audit interne~: la sécurité du réseau d'agences.
+
+Mme~EKAMBI, directrice de l'audit interne, sait que la mission sera
+regardée de près. Si elle conclut que tout va bien, le comité réduira la
+surveillance~; si elle se trompe, la prochaine attaque le dira. Elle doit
+donc pouvoir montrer, pour chaque conclusion, la preuve qui la fonde, ou
+dire clairement qu'elle ne l'a pas obtenue.
+
+\medskip
+
+Ce chapitre décrit la conduite d'un audit de cybersécurité, de l'audit
+interne à l'audit réglementaire. Le Chapitre~\ref{chap:conclure} apprendra
+ensuite à décomposer l'objet audité et à conclure.
+
+\begin{boxalert}
+\textbf{Violation typique.} Conclure qu'une mesure est en place sur la
+foi d'un rapport de l'audité, d'une capture d'écran qu'il a fournie, ou
+d'un entretien.
+
+\smallskip
+\textbf{Règle~:} une déclaration n'est pas une preuve de fonctionnement.
+L'auditeur obtient lui-même la preuve, ou une preuve produite par le
+système sous ses yeux~; à défaut, il cote \NEK{} et le dit.
+\end{boxalert}
+
+\separateur
+
+% ============================================================================
+\section{Ce qu'est un Audit}
+\label{sec:c06-definir}
+% ============================================================================
+
+\subsection{Cinq notions}
+
+\begin{boxdef}
+\termecle{Audit}\index{audit}~: processus méthodique, indépendant et
+documenté, qui consiste à obtenir des preuves objectives et à les évaluer
+de manière objective pour déterminer dans quelle mesure des critères sont
+satisfaits~\cite{iso19011_2018}.
+
+\medskip
+\termecle{Critère d'audit}\index{critère d'audit}~: ensemble d'exigences
+qui sert de référence~: une norme, une politique, une loi, un contrat, un
+plan de traitement.
+
+\medskip
+\termecle{Preuve d'audit}\index{preuve d'audit}~: enregistrement,
+énoncé de fait ou autre information, vérifiable et pertinent au regard des
+critères.
+
+\medskip
+\termecle{Constat d'audit}\index{constat d'audit}~: résultat de
+l'évaluation des preuves au regard des critères~: conformité,
+non-conformité, ou impossibilité de conclure.
+
+\medskip
+\termecle{Conclusion d'audit}\index{conclusion d'audit}~: résultat de
+l'audit, tiré de l'ensemble des constats, au regard des objectifs de la
+mission.
+\end{boxdef}
+{\small\itshape Définitions reformulées d'après l'ISO~19011:2018~; la
+troisième issue du constat est propre au cours.}
+
+\medskip
+
+L'ISO~19011 envisage deux issues pour un constat~: conforme ou non
+conforme. Le cours en ajoute une troisième, \NEK{}~: la preuve n'a pas pu
+être obtenue, ou ne permet pas de trancher. Ce n'est pas une
+complaisance~; c'est une information, souvent la plus importante du
+rapport (Chapitre~\ref{chap:conclure}).
+
+\subsection{Sept principes}
+
+L'ISO~19011:2018 pose sept principes, qui s'appliquent à tout audit de
+système de management~\cite{iso19011_2018}.
+
+\begin{tableaucours}{L{3.6cm}L{8.6cm}}{%
+    \tableauHeader{Principe} &
+    \tableauHeader{Ce qu'il signifie pour l'auditeur en cybersécurité}
+}
+Intégrité & Honnêteté, diligence, compétence~; refus de toute pression sur
+les constats \\
+Présentation impartiale & Rapporter fidèlement, y compris les obstacles
+rencontrés et les divergences non résolues \\
+Conscience professionnelle & Le soin qu'exige l'importance de la mission
+et la confiance des commanditaires \\
+Confidentialité & Protéger les informations obtenues, en particulier les
+faiblesses découvertes \\
+Indépendance & Ne pas auditer son propre travail~; rester objectif \\
+Approche fondée sur la preuve & Conclure sur des preuves vérifiables,
+obtenues sur un échantillon raisonné \\
+Approche fondée sur le risque & Concentrer l'effort là où le risque, pour
+la mission et pour l'audité, est le plus grand \\
+\end{tableaucours}
+\vspace{-0.8em}
+\begin{center}{\small\itshape Tableau~6.1. Les sept principes de
+l'audit (d'après l'ISO~19011:2018)}\end{center}
+
+\begin{boxinfo}
+\textbf{Les autres référentiels.} L'ISO/IEC~27007:2020 complète
+l'ISO~19011 pour l'audit des systèmes de management de la sécurité de
+l'information~\cite{iso27007_2020}~; le Chapitre~\ref{chap:smsi} l'emploie.
+Les auditeurs internes appliquent en outre les normes mondiales d'audit
+interne de l'IIA, publiées en 2024~\cite{iia2024gias}, et les auditeurs des
+systèmes d'information le cadre ITAF de l'ISACA~\cite{isaca2020itaf}.
+\end{boxinfo}
+
+\subsection{Quatre familles d'audit}
+
+\begin{tableaucours}{L{2.6cm}L{3.4cm}L{3.0cm}L{3.2cm}}{%
+    \tableauHeader{Famille} &
+    \tableauHeader{Commanditaire} &
+    \tableauHeader{Critères} &
+    \tableauHeader{Exemple du cours}
+}
+Interne (première partie) & L'organisation elle-même, par son audit
+interne & Ses politiques, ses plans, les normes qu'elle applique &
+Mission de Mme~EKAMBI sur les agences \\
+Contractuel (seconde partie) & Un client ou un partenaire & Le contrat &
+PHARMACAM chez LiZbiZ \\
+Certification (tierce partie) & L'organisation, auprès d'un organisme
+accrédité & La norme certifiable & CERTIQUAL AFRIQUE, ISO/IEC~27001 \\
+Réglementaire & La loi, par une autorité & Les textes & L'audit de
+sécurité obligatoire de l'ANPP \\
+\end{tableaucours}
+\vspace{-0.8em}
+\begin{center}{\small\itshape Tableau~6.2. Les familles d'audit}\end{center}
+
+Un test d'intrusion n'est pas un audit au sens strict~: il cherche des
+chemins d'attaque, sans évaluer l'ensemble des critères. Il peut fournir
+des preuves à un audit, comme le test A3 du plan de la banque. Il est
+enseigné dans l'UE MSN-2S3-SEC03.
+
+% ============================================================================
+\section{Le Cycle de la Mission}
+\label{sec:c06-cycle}
+% ============================================================================
+
+\subsection{Programme et mission}
+
+L'ISO~19011 distingue le \emph{programme d'audit}, qui organise les audits
+sur plusieurs années selon les risques, et la \emph{mission}, qui en
+réalise un. Le programme de l'audit interne de la BANQUE SANAGA n'avait
+pas couvert la sécurité en 2024 et 2025 (Chapitre~\ref{chap:grc},
+Tableau~1.7)~; celui de 2028 l'inscrit en tête, parce que le risque
+résiduel de R-AG-01 repose sur des mesures nouvelles.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[
+    etape/.style={draw=CouleurPrimaire, thick, rounded corners,
+                  fill=CouleurPrimaire!8, text width=2.0cm,
+                  minimum height=1.2cm, align=center, font=\scriptsize},
+    fleche/.style={->, thick, CouleurSecondaire}]
+    \node[etape] (M) at (0,0) {\textbf{Mandat}\\objectifs, périmètre, critères};
+    \node[etape] (P) at (2.5,0) {\textbf{Préparation}\\analyse de risque, programme de travail};
+    \node[etape] (T) at (5.0,0) {\textbf{Terrain}\\collecte et évaluation des preuves};
+    \node[etape] (C) at (7.5,0) {\textbf{Contradictoire}\\réunion de clôture, réponses};
+    \node[etape] (R) at (10.0,0) {\textbf{Rapport}\\constats, conclusions};
+    \node[etape] (S) at (5.0,-2.0) {\textbf{Suivi}\\vérification des actions};
+    \draw[fleche] (M) -- (P); \draw[fleche] (P) -- (T);
+    \draw[fleche] (T) -- (C); \draw[fleche] (C) -- (R);
+    \draw[fleche] (R.south) |- (S.east);
+    \draw[fleche, dashed] (S.west) -| (M.south);
+\end{tikzpicture}
+\caption{Le cycle d'une mission d'audit}
+\label{fig:c06-cycle}
+\end{figure}
+
+\subsection{Le mandat}
+
+\begin{boxscenario}{Opération SANAGA. La lettre de mission}
+\textbf{Commanditaire~:} le comité des risques du conseil, auquel l'audit
+interne rend compte.
+
+\medskip
+\textbf{Objectif~:} établir si les mesures du plan de traitement de
+R-AG-01, et les mesures sur les agences issues de l'appréciation de
+décembre 2026, sont en place et fonctionnent.
+
+\medskip
+\textbf{Périmètre~:} les 38 agences, les comptes et les postes des agents,
+les espaces de fichiers, les sauvegardes des serveurs d'agence, les
+automates de retrait (GAB)~; période~: de septembre 2027 à mars 2028.
+
+\medskip
+\textbf{Critères~:} la politique de sécurité de la banque~; le plan de
+traitement (actions A1 à A8, preuves attendues)~; les mesures
+correspondantes de l'ISO/IEC~27002:2022.
+
+\medskip
+\textbf{Équipe~:} Mme~EKAMBI et deux auditeurs internes, avec l'appui
+d'un auditeur technique externe pour les extractions. Aucun membre de
+l'équipe n'a participé à la mise en œuvre du plan.
+
+\medskip
+\textbf{Accès~:} la lettre de mission, signée par le président du comité,
+donne à l'équipe l'accès à tous les systèmes, documents et personnes
+nécessaires, y compris chez les prestataires dans la limite des contrats.
+\end{boxscenario}
+
+La dernière phrase compte. Sans elle, l'auditeur dépend de la bonne volonté
+de chacun. Avec elle, un refus d'accès devient un constat, que le comité
+doit traiter.
+
+\subsection{La préparation}
+
+L'équipe analyse les risques de la mission~: où une erreur de conclusion
+serait la plus grave, où la preuve sera la plus difficile à obtenir. Elle
+en tire un \emph{programme de travail}~: pour chaque critère, le test, la
+technique, l'échantillon, la preuve attendue.
+
+\begin{tableaucours}{cL{3.4cm}L{4.4cm}L{3.4cm}}{%
+    \tableauHeader{Réf.} &
+    \tableauHeader{Critère} &
+    \tableauHeader{Test} &
+    \tableauHeader{Preuve attendue}
+}
+T1 & Second facteur sur tous les comptes (A1) & Extraction exhaustive des
+1\,240 comptes~; essai de connexion sans second facteur & Extraction,
+procès-verbal d'essai \\
+T2 & Cloisonnement par agence (A2) & Essais d'accès d'une agence vers les
+espaces des autres & Procès-verbal d'essai \\
+T3 & Sauvegardes hors ligne testées (A4) & Restauration observée d'un
+serveur choisi par l'auditeur & Procès-verbal, empreinte des fichiers \\
+T4 & Mode dégradé exercé (A5) & Exercice inopiné dans deux agences &
+Compte rendu, chronométrage \\
+T5 & Sensibilisation des agents (A6) & Rapprochement des listes de présence
+et des effectifs & Listes, fichier du personnel \\
+T6 & Journalisation centralisée (A8) & Extraction du collecteur~: agences
+qui envoient des journaux & Extraction datée \\
+T7 & Fin de l'administration locale des chefs d'agence & Extraction des
+groupes locaux des postes & Extraction \\
+T8 & Correctifs des GAB & Revue des configurations auprès du prestataire &
+Configurations \\
+\end{tableaucours}
+\vspace{-0.8em}
+\begin{center}{\small\itshape Tableau~6.3. Le programme de travail de la
+mission}\end{center}
+
+% ============================================================================
+\section{Collecter et Apprécier la Preuve}
+\label{sec:c06-preuve}
+% ============================================================================
+
+\subsection{Trois techniques, et leurs variantes}
+
+Le NIST décrit trois méthodes d'évaluation des mesures de sécurité~:
+\emph{examiner} (des documents, des configurations, des journaux),
+\emph{interroger} (des personnes), \emph{tester} (faire fonctionner la
+mesure dans des conditions définies)~\cite{nist2022sp80053a}. Les auditeurs
+y ajoutent l'\emph{observation} (regarder une opération se faire) et la
+\emph{ré-exécution} (refaire soi-même un contrôle pour voir s'il donne le
+même résultat).
+
+\subsection{La fiabilité de la preuve}
+
+Toutes les preuves ne se valent pas. Une preuve est d'autant plus fiable
+qu'elle est obtenue directement par l'auditeur, qu'elle est produite par
+un système plutôt que rédigée par une personne, et qu'elle vient d'une
+source indépendante de l'audité.
+
+\begin{tableaucours}{cL{5.4cm}L{5.8cm}}{%
+    \tableauHeader{Rang} &
+    \tableauHeader{Type de preuve} &
+    \tableauHeader{Exemple dans la mission}
+}
+1 & Obtenue directement par l'auditeur (test, ré-exécution, observation)
+& Essai de connexion sans second facteur, restauration observée \\
+2 & Produite par le système, extraite sous les yeux de l'auditeur &
+Extraction des comptes, du collecteur de journaux \\
+3 & Document de tiers indépendant & Rapport du test d'intrusion A3 \\
+4 & Document produit par l'audité & Rapport de la RSSI, captures d'écran
+fournies \\
+5 & Déclaration orale & « Toutes les agences sont raccordées » \\
+\end{tableaucours}
+\vspace{-0.8em}
+\begin{center}{\small\itshape Tableau~6.4. Une hiérarchie de la fiabilité
+des preuves}\end{center}
+
+\begin{boxinfo}
+\textbf{Suffisante, pertinente, fiable.} Une preuve doit être
+\emph{pertinente} (elle porte sur le critère), \emph{fiable} (rang élevé
+du Tableau~6.4) et \emph{suffisante} (en quantité, pour la conclusion
+visée). Une déclaration orale peut orienter un test~; elle ne suffit
+jamais à coter \OUI{}.
+\end{boxinfo}
+
+\subsection{Échantillonner}
+
+On ne vérifie pas toujours tout. Pour un \emph{contrôle automatisé} (le
+second facteur, géré par un serveur central), on extrait l'ensemble de la
+population~: 1\,240 comptes, sans échantillon. Pour ce qui se fait agence
+par agence, l'équipe retient un échantillon de huit agences sur
+trente-huit~:
+\begin{itemize}
+    \item Ngaoundéré, point d'entrée de l'attaque de 2026~;
+    \item deux autres agences touchées en 2026~;
+    \item les trois agences qui traitent le plus d'opérations~;
+    \item deux agences tirées au hasard parmi les autres, dont Kribi.
+\end{itemize}
+
+\begin{boxdef}
+\termecle{Échantillon raisonné}\index{échantillonnage}~: échantillon
+choisi par l'auditeur selon les risques. Il permet de trouver des défauts
+là où ils sont probables~; il ne permet pas d'extrapoler un taux à la
+population. Seul un \termecle{échantillon aléatoire}, de taille suffisante,
+autorise une estimation statistique.
+\end{boxdef}
+
+La distinction n'est pas un détail~: si trois agences de l'échantillon sur
+huit présentent un défaut, on ne peut pas en déduire que «~37,5~\% des
+agences~» le présentent. On peut seulement dire que le défaut existe, et
+demander une vérification exhaustive.
+
+% ============================================================================
+\section{Coter les Tests}
+\label{sec:c06-coter}
+% ============================================================================
+
+\subsection{Les résultats de terrain}
+
+\begin{tableaucours}{cL{6.8cm}cL{2.8cm}}{%
+    \tableauHeader{Réf.} &
+    \tableauHeader{Résultat} &
+    \tableauHeader{Cote} &
+    \tableauHeader{Rang de la preuve}
+}
+T1 & 1\,240 comptes sur 1\,240 avec second facteur~; connexion refusée sans
+lui dans les huit agences & \OUI{} & 1 et 2 \\
+T2 & Tous les essais d'accès entre agences refusés & \OUI{} & 1 \\
+T3 & Trois restaurations réussies, empreintes identiques & \OUI{} & 1 \\
+T4 & Garoua sert en mode dégradé en 40 minutes~; Kribi ne peut pas servir
+pendant plus de deux heures (procédure introuvable, codes inconnus) &
+\NON{} & 1 \\
+T5 & Listes de 30 agences, signatures non nominatives~; rapprochement
+avec les effectifs impossible & \NEK{} & 4 \\
+T6 & 31 agences sur 38 envoient des journaux au collecteur & \NON{} & 2 \\
+T7 & Chef d'agence encore administrateur local dans 3 agences sur 8 &
+\NON{} & 2 \\
+T8 & Le prestataire des GAB refuse l'accès aux configurations, en
+invoquant son contrat & \NEK{} & -- \\
+\end{tableaucours}
+\vspace{-0.8em}
+\begin{center}{\small\itshape Tableau~6.5. Résultats des tests (mars 2028)}\end{center}
+
+\begin{boxlecture}{La mission sur le réseau d'agences}
+\textbf{Constatation.} Sur huit tests~: 3~\OUI{}, 3~\NON{}, 2~\NEK{}.
+\[
+\mu = 0{,}375~;\quad U = 0{,}25~;\quad
+H = -(2 \times 0{,}375\log_2 0{,}375 + 0{,}25\log_2 0{,}25)
+  \approx 0{,}531 + 0{,}531 + 0{,}500 \approx 1{,}56~\text{bit}.
+\]
+
+\textbf{Analyse} (confiance élevée sur les \OUI{} et les \NON{}). Les trois
+mesures techniques centrales du plan (T1 à T3) fonctionnent~: le résiduel
+de R-AG-01 sur l'entrée et la propagation est confirmé. Mais le rapport de
+la RSSI déclarait «~tout en place~», et trois mesures ne le sont pas. Ce
+n'est pas un défaut d'honnêteté~: la RSSI a reçu des déclarations des
+agences et de la DSI, et les a transmises. C'est exactement la raison
+d'être de l'audit~: remplacer des déclarations de rang~4 ou~5 par des
+preuves de rang~1 ou~2.
+
+\medskip
+\hfill\lecture{0{,}375}{0{,}25}{1{,}56}
+\end{boxlecture}
+
+\subsection{Le cas du NEK}
+
+Les deux \NEK{} ne sont pas de même nature.
+
+\begin{itemize}
+    \item \textbf{T5} est un \NEK{} de \emph{preuve insuffisante}~: les
+          listes existent, mais ne permettent pas de conclure. L'auditeur
+          recommande une preuve meilleure (émargement nominatif, quiz
+          enregistré) et pourra conclure au prochain passage.
+    \item \textbf{T8} est un \NEK{} de \emph{limitation de l'étendue}~: on
+          a empêché l'auditeur de voir. C'est en soi un constat, grave, que
+          le rapport porte au comité~: quatorze agences ont des GAB sous un
+          système sans correctifs (Chapitre~\ref{chap:iso27005}), et la
+          banque ne peut pas vérifier ce que fait leur prestataire.
+\end{itemize}
+
+\begin{boxalert}
+\textbf{Violation typique.} Retirer du rapport un test que l'on n'a pas pu
+réaliser, pour ne présenter que ce qui a été vérifié.
+
+\smallskip
+\textbf{Règle~:} une limitation de l'étendue figure dans le rapport, avec
+sa cause et ce qu'elle empêche de conclure. Le principe de présentation
+impartiale l'exige~: le commanditaire doit savoir ce que l'audit n'a pas
+pu voir.
+\end{boxalert}
+
+\subsection{Le papier de travail}
+
+\begin{boxprocedure}
+\textbf{Le papier de travail d'un test.} Chaque test du programme laisse
+un papier de travail qui permet à un autre auditeur de refaire le
+raisonnement~:
+\begin{itemize}
+    \item la référence du test, le critère, la population et l'échantillon,
+          avec la méthode de sélection~;
+    \item la technique employée et la date~;
+    \item les preuves obtenues, leur rang de fiabilité, et l'endroit où
+          elles sont conservées (extraction, empreinte, procès-verbal)~;
+    \item le résultat et la cote (\OUI{}, \NON{} ou \NEK{}), avec, pour un
+          \NEK{}, sa nature (preuve insuffisante ou limitation)~;
+    \item l'auteur et le réviseur.
+\end{itemize}
+\end{boxprocedure}
+
+% ============================================================================
+\section{Le Contradictoire et le Rapport}
+\label{sec:c06-contradictoire}
+% ============================================================================
+
+\subsection{La réunion de clôture}
+
+Avant le rapport, l'équipe présente ses constats aux audités~: la RSSI, la
+DSI, la direction du réseau d'agences. C'est le
+\termecle{contradictoire}\index{contradictoire}~: l'audité peut contester
+un fait, apporter une preuve que l'auditeur n'avait pas, ou expliquer une
+cause. Un constat qui a survécu au contradictoire est solide~; un constat
+qui le contourne est fragile.
+
+\begin{boxscenario}{Opération SANAGA. La DSI conteste T6}
+\textbf{Faits.} À la réunion de clôture, le DSI affirme que les sept
+agences manquantes «~ont été raccordées la semaine dernière~».
+
+\medskip
+\textbf{Réponse de l'équipe.} Mme~EKAMBI demande une extraction datée du
+collecteur, faite devant un auditeur. L'extraction, obtenue le lendemain,
+montre 38 agences sur 38.
+
+\medskip
+\textbf{Analyse} (confiance élevée). Le constat n'est pas supprimé~: pendant
+la période auditée, sept agences n'étaient pas journalisées, et une
+attaque y serait passée inaperçue. Le rapport le maintient, et ajoute
+«~corrigé en cours de mission, extraction du 22~mars 2028~». La correction
+est une bonne nouvelle~; elle ne réécrit pas le passé.
+\end{boxscenario}
+
+\subsection{Le rapport et le suivi}
+
+Le rapport présente les objectifs, le périmètre, les critères, les
+limitations, puis les constats et les conclusions. Chaque constat donne le
+critère, le fait, la cote et la preuve~; le Chapitre~\ref{chap:conclure}
+montre comment le développer en observation complète (cause, conséquence,
+recommandation) et comment tirer une conclusion d'ensemble des cotes.
+L'audité répond par un plan d'actions daté~; l'audit interne vérifie, à
+l'échéance, que les actions sont faites, par des preuves du même rang que
+celles de la mission.
+
+\begin{boxobjet}{R-AG-01 · Après l'audit de mars 2028}
+\textbf{Mesures confirmées par l'audit~:} second facteur (T1),
+cloisonnement (T2), sauvegardes restaurées (T3).
+
+\textbf{Mesures non confirmées~:} mode dégradé (T4, \NON{} à Kribi),
+sensibilisation (T5, \NEK{}), journalisation (T6, corrigée en cours de
+mission), administration locale (T7, \NON{} dans 3 agences sur 8).
+
+\textbf{Résiduel~:} inchangé à $2 \times 3 = 6$ selon la convention de
+réduction, car les étapes entrée, propagation et récupération restent
+couvertes par des mesures prouvées. Mais la récupération repose sur les
+sauvegardes seules~: dans une agence comme Kribi, les guichets resteraient
+fermés le temps de la restauration.
+
+\textbf{Nouveau risque à apprécier~:} compromission d'un GAB (T8), base
+\NEK{}~; présentation au comité des risques en raison de la limitation de
+l'étendue.
+\end{boxobjet}
+
+% ============================================================================
+\section{Le Cadre Camerounais}
+\label{sec:c06-cadre}
+% ============================================================================
+
+\begin{boxjuris}
+\textbf{\loicam{n°~2010/012}, article~4, point~9}~\cite{loi2010012}~:
+
+\medskip
+\textit{« Audit de sécurité~: examen méthodique des composantes et des
+acteurs de la sécurité, de la politique, des mesures, des solutions, des
+procédures et des moyens mis en oeuvre par une organisation, pour
+sécuriser son environnement, effectuer des contrôles de conformité, des
+contrôles d'évaluation de l'adéquation des moyens (organisationnels,
+techniques, humains, financiers) investis au regard des risques encourus,
+d'optimisation, de rationalité et de performance. »}
+
+\medskip
+\textbf{Article~13, alinéa~1}~:
+
+\medskip
+\textit{« Sont soumis à un audit de sécurité obligatoire, les réseaux de
+communications électroniques et les systèmes d'information, des
+opérateurs, des autorités de certification et des fournisseurs de services
+de communications électroniques. »}
+
+\medskip
+\textbf{Article~32, alinéas~1 et~2}~:
+
+\medskip
+\textit{« (1) Les réseaux de communications électroniques et les systèmes
+d'information sont soumis à un régime d'audit de sécurité obligatoire et
+périodique de leurs systèmes de sécurité par l'Agence. (2) L'audit de
+sécurité et les mesures d'impact de gravité sont effectués chaque année ou
+lorsque les circonstances l'exigent. »}
+
+\medskip
+\textbf{Portée.} La définition légale de l'article~4 couvre à la fois la
+conformité et l'adéquation des moyens «~au regard des risques encourus~»~:
+elle correspond à l'approche fondée sur le risque de l'ISO~19011. Les
+articles~13 et~32 instituent un audit réglementaire annuel, conduit sous
+l'autorité de l'Agence nationale des technologies de l'information et de la
+communication. Leur champ exact (quels systèmes, quelles organisations)
+et leur application à une agence publique comme l'ANPP sont étudiés au
+Chapitre~\ref{chap:droit}.
+\end{boxjuris}
+
+% ============================================================================
+\section{Ce que l'Audit demande à chaque Métier}
+\label{sec:c06-metiers}
+% ============================================================================
+
+\begin{boxmetier}{Auditeur en cybersécurité}
+\textbf{Préférer la preuve que l'on obtient soi-même}
+\begin{enumerate}
+    \item Obtenir un mandat écrit qui garantit l'accès, y compris chez les
+          prestataires.
+    \item Écrire, avant le terrain, la preuve attendue de chaque test.
+    \item Viser les preuves de rang~1 et~2~; ne jamais coter \OUI{} sur une
+          déclaration.
+    \item Distinguer, pour chaque \NEK{}, preuve insuffisante et limitation
+          de l'étendue, et porter la seconde au commanditaire.
+    \item Maintenir un constat corrigé en cours de mission, en signalant la
+          correction.
+\end{enumerate}
+\end{boxmetier}
+
+\begin{boxmetier}{RSSI}
+\textbf{Préparer l'audit, pas le subir}
+
+La RSSI aurait évité l'écart entre son rapport et l'audit en demandant,
+pour chaque action, la preuve prévue au plan (Chapitre~\ref{chap:iso27005})
+plutôt qu'une déclaration. Un RSSI dont les rapports reposent sur des
+preuves de rang~2 voit l'audit confirmer ses chiffres.
+\end{boxmetier}
+
+\begin{boxmetier}{Responsable GRC}
+\textbf{Faire entrer l'audit dans les contrats}
+
+La limitation de T8 vient d'un contrat sans droit d'audit, comme celui de
+DIGICORE. Le responsable GRC fait inscrire, dans chaque contrat de
+prestataire qui touche au système d'information, un droit d'accès de
+l'audit interne et des auditeurs mandatés.
+\end{boxmetier}
+
+\separateur
+
+\begin{boxresume}
+\textbf{Ce qu'il faut retenir de ce chapitre~:}
+\begin{itemize}
+    \item \textbf{L'audit} obtient et évalue des preuves au regard de
+          critères~; le constat peut être conforme, non conforme, ou
+          \NEK{}.
+    \item \textbf{Sept principes} (ISO~19011)~: intégrité, présentation
+          impartiale, conscience professionnelle, confidentialité,
+          indépendance, approche fondée sur la preuve, approche fondée sur
+          le risque.
+    \item \textbf{Quatre familles}~: interne, contractuel, certification,
+          réglementaire.
+    \item \textbf{Le cycle}~: mandat, préparation, terrain, contradictoire,
+          rapport, suivi.
+    \item \textbf{La preuve} vaut par sa pertinence, sa fiabilité et sa
+          suffisance~; une déclaration n'est jamais suffisante.
+    \item \textbf{Un échantillon raisonné} trouve des défauts~; il ne
+          permet pas d'extrapoler un taux.
+    \item \textbf{Une limitation de l'étendue} est un constat, porté au
+          commanditaire.
+\end{itemize}
+\end{boxresume}
+
+\begin{boxinfo}
+\textbf{Points de contrôle.} Vous avez compris ce chapitre si vous savez~:
+\begin{itemize}
+    \item classer une preuve dans la hiérarchie de fiabilité~;
+    \item rédiger une ligne de programme de travail avec sa preuve
+          attendue~;
+    \item dire ce qu'un échantillon raisonné permet de conclure~;
+    \item distinguer les deux sortes de \NEK{} et traiter chacune.
+\end{itemize}
+\end{boxinfo}
+
+% ============================================================================
+\section*{Exercices}
+% ============================================================================
+
+\begin{boxexo}[title={\ding{45}\quad Exercice~6.1. Techniques et preuves \niveaubase}]
+Pour chacun des éléments suivants, indiquez la technique (examiner,
+interroger, tester, observer, ré-exécuter) et le rang de fiabilité de la
+preuve (Tableau~6.4).
+\begin{enumerate}[(a)]
+    \item Le DSI explique que les correctifs sont appliqués chaque mois.
+    \item L'auditeur lance lui-même la restauration d'un serveur.
+    \item La RSSI remet une capture d'écran de la console de sauvegarde.
+    \item L'auditeur assiste à l'ouverture d'une agence en mode dégradé.
+    \item L'auditeur extrait la liste des comptes d'administration, devant
+          lui, depuis l'annuaire.
+    \item L'auditeur recalcule le délai d'application des correctifs à
+          partir du journal de déploiement.
+\end{enumerate}
+\end{boxexo}
+
+\begin{boxexo}[title={\ding{45}\quad Exercice~6.2. Une ligne de programme \niveaumoyen}]
+Le comité demande d'ajouter à la mission un test sur les comptes des agents
+partis~: aucun compte d'un agent ayant quitté la banque ne doit rester
+actif plus de cinq jours après son départ.
+\begin{enumerate}[(a)]
+    \item Rédigez la ligne du programme de travail~: critère, test,
+          population, échantillon éventuel, preuve attendue.
+    \item La DRH fournit une liste de 46 départs en 2027~; l'extraction de
+          l'annuaire montre 4 comptes de partants actifs plus de cinq jours.
+          Cotez le test et justifiez.
+    \item La DRH refuse de communiquer les départs du dernier trimestre,
+          «~pour des raisons de confidentialité~». Quelle est la nature de
+          ce \NEK{}, et que fait l'auditeur~?
+\end{enumerate}
+\end{boxexo}
+
+\begin{boxexo}[title={\ding{45}\quad Exercice~6.3. Ce que dit l'échantillon \niveaumoyen}]
+\begin{enumerate}[(a)]
+    \item Justifiez chacun des quatre critères de sélection de l'échantillon
+          de huit agences.
+    \item Un administrateur lit le résultat de T7 et conclut que «~14
+          agences environ~» gardent l'administration locale. Que
+          répondez-vous~?
+    \item Si les huit agences avaient été conformes pour T7, l'auditeur
+          aurait-il pu coter \OUI{} pour les 38 agences~? Proposez la
+          meilleure preuve possible pour ce test.
+\end{enumerate}
+\end{boxexo}
+
+\begin{boxexo}[title={\ding{45}\quad Exercice~6.4. L'audit contractuel de PHARMACAM \niveauexpert}]
+PHARMACAM exerce, en 2028, son droit d'audit sur LiZbiZ, pour vérifier le
+plan de traitement du scénario SO1 (Chapitres~\ref{chap:ebios}
+et~\ref{chap:fair}).
+\begin{enumerate}[(a)]
+    \item De quelle famille d'audit s'agit-il~? Qui peut le conduire~?
+          AUDIX CONSEIL peut-il s'en charger~? Justifiez.
+    \item Rédigez la lettre de mission~: objectif, périmètre, critères,
+          accès.
+    \item Rédigez un programme de travail de cinq tests, avec la preuve
+          attendue et son rang.
+    \item L'éditeur de l'application refuse de montrer la configuration de
+          son accès de maintenance. Comment le rapport le traite-t-il, et
+          quelle conséquence PHARMACAM peut-elle en tirer~?
+\end{enumerate}
+\end{boxexo}
+
+\bigskip
+
+\begin{boxinfo}
+\textbf{Pour aller plus loin.}
+\begin{itemize}
+    \item L'ISO~19011:2018~\cite{iso19011_2018}, sur les principes, le
+          programme et la conduite des audits.
+    \item L'ISO/IEC~27007:2020~\cite{iso27007_2020}, pour l'audit d'un SMSI.
+    \item Le NIST SP~800-53A~\cite{nist2022sp80053a}, sur les méthodes
+          d'évaluation des mesures de sécurité.
+    \item Les normes mondiales d'audit interne de l'IIA~\cite{iia2024gias}.
+\end{itemize}
+\end{boxinfo}
+
+\begin{boxinfo}
+\textbf{Transition.} La mission a produit huit cotes~: 3~\OUI{}, 3~\NON{},
+2~\NEK{}. Que conclure~? Le réseau d'agences est-il « sécurisé »~? Pour
+répondre, il faut décomposer l'objet audité, coter chaque assertion selon
+plusieurs critères, et appliquer une règle de décision qui tienne compte de
+l'incertitude. C'est l'objet du Chapitre~\ref{chap:conclure}.
+\end{boxinfo}

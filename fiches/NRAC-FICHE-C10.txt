@@ -1,0 +1,233 @@
+NDAP SUKULU · NRAC · fiche NRAC-FICHE-C10
+Chapitre 10 : Le cadre camerounais et africain, la déontologie
+
+Version papier, à utiliser en attendant l'ouverture du portail NDAP SUKULU.
+La fiche complète compte 40 questions. Répondez sur la grille en fin de fiche.
+Durée indicative : 60 minutes. Seuil de réussite : 60 %.
+Les corrections figurent dans le livret de correction du cours.
+
+========================================================================
+Questions à choix multiple (une seule bonne réponse)
+========================================================================
+
+ 1. Quelle règle s'applique à la citation d'un texte de loi ?
+      a) On cite de mémoire
+      b) On ne cite entre guillemets que ce qui a été lu dans sa version officielle
+      c) On cite le résumé d'un cabinet
+      d) On cite toujours l'anglais
+
+ 2. Quel article charge l'Agence de s'assurer de la régularité des audits de sécurité des organismes publics ?
+      a) Article 7, alinéa 2
+      b) Article 13
+      c) Article 29
+      d) Article 61
+
+ 3. Quelle agence la loi désigne-t-elle comme « l'Agence » ?
+      a) L'ANSSI
+      b) La COBAC
+      c) L'ANTIC
+      d) Le MINPOSTEL
+
+ 4. Scénario. Pourquoi l'auditeur ne tranche-t-il pas seul la portée de l'article 13 pour l'ANPP ?
+      a) Parce que l'ANPP est privée
+      b) Parce que l'article est abrogé
+      c) Parce que la COBAC est compétente
+      d) Parce que sa ponctuation admet deux lectures ; il signale l'ambiguïté
+
+ 5. Quelle obligation prévoit l'article 30, alinéa 1, en résumé ?
+      a) Conserver les journaux dix ans
+      b) Évaluer et réviser les systèmes de sécurité selon l'évolution des technologies
+      c) Désigner un DPD
+      d) Être certifié
+
+ 6. ANPP face à la loi : 0 OUI, 3 NON, 2 NEK. Quelle région du quadrant ?
+      a) Conformité claire
+      b) Non-conformité claire
+      c) Non-conformité opaque
+      d) Conformité opaque
+
+ 7. Quel article astreint les auditeurs de l'Agence au secret professionnel ?
+      a) Article 14
+      b) Article 26
+      c) Article 4
+      d) Article 69
+
+ 8. Que punit l'article 61, alinéa 3, en substance ?
+      a) La divulgation par l'auditeur
+      b) Le défaut de certification
+      c) L'absence de DPD
+      d) L'obstacle aux audits de sécurité et le refus de fournir les documents
+
+ 9. Comment l'article 2 du règlement COBAC R-2016/04 définit-il le risque opérationnel ?
+      a) Le risque de crédit
+      b) Le risque de pertes dû aux processus internes, aux personnes, aux systèmes ou à des événements externes
+      c) Le risque de marché
+      d) Le risque de taux
+
+10. Quel est le degré de vérification des articles 1 et 2 du règlement COBAC dans le cours ?
+      a) Lus au Journal officiel
+      b) Inventés
+      c) Relevés en ligne, à collationner
+      d) Traduits de l'anglais
+
+11. Qui est lié par la Convention de Malabo ?
+      a) Les États parties
+      b) Les banques
+      c) Les auditeurs
+      d) Les entreprises de logistique
+
+12. Quel est le statut de la Convention de Malabo au Cameroun dans le cours ?
+      a) Ratifiée en 2014
+      b) Abrogée
+      c) Remplacée par la loi n° 2010/012
+      d) À vérifier
+
+13. Combien de principes éthiques les normes de l'IIA de 2024 retiennent-elles ?
+      a) Sept
+      b) Cinq
+      c) Trois
+      d) Dix
+
+14. Scénario. Mme EKAMBI audite le plan qu'elle a aidé à rédiger. Quelle menace ?
+      a) Familiarité
+      b) Intimidation
+      c) Autorévision
+      d) Représentation
+
+15. Scénario. Le DG d'une agence publique menace d'« en parler au ministre » si un constat est maintenu. Quelle menace ?
+      a) Intimidation
+      b) Intérêt personnel
+      c) Autorévision
+      d) Familiarité
+
+16. Scénario. AUDIX dépend du contrat de LiZbiZ pour ses missions futures. Quelle menace ?
+      a) Représentation
+      b) Familiarité
+      c) Autorévision
+      d) Intérêt personnel
+
+17. Quelle sauvegarde contre la familiarité ?
+      a) Le secret
+      b) La rotation des chefs de mission
+      c) La lettre de mission
+      d) Le contradictoire
+
+18. Laquelle de ces phrases est un constat, sans qualification ?
+      a) « L'ANPP viole la loi »
+      b) « La DSI a dissimulé l'absence de journalisation »
+      c) « 7 agences sur 38 n'envoyaient pas de journaux pendant la période »
+      d) « Les agents ont détourné des fonds »
+
+19. Quelle est, en règle générale, l'obligation de l'auditeur contractuel ?
+      a) Une obligation de moyens
+      b) Une obligation de résultat
+      c) Une garantie d'absence de faille
+      d) Aucune obligation
+
+20. Que fait l'auditeur des données personnelles qu'il extrait ?
+      a) Il les publie
+      b) Il les conserve indéfiniment
+      c) Il les transmet au client
+      d) Il ne prélève que le nécessaire, les protège et les détruit à terme
+
+========================================================================
+Vrai ou faux
+========================================================================
+
+21. La loi n° 2010/012 renvoie aux normes pour la conduite des audits de sécurité.
+      Vrai / Faux
+
+22. La loi protège l'audit dans les deux sens : divulgation et obstruction.
+      Vrai / Faux
+
+23. Une attaque par rançongiciel est un risque opérationnel au sens du règlement COBAC.
+      Vrai / Faux
+
+24. La Convention de Malabo crée une obligation directe pour LiZbiZ.
+      Vrai / Faux
+
+25. Le texte de la loi n° 2024/017 a été lu au Journal officiel pour le cours.
+      Vrai / Faux
+
+26. Un petit-déjeuner offert par l'audité est sans conséquence s'il est modeste.
+      Vrai / Faux
+
+27. Le consultant qui a construit le SMSI peut l'auditer pour l'organisme certificateur.
+      Vrai / Faux
+
+28. L'intention et la qualification juridique ne se constatent pas.
+      Vrai / Faux
+
+29. L'auditeur peut écrire qu'une personne a commis une fraude.
+      Vrai / Faux
+
+30. Les NEK documentés protègent l'auditeur autant qu'ils informent le commanditaire.
+      Vrai / Faux
+
+========================================================================
+Textes à trous
+========================================================================
+
+31. Le code de déontologie qui décrit cinq menaces sur l'indépendance est celui de l'______.
+
+32. La Convention de l'Union africaine sur la cybersécurité a été adoptée à ______.
+
+33. Le règlement COBAC sur le contrôle interne porte le numéro R-2016/______.
+
+34. La loi camerounaise sur la cybersécurité porte le numéro 2010/______.
+
+35. Auditer son propre travail crée une menace d'______.
+
+36. La règle de prudence du chapitre dit : constater n'est pas ______.
+
+37. Les rapports d'audit de sécurité sont adressés au Ministre chargé des ______.
+
+38. L'article qui punit la divulgation par l'auditeur est l'article ______.
+
+39. Une menace par laquelle l'audité fait pression sur l'auditeur est l'______.
+
+40. La loi camerounaise sur les données personnelles porte le numéro 2024/______.
+
+========================================================================
+Grille de réponses   Nom : ............................  Matricule : ............
+========================================================================
+ 1. ............................................
+ 2. ............................................
+ 3. ............................................
+ 4. ............................................
+ 5. ............................................
+ 6. ............................................
+ 7. ............................................
+ 8. ............................................
+ 9. ............................................
+10. ............................................
+11. ............................................
+12. ............................................
+13. ............................................
+14. ............................................
+15. ............................................
+16. ............................................
+17. ............................................
+18. ............................................
+19. ............................................
+20. ............................................
+21. ............................................
+22. ............................................
+23. ............................................
+24. ............................................
+25. ............................................
+26. ............................................
+27. ............................................
+28. ............................................
+29. ............................................
+30. ............................................
+31. ............................................
+32. ............................................
+33. ............................................
+34. ............................................
+35. ............................................
+36. ............................................
+37. ............................................
+38. ............................................
+39. ............................................
+40. ............................................

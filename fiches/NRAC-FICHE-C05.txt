@@ -1,0 +1,233 @@
+NDAP SUKULU · NRAC · fiche NRAC-FICHE-C05
+Chapitre 5 : Quantifier le risque cyber : FAIR
+
+Version papier, à utiliser en attendant l'ouverture du portail NDAP SUKULU.
+La fiche complète compte 40 questions. Répondez sur la grille en fin de fiche.
+Durée indicative : 60 minutes. Seuil de réussite : 60 %.
+Les corrections figurent dans le livret de correction du cours.
+
+========================================================================
+Questions à choix multiple (une seule bonne réponse)
+========================================================================
+
+ 1. Dans quelle situation la quantification devient-elle nécessaire ?
+      a) Pour remplir un registre
+      b) Quand il faut comparer un risque à une dépense
+      c) Pour chaque risque, toujours
+      d) Pour obtenir un certificat
+
+ 2. En quelles deux branches FAIR décompose-t-il le risque ?
+      a) Fréquence des événements de perte et ampleur des pertes
+      b) Menace et vulnérabilité
+      c) Impact et gravité
+      d) Contrôle et preuve
+
+ 3. De quoi dépend la vulnérabilité au sens de FAIR ?
+      a) Du budget
+      b) De la fréquence de contact seule
+      c) De la capacité de la menace comparée à la force de résistance
+      d) De la réputation
+
+ 4. Qu'est-ce qu'une perte secondaire ?
+      a) Une perte subie directement
+      b) Une perte assurée
+      c) Une perte de matériel
+      d) Une perte qui vient de la réaction d'un tiers
+
+ 5. Quelles normes de The Open Group forment Open FAIR ?
+      a) ISO 31000 et 27005
+      b) O-RT et O-RA
+      c) CSF et SP 800-30
+      d) ISAE 3402 et SOC 2
+
+ 6. Dans quelle forme de pertes classer la reconstruction de 180 postes ?
+      a) Remplacement
+      b) Productivité
+      c) Réputation
+      d) Réponse
+
+ 7. Dans quelle forme de pertes classer les honoraires du prestataire de réponse à incident ?
+      a) Remplacement
+      b) Amendes et jugements
+      c) Avantage concurrentiel
+      d) Réponse
+
+ 8. Scénario. Les clients qui ont changé de banque n'ont pas été chiffrés. Comment coter cette perte ?
+      a) OUI
+      b) NON
+      c) NEK
+      d) Nulle
+
+ 9. Qu'est-ce qu'une estimation calibrée ?
+      a) Une valeur exacte
+      b) Un minimum, un plus probable et un maximum encadrant la vraie valeur avec environ 90 % de confiance
+      c) Une moyenne historique
+      d) Une cote de 1 à 4
+
+10. Quelle est la moyenne d'une loi PERT de minimum a, mode m, maximum b ?
+      a) (a + 4m + b) / 6
+      b) (a + m + b) / 3
+      c) m
+      d) (a + b) / 2
+
+11. Scénario. Ampleur PERT (150 ; 410 ; 900). Pourquoi la moyenne (environ 448) dépasse-t-elle le mode ?
+      a) Par erreur de calcul
+      b) Parce que la loi est symétrique
+      c) Parce que le minimum est éloigné du mode
+      d) Parce que le maximum est plus éloigné du mode que le minimum
+
+12. Que tire-t-on à chaque année simulée, après la fréquence ?
+      a) Le budget
+      b) Une cote
+      c) Le nombre d'événements, selon une loi de Poisson
+      d) Une couleur
+
+13. Scénario. Dix années simulées donnent une moyenne de 90,6 M contre 164,6 M sur 100 000 années. Pourquoi ?
+      a) Dix tirages ne suffisent pas
+      b) Le programme est faux
+      c) La loi PERT est inadaptée
+      d) Le modèle ignore la fréquence
+
+14. Avant traitement, quelle est la perte annuelle moyenne de R-AG-01 ?
+      a) 19 millions FCFA
+      b) 410 millions FCFA
+      c) 143,5 millions FCFA
+      d) Environ 165 millions FCFA
+
+15. Pourquoi la médiane de la perte annuelle est-elle nulle ?
+      a) Parce que le modèle est faux
+      b) Parce que plus de la moitié des années ne connaît aucun incident
+      c) Parce que les pertes sont assurées
+      d) Parce que la moyenne est nulle
+
+16. Après traitement, quelle est la probabilité d'une année à plus de 500 M ?
+      a) 14,3 %
+      b) 30,5 %
+      c) 0,06 %
+      d) 10,1 %
+
+17. Quelle formulation de l'appétence en francs CFA la RSSI propose-t-elle ?
+      a) La probabilité d'une perte annuelle de plus de 500 M ne dépasse pas 5 %
+      b) Aucune perte n'est tolérée
+      c) La criticité reste sous 9
+      d) Le budget de sécurité est de 193 M
+
+18. Après traitement, que coûte en moyenne l'assurance par rapport à l'absence d'assurance ?
+      a) Moins
+      b) Plus (45,4 contre 18,6)
+      c) Autant
+      d) Rien
+
+19. Porter le maximum d'ampleur à 1 500 M déplace la moyenne d'environ combien ?
+      a) 2 %
+      b) 50 %
+      c) 0 %
+      d) 22 %
+
+20. Quel angle mort la simulation ne peut-elle jamais corriger ?
+      a) La fausse précision
+      b) L'indépendance supposée
+      c) Le scénario absent du registre
+      d) L'arrondi
+
+========================================================================
+Vrai ou faux
+========================================================================
+
+21. On quantifie tous les risques du registre.
+      Vrai / Faux
+
+22. La taxonomie FAIR permet de s'arrêter au niveau où l'on dispose de la meilleure information.
+      Vrai / Faux
+
+23. Les experts non entraînés donnent souvent des intervalles trop étroits.
+      Vrai / Faux
+
+24. Le produit des valeurs les plus probables donne la perte moyenne.
+      Vrai / Faux
+
+25. Le papier de travail conserve le programme et la graine du générateur.
+      Vrai / Faux
+
+26. Une provision égale à la perte moyenne couvre chaque année.
+      Vrai / Faux
+
+27. Le plan de 193 M se rembourse en moins de deux ans selon la simulation.
+      Vrai / Faux
+
+28. Les assureurs couvrent en général sans exiger de mesures préalables.
+      Vrai / Faux
+
+29. Une simulation rend les estimations plus vraies.
+      Vrai / Faux
+
+30. Aucun texte camerounais n'impose de quantifier les risques cyber.
+      Vrai / Faux
+
+========================================================================
+Textes à trous
+========================================================================
+
+31. L'acronyme du modèle de quantification étudié est ______.
+
+32. La simulation qui tire un grand nombre d'années est dite de Monte-______.
+
+33. La loi à trois paramètres utilisée pour la fréquence et l'ampleur s'appelle la loi ______.
+
+34. Le nombre d'événements par an suit une loi de ______.
+
+35. La valeur qu'une année sur cent dépasse est le quantile à ______ %.
+
+36. La forme de pertes liée à l'activité perdue est la ______.
+
+37. Les estimations encadrent la vraie valeur avec une confiance d'environ ______ %.
+
+38. Le coût de l'incident vécu, retenu comme valeur la plus probable, est de ______ millions FCFA.
+
+39. Tester l'effet d'une hypothèse sur le résultat, c'est faire une analyse de ______.
+
+40. L'ouvrage de référence de FAIR est de Freund et ______.
+
+========================================================================
+Grille de réponses   Nom : ............................  Matricule : ............
+========================================================================
+ 1. ............................................
+ 2. ............................................
+ 3. ............................................
+ 4. ............................................
+ 5. ............................................
+ 6. ............................................
+ 7. ............................................
+ 8. ............................................
+ 9. ............................................
+10. ............................................
+11. ............................................
+12. ............................................
+13. ............................................
+14. ............................................
+15. ............................................
+16. ............................................
+17. ............................................
+18. ............................................
+19. ............................................
+20. ............................................
+21. ............................................
+22. ............................................
+23. ............................................
+24. ............................................
+25. ............................................
+26. ............................................
+27. ............................................
+28. ............................................
+29. ............................................
+30. ............................................
+31. ............................................
+32. ............................................
+33. ............................................
+34. ............................................
+35. ............................................
+36. ............................................
+37. ............................................
+38. ............................................
+39. ............................................
+40. ............................................

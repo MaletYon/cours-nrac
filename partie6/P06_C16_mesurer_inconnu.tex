@@ -1,0 +1,564 @@
+% ============================================================================
+% Fichier  : partie6/P06_C16_mesurer_inconnu.tex
+% Titre    : Mesurer ce que l'on ne Sait pas
+% Auteur   : MINKA MI NGUIDJOÏ Thierry Emmanuel
+% Version  : 1.0 -- novembre 2026
+% Corrigés : corriges/Corr_C16.tex
+% ============================================================================
+% Sources et statut (règles du corpus, mémoire « auditologie ») :
+%  - A0 (hal-05701007) : mission <S, A, I, G, T>, six axiomes (énoncés repris
+%    d'ACSI ch. 21, eux-mêmes repris d'A0), quatre propositions, cinq
+%    piliers, falsifiabilité à la Lakatos.
+%  - A1 (hal-05701270) : espace Omega_q, conditions C1 à C4 de NEK, mu, U,
+%    H, D_KL, SUI et ses trois réserves.
+%  - Décomposition de l'entropie : identité EXACTE de groupement (Shannon),
+%    comme dans ACSI ch. 22 ; la prépublication A1 porte un terme « + U_q »
+%    erroné (erratum à décider par l'auteur) : ne pas le reproduire.
+%  - A2 à A5 : « en préparation », sans entrée bibliographique.
+%  - Pistes propres à NRAC (incertitude épistémique et quantification FAIR,
+%    base de preuve des registres) : présentées comme QUESTIONS OUVERTES,
+%    non comme résultats.
+% Valeurs calculées sur les cas du cours (aucun fait nouveau) : D_KL
+% infrastructure LiZbiZ 2026 -> 2028 ≈ 0,27 bit ; agences SANAGA 2025 -> 2028
+% ≈ 0,14 bit (ensembles non identiques) ; décompositions de H.
+% ============================================================================
+
+\chapter{Mesurer ce que l'on ne Sait pas}
+\label{chap:auditologie}
+\chaptermark{Mesurer l'inconnu}
+
+\epigraph{%
+    « Distinguer ce que l'on sait,\\
+    ce que l'on a déposé, et ce qui reste à prouver. »%
+}{Règle du chapitre}
+
+\niveauChapitre{Recherche}{%
+    Maîtrise du Chapitre~\ref{chap:conclure}%
+}
+
+\begin{boxobjectifs}
+\begin{itemize}
+    \item Présenter l'auditologie~: son objet, ses six axiomes, ses cinq
+          piliers et sa méthode (article A0).
+    \item Approfondir l'instrument \OUI{}~/ \NON{}~/ \NEK{} et ses métriques
+          (article A1), et les appliquer au risque et à l'audit cyber.
+    \item Décomposer l'entropie en ignorance et en désaccord, et comparer
+          deux cycles par la divergence de Kullback-Leibler.
+    \item Comprendre l'usage stratégique de \NEK{} et ses limites.
+    \item Distinguer ce qui est établi, ce qui est déposé et ce qui est en
+          préparation.
+    \item Formuler un sujet de projet ou de mémoire falsifiable.
+\end{itemize}
+\end{boxobjectifs}
+
+\bigskip
+
+% ============================================================================
+\section*{Avant de commencer : que vaut ce que nous avons mesuré~?}
+% ============================================================================
+
+Depuis le prologue, le cours a calculé des dizaines de valeurs de $\mu$,
+$U$ et $H$~: sur les contrôles d'une banque, la base de preuve d'un
+registre, les critères d'un écosystème, les obligations d'un organisme
+public. Il a répété une règle~: on ne lit jamais une mesure seule, et l'on
+dit toujours ce que l'on ignore.
+
+Ce dernier chapitre change de point de vue. Il ne demande plus «~que
+conclure sur la BANQUE SANAGA~?~», mais «~d'où viennent ces mesures, que
+valent-elles, et que reste-t-il à établir~?~». Il présente le programme de
+recherche dont le cours est l'application, l'\emph{auditologie}, en
+distinguant soigneusement ce qui est publié, ce qui est en préparation, et
+ce qui n'est encore qu'une question.
+
+\begin{boxalert}
+\textbf{Règle du chapitre.} Une affirmation de recherche se cite avec son
+statut~: établie (théorème, résultat reproduit), déposée (prépublication
+non encore évaluée par les pairs), en préparation (non publiée), ou
+question ouverte. Le cours applique à son propre fondement l'exigence qu'il
+fait à l'auditeur~: séparer ce que l'on sait de ce que l'on suppose.
+\end{boxalert}
+
+\separateur
+
+% ============================================================================
+\section{L'Auditologie}
+\label{sec:c16-auditologie}
+% ============================================================================
+
+\subsection{L'objet}
+
+L'article A0 part d'un constat~: l'audit des systèmes d'information dispose
+de méthodes et de référentiels, mais d'aucun socle axiomatique ni d'aucun
+espace de mesure unifié pour son objet central, la réduction de
+l'incertitude~\cite{minka2026auditologie}.
+
+\begin{boxdef}
+\termecle{Mission auditologique}\index{mission auditologique} (A0)~:
+quintuplet
+$\mathcal{M} = \langle \mathcal{S}, \mathcal{A}, \mathcal{I},
+\mathcal{G}, \mathcal{T} \rangle$, où $\mathcal{S}$ est le système audité,
+$\mathcal{A}$ l'architecture cognitive de l'auditeur, $\mathcal{I}$ le
+canal d'information par lequel les preuves parviennent à l'auditeur,
+$\mathcal{G}$ la structure stratégique de l'interaction entre auditeur,
+audité et tiers, et $\mathcal{T}$ la trajectoire du système au fil des
+missions.
+
+\medskip
+\termecle{Auditologie}\index{auditologie}~: science appliquée de la
+réduction de l'incertitude sur les missions auditologiques.
+\end{boxdef}
+
+\begin{tableaucours}{cL{3.4cm}L{8.6cm}}{%
+    \tableauHeader{} &
+    \tableauHeader{Composante} &
+    \tableauHeader{Dans la mission de Mme~EKAMBI (mars 2028)}
+}
+$\mathcal{S}$ & Système audité & Les 38 agences, leurs postes, réseaux,
+agents, et les prestataires qui y interviennent \\
+$\mathcal{A}$ & Architecture cognitive & L'équipe d'audit, sa décomposition
+en six sous-domaines, ses huit tests \\
+$\mathcal{I}$ & Canal d'information & Extractions, essais, exercices~; et ce
+qui ne passe pas~: les configurations des GAB \\
+$\mathcal{G}$ & Structure stratégique & Comité des risques, RSSI, DSI,
+direction du réseau d'agences, prestataire des GAB \\
+$\mathcal{T}$ & Trajectoire & Prologue (2026), mission de 2028, suivi \\
+\end{tableaucours}
+\vspace{-0.8em}
+\begin{center}{\small\itshape Tableau~16.1. Une mission du cours comme
+mission auditologique}\end{center}
+
+\subsection{Six axiomes}
+
+L'article A0 pose six axiomes, dont le cours a appliqué les conséquences
+depuis le prologue. Les énoncés sont ceux de l'article.
+
+\begin{axiome}[Observabilité partielle]
+Pour tout système audité $\mathcal{S}$ non dégénéré, l'auditeur n'a accès
+qu'à un sous-ensemble strict des états pertinents de $\mathcal{S}$, et ce
+sous-ensemble est lui-même partiellement opaque.
+\end{axiome}
+
+\begin{axiome}[Cognition limitée des agents]
+L'auditeur et l'audité sont des agents cognitivement limités, au sens de
+Simon, de Miller et de Kahneman~\cite{simon1957,miller1956,kahneman2011}.
+\end{axiome}
+
+\begin{axiome}[Mesurabilité de l'incertitude épistémique]
+L'incertitude épistémique de $\mathcal{A}$ concernant des propositions
+spécifiques sur $\mathcal{S}$ admet une mesure quantitative, définissable
+par l'entropie informationnelle et ses généralisations.
+\end{axiome}
+
+\begin{axiome}[Interaction stratégique]
+L'auditeur et l'audité ont des fonctions d'utilité distinctes, et leurs
+actions sont, en général, mieux modélisées comme des mouvements dans un jeu
+à information imparfaite et asymétrique.
+\end{axiome}
+
+\begin{axiome}[Individuation temporelle]
+Le système audité $\mathcal{S}$ évolue dans le temps, et sa trajectoire est
+dépendante du chemin~: l'état à la mission $n+1$ dépend de l'état à $n$ et
+des interventions déclenchées par cette mission antérieure.
+\end{axiome}
+
+\begin{axiome}[Opposabilité]
+Toute conclusion produite par une mission auditologique doit, en principe,
+pouvoir être défendue devant un tiers disposant de l'autorité légitime pour
+la contester.
+\end{axiome}
+
+\begin{tableaucours}{L{3.6cm}L{8.6cm}}{%
+    \tableauHeader{Axiome} &
+    \tableauHeader{Où le cours l'a rencontré}
+}
+Observabilité partielle & Le certificat ne voit que son périmètre
+(prologue)~; les GAB que l'on ne peut pas voir (Chapitre~\ref{chap:audit}) \\
+Cognition limitée & La borne de sept et la décomposition
+(Chapitre~\ref{chap:conclure}) \\
+Mesurabilité & $\mu$, $U$, $H$ dans chaque chapitre \\
+Interaction stratégique & Les pressions sur l'auditeur
+(Chapitre~\ref{chap:droit})~; l'attaquant qui s'adapte
+(Chapitre~\ref{chap:risque}) \\
+Individuation temporelle & Les passages successifs de LiZbiZ
+(Chapitre~\ref{chap:audit-technique})~; la correction qui ne réécrit pas le
+passé (Chapitre~\ref{chap:audit}) \\
+Opposabilité & Le papier de travail, la preuve de rang~1, la citation
+vérifiée \\
+\end{tableaucours}
+\vspace{-0.8em}
+\begin{center}{\small\itshape Tableau~16.2. Les axiomes dans le cours}\end{center}
+
+A0 en tire quatre conséquences, que le cours a mises en pratique~: un
+instrument d'audit doit comporter une modalité explicite de connaissance
+insuffisante (\NEK{})~; un espace d'audit non trivial doit être décomposé
+en respectant la borne cognitive~; les conclusions ne se testent que par
+l'observation longitudinale~; et l'audit fait lui-même partie de la
+trajectoire du système qu'il observe.
+
+\subsection{Cinq piliers et une méthode}
+
+Les axiomes disent ce qu'est une mission~; cinq piliers théoriques
+permettent de la modéliser~: la cognition limitée, la théorie de
+l'information~\cite{shannon1948,kullback1951}, la théorie des jeux, les
+systèmes dynamiques~\cite{norris1998} et l'ontologie
+critique-réaliste~\cite{bhaskar1975}. L'auditologie se veut une science du
+design~\cite{hevner2004design}~: elle construit des artefacts (instruments,
+métriques, grilles) et les évalue dans leur environnement. Elle adopte enfin
+le falsificationnisme de Lakatos~\cite{lakatos1970}~: un noyau dur
+(axiomes et piliers) et une ceinture protectrice d'hypothèses et de
+prédictions testables, qui peuvent être réfutées.
+
+% ============================================================================
+\section{L'Instrument et ses Métriques}
+\label{sec:c16-instrument}
+% ============================================================================
+
+\subsection{Quatre conditions pour \NEK{}}
+
+L'article A1 formalise l'instrument trichotomique~\cite{minka2026nek}. Pour
+chaque question $q$, l'espace des réponses est
+$\Omega_q = \{\OUI{}, \NON{}, \NEK{}\}$, et A1 précise quatre conditions
+qui distinguent un \NEK{} légitime d'un mauvais usage.
+
+\begin{tableaucours}{L{3.4cm}L{4.8cm}L{4.0cm}}{%
+    \tableauHeader{Condition (A1)} &
+    \tableauHeader{Sens} &
+    \tableauHeader{Dans le cours}
+}
+C1. Spécificité de l'objet & \NEK{} porte sur l'objet précis de la
+question & Questions atomiques (Chapitre~\ref{chap:conclure}) \\
+C2. Asymétrie d'accès & L'information existe, mais le répondant n'y a pas
+accès & Le visa de l'Agence, les configurations des GAB \\
+C3. Non-report & Si l'on peut vérifier dans le délai, on répond & Les \NEK{}
+levés avant l'audit de l'ANTIC (Chapitre~\ref{chap:droit}) \\
+C4. Neutralité & Aucun barème ne rend \NEK{} équivalent à \OUI{} ou à
+\NON{} & Pas de «~demi-point~» \\
+\end{tableaucours}
+\vspace{-0.8em}
+\begin{center}{\small\itshape Tableau~16.3. Les conditions de la réponse
+\NEK{} (d'après A1)}\end{center}
+
+\subsection{Décomposer l'entropie}
+
+L'entropie trichotomique mêle deux sources de dispersion~: l'ignorance, et
+le désaccord entre ce que l'on sait. La propriété de groupement de
+l'entropie~\cite{shannon1948} les sépare exactement. En notant
+$H_b(x) = -x\log_2 x - (1-x)\log_2(1-x)$ l'entropie binaire~:
+\[
+    H \;=\; H_b(U) \;+\; (1 - U)\, H_b\!\left(\frac{\mu}{1 - U}\right).
+\]
+Le premier terme est la part de l'ignorance~; le second, pondéré par la
+part de ce qui est connu, est la part du désaccord entre \OUI{} et \NON{}.
+
+\begin{boxlecture}{Ignorance ou désaccord~? Cinq mesures du cours}
+\begin{tableaucours}{L{3.6cm}cccccc}{%
+    \tableauHeader{Ensemble} &
+    \tableauHeader{O/N/K} & \tableauHeader{$U$} &
+    \tableauHeader{$H_b(U)$} & \tableauHeader{Désacc.} &
+    \tableauHeader{$H$} & \tableauHeader{Ignor.}
+}
+Agences, prologue & 2/4/4 & 0,40 & 0,97 & 0,55 & 1,52 & 64~\% \\
+Registre 2025 (Chap.~\ref{chap:risque}) & 6/2/4 & 0,33 & 0,92 & 0,54 & 1,46 &
+63~\% \\
+Déclaration d'applicabilité (Chap.~\ref{chap:iso27000}) & 3/3/3 & 0,33 & 0,92 &
+0,67 & 1,58 & 58~\% \\
+Mission de mars 2028 (Chap.~\ref{chap:audit}) & 3/3/2 & 0,25 & 0,81 & 0,75 &
+1,56 & 52~\% \\
+Infrastructure LiZbiZ 2028 (Chap.~\ref{chap:audit-technique}) & 14/4/2 & 0,10 &
+0,47 & 0,69 & 1,16 & 41~\% \\
+\end{tableaucours}
+
+\medskip
+\textbf{Constatation.} Les cinq ensembles ont une entropie proche de
+1,5~bit, sauf le dernier~; mais la part de l'ignorance décroît de 64~\% à
+41~\% à mesure que le cours avance dans le temps et que les preuves
+s'accumulent.
+
+\medskip
+\textbf{Analyse} (confiance élevée sur le calcul, faible sur la tendance~:
+les ensembles mesurés ne sont pas identiques). Une même entropie peut
+appeler deux actions opposées~: chercher la preuve quand l'ignorance
+domine, chercher la cause du désaccord quand elle ne domine plus. La
+décomposition rend quantitative la règle «~$H$ élevé, $U$ faible~» du
+Chapitre~\ref{chap:conclure}.
+\end{boxlecture}
+
+\subsection{Comparer deux cycles}
+
+L'article A1 propose de comparer deux cycles par la \termecle{divergence de
+Kullback-Leibler}\index{divergence de Kullback-Leibler}~\cite{kullback1951},
+calculée dans le sens du temps~:
+\[
+    D_{\mathrm{KL}}\!\left(p^{(t+1)} \,\middle\|\, p^{(t)}\right) =
+    \sum_{m} p^{(t+1)}(m) \log_2 \frac{p^{(t+1)}(m)}{p^{(t)}(m)}.
+\]
+Elle vaut zéro si la distribution n'a pas changé. Elle exige que toute
+modalité observée au cycle $t+1$ l'ait été au cycle $t$.
+
+\begin{boxscenario}{Opération LIZBIZ. L'infrastructure entre 2026 et 2028}
+\textbf{Calcul.} En 2026~: $(0{,}40~;~0{,}45~;~0{,}15)$~; en 2028~:
+$(0{,}70~;~0{,}20~;~0{,}10)$.
+\[
+D_{\mathrm{KL}} = 0{,}7\log_2\tfrac{0{,}7}{0{,}4} + 0{,}2\log_2\tfrac{0{,}2}{0{,}45}
+  + 0{,}1\log_2\tfrac{0{,}1}{0{,}15} \approx 0{,}565 - 0{,}234 - 0{,}059
+  \approx 0{,}27~\text{bit}.
+\]
+
+\textbf{Analyse} (confiance moyenne). Le changement est net, porté surtout
+par le passage de \NON{} à \OUI{}. Mais A0 rappelle que deux cycles ne
+distinguent pas encore une amélioration réelle d'un artefact de mesure~:
+les exports de 2028 ne couvrent pas exactement les mêmes équipements qu'en
+2026. C'est l'objet des travaux sur la trajectoire (Section~\ref{sec:c16-statut}).
+\end{boxscenario}
+
+% ============================================================================
+\section{L'Usage Stratégique de \NEK{}}
+\label{sec:c16-sui}
+% ============================================================================
+
+Un \NEK{} est \emph{authentique} s'il traduit une vraie limite de
+connaissance~; il est \emph{stratégique} si le répondant sait, mais évite
+les conséquences d'une réponse nette. Pour une réponse isolée, les deux
+sont indiscernables. A1 propose de les distinguer sur le \emph{profil} d'un
+répondant~: l'ignorance authentique ne dépend pas, en moyenne, de l'enjeu
+de la question~; l'ignorance stratégique se concentre sur les questions à
+fort enjeu~\cite{minka2026nek}.
+
+Pour chaque question $q$, un score d'enjeu $s_q \in [0,1]$ est fixé
+\emph{avant} la collecte par des experts indépendants. Pour chaque
+répondant $r$, A1 estime un modèle logistique
+\[
+    \log \frac{\Pr[\NEK{}_{r,q} = 1]}{1 - \Pr[\NEK{}_{r,q} = 1]}
+    \;=\; \alpha_r + \beta_r\, s_q + \gamma_r^{\top} \mathbf{z}_q,
+\]
+où $\mathbf{z}_q$ contient des variables de contrôle, et définit l'indice
+d'usage stratégique $\mathrm{SUI}_r = \hat\beta_r$.
+
+\begin{boxscenario}{Un atelier de cotation des risques}
+Lors d'un atelier de cotation, un directeur répond \NEK{} à toutes les
+questions qui portent sur son propre périmètre et dont l'enjeu est élevé
+(acceptation d'un risque intolérable, défaut d'un prestataire qu'il a
+choisi), et répond nettement partout ailleurs. Le profil est celui que
+l'indice cherche à détecter~; il ne suffit pas à le calculer~: il faut des
+scores d'enjeu fixés à l'avance par d'autres, et assez de questions par
+répondant.
+\end{boxscenario}
+
+\begin{boxalert}
+\textbf{Trois réserves d'A1, à ne jamais oublier.}
+\begin{enumerate}
+    \item Un indice positif signale une corrélation entre \NEK{} et enjeu,
+          qui peut avoir d'autres causes (questions plus difficiles, accès
+          plus restreint).
+    \item Le score d'enjeu doit être fixé hors des répondants~; sinon,
+          l'indice n'est pas identifié.
+    \item L'indice décrit une population, \emph{pas} une faute
+          individuelle~: il n'établit pas l'intention et ne fonde aucune
+          sanction (Chapitre~\ref{chap:droit}, «~constater n'est pas
+          qualifier~»).
+\end{enumerate}
+\end{boxalert}
+
+% ============================================================================
+\section{Établi, Déposé, en Préparation}
+\label{sec:c16-statut}
+% ============================================================================
+
+\subsection{Les travaux en préparation}
+
+Quatre articles prolongent le programme. Ils ne sont pas publiés~; le
+cours les présente d'après leur objet, sans en citer de résultat comme
+acquis.
+\begin{itemize}
+    \item \textbf{La trajectoire (A2)}~: un score d'amélioration entre
+          cycles, un descripteur topologique des trajectoires et une chaîne
+          de Markov sur les niveaux de maturité, pour distinguer une
+          amélioration réelle d'un artefact de mesure.
+    \item \textbf{Le signalement stratégique (A3)}~: l'interaction entre
+          auditeur et audité comme un jeu de signalement, où \NEK{} est un
+          signal~; extension à l'audit de sécurité face à un attaquant.
+    \item \textbf{La décomposition (A4)}~: la justification formelle du
+          gabarit canonique à huit niveaux, sous une borne cognitive et des
+          conditions d'exhaustivité et de non-redondance.
+    \item \textbf{L'instrument (A5)}~: un outil logiciel qui génère les
+          grilles à partir du gabarit et calcule les mesures en continu.
+\end{itemize}
+
+\begin{tableaucours}{L{4.0cm}L{3.4cm}L{4.8cm}}{%
+    \tableauHeader{Élément} &
+    \tableauHeader{Statut} &
+    \tableauHeader{Ce qui reste à faire}
+}
+Entropie, divergence, groupement & Établi (théorie de l'information) &
+· \\
+Programme de l'auditologie (A0) & Prépublication HAL, 2026 & Discussion par
+la communauté~; tests des prédictions \\
+Instrument, métriques, indice d'usage stratégique (A1) & Prépublication HAL,
+2026 & Expérience comparant instruments binaire et trichotomique \\
+A2, A3, A4, A5 & En préparation & Dépôt, puis validation \\
+Applications de ce cours au risque cyber (base de preuve des registres,
+couplage avec FAIR) & Questions ouvertes & Formulation et test (sujets
+ci-dessous) \\
+Cas SANAGA, LiZbiZ, ANPP & Fictifs, pédagogiques & Ils illustrent~; ils ne
+prouvent rien \\
+\end{tableaucours}
+\vspace{-0.8em}
+\begin{center}{\small\itshape Tableau~16.4. Le statut de ce que le cours a
+présenté}\end{center}
+
+\subsection{Questions ouvertes pour le risque cyber}
+
+Ce cours a appliqué l'instrument à des objets que les articles ne traitent
+pas directement. Ces applications ouvrent des questions, que le cours ne
+tranche pas.
+\begin{itemize}
+    \item \textbf{La base de preuve des registres}~: coter \OUI{}~/ \NON{}~/
+          \NEK{} la base de chaque cote d'un registre des risques
+          (Chapitre~\ref{chap:risque}) améliore-t-il les décisions de
+          traitement~? Les registres dont $U$ est élevé sont-ils suivis de
+          plus d'incidents imprévus~?
+    \item \textbf{Le couplage avec la quantification}~: comment combiner la
+          distribution des pertes de FAIR (incertitude aléatoire, sous
+          hypothèses) et la cote des hypothèses (incertitude épistémique),
+          au-delà de l'analyse de sensibilité du Chapitre~\ref{chap:fair}~?
+    \item \textbf{L'écosystème}~: la concentration des \NEK{} sur la
+          maturité et la confiance des parties prenantes
+          (Chapitre~\ref{chap:ebios}) est-elle générale~? Que devient le
+          niveau de menace quand on la prend en compte~?
+    \item \textbf{Les tests automatiques}~: un contrôle continu silencieux
+          (Chapitre~\ref{chap:grc-pratique}) doit-il voir sa cote se
+          dégrader en \NEK{} avec le temps, et à quel rythme~?
+\end{itemize}
+
+% ============================================================================
+\section{Formuler un Sujet de Recherche}
+\label{sec:c16-sujet}
+% ============================================================================
+
+\begin{boxprocedure}
+\textbf{Un sujet de mémoire falsifiable.} Un sujet recevable précise~:
+\begin{itemize}
+    \item la \textbf{question}, en une phrase, et l'axiome ou le pilier
+          auquel elle se rattache~;
+    \item une \textbf{hypothèse} énoncée de sorte que des données puissent
+          la réfuter («~les registres dont $U \geq 0{,}30$ sont suivis de
+          plus d'incidents non prévus que les autres~»)~;
+    \item les \textbf{données}~: lesquelles, chez qui, avec quelle
+          autorisation et quelle protection des personnes et des
+          organisations (Chapitre~\ref{chap:droit})~;
+    \item la \textbf{méthode} de mesure et de comparaison~;
+    \item ce qui \textbf{réfuterait} l'hypothèse, écrit avant la collecte~;
+    \item la \textbf{limite} principale, et la manière dont on la contrôle.
+\end{itemize}
+\end{boxprocedure}
+
+\begin{boxinfo}
+\textbf{Pourquoi le statut compte.} L'auditologie s'applique à elle-même ce
+qu'elle demande aux auditeurs. Un cours qui présenterait comme acquis des
+travaux en préparation ferait exactement ce qu'il reproche au registre de
+2025~: afficher une cote sans base. Un étudiant qui reprend ces travaux
+dans un mémoire cite les prépublications comme telles, et ne leur attribue
+que ce qu'elles contiennent.
+\end{boxinfo}
+
+\separateur
+
+\begin{boxresume}
+\textbf{Ce qu'il faut retenir de ce chapitre~:}
+\begin{itemize}
+    \item \textbf{L'auditologie} étudie la réduction de l'incertitude sur une
+          mission $\langle \mathcal{S}, \mathcal{A}, \mathcal{I},
+          \mathcal{G}, \mathcal{T} \rangle$, sous six axiomes.
+    \item \textbf{L'instrument} \OUI{}~/ \NON{}~/ \NEK{} suppose quatre
+          conditions~; ses mesures se lisent ensemble.
+    \item \textbf{L'entropie se décompose} exactement en ignorance et en
+          désaccord~; les deux appellent des actions différentes.
+    \item \textbf{La divergence} compare deux cycles, sans distinguer encore
+          progrès réel et artefact de mesure.
+    \item \textbf{L'usage stratégique de \NEK{}} se lit sur un profil, avec
+          trois réserves~; il ne fonde aucune sanction.
+    \item \textbf{Tout n'a pas le même statut}~: établi, déposé, en
+          préparation, question ouverte.
+\end{itemize}
+\end{boxresume}
+
+\begin{boxinfo}
+\textbf{Points de contrôle.} Vous avez compris ce chapitre si vous savez~:
+\begin{itemize}
+    \item énoncer les six axiomes et dire où le cours les a appliqués~;
+    \item décomposer une entropie et dire quelle action elle appelle~;
+    \item calculer une divergence entre deux cycles et en dire la limite~;
+    \item formuler une hypothèse de recherche réfutable.
+\end{itemize}
+\end{boxinfo}
+
+% ============================================================================
+\section*{Exercices}
+% ============================================================================
+
+\begin{boxexo}[title={\ding{45}\quad Exercice~16.1. Quel axiome~? \niveaubase}]
+Associez chaque situation à l'axiome de A0 qu'elle illustre le mieux.
+\begin{enumerate}[(a)]
+    \item Le prestataire des GAB refuse l'accès aux configurations.
+    \item Une grille de 25 questions sans décomposition produit des oublis.
+    \item La DSI corrige la journalisation pendant la mission~; le constat
+          est maintenu pour la période.
+    \item Un directeur répond \NEK{} sur les questions qui engagent sa
+          responsabilité.
+    \item Chaque cote est accompagnée de la preuve qui permet de la défendre
+          devant le comité ou le superviseur.
+\end{enumerate}
+\end{boxexo}
+
+\begin{boxexo}[title={\ding{45}\quad Exercice~16.2. Décomposer \niveaumoyen}]
+\begin{enumerate}[(a)]
+    \item Décomposez l'entropie de la base commune de l'ANPP (4/3/3,
+          Chapitre~\ref{chap:referentiels}) et du registre des obligations de
+          la BANQUE SANAGA (7/2/3, Chapitre~\ref{chap:grc-pratique}).
+    \item Pour chacun, dites si l'action prioritaire est de chercher la
+          preuve ou de chercher la cause d'un désaccord.
+    \item Montrez, à partir de la formule, qu'une ignorance unanime donne
+          $H = 0$.
+\end{enumerate}
+\end{boxexo}
+
+\begin{boxexo}[title={\ding{45}\quad Exercice~16.3. Deux cycles \niveaumoyen}]
+\begin{enumerate}[(a)]
+    \item Calculez la divergence entre les agences de la BANQUE SANAGA au
+          prologue (2/4/4) et lors de la mission de mars 2028 (3/3/2).
+    \item Comparez-la à celle de l'infrastructure de LiZbiZ (0,27~bit).
+    \item Pourquoi ces deux divergences ne sont-elles pas directement
+          comparables~? Citez au moins deux raisons.
+\end{enumerate}
+\end{boxexo}
+
+\begin{boxexo}[title={\ding{45}\quad Exercice~16.4. Un sujet de mémoire \niveauexpert}]
+Choisissez l'une des questions ouvertes de la Section~\ref{sec:c16-statut}
+et rédigez un projet de sujet de mémoire d'une page, selon la procédure de
+la Section~\ref{sec:c16-sujet}~: question, hypothèse réfutable, données et
+autorisations, méthode, condition de réfutation, limite principale. Dites
+quels travaux vous citez, et avec quel statut.
+\end{boxexo}
+
+\bigskip
+
+\begin{boxinfo}
+\textbf{Pour aller plus loin.}
+\begin{itemize}
+    \item L'article \emph{Vers l'auditologie}~\cite{minka2026auditologie}.
+    \item L'article sur l'incertitude épistémique~\cite{minka2026nek}.
+    \item Shannon~\cite{shannon1948} et Kullback et
+          Leibler~\cite{kullback1951}, pour les mesures.
+    \item Lakatos~\cite{lakatos1970} et Hevner et
+          collègues~\cite{hevner2004design}, pour la méthode.
+\end{itemize}
+\end{boxinfo}
+
+\begin{boxinfo}
+\textbf{Pour conclure le cours.} Le prologue s'ouvrait sur un certificat
+accroché au mur et des guichets fermés. Tout ce qui a suivi revient à une
+seule exigence~: savoir ce que l'on sait, savoir ce que l'on ignore, et le
+dire à ceux qui décident. Les normes, les méthodes de risque, les audits et
+le droit en sont les instruments~; la mesure de l'inconnu en est la
+discipline.
+\end{boxinfo}

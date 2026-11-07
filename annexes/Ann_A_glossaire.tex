@@ -1,0 +1,196 @@
+% ============================================================================
+% Fichier  : annexes/Ann_A_glossaire.tex
+% Titre    : Glossaire
+% Version  : 1.0 -- novembre 2026
+% ============================================================================
+% Définitions reprises des encadrés « Définition » des chapitres (termes
+% marqués \termecle), abrégées ; le chapitre de référence est indiqué.
+% ============================================================================
+
+\chapter{Glossaire}
+\label{ann:glossaire}
+
+Ce glossaire reprend, sous une forme abrégée, les définitions données dans
+les chapitres. Le numéro renvoie au chapitre où le terme est défini et
+illustré~; c'est là qu'il faut lire la définition complète.
+
+\begin{description}
+    \item[Acceptation du risque] Décision argumentée, prise par l'instance
+          qui en a l'autorité, de ne pas traiter davantage un risque
+          résiduel, pour une durée et à des conditions données
+          (Ch.~\ref{chap:iso27005}).
+    \item[Appétence au risque] Niveau de risque qu'une organisation accepte
+          pour atteindre ses objectifs~; fixée par l'organe de direction
+          (Ch.~\ref{chap:grc}, \ref{chap:risque}).
+    \item[Attributs de mesure] Étiquettes associées à chaque mesure de
+          l'ISO/IEC~27002:2022 (type, propriétés, concepts, capacités,
+          domaines), qui permettent de trier les mesures
+          (Ch.~\ref{chap:iso27000}).
+    \item[Audit] Processus méthodique, indépendant et documenté, qui obtient
+          des preuves et les évalue au regard de critères
+          (Ch.~\ref{chap:audit}).
+    \item[Audit continu] Analyse répétée de toute une population de
+          données ou de transactions pour y détecter les anomalies
+          (Ch.~\ref{chap:emergents}).
+    \item[Auditologie] Science appliquée de la réduction de l'incertitude
+          sur les missions auditologiques (A0~; Ch.~\ref{chap:auditologie}).
+    \item[Base commune de contrôles] Liste de contrôles propres à
+          l'organisation, chacun relié aux référentiels qui l'exigent~;
+          testée une fois, projetée sur plusieurs référentiels
+          (Ch.~\ref{chap:referentiels}).
+    \item[Base de preuve] Ce sur quoi repose une cote~: mesures internes,
+          données externes, avis motivé, ou rien~; elle se cote elle-même
+          \OUI{}, \NON{} ou \NEK{} (Ch.~\ref{chap:risque}).
+    \item[Bien support] Composant sur lequel repose une valeur métier~:
+          matériel, logiciel, réseau, personne, prestataire
+          (Ch.~\ref{chap:risque}).
+    \item[Certificat] Attestation, par un organisme tiers accrédité, qu'un
+          système de management satisfait une norme, sur un périmètre et
+          pour une durée donnés (Ch.~\ref{chap:prologue}).
+    \item[Conclusion d'audit] Résultat de l'audit, tiré de l'ensemble des
+          constats, au regard des objectifs de la mission
+          (Ch.~\ref{chap:audit}).
+    \item[Conformité] Satisfaction prouvée d'une exigence (norme, loi,
+          contrat, politique) (Ch.~\ref{chap:prologue}, \ref{chap:grc}).
+    \item[Constat d'audit] Résultat de l'évaluation des preuves au regard
+          des critères~: conforme, non conforme, ou \NEK{}
+          (Ch.~\ref{chap:audit}).
+    \item[Contradictoire] Présentation des constats à l'audité, qui peut
+          contester un fait, apporter une preuve ou expliquer une cause
+          (Ch.~\ref{chap:audit}).
+    \item[Contrôle continu de la conformité] Test automatique et répété
+          d'un contrôle par une extraction comparée à une règle
+          (Ch.~\ref{chap:grc-pratique}).
+    \item[Couple SR/OV] Association d'une source de risque et d'un objectif
+          visé, dans EBIOS Risk Manager (Ch.~\ref{chap:ebios}).
+    \item[Criticité] Produit vraisemblance $\times$ impact, de 1 à 16~; elle
+          classe, elle ne décide pas (Ch.~\ref{chap:risque}).
+    \item[Critère d'audit] Exigence de référence~: norme, politique, loi,
+          contrat, plan (Ch.~\ref{chap:audit}).
+    \item[Critères d'acceptation] Règles, fixées à l'avance, qui disent quel
+          résiduel peut être accepté, par qui, à quelles conditions
+          (Ch.~\ref{chap:iso27005}).
+    \item[Déclaration d'applicabilité] Document exigé par l'ISO/IEC~27001 qui
+          recense les mesures nécessaires, justifie leur inclusion et
+          l'exclusion des autres, et indique leur mise en œuvre
+          (Ch.~\ref{chap:iso27000}).
+    \item[Divergence de Kullback-Leibler] Mesure du changement de la
+          distribution des réponses entre deux cycles
+          (Ch.~\ref{chap:auditologie}).
+    \item[Échantillon raisonné] Échantillon choisi selon les risques~; il
+          trouve des défauts, il ne permet pas d'extrapoler un taux
+          (Ch.~\ref{chap:audit}).
+    \item[Entropie] Dispersion des réponses \OUI{}, \NON{}, \NEK{}, en bits,
+          de 0 à $\log_2 3$~; elle se décompose en ignorance et désaccord
+          (Ch.~\ref{chap:conclure}, \ref{chap:auditologie}).
+    \item[Estimation calibrée] Minimum, valeur la plus probable et maximum,
+          choisis pour encadrer la vraie valeur avec une confiance d'environ
+          90~\% (Ch.~\ref{chap:fair}).
+    \item[Événement redouté] Atteinte à une valeur métier, exprimée du point
+          de vue de l'organisation (Ch.~\ref{chap:risque}).
+    \item[Export figé] Copie d'une configuration ou d'une liste, extraite à
+          une date et scellée par une empreinte (Ch.~\ref{chap:audit-technique}).
+    \item[FAIR] Modèle de quantification du risque d'information~: fréquence
+          des événements de perte et ampleur des pertes (Ch.~\ref{chap:fair}).
+    \item[Fiche d'assertion] Description d'un contrôle par son objectif, son
+          critère, sa question, son risque et sa conséquence
+          (Ch.~\ref{chap:conclure}).
+    \item[Gabarit canonique] Décomposition à huit niveaux~: domaine,
+          sous-domaine, processus, activité, contrôle, test, preuve, trace
+          (A0~; Ch.~\ref{chap:conclure}).
+    \item[Gestion des risques] Activités coordonnées pour identifier,
+          analyser, évaluer, traiter et suivre les risques
+          (Ch.~\ref{chap:grc}, \ref{chap:iso27005}).
+    \item[Gouvernance de la sécurité] Responsabilités et pratiques par
+          lesquelles l'organe de direction fixe les objectifs, le niveau de
+          risque acceptable, les rôles, et surveille les résultats
+          (Ch.~\ref{chap:grc}).
+    \item[GRC] Gouvernance, risque et conformité pilotés comme un seul
+          dispositif, avec un référentiel commun (Ch.~\ref{chap:grc},
+          \ref{chap:grc-pratique}).
+    \item[Incertitude aléatoire] Part de l'incertitude qui tient au hasard
+          des événements~; elle se décrit, elle ne se réduit pas
+          (Ch.~\ref{chap:risque}).
+    \item[Incertitude épistémique] Part de l'incertitude qui tient à ce que
+          l'on ne sait pas~; elle se réduit par des preuves
+          (Ch.~\ref{chap:risque}).
+    \item[Indicateur de risque] Signal qui annonce un changement
+          d'exposition, lu avec des seuils qui déclenchent une revue
+          (Ch.~\ref{chap:grc-pratique}).
+    \item[Matrice RACI] Tableau des rôles~: réalise, répond, consulté,
+          informé~; un seul A par activité (Ch.~\ref{chap:grc}).
+    \item[Matrice risques-contrôles] Tableau qui croise contrôles et
+          risques, avec la dernière cote de chaque contrôle
+          (Ch.~\ref{chap:grc-pratique}).
+    \item[Menace] Cause potentielle d'un incident (Ch.~\ref{chap:risque}).
+    \item[Mission auditologique] Quintuplet $\langle \mathcal{S},
+          \mathcal{A}, \mathcal{I}, \mathcal{G}, \mathcal{T} \rangle$ (A0~;
+          Ch.~\ref{chap:auditologie}).
+    \item[Modèle des trois lignes] Répartition des rôles entre organe de
+          gouvernance, première ligne, deuxième ligne et audit interne (IIA,
+          2020~; Ch.~\ref{chap:grc}).
+    \item[\NEK{}] Réponse «~connaissance insuffisante~»~: ni \OUI{}, ni
+          \NON{}~; quatre conditions la rendent légitime (A1~;
+          Ch.~\ref{chap:prologue}, \ref{chap:auditologie}).
+    \item[Non-conformité majeure] Non-conformité qui affecte la capacité du
+          système de management à atteindre ses résultats
+          (Ch.~\ref{chap:smsi}).
+    \item[Non-conformité mineure] Non-conformité qui n'affecte pas cette
+          capacité (Ch.~\ref{chap:smsi}).
+    \item[Objectif visé] Ce que la source de risque cherche à obtenir
+          (Ch.~\ref{chap:risque}, \ref{chap:ebios}).
+    \item[Organe de direction] Personne ou groupe qui répond en dernier
+          ressort de l'organisation~: le conseil d'administration
+          (Ch.~\ref{chap:grc}).
+    \item[Périmètre de complaisance] Périmètre choisi pour faciliter la
+          certification plutôt que pour couvrir les risques
+          (Ch.~\ref{chap:prologue}).
+    \item[Piste de progrès] Constat qui n'est pas une non-conformité, mais
+          une occasion d'améliorer (Ch.~\ref{chap:smsi}).
+    \item[Preuve d'audit] Information vérifiable et pertinente au regard des
+          critères~; sa fiabilité se classe en cinq rangs
+          (Ch.~\ref{chap:audit}).
+    \item[Propriétaire de risque] Personne qui a la responsabilité et
+          l'autorité de gérer un risque (Ch.~\ref{chap:grc}).
+    \item[Rapport d'assurance] Rapport d'un auditeur indépendant sur les
+          contrôles d'un prestataire (ISAE~3402, SOC~2)~; seul le type~2 dit
+          s'ils ont fonctionné (Ch.~\ref{chap:referentiels}).
+    \item[Registre des obligations] Liste des exigences qui s'imposent à
+          l'organisation, avec leur source, leurs contrôles, leur preuve et
+          leur statut (Ch.~\ref{chap:grc-pratique}).
+    \item[Risque] Effet de l'incertitude sur les objectifs (ISO~31000~;
+          Ch.~\ref{chap:risque}).
+    \item[Risque cyber] Risque dont la source est une action sur les
+          systèmes ou les données, et dont les conséquences touchent les
+          activités (Ch.~\ref{chap:risque}).
+    \item[Risque inhérent] Niveau du risque avant les mesures
+          (Ch.~\ref{chap:risque}).
+    \item[Risque résiduel] Niveau du risque compte tenu des seules mesures
+          dont l'efficacité est établie (Ch.~\ref{chap:risque}).
+    \item[Scénario opérationnel] Suite d'actions élémentaires (connaître,
+          rentrer, trouver, exploiter) qui réalise un scénario stratégique
+          (Ch.~\ref{chap:ebios}).
+    \item[Scénario stratégique] Chemin d'attaque de haut niveau, d'un couple
+          SR/OV à un événement redouté, éventuellement par l'écosystème
+          (Ch.~\ref{chap:ebios}).
+    \item[Sécurité effective] Capacité réelle de l'organisation à résister
+          aux attaques et à s'en relever (Ch.~\ref{chap:prologue}).
+    \item[Simulation de Monte-Carlo] Tirage d'un grand nombre d'années selon
+          les estimations, pour obtenir la distribution des pertes
+          (Ch.~\ref{chap:fair}).
+    \item[SMSI] Système de management de la sécurité de l'information~:
+          politiques, processus, rôles et contrôles sur un périmètre, en
+          amélioration continue (Ch.~\ref{chap:prologue}, \ref{chap:smsi}).
+    \item[Source de risque] Élément, personne ou groupe susceptible
+          d'engendrer le risque (Ch.~\ref{chap:risque}).
+    \item[Table de correspondance] Tableau qui relie les exigences de deux
+          référentiels, en qualifiant chaque lien (Ch.~\ref{chap:referentiels}).
+    \item[Taux de conformité ($\mu$)] Part des réponses \OUI{}
+          (Ch.~\ref{chap:prologue}, \ref{chap:conclure}).
+    \item[Taux d'incertitude ($U$)] Part des réponses \NEK{}
+          (Ch.~\ref{chap:prologue}, \ref{chap:conclure}).
+    \item[Valeur métier] Activité, processus ou information qui a de la
+          valeur pour l'organisation (Ch.~\ref{chap:risque}).
+    \item[Vulnérabilité] Faiblesse d'un bien support qu'une menace peut
+          exploiter (Ch.~\ref{chap:risque}).
+\end{description}

@@ -1,0 +1,233 @@
+NDAP SUKULU · NRAC · fiche NRAC-FICHE-C08
+Chapitre 8 : La famille ISO/IEC 27000
+
+Version papier, à utiliser en attendant l'ouverture du portail NDAP SUKULU.
+La fiche complète compte 40 questions. Répondez sur la grille en fin de fiche.
+Durée indicative : 60 minutes. Seuil de réussite : 60 %.
+Les corrections figurent dans le livret de correction du cours.
+
+========================================================================
+Questions à choix multiple (une seule bonne réponse)
+========================================================================
+
+ 1. Quelle est la seule norme certifiable de la famille ISO/IEC 27000 ?
+      a) ISO/IEC 27002
+      b) ISO/IEC 27001
+      c) ISO/IEC 27005
+      d) ISO/IEC 27000
+
+ 2. Quel est l'objet de l'ISO/IEC 27000 ?
+      a) Les exigences du SMSI
+      b) Les mesures de sécurité
+      c) La vue d'ensemble et le vocabulaire
+      d) L'audit des SMSI
+
+ 3. Quelle norme fixe les exigences pour les organismes qui certifient les SMSI ?
+      a) ISO/IEC 27006
+      b) ISO/IEC 27004
+      c) ISO/IEC 27007
+      d) ISO/IEC 27014
+
+ 4. Quels articles contiennent les exigences de l'ISO/IEC 27001 ?
+      a) 1 à 3
+      b) 1 à 10
+      c) 11 à 14
+      d) 4 à 10
+
+ 5. Quel article porte sur l'évaluation des performances (audit interne, revue de direction) ?
+      a) Article 9
+      b) Article 6
+      c) Article 8
+      d) Article 4
+
+ 6. Quelle exigence est nouvelle dans l'édition 2022 ?
+      a) La politique de sécurité
+      b) La planification des modifications (6.3)
+      c) L'audit interne
+      d) La revue de direction
+
+ 7. Sur quoi porte l'amendement de 2024 ?
+      a) Les données personnelles
+      b) L'intelligence artificielle
+      c) Le changement climatique comme enjeu éventuel
+      d) La cryptographie
+
+ 8. Quelle est la durée d'un certificat ?
+      a) Un an
+      b) Cinq ans
+      c) Deux ans
+      d) Trois ans
+
+ 9. Que vérifie l'étape 2 de l'audit initial ?
+      a) La mise en œuvre et l'efficacité du SMSI sur le terrain
+      b) Le budget
+      c) La seule documentation
+      d) Le contrat avec l'organisme
+
+10. Combien de mesures compte l'ISO/IEC 27002:2022 ?
+      a) 114
+      b) 93
+      c) 133
+      d) 57
+
+11. Combien de thèmes regroupent ces mesures ?
+      a) Quatorze
+      b) Trois
+      c) Quatre
+      d) Sept
+
+12. Dans quel thème se trouve la mesure 8.5, authentification sécurisée ?
+      a) Organisationnelles
+      b) Liées aux personnes
+      c) Physiques
+      d) Technologiques
+
+13. Laquelle de ces mesures est nouvelle en 2022 ?
+      a) 5.7 Renseignement sur les menaces
+      b) 5.1 Politiques
+      c) 7.1 Périmètres physiques
+      d) 6.1 Sélection du personnel
+
+14. À quoi servent les attributs des mesures ?
+      a) À calculer le coût
+      b) À vérifier l'équilibre d'un dispositif en triant les mesures
+      c) À remplacer la déclaration d'applicabilité
+      d) À certifier
+
+15. Quel type de mesure est une sauvegarde ?
+      a) Préventive
+      b) Détective
+      c) Corrective
+      d) Organisationnelle
+
+16. Quel article de l'ISO/IEC 27001 exige la déclaration d'applicabilité ?
+      a) 6.1.3
+      b) 9.2
+      c) 5.2
+      d) 4.3
+
+17. Pour quelle raison une mesure peut-elle être exclue ?
+      a) Elle est difficile à mettre en œuvre
+      b) Elle coûte cher
+      c) Le consultant le propose
+      d) Aucun risque ni aucune obligation ne la rend nécessaire
+
+18. Scénario. 9 mesures déclarées « mises en œuvre » ; l'audit donne 3 OUI, 3 NON, 3 NEK. Que vaut H ?
+      a) 1 bit
+      b) 1,585 bit
+      c) 0 bit
+      d) 0,5 bit
+
+19. Scénario. 8.28 exclue « faute de développement », alors que la DSI développe des interfaces. Base de l'exclusion ?
+      a) OUI
+      b) NEK
+      c) NON
+      d) Recevable
+
+20. Le certificat ISO/IEC 27001 dispense-t-il de l'audit de sécurité réglementaire ?
+      a) Oui, toujours
+      b) Non
+      c) Oui, pour les banques
+      d) Oui, s'il couvre tout
+
+========================================================================
+Vrai ou faux
+========================================================================
+
+21. L'ISO/IEC 27002 est certifiable.
+      Vrai / Faux
+
+22. L'ISO/IEC 27001 suit la structure commune des normes de systèmes de management.
+      Vrai / Faux
+
+23. La norme prescrit comment faire, pas seulement ce qu'il faut prouver.
+      Vrai / Faux
+
+24. Des audits de surveillance ont lieu au moins une fois par an pendant le cycle.
+      Vrai / Faux
+
+25. L'édition 2013 comptait quatorze domaines, de A.5 à A.18.
+      Vrai / Faux
+
+26. Le dossier Normes du cours contient l'édition 2022.
+      Vrai / Faux
+
+27. Une mesure « couverte par » une autre doit être exclue.
+      Vrai / Faux
+
+28. Chaque « mise en œuvre » de la déclaration doit pouvoir être démontrée.
+      Vrai / Faux
+
+29. Un organisme certificateur pardonne une mesure en cours mieux qu'une déclaration fausse.
+      Vrai / Faux
+
+30. La loi n° 2010/012 impose la certification ISO/IEC 27001.
+      Vrai / Faux
+
+========================================================================
+Textes à trous
+========================================================================
+
+31. Le sous-comité de l'ISO et de la CEI qui publie la famille 27000 est le SC ______.
+
+32. Le thème des mesures 6.1 à 6.8 est celui des mesures liées aux ______.
+
+33. Le nombre de mesures technologiques de l'édition 2022 est de ______.
+
+34. La structure de l'ISO/IEC 27001 compte ______ articles.
+
+35. La déclaration d'applicabilité a pour sigle ______.
+
+36. Une journalisation est une mesure de type ______.
+
+37. L'organisme certificateur fictif du cas s'appelle ______ AFRIQUE.
+
+38. La norme ISO/IEC sur la surveillance et la mesure du SMSI porte le numéro ______.
+
+39. La mesure 8.28 porte sur le codage ______.
+
+40. La mesure 8.22 porte sur le ______ des réseaux.
+
+========================================================================
+Grille de réponses   Nom : ............................  Matricule : ............
+========================================================================
+ 1. ............................................
+ 2. ............................................
+ 3. ............................................
+ 4. ............................................
+ 5. ............................................
+ 6. ............................................
+ 7. ............................................
+ 8. ............................................
+ 9. ............................................
+10. ............................................
+11. ............................................
+12. ............................................
+13. ............................................
+14. ............................................
+15. ............................................
+16. ............................................
+17. ............................................
+18. ............................................
+19. ............................................
+20. ............................................
+21. ............................................
+22. ............................................
+23. ............................................
+24. ............................................
+25. ............................................
+26. ............................................
+27. ............................................
+28. ............................................
+29. ............................................
+30. ............................................
+31. ............................................
+32. ............................................
+33. ............................................
+34. ............................................
+35. ............................................
+36. ............................................
+37. ............................................
+38. ............................................
+39. ............................................
+40. ............................................

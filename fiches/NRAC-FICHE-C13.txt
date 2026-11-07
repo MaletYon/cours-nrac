@@ -1,0 +1,233 @@
+NDAP SUKULU · NRAC · fiche NRAC-FICHE-C13
+Chapitre 13 : La GRC en pratique
+
+Version papier, à utiliser en attendant l'ouverture du portail NDAP SUKULU.
+La fiche complète compte 40 questions. Répondez sur la grille en fin de fiche.
+Durée indicative : 60 minutes. Seuil de réussite : 60 %.
+Les corrections figurent dans le livret de correction du cours.
+
+========================================================================
+Questions à choix multiple (une seule bonne réponse)
+========================================================================
+
+ 1. Quels sont les quatre objets du référentiel commun de la GRC ?
+      a) Risques, obligations, contrôles, preuves
+      b) Normes, lois, contrats, audits
+      c) Budget, personnel, outils, délais
+      d) Actifs, menaces, vulnérabilités, impacts
+
+ 2. Qui tient les liens entre risques, obligations, contrôles et preuves ?
+      a) Le DSI
+      b) Le responsable GRC
+      c) L'auditeur externe
+      d) Le DPD
+
+ 3. Scénario. Que reçoit le comité des risques en janvier 2029 ?
+      a) Un seul rapport consolidé
+      b) Aucun rapport
+      c) Quatre rapports justes qui ne se parlent pas
+      d) Un tableau de bord GRC
+
+ 4. Que contient le registre des obligations pour chaque exigence ?
+      a) Le nom de l'auditeur
+      b) Le coût
+      c) La couleur du risque
+      d) Sa source, son contenu résumé, ses contrôles, sa preuve et son statut
+
+ 5. Obligations de la SANAGA : 7 OUI, 2 NON, 3 NEK. Quelle région du quadrant ?
+      a) Conformité opaque
+      b) Conformité claire
+      c) Non-conformité claire
+      d) Non-conformité opaque
+
+ 6. Scénario. Pourquoi l'obligation O3 (conservation dix ans) est-elle NON ?
+      a) Le texte est à vérifier
+      b) Le stockage limite la conservation à deux ans
+      c) DIGICORE refuse
+      d) L'ANTIC n'a pas répondu
+
+ 7. Que désigne une ligne de la matrice qui traite beaucoup de risques ?
+      a) Un contrôle orphelin
+      b) Un risque non maîtrisé
+      c) Un contrôle clé
+      d) Une obligation
+
+ 8. Que révèle un contrôle qui ne traite aucun risque du registre ?
+      a) Qu'il est inutile, ou qu'un risque manque au registre
+      b) Qu'il est conforme
+      c) Qu'il faut le supprimer sans réfléchir
+      d) Qu'il est un indicateur
+
+ 9. Scénario. Quel risque de la SANAGA n'a qu'un contrôle, coté NON ?
+      a) R-AG-01
+      b) R-DC-03
+      c) R-AG-02
+      d) R-DC-06, le déni de service
+
+10. Un constat d'audit doit modifier la cote d'un contrôle dans quel délai ?
+      a) Un an
+      b) La semaine
+      c) À la revue annuelle
+      d) Jamais
+
+11. Qu'est-ce qu'un indicateur de risque ?
+      a) Une mesure de mise en œuvre
+      b) Un score CVSS
+      c) Un signal qui annonce un changement d'exposition, lu avec des seuils
+      d) Un budget
+
+12. Que déclenche un indicateur de risque au rouge ?
+      a) La revue du risque par son propriétaire, sans attendre
+      b) Le changement automatique de la cote
+      c) Une sanction
+      d) Rien
+
+13. Scénario. K1 vaut 11 %. Dans quelle zone se trouve-t-il ?
+      a) Vert
+      b) Orange
+      c) Gris
+      d) Rouge
+
+14. Quel indicateur suit les prestataires critiques sans rapport d'assurance à jour ?
+      a) K1
+      b) K4
+      c) K2
+      d) K5
+
+15. Quelle rubrique de la page GRC est la plus rare, et la plus utile ?
+      a) Les décisions demandées
+      b) Les contrôles clés
+      c) Ce que nous ne savons pas
+      d) Les risques au-delà de l'appétence
+
+16. Combien de rubriques compte la page de M. ATANGANA ?
+      a) Six
+      b) Quatre
+      c) Dix
+      d) Trois
+
+17. Qu'est-ce que le contrôle continu de la conformité ?
+      a) Un audit annuel
+      b) Une revue de direction
+      c) Une assurance cyber
+      d) Le test automatique et répété d'un contrôle par une extraction comparée à une règle
+
+18. Scénario. Le 14 mars, une agence est silencieuse depuis 30 heures. Quelle cause ?
+      a) Un incendie
+      b) Un commutateur remplacé sans la configuration de référence
+      c) Une grève
+      d) Une attaque
+
+19. Que devient un contrôle dont le script de test ne tourne plus ?
+      a) Il reste OUI
+      b) Il devient NON
+      c) Il devient NEK sans que personne ne le voie
+      d) Il disparaît
+
+20. Qui doit valider les tests automatiques au moins une fois par an ?
+      a) L'audit interne
+      b) Le DSI qui les a écrits
+      c) Le fournisseur de l'outil
+      d) Le comité de sécurité
+
+========================================================================
+Vrai ou faux
+========================================================================
+
+21. Les liens du référentiel sont le travail propre du responsable GRC.
+      Vrai / Faux
+
+22. Le registre des risques porte un propriétaire et une décision pour chaque risque.
+      Vrai / Faux
+
+23. Une obligation dont le texte est à vérifier peut être cotée OUI.
+      Vrai / Faux
+
+24. Une matrice se lit dans trois directions : par ligne, par colonne, et par les lignes vides.
+      Vrai / Faux
+
+25. Un risque dont tous les contrôles sont NON ou NEK est maîtrisé.
+      Vrai / Faux
+
+26. Un indicateur au rouge change à lui seul la cote du risque.
+      Vrai / Faux
+
+27. Le tableau de bord du comité détaille toutes les mesures techniques.
+      Vrai / Faux
+
+28. Un test automatique est lui-même un contrôle à valider.
+      Vrai / Faux
+
+29. L'absence d'alerte d'un test automatique prouve que le contrôle fonctionne.
+      Vrai / Faux
+
+30. L'adverbe « continûment » de l'article 26 trouve un contenu dans le contrôle continu.
+      Vrai / Faux
+
+========================================================================
+Textes à trous
+========================================================================
+
+31. La liste des exigences qui s'imposent à l'organisation est le registre des ______.
+
+32. Le tableau qui croise contrôles et risques est la matrice risques-______.
+
+33. Un indicateur de risque se lit avec des ______.
+
+34. Le responsable GRC de la SANAGA s'appelle M. ______.
+
+35. Un contrôle qui ne traite aucun risque est un contrôle ______.
+
+36. Les tests automatiques de la SANAGA tournent chaque ______.
+
+37. Le prestataire qui n'a pas remis son rapport de type 2 est ______.
+
+38. Le contrôle clé non conforme de la matrice est le mode ______.
+
+39. Les quatre rapports de janvier 2029 viennent de la RSSI, de l'audit interne, de CERTIQUAL et de la ______.
+
+40. Le seuil rouge de K1 est fixé au-delà de ______ %.
+
+========================================================================
+Grille de réponses   Nom : ............................  Matricule : ............
+========================================================================
+ 1. ............................................
+ 2. ............................................
+ 3. ............................................
+ 4. ............................................
+ 5. ............................................
+ 6. ............................................
+ 7. ............................................
+ 8. ............................................
+ 9. ............................................
+10. ............................................
+11. ............................................
+12. ............................................
+13. ............................................
+14. ............................................
+15. ............................................
+16. ............................................
+17. ............................................
+18. ............................................
+19. ............................................
+20. ............................................
+21. ............................................
+22. ............................................
+23. ............................................
+24. ............................................
+25. ............................................
+26. ............................................
+27. ............................................
+28. ............................................
+29. ............................................
+30. ............................................
+31. ............................................
+32. ............................................
+33. ............................................
+34. ............................................
+35. ............................................
+36. ............................................
+37. ............................................
+38. ............................................
+39. ............................................
+40. ............................................

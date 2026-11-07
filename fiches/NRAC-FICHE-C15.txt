@@ -1,0 +1,233 @@
+NDAP SUKULU · NRAC · fiche NRAC-FICHE-C15
+Chapitre 15 : Risques émergents et nouveaux objets d'audit
+
+Version papier, à utiliser en attendant l'ouverture du portail NDAP SUKULU.
+La fiche complète compte 40 questions. Répondez sur la grille en fin de fiche.
+Durée indicative : 60 minutes. Seuil de réussite : 60 %.
+Les corrections figurent dans le livret de correction du cours.
+
+========================================================================
+Questions à choix multiple (une seule bonne réponse)
+========================================================================
+
+ 1. Quand un risque est confié à un prestataire, à qui reste-t-il ?
+      a) Au prestataire
+      b) À l'organisation
+      c) À l'assureur
+      d) À l'ANTIC
+
+ 2. Combien de mesures l'ISO/IEC 27002:2022 consacre-t-elle aux fournisseurs et au nuage (5.19 à 5.23) ?
+      a) Trois
+      b) Sept
+      c) Cinq
+      d) Neuf
+
+ 3. Que prévoit l'étape « sortie » du cycle de vie d'un tiers ?
+      a) Récupérer les données, révoquer les accès, obtenir la preuve de destruction
+      b) Signer le contrat
+      c) Évaluer la maturité
+      d) Recevoir les rapports
+
+ 4. Scénario. Pourquoi l'imprimeur des chéquiers et le transporteur de fonds sont-ils NEK ?
+      a) Ils ont refusé l'audit
+      b) Ils sont certifiés
+      c) Ils sont hors du Cameroun
+      d) Personne ne les a regardés sous l'angle de la sécurité
+
+ 5. Prestataires critiques : 4 OUI, 1 NON, 4 NEK sur 9. Que vaut U ?
+      a) 0,11
+      b) 0,44
+      c) 0,89
+      d) 0,50
+
+ 6. En SaaS, que reste-t-il toujours au client ?
+      a) Le centre de données
+      b) Le système d'exploitation
+      c) Les identités et les données
+      d) L'application
+
+ 7. Quelle norme complète l'ISO/IEC 27002 pour les services en nuage ?
+      a) ISO/IEC 27017
+      b) ISO/IEC 27004
+      c) ISO/IEC 27014
+      d) ISO/IEC 27007
+
+ 8. Scénario. NUAGEPRO fournit un rapport de type 2. Que ne prouve-t-il pas ?
+      a) La sécurité de son centre de données
+      b) Ses certifications
+      c) Sa période d'audit
+      d) Le second facteur des comptes de la banque
+
+ 9. Quelle norme traite des données personnelles dans le nuage public ?
+      a) ISO/IEC 27001
+      b) ISO/IEC 27018
+      c) ISO/IEC 42001
+      d) ISO 31000
+
+10. Lequel n'est PAS un risque propre à l'IA cité par le cours ?
+      a) La fuite de données
+      b) La manipulation
+      c) La panne électrique
+      d) Le biais
+
+11. L'ISO/IEC 42001 est-elle certifiable ?
+      a) Oui, c'est un système de management de l'IA
+      b) Non, c'est un guide
+      c) Oui, pour les modèles seulement
+      d) Non, c'est une loi
+
+12. Quelles sont les fonctions du NIST AI RMF ?
+      a) Identifier, protéger, détecter, répondre
+      b) Planifier, faire, vérifier, agir
+      c) Évaluer, diriger, surveiller, communiquer
+      d) Gouverner, cartographier, mesurer, gérer
+
+13. Scénario. 47 agents ont collé des données de clients dans un assistant public. Quel traitement ?
+      a) Ne rien faire
+      b) Une règle d'usage, un assistant contractualisé, une sensibilisation, le blocage de l'outil public
+      c) Licencier les agents
+      d) Supprimer la messagerie
+
+14. Scénario. Pour le modèle FRAUDSCAN, quelle question la banque sait-elle traiter ?
+      a) Les données d'entraînement
+      b) La surveillance des performances
+      c) Qui a validé le seuil, et sur quels essais
+      d) L'explication au client
+
+15. Qu'analyse l'audit continu ?
+      a) Les données et les transactions, sur toute la population
+      b) Seulement les contrôles
+      c) Un échantillon de 40 éléments
+      d) Les CV des auditeurs
+
+16. Qui doit détenir le programme d'audit continu ?
+      a) La direction qui exécute les paiements
+      b) Le fournisseur
+      c) Le DSI
+      d) L'audit interne
+
+17. Exceptions de juin 2029 : 29 justifiées, 6 indues, 2 inexpliquées. Que sont surtout les 29 ?
+      a) Des fraudes
+      b) Des faux positifs normaux d'un test exhaustif
+      c) Des erreurs du programme
+      d) Des NEK
+
+18. Quelle condition rend un test d'audit continu valable ?
+      a) Sa rapidité
+      b) Son coût
+      c) L'exhaustivité des données et l'indépendance de son exploitant
+      d) Le nombre d'alertes
+
+19. Scénario. 80 exceptions justifiées, 15 anormales, 5 inexpliquées. Que vaut µ ?
+      a) 0,80
+      b) 0,15
+      c) 0,05
+      d) 0,95
+
+20. Que dit l'analyse du cours de l'article 26 de la loi n° 2010/012 et des tiers ?
+      a) Les risques confiés sortent de l'obligation
+      b) L'article ne vise que les banques
+      c) L'article interdit l'externalisation
+      d) Confier un service ne fait pas sortir ses risques du champ de l'obligation
+
+========================================================================
+Vrai ou faux
+========================================================================
+
+21. Un prestataire peut être une porte d'entrée, un risque de défaillance et une chaîne de sous-traitants.
+      Vrai / Faux
+
+22. Les prestataires « non informatiques » sont hors du registre des tiers.
+      Vrai / Faux
+
+23. Le rapport du fournisseur de nuage remplace les preuves du client.
+      Vrai / Faux
+
+24. Une messagerie en nuage sécurisée reste vulnérable sans second facteur sur les comptes.
+      Vrai / Faux
+
+25. Un modèle d'IA peut voir ses performances se dégrader quand les données changent.
+      Vrai / Faux
+
+26. L'ISO/IEC 42001 certifie un modèle d'IA particulier.
+      Vrai / Faux
+
+27. Le blocage seul d'un assistant public suffit à traiter le besoin.
+      Vrai / Faux
+
+28. L'audit continu porte sur les données ; le contrôle continu de la conformité porte sur les contrôles.
+      Vrai / Faux
+
+29. Un test validé sur des cas connus doit les signaler.
+      Vrai / Faux
+
+30. Trop d'exceptions non traitées finissent par ne plus être lues.
+      Vrai / Faux
+
+========================================================================
+Textes à trous
+========================================================================
+
+31. Le fournisseur de messagerie en nuage fictif de la SANAGA s'appelle ______.
+
+32. L'éditeur fictif du modèle de détection de fraude s'appelle ______.
+
+33. La norme du système de management de l'IA est l'ISO/IEC ______.
+
+34. Le modèle de service où le fournisseur gère aussi l'application a pour sigle ______.
+
+35. L'analyse répétée de toute la population s'appelle l'audit ______.
+
+36. Le risque qui conduit un modèle à traiter différemment des catégories de personnes est le ______.
+
+37. Le rapport d'assurance qui dit si les contrôles ont fonctionné est de type ______.
+
+38. En juin 2029, le test de l'ANPP signale ______ exceptions.
+
+39. La fiche du risque de fuite par un assistant public est R-IA-______.
+
+40. La mesure de l'ISO/IEC 27002 sur les services en nuage porte le numéro ______.
+
+========================================================================
+Grille de réponses   Nom : ............................  Matricule : ............
+========================================================================
+ 1. ............................................
+ 2. ............................................
+ 3. ............................................
+ 4. ............................................
+ 5. ............................................
+ 6. ............................................
+ 7. ............................................
+ 8. ............................................
+ 9. ............................................
+10. ............................................
+11. ............................................
+12. ............................................
+13. ............................................
+14. ............................................
+15. ............................................
+16. ............................................
+17. ............................................
+18. ............................................
+19. ............................................
+20. ............................................
+21. ............................................
+22. ............................................
+23. ............................................
+24. ............................................
+25. ............................................
+26. ............................................
+27. ............................................
+28. ............................................
+29. ............................................
+30. ............................................
+31. ............................................
+32. ............................................
+33. ............................................
+34. ............................................
+35. ............................................
+36. ............................................
+37. ............................................
+38. ............................................
+39. ............................................
+40. ............................................

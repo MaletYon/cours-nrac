@@ -1,0 +1,592 @@
+% ============================================================================
+% Fichier  : partie4/P04_C13_grc_pratique.tex
+% Titre    : La GRC en Pratique
+% Auteur   : MINKA MI NGUIDJOÏ Thierry Emmanuel
+% Version  : 1.0 -- novembre 2026
+% Corrigés : corriges/Corr_C13.tex
+% ============================================================================
+% Faits du cas (bible) : BANQUE SANAGA, registre (R-AG-01, R-AG-02, R-DC-02,
+% R-DC-03, R-DC-06), plan de traitement, audits de 2028, CERTIQUAL,
+% indicateurs I1 à I6 (I6 = 11 %), DIGICORE (rapport ISAE 3402 de type 2),
+% avenant GAB, monétique sous PCI DSS, règle « temporaire » de Garoua chez
+% LiZbiZ (leçon reprise).
+% Faits nouveaux (reportés dans la bible) : M. ATANGANA, responsable GRC
+% nommé en octobre 2028, rattaché au directeur des risques ; comité des
+% risques de janvier 2029 ; registre des obligations O1 à O12 (7/2/3) ;
+% matrice risques-contrôles C1 à C9 ; indicateurs de risque K1 à K5 ;
+% contrôles automatisés quotidiens ; DIGICORE n'a pas remis son rapport à
+% l'échéance de décembre 2028.
+% Loi n° 2010/012 : art. 26, 29, 30 résumés (Chapitre 10).
+% ============================================================================
+
+\chapter{La GRC en Pratique}
+\label{chap:grc-pratique}
+\chaptermark{La GRC en pratique}
+
+\epigraph{%
+    « Quatre rapports qui ne se parlent pas\\
+    valent moins qu'un tableau qui les relie. »%
+}{Principe du cours}
+
+\niveauChapitre{Intermédiaire}{%
+    Maîtrise du Chapitre~\ref{chap:smsi}%
+}
+
+\begin{boxobjectifs}
+\begin{itemize}
+    \item Relier risques, obligations, contrôles et preuves dans un
+          dispositif unique.
+    \item Tenir un registre des risques et un registre des obligations.
+    \item Construire une matrice risques-contrôles, et y repérer les risques
+          sans contrôle et les contrôles sans risque.
+    \item Distinguer indicateurs de risque et indicateurs de performance, et
+          fixer des seuils.
+    \item Concevoir le tableau de bord GRC d'une instance de gouvernance, y
+          compris ce que l'on ignore.
+    \item Organiser le contrôle continu de la conformité, et en connaître
+          les limites.
+\end{itemize}
+\end{boxobjectifs}
+
+\bigskip
+
+% ============================================================================
+\section*{Avant de commencer : quatre rapports}
+% ============================================================================
+
+Douala, janvier 2029. Le comité des risques du conseil de la BANQUE
+SANAGA\footnote{Comme dans tout le cours, la BANQUE SANAGA, ses dirigeants,
+ses prestataires, les dates et les montants sont fictifs~; les textes cités
+sont exacts.} reçoit, pour la même séance, quatre documents~: le tableau de
+bord de la RSSI, le rapport annuel de l'audit interne, le rapport de
+CERTIQUAL AFRIQUE et une lettre de la COBAC. Chacun est juste, et aucun ne
+parle la langue des autres. Le tableau de bord dit «~100~\% des comptes avec
+second facteur~»~; l'audit interne, «~trois non-conformités sur les
+agences~»~; CERTIQUAL, «~une majeure levée~»~; la COBAC demande «~l'état des
+mesures prises depuis l'incident de 2026~».
+
+Le président du comité pose une seule question~: «~Où en sommes-nous~?~»
+M.~ATANGANA, responsable GRC nommé en octobre~2028 et rattaché au directeur
+des risques, a trois mois pour qu'une page y réponde.
+
+\medskip
+
+Ce chapitre montre comment faire vivre la gouvernance, le risque et la
+conformité dans un seul dispositif~: des registres reliés, une matrice, des
+indicateurs, un tableau de bord, et des contrôles qui se vérifient seuls.
+
+\begin{boxalert}
+\textbf{Violation typique.} Présenter à la gouvernance des rapports
+juxtaposés (sécurité, audit, conformité, certification), chacun avec ses
+références et ses échelles.
+
+\smallskip
+\textbf{Règle~:} un même référentiel relie risques, obligations, contrôles
+et preuves. Chaque rapport est une vue de ce référentiel, et le tableau de
+bord de la gouvernance les réunit.
+\end{boxalert}
+
+\separateur
+
+% ============================================================================
+\section{Un Dispositif Unique}
+\label{sec:c13-dispositif}
+% ============================================================================
+
+Le Chapitre~\ref{chap:grc} a défini la GRC comme un seul dispositif, avec
+un référentiel commun. En pratique, ce référentiel tient en quatre objets
+et leurs liens.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[
+    objet/.style={draw=CouleurPrimaire, thick, rounded corners,
+                  fill=CouleurPrimaire!8, text width=2.6cm,
+                  minimum height=1.1cm, align=center, font=\small},
+    lien/.style={<->, thick, CouleurSecondaire},
+    etiq/.style={font=\scriptsize, fill=white, inner sep=1pt}]
+    \node[objet] (R) at (0,0) {\textbf{Risques}\\registre};
+    \node[objet] (O) at (0,-3) {\textbf{Obligations}\\registre};
+    \node[objet] (C) at (4.5,-1.5) {\textbf{Contrôles}\\base commune};
+    \node[objet] (P) at (9,-1.5) {\textbf{Preuves}\\tests, extractions};
+    \draw[lien] (R) -- node[etiq]{traité par} (C);
+    \draw[lien] (O) -- node[etiq]{satisfaite par} (C);
+    \draw[lien] (C) -- node[etiq]{démontré par} (P);
+\end{tikzpicture}
+\caption{Le référentiel commun de la GRC}
+\label{fig:c13-referentiel}
+\end{figure}
+
+Chaque objet a son propriétaire~: le risque, un directeur métier~;
+l'obligation, la fonction conformité ou juridique~; le contrôle, son
+exploitant~; la preuve, celui qui l'a produite et celui qui l'a évaluée.
+Les liens sont le travail propre du responsable GRC~: c'est par eux qu'un
+constat d'audit change la cote d'un risque, ou qu'une nouvelle loi crée un
+contrôle.
+
+% ============================================================================
+\section{Les Deux Registres}
+\label{sec:c13-registres}
+% ============================================================================
+
+\subsection{Le registre des risques}
+
+Le registre des risques reprend, pour chaque risque, les rubriques des
+chapitres précédents~: scénario, propriétaire, cotes inhérente et
+résiduelle avec leur base de preuve (Chapitre~\ref{chap:risque}), décision
+de traitement ou d'acceptation (Chapitre~\ref{chap:iso27005}), date de
+revue.
+
+\begin{tableaucours}{L{1.5cm}L{3.4cm}L{2.1cm}cL{3.0cm}}{%
+    \tableauHeader{Réf.} &
+    \tableauHeader{Risque} &
+    \tableauHeader{Propriétaire} &
+    \tableauHeader{Rés.} &
+    \tableauHeader{Décision, revue}
+}
+R-AG-01 & Rançongiciel en agence & Dir. réseau d'agences & 6 & Traité~;
+revue juin 2029 \\
+R-AG-02 & Compromission d'un GAB & Dir. réseau d'agences & 9 &
+Remplacement en cours~; revue mars 2029 \\
+R-DC-02 & Défaillance de DIGICORE & Dir. des opérations & 6 (\NEK{}) &
+Accepté en l'état des connaissances~; rapport attendu \\
+R-DC-03 & Intrusion par Internet & DSI & 8 & Traité~; revue juin 2029 \\
+R-DC-06 & Déni de service des services en ligne & Dir. canaux numériques &
+9 & Protection contractualisée~; test en mars \\
+\end{tableaucours}
+\vspace{-0.8em}
+\begin{center}{\small\itshape Tableau~13.1. Extrait du registre des risques
+(janvier 2029)}\end{center}
+
+\subsection{Le registre des obligations}
+
+\begin{boxdef}
+\termecle{Registre des obligations}\index{registre des obligations}~: liste
+des exigences qui s'imposent à l'organisation (lois, règlements, contrats,
+normes auxquelles elle s'engage), avec, pour chacune, sa source, son
+contenu résumé, les contrôles qui la satisfont, la preuve et son statut.
+\end{boxdef}
+
+\begin{tableaucours}{cL{3.6cm}L{4.4cm}c}{%
+    \tableauHeader{Réf.} &
+    \tableauHeader{Source} &
+    \tableauHeader{Exigence (résumée)} &
+    \tableauHeader{Statut}
+}
+O1 & Loi n°~2010/012, art.~26~(1) & Gestion continue des risques & \OUI{} \\
+O2 & Loi n°~2010/012, art.~26~(2)--(3) & Mécanismes de sécurité visés par
+l'Agence & \NEK{} \\
+O3 & Loi n°~2010/012, art.~29~(1) & Conservation dix ans des données de
+connexion & \NON{} \\
+O4 & Loi n°~2010/012, art.~29~(2) & Surveillance des accès aux données &
+\OUI{} \\
+O5 & Loi n°~2010/012, art.~30~(1) & Revue périodique des systèmes de
+sécurité & \OUI{} \\
+O6 & Règlement COBAC R-2016/04 & Contrôle interne couvrant le risque
+opérationnel & \OUI{} \\
+O7 & PCI DSS (monétique) & Évaluation annuelle de conformité & \NEK{} \\
+O8 & ISO/IEC~27001 (certificat) & Maintien du SMSI certifié & \OUI{} \\
+O9 & Contrat DIGICORE & Rapport d'assurance annuel de type~2 & \NON{} \\
+O10 & Avenant du prestataire des GAB & Droit d'audit de la banque & \OUI{} \\
+O11 & Loi n°~2024/017 (à vérifier) & Obligations sur les données
+personnelles & \NEK{} \\
+O12 & Contrats des correspondants bancaires & Questionnaire de sécurité
+annuel & \OUI{} \\
+\end{tableaucours}
+\vspace{-0.8em}
+\begin{center}{\small\itshape Tableau~13.2. Le registre des obligations
+(janvier 2029)}\end{center}
+
+\begin{boxlecture}{L'état des obligations}
+\textbf{Constatation.} 7~\OUI{}, 2~\NON{}, 3~\NEK{} sur 12~:
+\[
+\mu \approx 0{,}58~;\quad U = 0{,}25~;\quad
+H = -\left(\tfrac{7}{12}\log_2\tfrac{7}{12} + \tfrac{2}{12}\log_2\tfrac{2}{12}
+  + \tfrac{3}{12}\log_2\tfrac{3}{12}\right) \approx 0{,}454 + 0{,}431 + 0{,}500
+  \approx 1{,}38~\text{bit}.
+\]
+
+\textbf{Analyse} (confiance élevée). Conformité opaque~: la banque satisfait
+la majorité de ses obligations, mais un quart d'entre elles est dans
+l'inconnu. Les trois \NEK{} n'ont pas la même cause~: O2 est une pièce à
+retrouver~; O7 attend le rapport de l'évaluateur de la monétique~; O11
+dépend d'un texte que la banque n'a pas encore analysé. Les deux \NON{}
+sont connus et datés~: O3 tient à la capacité de stockage (deux ans au lieu
+de dix), O9 au retard de DIGICORE, qui n'a pas remis son rapport à
+l'échéance de décembre 2028.
+
+\medskip
+\hfill\lecture{0{,}58}{0{,}25}{1{,}38}
+\end{boxlecture}
+
+% ============================================================================
+\section{La Matrice Risques-Contrôles}
+\label{sec:c13-matrice}
+% ============================================================================
+
+\subsection{Croiser}
+
+\begin{boxdef}
+\termecle{Matrice risques-contrôles}\index{matrice risques-contrôles}~:
+tableau qui croise les contrôles de la base commune et les risques du
+registre, en indiquant quel contrôle traite quel risque, et avec la dernière
+cote de chaque contrôle.
+\end{boxdef}
+
+\begin{tableaucours}{cL{3.6cm}cccccc}{%
+    \tableauHeader{Réf.} &
+    \tableauHeader{Contrôle} &
+    \tableauHeader{AG-01} & \tableauHeader{AG-02} &
+    \tableauHeader{DC-02} & \tableauHeader{DC-03} &
+    \tableauHeader{DC-06} & \tableauHeader{Cote}
+}
+C1 & Second facteur & $\times$ & & & $\times$ & & \OUI{} \\
+C2 & Cloisonnement & $\times$ & $\times$ & & & & \OUI{} \\
+C3 & Sauvegardes testées & $\times$ & & $\times$ & & & \OUI{} \\
+C4 & Mode dégradé & $\times$ & $\times$ & $\times$ & & $\times$ & \NON{} \\
+C5 & Journalisation & $\times$ & $\times$ & & $\times$ & & \OUI{} \\
+C6 & Correctifs & $\times$ & $\times$ & & $\times$ & & \NEK{} \\
+C7 & Sensibilisation & $\times$ & & & $\times$ & & \NON{} \\
+C8 & Assurance des prestataires & & $\times$ & $\times$ & & & \NON{} \\
+C9 & Revue mensuelle des règles de pare-feu & & & & & & \OUI{} \\
+\end{tableaucours}
+\vspace{-0.8em}
+\begin{center}{\small\itshape Tableau~13.3. Matrice risques-contrôles
+(extrait)}\end{center}
+
+\subsection{Lire la matrice}
+
+La matrice se lit dans trois directions.
+\begin{itemize}
+    \item \textbf{Par ligne}~: les contrôles qui traitent beaucoup de risques
+          sont des \emph{contrôles clés}~; C4 (mode dégradé) en traite
+          quatre, et il est \NON{}~: c'est la priorité du plan.
+    \item \textbf{Par colonne}~: un risque dont tous les contrôles sont
+          \NON{} ou \NEK{} n'est pas maîtrisé. R-DC-06 n'a qu'un contrôle,
+          C4, coté \NON{}~: la protection contre le déni de service,
+          contractualisée avec le fournisseur d'accès, n'est pas encore un
+          contrôle de la base~; il faut l'y inscrire et la tester.
+    \item \textbf{Les lignes vides}~: C9 ne traite aucun risque du registre.
+          Soit il est inutile, soit un risque manque. C'est le second cas~:
+          la règle «~temporaire~» de LiZbiZ (Chapitre~\ref{chap:audit-technique})
+          a montré le risque d'une règle de filtrage qui survit à son besoin~;
+          le registre de la banque doit le porter.
+\end{itemize}
+
+\begin{boxprocedure}
+\textbf{Tenir la matrice.} Le responsable GRC vérifie, à chaque mise à
+jour~:
+\begin{itemize}
+    \item que chaque risque au-delà de l'appétence a au moins un contrôle
+          coté \OUI{} par étape de son scénario~;
+    \item que chaque contrôle est relié à au moins un risque ou une
+          obligation~;
+    \item que la cote de chaque contrôle vient du dernier test, avec sa
+          date et sa source (audit, contrôle automatisé, autoévaluation)~;
+    \item qu'un constat d'audit modifie la cote dans la semaine, et la cote
+          du risque à la revue suivante.
+\end{itemize}
+\end{boxprocedure}
+
+% ============================================================================
+\section{Les Indicateurs de Risque}
+\label{sec:c13-kri}
+% ============================================================================
+
+\subsection{Risque ou performance}
+
+Les indicateurs du SMSI (Chapitre~\ref{chap:smsi}) mesurent la mise en
+œuvre et l'efficacité des mesures. Un \termecle{indicateur de
+risque}\index{indicateur de risque} mesure autre chose~: un signal qui
+annonce que l'exposition change, souvent avant l'incident. Il se lit avec
+des seuils, qui déclenchent une action.
+
+\begin{tableaucours}{cL{4.2cm}cccL{2.6cm}}{%
+    \tableauHeader{Réf.} &
+    \tableauHeader{Indicateur de risque} &
+    \tableauHeader{Vert} &
+    \tableauHeader{Orange} &
+    \tableauHeader{Rouge} &
+    \tableauHeader{Risque suivi}
+}
+K1 & Agents qui cliquent lors d'une campagne simulée & $<$~5~\% & 5 à
+10~\% & $>$~10~\% & R-AG-01 \\
+K2 & Vulnérabilités exploitées non corrigées après 7~jours & 0 & 1 à 2 &
+$\geq$~3 & R-AG-01, R-DC-03 \\
+K3 & Règles de filtrage temporaires échues & 0 & 1 & $\geq$~2 & R-AG-01,
+R-DC-03 \\
+K4 & Prestataires critiques sans rapport d'assurance à jour & 0 & 1 &
+$\geq$~2 & R-DC-02, R-AG-02 \\
+K5 & Tentatives de connexion refusées sur l'accès distant (par semaine,
+écart à la moyenne) & $<$~2 fois & 2 à 5 fois & $>$~5 fois & R-DC-03 \\
+\end{tableaucours}
+\vspace{-0.8em}
+\begin{center}{\small\itshape Tableau~13.4. Les indicateurs de risque et
+leurs seuils}\end{center}
+
+\begin{boxinfo}
+\textbf{Ce que déclenche un seuil.} Un indicateur au rouge ne change pas la
+cote du risque à lui seul~: il déclenche la revue du risque par son
+propriétaire, sans attendre la date prévue (Chapitre~\ref{chap:iso27005}).
+En janvier 2029, K1 est au rouge (11~\%) et K4 à l'orange (DIGICORE)~: les
+revues de R-AG-01 et de R-DC-02 sont avancées.
+\end{boxinfo}
+
+% ============================================================================
+\section{Le Tableau de Bord GRC}
+\label{sec:c13-tableau}
+% ============================================================================
+
+\subsection{Une page pour la gouvernance}
+
+Le tableau de bord du comité des risques n'est pas celui de la RSSI. Il ne
+détaille pas les mesures~; il répond à trois questions~: où sont les risques
+qui dépassent l'appétence~? Respectons-nous nos obligations~? Que
+savons-nous, et que ne savons-nous pas~?
+
+\begin{boxscenario}{Opération SANAGA. La page de M. ATANGANA, avril 2029}
+\textbf{1. Risques au-delà de l'appétence~:} R-AG-02 (GAB, 9~; remplacement
+à 60~\%, fin prévue en juin)~; R-DC-06 (déni de service, 9~; test de la
+protection en mars, réussi~: proposition de passer à 6).
+
+\medskip
+\textbf{2. Obligations~:} 7 satisfaites sur 12~; deux non satisfaites (O3,
+conservation, budget de stockage demandé~; O9, DIGICORE, relance et
+pénalité contractuelle)~; trois inconnues (O2, O7, O11), avec une date pour
+chacune.
+
+\medskip
+\textbf{3. Contrôles clés~:} C4 (mode dégradé) non conforme, plan à fin
+juin~; C6 (correctifs) inconnu, test de l'audit interne en mai.
+
+\medskip
+\textbf{4. Indicateurs de risque~:} K1 au rouge (11~\%)~; K4 à l'orange.
+
+\medskip
+\textbf{5. Ce que nous ne savons pas~:} $U = 0{,}25$ sur les obligations~;
+contrôles C6 et sensibilisation à vérifier~; base \NEK{} de la vraisemblance
+de R-DC-02.
+
+\medskip
+\textbf{6. Décisions demandées au comité~:} budget de stockage (O3)~;
+position sur DIGICORE si le rapport n'est pas remis en juin (changement de
+prestataire)~; validation de la nouvelle cote de R-DC-06.
+\end{boxscenario}
+
+La rubrique~5 est la plus rare dans les tableaux de bord, et la plus
+utile. Un comité qui ne voit que des chiffres rassurants ne sait pas sur
+quoi ils reposent~; un comité qui voit l'incertitude sait où porter
+l'effort et ce qu'il accepte d'ignorer.
+
+% ============================================================================
+\section{Le Contrôle Continu de la Conformité}
+\label{sec:c13-continu}
+% ============================================================================
+
+\subsection{Des contrôles qui se vérifient seuls}
+
+Certains contrôles peuvent être testés automatiquement, chaque jour, par
+une extraction comparée à une règle~: la part des comptes avec second
+facteur (C1), la part des agences qui envoient des journaux (C5), les
+règles de filtrage échues (C9, K3). C'est le \termecle{contrôle continu de
+la conformité}\index{contrôle continu de la conformité}~: une alerte part
+dès qu'une extraction s'écarte de la règle, au lieu d'attendre l'audit
+suivant.
+
+\begin{boxscenario}{Opération SANAGA. Trois tests quotidiens}
+Depuis février 2029, trois scripts tournent chaque nuit~: extraction de
+l'annuaire (comptes sans second facteur), extraction du collecteur
+(agences silencieuses depuis plus de 24~heures), extraction des pare-feu
+(règles dont la date d'expiration est passée). Leurs résultats alimentent
+directement la cote de C1, C5 et C9 dans la matrice.
+
+\medskip
+\textbf{Le 14~mars}, le test de C5 signale une agence silencieuse depuis
+trente heures~: un commutateur remplacé n'avait pas reçu la configuration
+de référence. L'écart est corrigé le jour même. En 2028, le même défaut
+avait attendu l'audit pour être découvert (Chapitre~\ref{chap:audit}).
+\end{boxscenario}
+
+\subsection{Les limites}
+
+\begin{boxalert}
+\textbf{Violation typique.} Tenir pour \OUI{} un contrôle parce que le test
+automatique ne signale rien.
+
+\smallskip
+\textbf{Règle~:} un test automatique est lui-même un contrôle, qui doit
+être validé~: voit-il toute la population (exhaustivité)~? Sa règle
+est-elle juste (exactitude)~? Fonctionne-t-il encore (un script arrêté ne
+signale rien)~? L'audit interne teste les tests, au moins une fois par an.
+Un script qui ne tourne plus transforme un \OUI{} en \NEK{} sans que
+personne ne le voie.
+\end{boxalert}
+
+Le contrôle continu de la conformité porte sur les contrôles~; l'audit
+continu, qui porte sur les données et les transactions pour y détecter les
+anomalies, est présenté au Chapitre~\ref{chap:emergents}.
+
+\begin{boxinfo}
+\textbf{La loi et le continu.} L'article~26 de la loi n°~2010/012 demande
+aux exploitants de gérer \emph{continûment} les risques de sécurité
+(Chapitre~\ref{chap:iso27005})~\cite{loi2010012}. Le dispositif décrit dans
+ce chapitre (registres reliés, indicateurs à seuils, tests quotidiens) est
+une manière concrète de donner un contenu à cet adverbe.
+\end{boxinfo}
+
+% ============================================================================
+\section{Ce que la GRC demande à chaque Métier}
+\label{sec:c13-metiers}
+% ============================================================================
+
+\begin{boxmetier}{Responsable GRC}
+\textbf{Tenir les liens}
+\begin{enumerate}
+    \item Tenir le registre des obligations, avec la fonction juridique, et
+          le relier aux contrôles.
+    \item Tenir la matrice risques-contrôles à jour de chaque test et de
+          chaque constat.
+    \item Repérer les risques sans contrôle et les contrôles sans risque.
+    \item Fixer avec les propriétaires les indicateurs de risque et leurs
+          seuils.
+    \item Produire une page pour la gouvernance, avec une rubrique «~ce que
+          nous ne savons pas~».
+\end{enumerate}
+\end{boxmetier}
+
+\begin{boxmetier}{RSSI}
+\textbf{Alimenter le référentiel}
+
+La RSSI ne tient plus son propre tableau à part~: ses indicateurs et ses
+tests alimentent la matrice. Elle automatise les tests qui peuvent l'être,
+et demande à l'audit interne de valider ses scripts.
+\end{boxmetier}
+
+\begin{boxmetier}{Auditeur en cybersécurité}
+\textbf{Auditer le dispositif, et s'en servir}
+
+L'auditeur peut s'appuyer sur la matrice et sur les tests automatiques pour
+cibler sa mission, à condition de les avoir validés. Il audite aussi le
+dispositif lui-même~: les liens sont-ils justes, les cotes à jour, les
+seuils suivis~?
+\end{boxmetier}
+
+\begin{boxmetier}{Gestionnaire des risques cyber}
+\textbf{Réagir aux seuils}
+
+Un indicateur au rouge déclenche la revue du risque par son propriétaire.
+Le gestionnaire des risques organise cette revue dans le mois, et en
+inscrit la décision au registre.
+\end{boxmetier}
+
+\separateur
+
+\begin{boxresume}
+\textbf{Ce qu'il faut retenir de ce chapitre~:}
+\begin{itemize}
+    \item \textbf{Un référentiel commun}~: risques, obligations, contrôles,
+          preuves, et leurs liens.
+    \item \textbf{Deux registres}~: les risques (avec propriétaires et
+          décisions) et les obligations (avec source et statut).
+    \item \textbf{La matrice risques-contrôles} révèle les contrôles clés,
+          les risques sans contrôle et les contrôles sans risque.
+    \item \textbf{Les indicateurs de risque} annoncent un changement
+          d'exposition~; leurs seuils déclenchent une revue.
+    \item \textbf{Le tableau de bord de la gouvernance} tient en une page,
+          et dit ce que l'on ne sait pas.
+    \item \textbf{Le contrôle continu} détecte les écarts au jour le jour~;
+          les tests automatiques sont eux-mêmes des contrôles à valider.
+\end{itemize}
+\end{boxresume}
+
+\begin{boxinfo}
+\textbf{Points de contrôle.} Vous avez compris ce chapitre si vous savez~:
+\begin{itemize}
+    \item rédiger une ligne du registre des obligations à partir d'un
+          article de loi~;
+    \item lire une matrice risques-contrôles dans ses trois directions~;
+    \item définir un indicateur de risque et ses seuils~;
+    \item dire pourquoi un test automatique silencieux n'est pas une
+          preuve.
+\end{itemize}
+\end{boxinfo}
+
+% ============================================================================
+\section*{Exercices}
+% ============================================================================
+
+\begin{boxexo}[title={\ding{45}\quad Exercice~13.1. Classer \niveaubase}]
+Dites si chacun des éléments suivants est un risque, une obligation, un
+contrôle, une preuve, un indicateur de performance ou un indicateur de
+risque.
+\begin{enumerate}[(a)]
+    \item Conserver dix ans les données de connexion.
+    \item La part des comptes avec second facteur.
+    \item Le procès-verbal de restauration du 12~février.
+    \item Une défaillance prolongée de DIGICORE.
+    \item Le nombre de vulnérabilités exploitées non corrigées après sept
+          jours.
+    \item La revue mensuelle des règles de pare-feu.
+\end{enumerate}
+\end{boxexo}
+
+\begin{boxexo}[title={\ding{45}\quad Exercice~13.2. Compléter la matrice \niveaumoyen}]
+\begin{enumerate}[(a)]
+    \item Ajoutez à la matrice (Tableau~13.3) le contrôle «~protection
+          contre le déni de service chez le fournisseur d'accès~» et le
+          risque «~règle de filtrage temporaire maintenue~». Reliez-les.
+    \item Pour chaque risque, dites s'il a au moins un contrôle \OUI{}.
+          Lesquels ne sont pas maîtrisés~?
+    \item Calculez $\mu$, $U$ et $H$ des neuf contrôles du tableau, puis
+          celles des seuls contrôles qui traitent R-AG-01. Que montre la
+          comparaison~?
+\end{enumerate}
+\end{boxexo}
+
+\begin{boxexo}[title={\ding{45}\quad Exercice~13.3. Des indicateurs pour les prestataires \niveaumoyen}]
+\begin{enumerate}[(a)]
+    \item Proposez deux indicateurs de risque pour R-DC-02 (DIGICORE), avec
+          leurs seuils et leur source.
+    \item Proposez un indicateur de risque pour R-AG-02 (GAB) une fois le
+          remplacement achevé.
+    \item Dites, pour chacun, ce que déclenche le passage au rouge, et qui
+          décide.
+\end{enumerate}
+\end{boxexo}
+
+\begin{boxexo}[title={\ding{45}\quad Exercice~13.4. La page de l'ANPP \niveauexpert}]
+À partir des Chapitres~\ref{chap:referentiels} et~\ref{chap:droit},
+préparez le tableau de bord GRC d'une page destiné au conseil
+d'administration de l'ANPP.
+\begin{enumerate}[(a)]
+    \item Construisez le registre des obligations (au moins six lignes),
+          avec leur statut.
+    \item Calculez $\mu$, $U$ et $H$ de ce registre et situez-le dans le
+          quadrant.
+    \item Rédigez les six rubriques de la page, sur le modèle de celle de
+          M.~ATANGANA, dont la rubrique «~ce que nous ne savons pas~».
+    \item Proposez deux tests automatiques quotidiens réalistes pour
+          l'ANPP, et dites comment l'audit les validera.
+\end{enumerate}
+\end{boxexo}
+
+\bigskip
+
+\begin{boxinfo}
+\textbf{Pour aller plus loin.}
+\begin{itemize}
+    \item L'ISO~31000~\cite{iso31000_2018}, pour l'intégration de la gestion
+          des risques dans la gouvernance.
+    \item Le cadre COSO de gestion des risques~\cite{coso2017erm}, pour
+          l'appétence et les indicateurs.
+    \item Le NIST CSF~2.0~\cite{nist2024csf}, fonction \emph{Gouverner},
+          catégorie de supervision.
+\end{itemize}
+\end{boxinfo}
+
+\begin{boxinfo}
+\textbf{Transition.} Les chapitres de la Partie~IV ont traité la pratique
+par morceaux~: le SMSI, l'audit technique, la GRC. Le
+Chapitre~\ref{chap:cas-integrateurs} les assemble dans trois cas complets,
+de l'incident au rapport.
+\end{boxinfo}
