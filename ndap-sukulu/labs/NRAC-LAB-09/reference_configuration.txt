@@ -1,0 +1,9 @@
+Configuration de référence de LiZbiZ (extrait)
+
+- Administration à distance en SSH seulement ; Telnet interdit.
+- Aucune communauté SNMP par défaut (public, private).
+- Journaux envoyés au collecteur 10.20.0.15 ; horloge synchronisée sur 10.20.0.1.
+- Matrice de flux : aucune règle « any » en destination ou en port, sauf la règle finale de refus.
+- Priorité de correction : vulnérabilité exploitée et exposée d'abord, puis valeur métier, puis score.
+
+(Document fictif établi pour le cours MSN-2S3-SEC08 (NRAC). Noms, dates et montants fictifs.)

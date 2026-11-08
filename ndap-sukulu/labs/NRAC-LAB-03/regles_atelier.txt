@@ -1,0 +1,13 @@
+Règles des ateliers 3 et 4 (chapitre 4)
+
+Menace d'une partie prenante = (dépendance x pénétration) / (maturité x confiance),
+chaque critère de 1 à 4. Zones fixées par l'atelier : 3 ou plus, danger ;
+de 1 à 3, contrôle ; moins de 1, veille.
+
+Base de preuve de chaque critère : OUI, NON (contredite par une pièce) ou NEK.
+
+Règle de chaîne du cours : la vraisemblance d'un scénario opérationnel est
+celle de sa phase la plus difficile pour l'attaquant (la plus faible).
+Criticité = vraisemblance x gravité.
+
+(Document fictif établi pour le cours MSN-2S3-SEC08 (NRAC). Noms, dates et montants fictifs.)

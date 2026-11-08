@@ -1,0 +1,11 @@
+Règles (chapitre 11)
+
+Fiabilité d'un indicateur : OUI si la source couvre exactement ce que dit la
+définition ; NON si elle en couvre une autre partie ; NEK si elle est déclarative.
+
+Non-conformité majeure : elle affecte la capacité du système de management à
+atteindre ses résultats (processus non appliqué, défaut répété). Mineure :
+défaut ponctuel dans un système qui fonctionne. Piste de progrès : aucune
+exigence méconnue.
+
+(Document fictif établi pour le cours MSN-2S3-SEC08 (NRAC). Noms, dates et montants fictifs.)

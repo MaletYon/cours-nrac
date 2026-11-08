@@ -1,0 +1,2 @@
+5d6d4f09147e5d53c41a89198e846f12b01a5e8fc5c93c0aa617e9964b235d43  atelier_1_2_LiZbiZ.xlsx
+c2f4ffaa8d99c6d512c09acffe2143ddfafbc873cf5513f45b2e8ba88ca097a3  regles_atelier.txt

@@ -1,0 +1,14 @@
+Règles de l'atelier (Chapitres 2 et 4)
+
+Gravité (échelle d'impact du cours, le critère le plus défavorable l'emporte) :
+  G1 : perte < 5 M FCFA, interruption < 4 heures
+  G2 : 5 à 50 M FCFA, interruption < 24 heures
+  G3 : 50 à 500 M FCFA, interruption de 1 à 3 jours, ou compte rendu exigé par le régulateur
+  G4 : plus de 500 M FCFA, interruption de plus de 3 jours, ou sanction d'un régulateur
+
+Couples source de risque / objectif visé : motivation, ressources, activité,
+chacune de 1 à 3. Règle retenue par l'atelier de LiZbiZ : un couple est
+retenu si la somme des trois vaut 7 ou plus ; sinon il est écarté, et la
+raison est écrite.
+
+(Document fictif établi pour le cours MSN-2S3-SEC08 (NRAC). Noms, dates et montants fictifs.)

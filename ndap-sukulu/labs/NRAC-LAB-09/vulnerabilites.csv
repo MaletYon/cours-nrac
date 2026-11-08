@@ -1,0 +1,7 @@
+ref;systeme;cvss;exploitee_activement;exposition;valeur_metier
+V1;Serveur de maintenance à distance (Garoua);8.1;oui;accès de l'éditeur;élevée
+V2;Base de données de l'application (Douala);9.0;non;interne;élevée
+V3;Portail de suivi des transporteurs;7.5;oui;Internet;moyenne
+V4;Imprimantes des agences;9.8;non;réseau des agences;faible
+V5;Serveur de fichiers de Yaoundé;6.5;oui;interne;moyenne
+V6;Commutateurs de Bafoussam (Telnet);7.0;non;réseau d'administration;moyenne

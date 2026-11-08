@@ -1,0 +1,25 @@
+NRAC-LAB-08, auditer un SMSI (opération SANAGA)
+
+Les pièces du lab se trouvent dans le dossier preuves, en lecture seule, et
+une copie de travail modifiable dans le dossier travail (ouvert au démarrage).
+  dossier_SMSI_2028.xlsx   indicateurs, constats, revue de direction
+  regles_audit_smsi.txt    fiabilité et qualification
+  MANIFESTE_SHA256.txt     empreintes de référence (preuves)
+
+Marche à suivre.
+
+1. Vérifier l'intégrité avant toute analyse. Ouvrez un terminal, puis tapez :
+       cd ~/preuves
+       sha256sum -c MANIFESTE_SHA256.txt
+   Chaque fichier doit afficher OK.
+
+2. Partie A : coter la fiabilité des six indicateurs.
+
+3. Partie B : qualifier les constats et contrôler la revue de direction.
+
+4. Répondre. Saisissez vos réponses dans le volet Points de contrôle de la
+   page du lab, puis enregistrez. Nombres avec un point ou une virgule
+   décimale ; codes et listes comme indiqué dans chaque question. Quand vous
+   avez terminé, cliquez sur Terminer et corriger pour obtenir votre note.
+
+Toute votre activité dans le terminal est journalisée.

@@ -35,9 +35,16 @@ Un certificat n'est pas une preuve de sécurité, et une analyse de risque sans 
 
 ## NDAP SUKULU, la salle de classe compagnon
 
-*Ndap sukulu* signifie « la salle de classe » en bassa, et *Malet Yon* « ton enseignant ». NDAP SUKULU est l'environnement compagnon du cours. Il propose une fiche d'auto-évaluation par chapitre et dix laboratoires pratiques d'une heure, exécutés dans un bureau d'analyste virtuel et corrigés automatiquement. Le code de cours est **MSN-2S3-SEC08**.
+*Ndap sukulu* signifie « la salle de classe » en bassa, et *Malet Yon* « ton enseignant ». NDAP SUKULU est l'environnement d'évaluation du cours : une fiche de 20 questions tirées d'une banque de 100 par chapitre, et dix laboratoires pratiques, minutés et en nombre de tentatives limité. Le code de cours est **MSN-2S3-SEC08**. La présentation complète figure au début du livre.
 
-> **NDAP SUKULU en local.** La version téléchargeable et installable sur votre poste, avec un module autonome pour ce cours, est en cours de finalisation. En attendant, les fiches d'auto-évaluation de chaque chapitre (40 questions) sont fournies au format texte dans [`fiches/`](fiches/).
+| Utilisation | Où |
+|---|---|
+| En ligne | `https://maletyon.github.io/cours-nrac/ndap-sukulu/` |
+| Sur un ordinateur, sans Internet | archive téléchargeable dans [`ndap-sukulu/`](ndap-sukulu/) |
+| Sur un téléphone (fiches seulement) | `https://maletyon.github.io/cours-nrac/ndap-sukulu/telephone/` |
+| Si votre réseau bloque `github.io` | adresse de secours `https://raw.githack.com/MaletYon/cours-nrac/main/ndap-sukulu/`, ou [archive à télécharger](https://github.com/MaletYon/cours-nrac/raw/main/ndap-sukulu/NDAP_SUKULU_NRAC_ordinateur.zip) pour travailler hors ligne |
+
+La connexion se fait avec le matricule et le mot de passe remis par l'enseignant. Les copies sont remises à l'enseignant sous forme d'un fichier chiffré ; il les corrige et publie les résultats, que chacun consulte dans l'application. Le mode d'emploi complet, pour l'étudiant et pour l'enseignant, est dans [`ndap-sukulu/README.md`](ndap-sukulu/README.md). Les fiches de 40 questions au format texte restent disponibles dans [`fiches/`](fiches/).
 
 | Lab | Sujet | Chapitre |
 |---|---|---|

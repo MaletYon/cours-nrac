@@ -1,0 +1,25 @@
+NRAC-LAB-05, décomposer, coter, conclure (opération SANAGA)
+
+Les pièces du lab se trouvent dans le dossier preuves, en lecture seule, et
+une copie de travail modifiable dans le dossier travail (ouvert au démarrage).
+  mission_agences_2028.xlsx   tests, critères de S4.2, assertions
+  regle_de_decision.txt       règle de décision et atomicité
+  MANIFESTE_SHA256.txt        empreintes de référence (preuves)
+
+Marche à suivre.
+
+1. Vérifier l'intégrité avant toute analyse. Ouvrez un terminal, puis tapez :
+       cd ~/preuves
+       sha256sum -c MANIFESTE_SHA256.txt
+   Chaque fichier doit afficher OK.
+
+2. Partie A : coter S4.2, puis calculer µ, U, H du domaine et sa région.
+
+3. Partie B : repérer l'ignorance unanime et les assertions non atomiques.
+
+4. Répondre. Saisissez vos réponses dans le volet Points de contrôle de la
+   page du lab, puis enregistrez. Nombres avec un point ou une virgule
+   décimale ; codes et listes comme indiqué dans chaque question. Quand vous
+   avez terminé, cliquez sur Terminer et corriger pour obtenir votre note.
+
+Toute votre activité dans le terminal est journalisée.

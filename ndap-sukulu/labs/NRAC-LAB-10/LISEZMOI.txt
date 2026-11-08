@@ -1,0 +1,25 @@
+NRAC-LAB-10, synthèse GRC (opération SANAGA)
+
+Les pièces du lab se trouvent dans le dossier preuves, en lecture seule, et
+une copie de travail modifiable dans le dossier travail (ouvert au démarrage).
+  dispositif_GRC_2029.xlsx   obligations, matrice, indicateurs de risque
+  regles_GRC.txt             règles de lecture
+  MANIFESTE_SHA256.txt       empreintes de référence (preuves)
+
+Marche à suivre.
+
+1. Vérifier l'intégrité avant toute analyse. Ouvrez un terminal, puis tapez :
+       cd ~/preuves
+       sha256sum -c MANIFESTE_SHA256.txt
+   Chaque fichier doit afficher OK.
+
+2. Partie A : mesurer le registre des obligations.
+
+3. Partie B : lire la matrice risques-contrôles et les indicateurs de risque.
+
+4. Répondre. Saisissez vos réponses dans le volet Points de contrôle de la
+   page du lab, puis enregistrez. Nombres avec un point ou une virgule
+   décimale ; codes et listes comme indiqué dans chaque question. Quand vous
+   avez terminé, cliquez sur Terminer et corriger pour obtenir votre note.
+
+Toute votre activité dans le terminal est journalisée.

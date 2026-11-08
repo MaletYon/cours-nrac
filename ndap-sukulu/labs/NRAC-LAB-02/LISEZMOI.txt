@@ -1,0 +1,27 @@
+NRAC-LAB-02, EBIOS RM, ateliers 1 et 2 (opération LIZBIZ)
+
+Les pièces du lab se trouvent dans le dossier preuves, en lecture seule, et
+une copie de travail modifiable dans le dossier travail (ouvert au démarrage).
+  atelier_1_2_LiZbiZ.xlsx   événements redoutés et couples SR/OV
+  regles_atelier.txt        échelle de gravité et règle de sélection
+  MANIFESTE_SHA256.txt      empreintes de référence (preuves)
+
+Marche à suivre.
+
+1. Vérifier l'intégrité avant toute analyse. Ouvrez un terminal, puis tapez :
+       cd ~/preuves
+       sha256sum -c MANIFESTE_SHA256.txt
+   Chaque fichier doit afficher OK.
+
+2. Ouvrir le classeur : onglets Evenements et Couples SR-OV.
+
+3. Partie A : coter la gravité de chaque événement redouté.
+
+4. Partie B : retenir ou écarter chaque couple SR/OV.
+
+5. Répondre. Saisissez vos réponses dans le volet Points de contrôle de la
+   page du lab, puis enregistrez. Nombres avec un point ou une virgule
+   décimale ; codes et listes comme indiqué dans chaque question. Quand vous
+   avez terminé, cliquez sur Terminer et corriger pour obtenir votre note.
+
+Toute votre activité dans le terminal est journalisée.

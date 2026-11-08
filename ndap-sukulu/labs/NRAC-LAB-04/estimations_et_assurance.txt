@@ -1,0 +1,14 @@
+Estimations calibrées de R-AG-01 (atelier de février 2027)
+
+Fréquence des événements de perte (par an) : minimum 0,2 ; plus probable 0,35 ; maximum 0,6
+Ampleur par événement (M FCFA) : minimum 150 ; plus probable 410 ; maximum 900
+Lois PERT ; nombre d'événements par an selon une loi de Poisson.
+
+Offre d'assurance : prime 35 M FCFA par an ; franchise 100 M par événement ;
+plafond 1000 M par an. La colonne remboursement du fichier applique ces conditions.
+
+Le fichier simulation_1000_annees.csv contient 1 000 années tirées avec une
+graine fixe. Les réponses du lab se calculent sur ce fichier.
+Moyenne d'une loi PERT (a, m, b) : (a + 4m + b) / 6.
+
+(Document fictif établi pour le cours MSN-2S3-SEC08 (NRAC). Noms, dates et montants fictifs.)

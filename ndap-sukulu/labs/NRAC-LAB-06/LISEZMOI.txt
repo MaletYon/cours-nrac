@@ -1,0 +1,25 @@
+NRAC-LAB-06, confronter la déclaration d'applicabilité aux preuves (opération SANAGA)
+
+Les pièces du lab se trouvent dans le dossier preuves, en lecture seule, et
+une copie de travail modifiable dans le dossier travail (ouvert au démarrage).
+  dda_2028_et_audit.xlsx        extrait de la DdA et résultats de l'audit
+  note_DSI_developpements.txt   note de la DSI sur les développements
+  MANIFESTE_SHA256.txt          empreintes de référence (preuves)
+
+Marche à suivre.
+
+1. Vérifier l'intégrité avant toute analyse. Ouvrez un terminal, puis tapez :
+       cd ~/preuves
+       sha256sum -c MANIFESTE_SHA256.txt
+   Chaque fichier doit afficher OK.
+
+2. Partie A : confronter chaque « mise en œuvre » déclarée au résultat de l'audit.
+
+3. Partie B : contrôler l'exclusion et situer les mesures.
+
+4. Répondre. Saisissez vos réponses dans le volet Points de contrôle de la
+   page du lab, puis enregistrez. Nombres avec un point ou une virgule
+   décimale ; codes et listes comme indiqué dans chaque question. Quand vous
+   avez terminé, cliquez sur Terminer et corriger pour obtenir votre note.
+
+Toute votre activité dans le terminal est journalisée.

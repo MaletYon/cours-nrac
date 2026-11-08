@@ -1,0 +1,15 @@
+Échelle et convention du cours (chapitre 2)
+
+Vraisemblance : 1 rare (< 1 fois en 10 ans) ; 2 possible (1 fois en 3 à 10 ans) ;
+3 probable (1 fois en 1 à 3 ans) ; 4 quasi certain (au moins 1 fois par an).
+Criticité = vraisemblance x impact (de 1 à 16).
+Appétence : 9 et plus intolérable ; 5 à 8 traité dans l'année ; 1 à 4 accepté.
+
+Convention de réduction : une étape du scénario (entrée, propagation,
+récupération) couverte par au moins une mesure testée et efficace abaisse d'un
+niveau la vraisemblance (entrée, propagation) ou l'impact (récupération).
+Une étape ne compte qu'une fois ; une mesure non testée n'abaisse rien.
+
+Mesures : µ = part des OUI ; U = part des NEK ; H = -somme p log2 p (bits).
+
+(Document fictif établi pour le cours MSN-2S3-SEC08 (NRAC). Noms, dates et montants fictifs.)

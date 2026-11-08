@@ -1,0 +1,7 @@
+Note interne de la DSI (extrait)
+
+Depuis 2026, l'équipe d'intégration de la DSI développe et maintient les
+interfaces entre le système central, l'application de paiement et le portail
+en ligne de la banque (scripts et services web écrits en interne).
+
+(Document fictif établi pour le cours MSN-2S3-SEC08 (NRAC). Noms, dates et montants fictifs.)
